@@ -1,4 +1,4 @@
 # treasure
 Treasure of the High Seas.
 
-All rights reserved
+All rights reserved.
