@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="treasure-jvm">
-    <output-path>C:\Users\Mark\IdeaProjects\treasure\build\libs</output-path>
-    <root id="archive" name="treasure-jvm.jar">
-      <element id="module-output" name="treasure.jvmMain" />
-    </root>
-  </artifact>
-</component>
