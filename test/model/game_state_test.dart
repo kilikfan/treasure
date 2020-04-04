@@ -54,7 +54,7 @@ void main() {
     final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip], shuffler: shuffler);
     state.nextCard();
     state.nextCard();
-    expect(state.deckSize(), 0);
+    expect(state.deck, []);
 
     verifyNever(shuffler.shuffle(any));
 
@@ -64,5 +64,17 @@ void main() {
     expect(state.currentCard, plunderAWreck);
     expect(state.discard, []);
     expect(state.deck, [aRivalShip]);
+  });
+
+  test('should exile the current card', () {
+    const plunderAWreck = PlunderAWreck();
+    const aRivalShip = ARivalShip();
+    final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip]);
+
+    state.nextCard();
+    state.exileCurrentCard();
+
+    expect(state.exile, [plunderAWreck]);
+    expect(state.currentCard, null);
   });
 }

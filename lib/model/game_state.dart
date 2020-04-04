@@ -9,7 +9,7 @@ class GameState {
   Card currentCard;
   List<Card> deck;
   List<Card> discard = new List<Card>();
-  List<Card> _exile = new List<Card>();
+  List<Card> exile = new List<Card>();
 
   List<Resource> playerHand = new List<Resource>();
 
@@ -29,14 +29,12 @@ class GameState {
     currentCard = deck.removeAt(0);
   }
 
-  int deckSize() => deck.length;
-
   void _shuffleDeck () {
     _shuffler.shuffle(deck);
   }
 
   void exileCurrentCard() {
-    _exile.add(currentCard);
+    exile.add(currentCard);
     currentCard = null;
   }
 
