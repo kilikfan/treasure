@@ -6,7 +6,7 @@ import 'action/trade_action.dart';
 import 'card.dart';
 
 class ARivalShip extends Card {
-  ARivalShip(String name) : super("A Rival Ship");
+  const ARivalShip() : super("A Rival Ship");
 
   @override
   List<CardAction> getActions() {
