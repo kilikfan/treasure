@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MainMenuPage(title: 'Treasure of the High Seas'),
+      home: MainMenuPage(),
     );
   }
 }
