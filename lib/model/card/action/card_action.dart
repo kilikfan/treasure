@@ -8,9 +8,9 @@ abstract class CardAction {
   CardAction(this.cost, this.description);
 
   void performAction(GameState state) {
-    _performActionImpl(state);
+    performActionImpl(state);
     state.nextCard();
   }
 
-  void _performActionImpl(GameState state);
+  void performActionImpl(GameState state);
 }

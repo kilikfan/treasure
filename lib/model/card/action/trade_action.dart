@@ -4,18 +4,13 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 
 import 'card_action.dart';
 
-class TradeAction implements CardAction {
-  @override
-  final String description;
-
-  @override
-  List<Resource> cost;
+class TradeAction extends CardAction {
   List<Resource> reward;
 
-  TradeAction(this.description, this.cost, this.reward);
+  TradeAction(description, List<Resource> cost, this.reward) : super(cost, description);
 
   @override
-  void performAction(GameState state) {
+  void performActionImpl(GameState state) {
     state.addResources(reward);
   }
 }
