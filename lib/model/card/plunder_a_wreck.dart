@@ -4,11 +4,8 @@ import '../resource.dart';
 import 'action/trade_action.dart';
 import 'card.dart';
 
-class PlunderAWreck implements Card {
-  @override
-  String get name => "Plunder a Wreck";
-
-  const PlunderAWreck();
+class PlunderAWreck extends Card {
+  const PlunderAWreck() : super("Plunder a Wreck");
 
   @override
   List<CardAction> getActions() {
