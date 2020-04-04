@@ -7,6 +7,11 @@ import 'card.dart';
 
 class ARivalShip implements Card {
   @override
+  String get name => "A Rival Ship";
+
+  const ARivalShip();
+
+  @override
   List<CardAction> getActions() {
     return [
       TradeAction("Board the ship.", [Resource.CREW],
@@ -23,7 +28,4 @@ class ARivalShip implements Card {
       ])
     ];
   }
-
-  @override
-  String get name => "A Rival Ship";
 }

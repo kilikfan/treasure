@@ -6,38 +6,42 @@ import 'resource.dart';
 class GameState {
   final ListShuffler _shuffler;
 
-  Card _currentCard;
-  List<Card> _deck;
-  List<Card> _discard = new List<Card>();
+  Card currentCard;
+  List<Card> deck;
+  List<Card> discard = new List<Card>();
   List<Card> _exile = new List<Card>();
 
-  List<Resource> _playerHand = new List<Resource>();
+  List<Resource> playerHand = new List<Resource>();
 
-  GameState(this._shuffler, this._deck) {
-    _deck.shuffle();
-    nextCard();
-  }
+  GameState(this._shuffler, this.deck);
 
   void nextCard() {
-    if (_deck.isEmpty) {
-      _deck.addAll(_discard);
-      _discard.clear();
-      _shuffler.shuffle(_deck);
+    if (currentCard != null) {
+      discard.add(currentCard);
     }
 
-    if (_currentCard != null) {
-      _discard.add(_currentCard);
+    if (deck.isEmpty) {
+      deck.addAll(discard);
+      _shuffleDeck();
+      discard.clear();
     }
 
-    _currentCard = _deck.removeAt(0);
+    currentCard = deck.removeAt(0);
+  }
+
+  int deckSize() => deck.length;
+
+  void _shuffleDeck () {
+    _shuffler.shuffle(deck);
   }
 
   void exileCurrentCard() {
-    _exile.add(_currentCard);
-    _currentCard = null;
+    _exile.add(currentCard);
+    currentCard = null;
   }
 
   void addResources(List<Resource> resources) {
-    _playerHand.addAll(resources);
+    playerHand.addAll(resources);
+    playerHand.sort((r1, r2) => r1.index.compareTo(r2.index));
   }
 }

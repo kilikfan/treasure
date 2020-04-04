@@ -6,6 +6,11 @@ import 'card.dart';
 
 class PlunderAWreck implements Card {
   @override
+  String get name => "Plunder a Wreck";
+
+  const PlunderAWreck();
+
+  @override
   List<CardAction> getActions() {
     return [
       TradeAction("Treacherous seas indeed.", [Resource.CREW, Resource.CREW],
@@ -15,7 +20,4 @@ class PlunderAWreck implements Card {
           [Resource.CREW, Resource.DOUBLOON, Resource.INFAMY])
     ];
   }
-
-  @override
-  String get name => "Plunder a Wreck";
 }
