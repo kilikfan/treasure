@@ -1,7 +1,11 @@
+import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
+
 import 'card/card.dart';
 import 'resource.dart';
 
 class GameState {
+  final ListShuffler _shuffler;
+
   Card _currentCard;
   List<Card> _deck;
   List<Card> _discard = new List<Card>();
@@ -9,7 +13,7 @@ class GameState {
 
   List<Resource> _playerHand = new List<Resource>();
 
-  GameState(this._deck) {
+  GameState(this._shuffler, this._deck) {
     _deck.shuffle();
     nextCard();
   }
@@ -18,7 +22,7 @@ class GameState {
     if (_deck.isEmpty) {
       _deck.addAll(_discard);
       _discard.clear();
-      _deck.shuffle();
+      _shuffler.shuffle(_deck);
     }
 
     if (_currentCard != null) {
