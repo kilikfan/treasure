@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:treasure_of_the_high_seas/screens/play.dart';
 
 class MainMenuPage extends StatelessWidget {
-  MainMenuPage({Key key}) : super(key: key);
+  MainMenuPage({Key key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +14,13 @@ class MainMenuPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const RaisedButton(
-              onPressed: null,
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PlayPage(title: 'Play Page')),
+                );
+              },
               child: const Text(
                 'Play'
               ),
