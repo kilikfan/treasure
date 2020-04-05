@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu.dart';
+import './main_menu/main_menu.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue
+        primarySwatch: Colors.lightBlue,
+        accentColor: Colors.lightGreen,
       ),
       home: MainMenuPage(),
     );
