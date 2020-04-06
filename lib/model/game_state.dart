@@ -15,7 +15,7 @@ class GameState {
 
   GameState(this._shuffler, this.deck);
 
-  void nextCard() {
+  Card nextCard() {
     if (currentCard != null) {
       discard.add(currentCard);
     }
@@ -27,6 +27,7 @@ class GameState {
     }
 
     currentCard = deck.removeAt(0);
+    return currentCard;
   }
 
   void _shuffleDeck () {

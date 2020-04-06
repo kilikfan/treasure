@@ -5,7 +5,7 @@ import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 class ExileAction extends CardAction {
   final List<Resource> reward;
 
-  ExileAction(this.reward) : super([], "Exile this card.");
+  ExileAction([this.reward = const []]) : super([], "Exile this card.");
 
   @override
   void performActionImpl(GameState state) {
