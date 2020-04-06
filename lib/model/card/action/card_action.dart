@@ -7,7 +7,10 @@ abstract class CardAction {
 
   CardAction(this.cost, this.description);
 
+  bool isEnabled(GameState state) => state.playerHand.canAfford(cost);
+
   void performAction(GameState state) {
+    state.playerHand.deductResources(cost);
     performActionImpl(state);
     state.nextCard();
   }

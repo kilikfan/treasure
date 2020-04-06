@@ -1,21 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/a_rival_ship.dart';
-import 'package:treasure_of_the_high_seas/model/card/card.dart';
 import 'package:treasure_of_the_high_seas/model/card/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
-import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 import '../mocks.dart';
+import '../test_utils.dart';
 
 void main() {
-  GameState makeGameState(
-      {List<Card> deck,
-        ListShuffler shuffler = const ListShuffler()}) {
 
-    final deckToUse = deck != null ? deck : [PlunderAWreck(), ARivalShip()];
-    return GameState(shuffler, deckToUse);
-  }
 
   test('should draw cards in order, placing the current card into the discard', () {
     const plunderAWreck = PlunderAWreck();
