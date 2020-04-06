@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import '../../game_state.dart';
 import '../../resource.dart';
 
@@ -15,5 +17,6 @@ abstract class CardAction {
     state.nextCard();
   }
 
+  @protected
   void performActionImpl(GameState state);
 }
