@@ -11,6 +11,6 @@ class TradeAction extends CardAction {
 
   @override
   void performActionImpl(GameState state) {
-    state.addResources(reward);
+    state.playerHand.addResources(reward);
   }
 }
