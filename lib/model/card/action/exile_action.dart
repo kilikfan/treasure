@@ -9,7 +9,7 @@ class ExileAction extends CardAction {
 
   @override
   void performActionImpl(GameState state) {
-    state.addResources(reward);
+    state.playerHand.addResources(reward);
     state.exileCurrentCard();
   }
 }

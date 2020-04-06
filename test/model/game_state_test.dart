@@ -4,7 +4,6 @@ import 'package:treasure_of_the_high_seas/model/card/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/card.dart';
 import 'package:treasure_of_the_high_seas/model/card/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
-import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 import '../mocks.dart';
@@ -17,16 +16,6 @@ void main() {
     final deckToUse = deck != null ? deck : [PlunderAWreck(), ARivalShip()];
     return GameState(shuffler, deckToUse);
   }
-
-  test('should add resources to the players hand and sort it by resource', () {
-    final GameState state = makeGameState();
-
-    state.addResources([Resource.CREW, Resource.DOUBLOON, Resource.CREW]);
-    expect(state.playerHand, [Resource.CREW, Resource.CREW, Resource.DOUBLOON]);
-
-    state.addResources([Resource.CREW, Resource.MAP]);
-    expect(state.playerHand, [Resource.MAP, Resource.CREW, Resource.CREW, Resource.CREW, Resource.DOUBLOON]);
-  });
 
   test('should draw cards in order, placing the current card into the discard', () {
     const plunderAWreck = PlunderAWreck();
