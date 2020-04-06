@@ -6,7 +6,7 @@ import '../../../test_utils.dart';
 
 main() {
   test('should exile the current card and add resources', () {
-    final state = makeGameState(playerResources: [Resource.CREW]);
+    final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
     final action = new ExileAction([Resource.LANDLUBBER]);
@@ -17,7 +17,7 @@ main() {
   });
 
   test('should have no reward by default', () {
-    final state = makeGameState(playerResources: [Resource.CREW]);
+    final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
     final action = new ExileAction();

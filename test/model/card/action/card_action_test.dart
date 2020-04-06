@@ -9,7 +9,7 @@ import '../../../test_utils.dart';
 
 main() {
   test('should be enabled if cost is affordable', () {
-    final state = makeGameState(playerResources: [Resource.CREW]);
+    final state = makeGameState(playerHand: [Resource.CREW]);
 
     final affordable = new _FakeAction([Resource.CREW]);
     final unaffordable = new _FakeAction([Resource.LANDLUBBER]);
@@ -19,7 +19,7 @@ main() {
   });
 
   test('should deduct the cost, perform the action then move on to the next card', () {
-    final state = makeGameState(playerResources: [Resource.CREW, Resource.LANDLUBBER]);
+    final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
     state.nextCard();
 
     final fn = new MockFunction().fn;
