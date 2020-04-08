@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../play.dart';
+import '../play/play.dart';
 import 'menu_button.dart';
 
 class MainMenuPage extends StatelessWidget {
