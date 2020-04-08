@@ -4,6 +4,8 @@ import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
+import './player_hand.dart';
+
 class PlayPage extends StatefulWidget {
   PlayPage({Key key, this.title}) : super(key: key);
 
@@ -50,9 +52,7 @@ class _PlayPageState extends State<PlayPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              gameState.playerHand.cards.toString()
-            )
+            PlayerHand(gameState.playerHand)
           ],
         ),
       ),
