@@ -36,31 +36,21 @@ class _PlayPageState extends State<PlayPage> {
     ]);
   }
 
-  void _addMapPressed() {
-    setState(() {
-      gameState.playerHand.addResources([Resource.MAP]);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            PlayerHand(gameState.playerHand)
+            Container(
+              padding: EdgeInsets.all(15),
+              child: PlayerHand(gameState.playerHand),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addMapPressed,
-        tooltip: 'Add Map',
-        child: Icon(Icons.add),
-      ),
     );
   }
 }

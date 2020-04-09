@@ -35,25 +35,25 @@ class ResourceCard extends StatelessWidget {
   Color _getResourceColor() {
     switch (resource) {
       case Resource.CREW: 
-        return Colors.green;
+        return Colors.green[200];
         break;
       case Resource.DOUBLOON:
-        return Colors.red;
+        return Colors.red[200];
         break;
       case Resource.FOOD:
-        return Colors.blue;
+        return Colors.blue[200];
         break;
       case Resource.INFAMY:
-        return Colors.orange;
+        return Colors.orange[200];
         break;
       case Resource.LANDLUBBER:
-        return Colors.yellow;
+        return Colors.yellow[200];
         break;
       case Resource.MAP:
-        return Colors.purple;
+        return Colors.purple[200];
         break;
       default:
-        return Colors.grey;
+        return Colors.grey[200];
     }
   }
 
@@ -67,8 +67,9 @@ class ResourceCard extends StatelessWidget {
           child: Text(
             _getResourceText(),
             style: TextStyle(
-              fontSize: 40.0,
+              fontSize: 28.0,
               fontWeight: FontWeight.bold,
+              fontFamily: 'TreasureHunt'
             ),
           ),
         ),
