@@ -1,5 +1,4 @@
-import 'package:treasure_of_the_high_seas/model/game_state.dart';
-
+import '../../../model/game_state.dart';
 import 'card_action.dart';
 
 class DiscardAction extends CardAction {
