@@ -38,3 +38,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: TreasureHunt
+      fonts:
+        - asset: assets/fonts/Treasurehunt-DOYwE.ttf
