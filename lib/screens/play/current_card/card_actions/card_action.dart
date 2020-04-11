@@ -17,6 +17,7 @@ class CardAction extends StatelessWidget {
       width: (MediaQuery.of(context).size.width) * 0.33,
       height: (MediaQuery.of(context).size.width) * 0.33 * 1.3,
       child: Card(
+        color: Colors.yellow[50],
         child: Column(
           children: <Widget>[
             Expanded(

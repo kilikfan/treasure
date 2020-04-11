@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:treasure_of_the_high_seas/model/card/card.dart' as GameCard;
 
 import './card_actions/card_actions.dart';
+import './card_header.dart';
 
 class CurrentCard extends StatelessWidget {
   final GameCard.Card currentCard;
@@ -13,14 +14,7 @@ class CurrentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          currentCard.name,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20
-          ),
-        ),
+        CardHeader(currentCard.name),
         CardActions(currentCard.getActions())
       ],
     );
