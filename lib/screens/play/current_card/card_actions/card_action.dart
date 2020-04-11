@@ -14,8 +14,7 @@ class CardAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: (MediaQuery.of(context).size.width) * 0.33,
-      height: (MediaQuery.of(context).size.width) * 0.33 * 1.3,
+      height: (MediaQuery.of(context).size.width / 3) * 1.4,
       child: Card(
         color: Colors.yellow[50],
         child: Column(
@@ -34,7 +33,7 @@ class CardAction extends StatelessWidget {
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }
