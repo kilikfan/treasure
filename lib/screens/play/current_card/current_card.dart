@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:treasure_of_the_high_seas/model/card/card.dart' as GameCard;
 
-import './card_action.dart';
+import './card_actions/card_actions.dart';
 
 class CurrentCard extends StatelessWidget {
   final GameCard.Card currentCard;
@@ -11,13 +11,11 @@ class CurrentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Text(currentCard.name),
-          for (var action in currentCard.getActions()) CardAction(action)
-        ],
-      ),
+    return Column(
+      children: [
+        Text(currentCard.name),
+        CardActions(currentCard.getActions())
+      ],
     );
   }
 }

@@ -60,7 +60,7 @@ class _PlayPageState extends State<PlayPage> {
       body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            Center(
+            Expanded(
               child: CurrentCard(gameState.currentCard)
             ),
             SizedBox(
