@@ -10,7 +10,10 @@ class CardActionReward extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('(Reward not implemented...)'),
+      child: Text(
+        '(Reward not implemented...)',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

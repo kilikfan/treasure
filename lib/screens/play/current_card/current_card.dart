@@ -13,7 +13,14 @@ class CurrentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(currentCard.name),
+        Text(
+          currentCard.name,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20
+          ),
+        ),
         CardActions(currentCard.getActions())
       ],
     );

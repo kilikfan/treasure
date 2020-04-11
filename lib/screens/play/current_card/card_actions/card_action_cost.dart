@@ -10,7 +10,10 @@ class CardActionCost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('(Cost not implemented...)'),
+      child: Text(
+        '(Cost not implemented...)',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }
