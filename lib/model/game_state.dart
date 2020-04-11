@@ -34,6 +34,10 @@ class GameState {
     _shuffler.shuffle(deck);
   }
 
+  void scryCards(int numToScry) {
+    //TODO - implement scrying
+  }
+
   void exileCurrentCard() {
     exile.add(currentCard);
     currentCard = null;
