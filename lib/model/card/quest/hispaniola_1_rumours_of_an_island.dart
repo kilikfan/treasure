@@ -11,7 +11,7 @@ class RumoursOfAnIsland extends Card {
   List<CardAction> getActions() {
     return [
       //TODO - flavour text required
-      DiscardAction(""),
+      DiscardAction(),
       //TODO - need an action to exile current card and add card x to discard pile
       ExileAction([]),
       ExileAction([Resource.MAP])
