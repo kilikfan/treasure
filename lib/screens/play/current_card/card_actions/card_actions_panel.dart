@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart' as Model;
 
-import './card_action.dart';
+import './card_action_panel.dart';
 
-class CardActions extends StatelessWidget {
+class CardActionsPanel extends StatelessWidget {
   final List<Model.CardAction> actions;
 
-  CardActions(this.actions);
+  CardActionsPanel(this.actions);
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +18,19 @@ class CardActions extends StatelessWidget {
       children: [
         Expanded(
           flex: 4,
-          child: CardAction(
+          child: CardActionPanel(
             actions.asMap().containsKey(0) ? actions[0] : null
           ),
         ),
         Expanded(
           flex: 4,
-          child: CardAction(
+          child: CardActionPanel(
             actions.asMap().containsKey(1) ? actions[1] : null
           ),
         ),
         Expanded(
           flex: 4,
-          child: CardAction(
+          child: CardActionPanel(
             actions.asMap().containsKey(2) ? actions[2] : null
           ),
         ), 

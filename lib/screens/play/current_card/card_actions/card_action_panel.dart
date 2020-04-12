@@ -6,10 +6,10 @@ import './card_action_cost.dart';
 import './card_action_reward.dart';
 import './card_action_text.dart';
 
-class CardAction extends StatelessWidget {
+class CardActionPanel extends StatelessWidget {
   final Model.CardAction action;
 
-  CardAction(this.action);
+  CardActionPanel(this.action);
 
   @override
   Widget build(BuildContext context) {

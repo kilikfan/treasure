@@ -10,7 +10,7 @@ import 'package:treasure_of_the_high_seas/model/card/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/plunder_a_wreck.dart';
 
 import './player_hand.dart';
-import './current_card/current_card.dart';
+import './current_card/current_card_display.dart';
 
 class PlayPage extends StatefulWidget {
   PlayPage({Key key, this.title}) : super(key: key);
@@ -63,7 +63,7 @@ class _PlayPageState extends State<PlayPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Expanded(
-              child: CurrentCard(gameState.currentCard)
+              child: CurrentCardDisplay(gameState.currentCard)
             ),
             SizedBox(
               height: (MediaQuery.of(context).size.height) * 0.2,
