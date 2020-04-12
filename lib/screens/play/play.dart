@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
+import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
@@ -6,8 +8,6 @@ import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 // Define alias to avoid clash with the material.dart Card Widget
 import 'package:treasure_of_the_high_seas/model/card/card.dart' as GameCard;
-import 'package:treasure_of_the_high_seas/model/card/a_rival_ship.dart';
-import 'package:treasure_of_the_high_seas/model/card/plunder_a_wreck.dart';
 
 import './player_hand.dart';
 import './current_card/current_card_display.dart';
