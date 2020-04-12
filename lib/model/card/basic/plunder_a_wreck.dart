@@ -1,8 +1,7 @@
-import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
-
-import '../resource.dart';
-import 'action/trade_action.dart';
-import 'card.dart';
+import '../../resource.dart';
+import '../action/card_action.dart';
+import '../action/trade_action.dart';
+import '../card.dart';
 
 class PlunderAWreck extends Card {
   const PlunderAWreck() : super("Plunder a Wreck");

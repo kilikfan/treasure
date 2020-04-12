@@ -1,11 +1,11 @@
-import 'package:treasure_of_the_high_seas/model/game_state.dart';
-import 'package:treasure_of_the_high_seas/model/resource.dart';
-import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
+import '../../../model/game_state.dart';
+import '../../../model/resource.dart';
+import 'card_action.dart';
 
 class ExileAction extends CardAction {
   final List<Resource> reward;
 
-  ExileAction([this.reward = const []]) : super([], "Exile this card.");
+  ExileAction({this.reward = const [], String description="Exile this card.", List<Resource> cost = const []}) : super(cost, description);
 
   @override
   void performActionImpl(GameState state) {
