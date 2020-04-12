@@ -12,7 +12,7 @@ class ARivalShip extends Card {
     return [
       TradeAction("Board the ship.", [Resource.CREW],
           [Resource.DOUBLOON, Resource.LANDLUBBER, Resource.INFAMY]),
-      DiscardAction("Turn away."),
+      DiscardAction(description: "Turn away."),
       TradeAction("Open fire.", [Resource.CREW, Resource.CREW],
           [Resource.DOUBLOON, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY])
     ];

@@ -12,7 +12,7 @@ class Trawlerman extends Card {
     return [
       TradeAction("Fresh fish.", [], [Resource.FOOD]),
       TradeAction("Fresh fish and fresh trawlerman!", [], [Resource.CREW, Resource.FOOD, Resource.INFAMY]),
-      DiscardAction("Saving yourself for a big dinner.")
+      DiscardAction(description: "Saving yourself for a big dinner.")
     ];
   }
 }

@@ -1,6 +1,7 @@
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 import 'card/card.dart';
+import 'game_result.dart';
 import 'hand.dart';
 
 class GameState {
@@ -10,6 +11,8 @@ class GameState {
   List<Card> deck;
   List<Card> discard = new List<Card>();
   List<Card> exile = new List<Card>();
+
+  GameResult result;
 
   Hand playerHand = new Hand();
 

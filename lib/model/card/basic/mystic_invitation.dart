@@ -13,7 +13,7 @@ class MysticInvitation extends Card {
       TradeAction("Have your palm read.", [Resource.DOUBLOON], [Resource.CREW]),
       TradeAction("Participate in a seance.", [Resource.DOUBLOON, Resource.LANDLUBBER],
           [Resource.CREW, Resource.CREW, Resource.CREW]),
-      DiscardAction("Sidestep fate this time.")
+      DiscardAction(description: "Sidestep fate this time.")
     ];
   }
 }

@@ -13,7 +13,7 @@ class DockingForSupplies extends Card {
       TradeAction("Fresh food.", [Resource.DOUBLOON, Resource.DOUBLOON],
           [Resource.FOOD]),
       TradeAction("Honest trading.", [Resource.FOOD, Resource.FOOD], [Resource.DOUBLOON]),
-      DiscardAction("Nothing to declare.")
+      DiscardAction(description: "Nothing to declare.")
     ];
   }
 }

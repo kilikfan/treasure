@@ -15,7 +15,7 @@ class TheGovernorsDaughter extends Card {
           [Resource.CREW, Resource.CREW, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY]),
       //TODO - action should allow crew/landlubber payments
       TradeAction("Return her for the ransom.", [Resource.CREW], [Resource.DOUBLOON, Resource.DOUBLOON]),
-      DiscardAction("Tell your crew to focus.")
+      DiscardAction(description: "Tell your crew to focus.")
     ];
   }
 }

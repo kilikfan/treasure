@@ -13,7 +13,7 @@ class AGameOfCards extends Card {
       TradeAction("A straight wins.", [Resource.CREW, Resource.DOUBLOON, Resource.FOOD, Resource.LANDLUBBER, Resource.INFAMY],
           [Resource.MAP]),
       TradeAction("Better luck next time.", [Resource.DOUBLOON, Resource.DOUBLOON], []),
-      DiscardAction("Not worth the risk.")
+      DiscardAction(description: "Not worth the risk.")
     ];
   }
 }
