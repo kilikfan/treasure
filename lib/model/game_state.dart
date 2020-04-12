@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 import 'card/card.dart';
@@ -10,6 +12,8 @@ class GameState {
   List<Card> deck;
   List<Card> discard = new List<Card>();
   List<Card> exile = new List<Card>();
+
+  List<Card> scrying = new List<Card>();
 
   Hand playerHand = new Hand();
 
@@ -35,7 +39,9 @@ class GameState {
   }
 
   void scryCards(int numToScry) {
-    //TODO - implement scrying
+    final actualNumToScry = min(deck.length, numToScry);
+    scrying.addAll(deck.getRange(0, actualNumToScry));
+    deck.removeRange(0, actualNumToScry);
   }
 
   void exileCurrentCard() {
