@@ -14,7 +14,7 @@ class Scurvy extends Card {
       //TODO - action should be half of crew owned
       TradeAction("Weevils too! Lose half your crew (round up) if one or more.", [Resource.CREW], []),
       //TODO - action should not be enabled unless it's the only available action
-      DiscardAction("Find port to see a doctor (if no crew).")
+      DiscardAction(description: "Find port to see a doctor (if no crew).")
     ];
   }
 }

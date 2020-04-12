@@ -12,7 +12,7 @@ class TheShippingForecast extends Card {
     return [
       ScryAction("Vision in the entrail.",[Resource.FOOD], 1),
       ScryAction("Visions in the entrails.", [Resource.FOOD, Resource.FOOD], 2),
-      DiscardAction("Supplies are running low."),
+      DiscardAction(description: "Supplies are running low."),
     ];
   }
 }

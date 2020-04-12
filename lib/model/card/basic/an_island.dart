@@ -13,7 +13,7 @@ class AnIsland extends Card {
       TradeAction("Pick up some crew.", [Resource.DOUBLOON, Resource.DOUBLOON], [Resource.CREW, Resource.CREW]),
       TradeAction("Kidnap some natives.", [Resource.CREW],
           [Resource.LANDLUBBER, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY]),
-      DiscardAction("Just a mirage.")
+      DiscardAction(description: "Just a mirage.")
     ];
   }
 }

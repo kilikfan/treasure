@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 import 'card/card.dart';
+import 'game_result.dart';
 import 'hand.dart';
 
 enum ScryOption {
@@ -17,10 +18,11 @@ class GameState {
   List<Card> deck;
   List<Card> discard = new List<Card>();
   List<Card> exile = new List<Card>();
-
   List<Card> scrying = new List<Card>();
 
   Hand playerHand = new Hand();
+
+  GameResult result;
 
   GameState(this._shuffler, this.deck);
 
@@ -63,6 +65,4 @@ class GameState {
     exile.add(currentCard);
     currentCard = null;
   }
-  
-  
 }
