@@ -30,6 +30,7 @@ class _PlayPageState extends State<PlayPage> {
     
     gameState = GameState(const ListShuffler(), _getInitialDeck());
 
+    // TODO: Move to a better place
     gameState.playerHand.addResources([
       Resource.CREW,
       Resource.CREW,
@@ -44,6 +45,7 @@ class _PlayPageState extends State<PlayPage> {
     gameState.nextCard();
   }
 
+  // TODO: Move to a better place
   List<GameCard.Card> _getInitialDeck() {
     return [
       PlunderAWreck(),
