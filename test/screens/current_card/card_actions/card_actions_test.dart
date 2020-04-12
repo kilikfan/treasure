@@ -8,6 +8,22 @@ import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions
 import '../../../test_utils.dart';
 
 void main() {
+  testWidgets('should be able to display 2 card actions', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      createWidgetForTesting(
+        child: CardActions([
+          TradeAction('Test action 1', [Resource.DOUBLOON], [Resource.MAP]),
+          DiscardAction('Test action 2')
+        ]))
+    );
+
+    final action1Finder = find.text('Test action 1');
+    final action2Finder = find.text('Test action 2');
+
+    expect(action1Finder, findsOneWidget);
+    expect(action2Finder, findsOneWidget);
+  });
+
   testWidgets('should be able to display 3 card actions', (WidgetTester tester) async {
     await tester.pumpWidget(
       createWidgetForTesting(

@@ -21,11 +21,11 @@ class CardAction extends StatelessWidget {
           children: <Widget>[
             Expanded(
               flex: 6,
-              child: CardActionText(action.description)
+              child: CardActionText(action?.description ?? '')
             ),
             Expanded(
               flex: 3,
-              child: CardActionCost(action.cost),
+              child: CardActionCost(action?.cost ?? []),
             ),
             Expanded(
               flex: 3,
