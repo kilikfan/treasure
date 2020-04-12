@@ -9,21 +9,36 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
-    final action = new ExileAction([Resource.LANDLUBBER]);
+    final action = new ExileAction(reward: [Resource.LANDLUBBER]);
     action.performAction(state);
 
     expect(state.exile, [currentCard]);
     expect(state.playerHand.cards, [Resource.CREW, Resource.LANDLUBBER]);
   });
 
-  test('should have no reward by default', () {
+  test('should have no reward, cost or description by default', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
     final action = new ExileAction();
+    expect(action.description, "Exile this card.");
+
     action.performAction(state);
 
     expect(state.exile, [currentCard]);
     expect(state.playerHand.cards, [Resource.CREW]);
+  });
+
+  test('should take a custom description, and support having a cost', () {
+    final state = makeGameState(playerHand: [Resource.CREW]);
+    final currentCard = state.nextCard();
+
+    final action = new ExileAction(description: "Foo", cost: [Resource.CREW], reward: [Resource.DOUBLOON]);
+    expect(action.description, "Foo");
+
+    action.performAction(state);
+
+    expect(state.exile, [currentCard]);
+    expect(state.playerHand.cards, [Resource.DOUBLOON]);
   });
 }

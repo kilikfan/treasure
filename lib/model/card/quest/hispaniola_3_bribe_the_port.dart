@@ -15,7 +15,7 @@ class BribeThePort extends Card {
     return [
       DiscardAction(cost: [Resource.FOOD, Resource.FOOD]),
       ReplaceAction(RetrieveTheHispaniolanTreasure(), [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
-      ExileAction([Resource.CREW, Resource.DOUBLOON, Resource.LANDLUBBER])
+      ExileAction(reward: [Resource.CREW, Resource.DOUBLOON, Resource.LANDLUBBER])
     ];
   }
 }

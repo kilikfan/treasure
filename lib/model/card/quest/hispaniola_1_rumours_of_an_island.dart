@@ -16,7 +16,7 @@ class RumoursOfAnIsland extends Card {
       //TODO - flavour text required
       DiscardAction(),
       ReplaceAction(LandAhoy()),
-      ExileAction([Resource.MAP])
+      ExileAction(reward: [Resource.MAP])
     ];
   }
 }

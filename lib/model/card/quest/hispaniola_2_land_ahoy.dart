@@ -15,7 +15,7 @@ class LandAhoy extends Card {
     return [
       DiscardAction(),
       ReplaceAction(BribeThePort(), [Resource.FOOD]),
-      ExileAction([Resource.CREW, Resource.CREW])
+      ExileAction(reward: [Resource.CREW, Resource.CREW])
     ];
   }
 }
