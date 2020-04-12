@@ -13,8 +13,8 @@ class RumoursOfAnIsland extends Card {
       //TODO - flavour text required
       DiscardAction(),
       //TODO - need an action to exile current card and add card x to discard pile
-      ExileAction([]),
-      ExileAction([Resource.MAP])
+      ExileAction(),
+      ExileAction(reward: [Resource.MAP])
     ];
   }
 }

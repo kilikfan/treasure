@@ -9,14 +9,9 @@ class RavenousCrew extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - add string descriptions to ExileAction - "Theft is the only way."
-      ExileAction([Resource.FOOD, Resource.INFAMY]),
-      //TODO - add string descriptions to ExileAction - "Resort to cannibalism."
-      //TODO - add payment for ExileAction - Resource.LANDLUBBER
-      ExileAction([Resource.FOOD]),
-      //TODO - add string descriptions to ExileAction - "Emergency port stop."
-      //TODO - add payment for ExileAction - Resource.DOUBLOON
-      ExileAction([Resource.FOOD])
+      ExileAction(description: "Theft is the only way.", reward: [Resource.FOOD, Resource.INFAMY]),
+      ExileAction(description: "Resort to cannibalism.", reward: [Resource.FOOD], cost: [Resource.LANDLUBBER]),
+      ExileAction(description: "Emergency port stop.", reward: [Resource.FOOD], cost: [Resource.DOUBLOON])
     ];
   }
 }

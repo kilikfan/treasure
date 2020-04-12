@@ -5,7 +5,7 @@ import 'card_action.dart';
 class ExileAction extends CardAction {
   final List<Resource> reward;
 
-  ExileAction([this.reward = const []]) : super([], "Exile this card.");
+  ExileAction({this.reward = const [], String description="Exile this card.", List<Resource> cost = const []}) : super(cost, description);
 
   @override
   void performActionImpl(GameState state) {
