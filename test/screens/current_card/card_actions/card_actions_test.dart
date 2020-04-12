@@ -13,7 +13,7 @@ void main() {
       createWidgetForTesting(
         child: CardActionsPanel([
           TradeAction('Test action 1', [Resource.DOUBLOON], [Resource.MAP]),
-          DiscardAction('Test action 2')
+          DiscardAction(description: 'Test action 2')
         ]))
     );
 
@@ -30,7 +30,7 @@ void main() {
         child: CardActionsPanel([
           TradeAction('Test action 1', [Resource.CREW, Resource.DOUBLOON], [Resource.MAP]),
           TradeAction('Test action 2', [Resource.CREW], [Resource.FOOD]),
-          DiscardAction('Test action 3')
+          DiscardAction(description: 'Test action 3')
         ]))
     );
 
