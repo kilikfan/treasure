@@ -5,6 +5,11 @@ import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 import 'card/card.dart';
 import 'hand.dart';
 
+enum ScryOption {
+  TOP,
+  BOTTOM
+}
+
 class GameState {
   final ListShuffler _shuffler;
 
@@ -44,8 +49,20 @@ class GameState {
     deck.removeRange(0, actualNumToScry);
   }
 
+  void replaceScryedCard(Card card, ScryOption position) {
+    scrying.remove(card);
+
+    if (position == ScryOption.TOP) {
+      deck.insert(0, card);
+    } else {
+      deck.add(card);
+    }
+  }
+
   void exileCurrentCard() {
     exile.add(currentCard);
     currentCard = null;
   }
+  
+  
 }
