@@ -32,8 +32,6 @@ class CardWithThreeActions extends Card {
 }
 
 void main() {
-
-
   testWidgets('should be able to display 2 card actions', (WidgetTester tester) async {
     final state = makeGameState(currentCard: CardWithTwoActions());
     await tester.pumpWidget(
