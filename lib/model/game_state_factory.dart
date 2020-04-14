@@ -26,7 +26,7 @@ GameState startNewGame() {
 }
 
 List<Card> generateRandomDeck() {
-  final deck = List.from(ALL_BASIC_CARDS);
+  final deck = List<Card>.from(ALL_BASIC_CARDS);
   deck.add(RumoursOfAnIsland());
   return deck;
 }

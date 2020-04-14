@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
@@ -12,7 +13,7 @@ enum ScryOption {
   BOTTOM
 }
 
-class GameState {
+class GameState with ChangeNotifier {
   final ListShuffler _shuffler;
 
   Card currentCard;
@@ -41,6 +42,7 @@ class GameState {
     }
 
     currentCard = deck.removeAt(0);
+    notifyListeners();
     return currentCard;
   }
 
@@ -52,6 +54,7 @@ class GameState {
     final actualNumToScry = min(deck.length, numToScry);
     scrying.addAll(deck.getRange(0, actualNumToScry));
     deck.removeRange(0, actualNumToScry);
+    notifyListeners();
   }
 
   void replaceScryedCard(Card card, ScryOption position) {
@@ -62,10 +65,14 @@ class GameState {
     } else {
       deck.add(card);
     }
+
+    notifyListeners();
   }
 
   void exileCurrentCard() {
     exile.add(currentCard);
     currentCard = null;
+
+    notifyListeners();
   }
 }
