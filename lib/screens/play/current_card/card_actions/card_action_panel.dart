@@ -22,15 +22,15 @@ class CardActionPanel extends StatelessWidget {
           action?.performAction(state);
         } : null,
         color: Colors.yellow[50],
-        child: Column(
+        child: action == null ? null : Column(
           children: <Widget>[
             Expanded(
               flex: 6,
-              child: CardActionText(action?.description ?? '')
+              child: CardActionText(action.description)
             ),
             Expanded(
               flex: 3,
-              child: CardActionCost(action?.cost ?? []),
+              child: CardActionCost(action.cost),
             ),
             Expanded(
               flex: 3,

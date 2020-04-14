@@ -46,7 +46,7 @@ class GameState with ChangeNotifier {
     return currentCard;
   }
 
-  void shuffleDeck () {
+  void shuffleDeck() {
     _shuffler.shuffle(deck);
   }
 

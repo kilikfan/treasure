@@ -11,7 +11,7 @@ class CardActionCost extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        '(Cost not implemented...)',
+        '${this.cost.map((res) => res.getText())}',
         textAlign: TextAlign.center,
       ),
     );
