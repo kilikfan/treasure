@@ -12,8 +12,7 @@ GameState makeGameState(
     ListShuffler shuffler = const ListShuffler(),
     List<Resource> playerHand = const []}) {
   final deckToUse = deck != null ? deck : [PlunderAWreck(), ARivalShip()];
-  final state = GameState(shuffler, deckToUse);
-  state.playerHand.addResources(playerHand);
+  final state = GameState(shuffler, deckToUse, playerHand);
   return state;
 }
 
