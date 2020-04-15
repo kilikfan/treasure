@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 import 'card/card.dart';
@@ -11,7 +13,7 @@ enum ScryOption {
   BOTTOM
 }
 
-class GameState {
+class GameState with ChangeNotifier {
   final ListShuffler _shuffler;
 
   Card currentCard;
@@ -24,7 +26,9 @@ class GameState {
 
   GameResult result;
 
-  GameState(this._shuffler, this.deck);
+  GameState(this._shuffler, this.deck, [List<Resource> initialResources]) {
+    playerHand.addResources(initialResources);
+  }
 
   Card nextCard() {
     if (currentCard != null) {
@@ -33,15 +37,16 @@ class GameState {
 
     if (deck.isEmpty) {
       deck.addAll(discard);
-      _shuffleDeck();
+      shuffleDeck();
       discard.clear();
     }
 
     currentCard = deck.removeAt(0);
+    notifyListeners();
     return currentCard;
   }
 
-  void _shuffleDeck () {
+  void shuffleDeck() {
     _shuffler.shuffle(deck);
   }
 
@@ -49,6 +54,7 @@ class GameState {
     final actualNumToScry = min(deck.length, numToScry);
     scrying.addAll(deck.getRange(0, actualNumToScry));
     deck.removeRange(0, actualNumToScry);
+    notifyListeners();
   }
 
   void replaceScryedCard(Card card, ScryOption position) {
@@ -59,10 +65,14 @@ class GameState {
     } else {
       deck.add(card);
     }
+
+    notifyListeners();
   }
 
   void exileCurrentCard() {
     exile.add(currentCard);
     currentCard = null;
+
+    notifyListeners();
   }
 }
