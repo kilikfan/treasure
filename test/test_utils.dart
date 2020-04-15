@@ -10,10 +10,11 @@ import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 GameState makeGameState(
     {List<ModelCard.Card> deck,
     ListShuffler shuffler = const ListShuffler(),
-    List<Resource> playerHand = const []}) {
+    List<Resource> playerHand = const [],
+    ModelCard.Card currentCard}) {
   final deckToUse = deck != null ? deck : [PlunderAWreck(), ARivalShip()];
-  final state = GameState(shuffler, deckToUse);
-  state.playerHand.addResources(playerHand);
+  final state = GameState(shuffler, deckToUse, playerHand);
+  state.currentCard = currentCard;
   return state;
 }
 

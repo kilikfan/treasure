@@ -5,18 +5,18 @@ import '../action/card_action.dart';
 import '../action/discard_action.dart';
 import '../action/exile_action.dart';
 import '../card.dart';
-import 'hispaniola_2_land_ahoy.dart';
+import 'into_the_depths_2_shoally_you_cant_be_serious.dart';
 
-class RumoursOfAnIsland extends Card {
-  const RumoursOfAnIsland() : super("Rumours of an Island");
+class ASenseOfPorpoise extends Card {
+  const ASenseOfPorpoise() : super("A Sense of Porpoise");
 
   @override
   List<CardAction> getActions() {
     return [
       //TODO - flavour text required
-      DiscardAction(description: "Maintain current course."),
-      ReplaceAction(LandAhoy(), "Sail towards it."),
-      ExileAction(description: "Sail away from it.", reward: [Resource.MAP])
+      DiscardAction(),
+      ReplaceAction(ShoallyYouCantBeSerious(), "???"),
+      ExileAction(reward: [Resource.CREW, Resource.CREW])
     ];
   }
 }
