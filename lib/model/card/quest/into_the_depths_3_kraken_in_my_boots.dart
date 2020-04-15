@@ -15,9 +15,9 @@ class KrakenInMyBoots extends Card {
     return [
       //TODO - flavour text required
       DiscardAction(cost: [Resource.FOOD]),
-      ReplaceAction(ShoallyYouCantBeSerious()),
+      ReplaceAction(ShoallyYouCantBeSerious(), "???"),
       //TODO - final crew can be C/L. Also need the flip a coin bit
-      ReplaceAction(Utopia(), [Resource.CREW, Resource.CREW, Resource.CREW])
+      ReplaceAction(Utopia(), "???", [Resource.CREW, Resource.CREW, Resource.CREW])
     ];
   }
 }

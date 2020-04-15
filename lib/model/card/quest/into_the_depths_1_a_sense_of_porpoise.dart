@@ -15,7 +15,7 @@ class ASenseOfPorpoise extends Card {
     return [
       //TODO - flavour text required
       DiscardAction(),
-      ReplaceAction(ShoallyYouCantBeSerious()),
+      ReplaceAction(ShoallyYouCantBeSerious(), "???"),
       ExileAction(reward: [Resource.CREW, Resource.CREW])
     ];
   }

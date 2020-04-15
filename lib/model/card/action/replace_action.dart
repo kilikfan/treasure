@@ -7,9 +7,9 @@ import 'card_action_details.dart';
 class ReplaceAction extends CardAction {
   Card replacementCard;
 
-  ReplaceAction(this.replacementCard, [List<Resource> cost = const []])
+  ReplaceAction(this.replacementCard, String description, [List<Resource> cost = const []])
       : super(cost,
-            "Exile this card. Place '${replacementCard.name}' into the discard pile.");
+      description);
 
   @override
   void performActionImpl(GameState state) {
