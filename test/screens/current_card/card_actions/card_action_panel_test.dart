@@ -6,9 +6,8 @@ import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
-import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_cost.dart';
+import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_line.dart';
 import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_panel.dart';
-import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_reward.dart';
 import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_text.dart';
 
 import '../../../mocks.dart';
@@ -49,12 +48,10 @@ void main() {
     );
 
     final textFinder = find.byElementType(CardActionText);
-    final costFinder = find.byElementType(CardActionCost);
-    final rewardFinder = find.byElementType(CardActionReward);
+    final cardLineFinder = find.byElementType(CardActionLine);
 
     expect(textFinder, findsNothing);
-    expect(costFinder, findsNothing);
-    expect(rewardFinder, findsNothing);
+    expect(cardLineFinder, findsNothing);
 
     final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
     expect(button.enabled, false);
