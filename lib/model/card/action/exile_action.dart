@@ -1,3 +1,5 @@
+import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
+
 import '../../../model/game_state.dart';
 import '../../../model/resource.dart';
 import 'card_action.dart';
@@ -12,4 +14,7 @@ class ExileAction extends CardAction {
     state.playerHand.addResources(reward);
     state.exileCurrentCard();
   }
+
+  @override
+  CardActionDetails get actionDetails => CardActionDetails([], description, reward: reward, destination: CardDestination.EXILE);
 }

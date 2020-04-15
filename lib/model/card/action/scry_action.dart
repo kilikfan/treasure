@@ -1,6 +1,7 @@
 import '../../../model/game_state.dart';
 import '../../../model/resource.dart';
 import 'card_action.dart';
+import 'card_action_details.dart';
 
 class ScryAction extends CardAction {
   int numToScry;
@@ -11,4 +12,9 @@ class ScryAction extends CardAction {
   void performActionImpl(GameState state) {
     state.scryCards(numToScry);
   }
+
+  @override
+  CardActionDetails get actionDetails =>
+      CardActionDetails(cost, description,
+          cardsToScry: numToScry);
 }

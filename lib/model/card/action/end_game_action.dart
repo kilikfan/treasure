@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 
@@ -13,4 +14,7 @@ class EndGameAction extends CardAction {
   void performActionImpl(GameState state) {
     state.result = this.result;
   }
+
+  @override
+  CardActionDetails get actionDetails => CardActionDetails(cost, description, result: result);
 }
