@@ -69,6 +69,7 @@ class _PlayPageState extends State<PlayPage> {
               height: (MediaQuery.of(context).size.height) * 0.2,
             ),
             Container(
+              height: (MediaQuery.of(context).size.height) * 0.2,
               padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: PlayerHand(gameState.playerHand),
             ),
