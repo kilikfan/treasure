@@ -13,9 +13,9 @@ class LandAhoy extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      DiscardAction(),
-      ReplaceAction(BribeThePort(), [Resource.FOOD]),
-      ExileAction(reward: [Resource.CREW, Resource.CREW])
+      DiscardAction(description: "Hold fast."),
+      ReplaceAction(BribeThePort(), "Head in to port.", [Resource.FOOD]),
+      ExileAction(description: "Snag some new recruits.", reward: [Resource.CREW, Resource.CREW])
     ];
   }
 }

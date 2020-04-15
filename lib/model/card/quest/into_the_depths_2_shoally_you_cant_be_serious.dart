@@ -16,8 +16,8 @@ class ShoallyYouCantBeSerious extends Card {
       //TODO - flavour text required
       DiscardAction(cost: [Resource.FOOD]),
       //TODO - optional C/L C/L cost
-      ReplaceAction(KrakenInMyBoots(), [Resource.CREW, Resource.CREW, Resource.FOOD]),
-      ReplaceAction(ASenseOfPorpoise())
+      ReplaceAction(KrakenInMyBoots(), "???", [Resource.CREW, Resource.CREW, Resource.FOOD]),
+      ReplaceAction(ASenseOfPorpoise(), "???")
     ];
   }
 }

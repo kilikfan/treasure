@@ -16,7 +16,7 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW], deck: [rumoursOfAnIsland, plunderAWreck]);
     final currentCard = state.nextCard();
 
-    final action = new ReplaceAction(landAhoy);
+    final action = new ReplaceAction(landAhoy, "");
     action.performAction(state);
 
     expect(state.exile, [currentCard]);
@@ -32,7 +32,7 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW], deck: [rumoursOfAnIsland, plunderAWreck]);
     final currentCard = state.nextCard();
 
-    final action = new ReplaceAction(landAhoy, [Resource.CREW]);
+    final action = new ReplaceAction(landAhoy, "", [Resource.CREW]);
     action.performAction(state);
 
     expect(state.exile, [currentCard]);
