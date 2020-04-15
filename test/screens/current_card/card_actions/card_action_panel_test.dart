@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_cost.dart';
@@ -35,6 +36,9 @@ class DummyAction extends CardAction {
   bool isEnabled(GameState state) {
     return enabled;
   }
+
+  @override
+  CardActionDetails get actionDetails => CardActionDetails(cost, description);
 
 }
 
