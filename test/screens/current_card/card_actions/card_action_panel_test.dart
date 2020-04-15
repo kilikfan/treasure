@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_line.dart';
@@ -17,7 +17,8 @@ class DummyAction extends CardAction {
   final bool enabled;
   final Function(Object) fn;
 
-  DummyAction(List<Resource> cost, this.enabled, [this.fn]) : super(cost, "Some Action");
+  DummyAction(List<Resource> cost, this.enabled, [this.fn])
+      : super(cost, "Some Action");
 
   @override
   void performAction(GameState state) {
@@ -38,14 +39,13 @@ class DummyAction extends CardAction {
 
   @override
   CardActionDetails get actionDetails => CardActionDetails(cost, description);
-
 }
 
 void main() {
-  testWidgets('should display a blank, disabled button if not passed an action', (WidgetTester tester) async {
+  testWidgets('should display a blank, disabled button if not passed an action',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
-        createWidgetForTesting(child: CardActionPanel(null, makeGameState()))
-    );
+        createWidgetForTesting(child: CardActionPanel(null, makeGameState())));
 
     final textFinder = find.byElementType(CardActionText);
     final cardLineFinder = find.byElementType(CardActionLine);
@@ -57,11 +57,12 @@ void main() {
     expect(button.enabled, false);
   });
 
-  testWidgets('should display a disabled button if the action should not be enabled', (WidgetTester tester) async {
+  testWidgets(
+      'should display a disabled button if the action should not be enabled',
+      (WidgetTester tester) async {
     final action = DummyAction([Resource.DOUBLOON], false);
-    await tester.pumpWidget(
-        createWidgetForTesting(child: CardActionPanel(action, makeGameState()))
-    );
+    await tester.pumpWidget(createWidgetForTesting(
+        child: CardActionPanel(action, makeGameState())));
 
     final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
     expect(button.enabled, false);
@@ -72,13 +73,13 @@ void main() {
     expect(costFinder, findsOneWidget);
   });
 
-  testWidgets('should be enabled if appropriate, and call performAction on tap', (WidgetTester tester) async {
+  testWidgets('should be enabled if appropriate, and call performAction on tap',
+      (WidgetTester tester) async {
     final performAction = new MockFunction().fnOne;
     final state = makeGameState();
     final action = DummyAction([Resource.DOUBLOON], true, performAction);
     await tester.pumpWidget(
-        createWidgetForTesting(child: CardActionPanel(action, state))
-    );
+        createWidgetForTesting(child: CardActionPanel(action, state)));
 
     final buttonFinder = find.byType(RaisedButton);
     final button = tester.widget<RaisedButton>(buttonFinder);
@@ -91,5 +92,15 @@ void main() {
 
     await tester.tap(buttonFinder);
     verify(performAction(state));
+  });
+
+  testWidgets('should render a scry action', (WidgetTester tester) async {
+    final action = ScryAction("See the future.", [Resource.FOOD], 3);
+    await tester.pumpWidget(createWidgetForTesting(
+        child: CardActionPanel(action, makeGameState())));
+
+    expect(find.text('See the future.'), findsOneWidget);
+    expect(find.byIcon(Icons.remove_red_eye), findsOneWidget);
+    expect(find.text('Scry 3'), findsOneWidget);
   });
 }
