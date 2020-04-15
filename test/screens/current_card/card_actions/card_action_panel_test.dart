@@ -3,7 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/end_game_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/trade_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_2_land_ahoy.dart';
+import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_line.dart';
@@ -102,5 +107,62 @@ void main() {
     expect(find.text('See the future.'), findsOneWidget);
     expect(find.byIcon(Icons.remove_red_eye), findsOneWidget);
     expect(find.text('Scry 3'), findsOneWidget);
+  });
+
+  testWidgets('should render a reward', (WidgetTester tester) async {
+    final action =
+        TradeAction("Buy some food", [Resource.DOUBLOON], [Resource.FOOD]);
+    await tester.pumpWidget(createWidgetForTesting(
+        child: CardActionPanel(action, makeGameState())));
+
+    expect(find.text('Buy some food'), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_upward), findsOneWidget);
+    expect(find.text('(F)'), findsOneWidget);
+  });
+
+  testWidgets('should render a win action, and not display the Discard line', (WidgetTester tester) async {
+    final action =
+    EndGameAction(GameResult.WIN, []);
+    await tester.pumpWidget(createWidgetForTesting(
+        child: CardActionPanel(action, makeGameState())));
+
+    expect(find.text('You Win!'), findsWidgets);
+
+    final buttonFinder = find.byType(RaisedButton);
+    final button = tester.widget<RaisedButton>(buttonFinder);
+    expect(button.color, Colors.green[50]);
+
+    expect(find.text('Discard'), findsNothing);
+  });
+
+  testWidgets('should render a loss action, and not display the Discard line', (WidgetTester tester) async {
+    final action =
+    EndGameAction(GameResult.LOSE, []);
+    await tester.pumpWidget(createWidgetForTesting(
+        child: CardActionPanel(action, makeGameState())));
+
+    expect(find.text('You Lose!'), findsWidgets);
+
+    final buttonFinder = find.byType(RaisedButton);
+    final button = tester.widget<RaisedButton>(buttonFinder);
+    expect(button.color, Colors.red[50]);
+
+    expect(find.text('Discard'), findsNothing);
+  });
+
+  testWidgets('should render a replace action', (WidgetTester tester) async {
+    final replacementCard = LandAhoy();
+    final action =
+    ReplaceAction(replacementCard, "Sail for land", [Resource.FOOD, Resource.FOOD]);
+    await tester.pumpWidget(createWidgetForTesting(
+        child: CardActionPanel(action, makeGameState())));
+
+    expect(find.text('Sail for land'), findsWidgets);
+    expect(find.text('(F, F)'), findsWidgets);
+    expect(find.byIcon(Icons.description), findsOneWidget);
+    expect(find.text(replacementCard.name), findsOneWidget);
+
+    expect(find.byIcon(Icons.delete), findsOneWidget);
+    expect(find.text('Exile'), findsOneWidget);
   });
 }

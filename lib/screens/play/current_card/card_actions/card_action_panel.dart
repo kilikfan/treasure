@@ -61,7 +61,11 @@ class CardActionPanel extends StatelessWidget {
       list.add(CardActionLine("${actionDetails.replacement.name}", Icons.description, Colors.purpleAccent));
     }
 
-    if (actionDetails.destination == CardDestination.DISCARD) {
+    if (actionDetails.result == GameResult.WIN) {
+      list.add(Expanded(flex: 6, child: CardActionLine("You Win!", Icons.check, Colors.green)));
+    } else if (actionDetails.result == GameResult.LOSE) {
+      list.add(Expanded(flex: 6, child: CardActionLine("You Lose!", Icons.close, Colors.red)));
+    } else if (actionDetails.destination == CardDestination.DISCARD) {
       list.add(Expanded(flex: 6, child: CardActionLine("Discard", Icons.replay, Colors.black)));
     } else {
       list.add(Expanded(flex: 6, child: CardActionLine("Exile", Icons.delete, Colors.black)));
