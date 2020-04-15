@@ -6,4 +6,5 @@ class MockFunction extends Mock implements EmptyFunctions {}
 
 class EmptyFunctions {
   void fn() {}
+  void fnOne(Object arg1) {}
 }
