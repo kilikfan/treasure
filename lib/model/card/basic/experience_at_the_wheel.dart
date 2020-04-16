@@ -11,7 +11,7 @@ class ExperienceAtTheWheel extends Card {
     return [
       TradeAction("Recruitment drive.", [], [Resource.CREW]),
       TradeAction("Packed extra supplies.", [], [Resource.FOOD]),
-      TradeAction("A lucrative day of trading.", [], [Resource.DOUBLOON])
+      TradeAction("A lucrative day of 'trading'.", [], [Resource.DOUBLOON])
     ];
   }
 }

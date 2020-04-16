@@ -13,10 +13,9 @@ class ASenseOfPorpoise extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - flavour text required
-      DiscardAction(),
-      ReplaceAction(ShoallyYouCantBeSerious(), "???"),
-      ExileAction(reward: [Resource.CREW, Resource.CREW])
+      DiscardAction(description: "No bites yet."),
+      ReplaceAction(ShoallyYouCantBeSerious(), "Something smells fishy…"),
+      ExileAction(reward: [Resource.CREW, Resource.CREW], description: "The crew fancy steak instead.")
     ];
   }
 }

@@ -13,9 +13,11 @@ class BribeThePort extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      DiscardAction(description: "Pay the docking fee.", cost: [Resource.FOOD, Resource.FOOD]),
-      ReplaceAction(RetrieveTheHispaniolanTreasure(), "Bribe the port.", [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
-      ExileAction(reward: [Resource.CREW, Resource.DOUBLOON, Resource.LANDLUBBER])
+      DiscardAction(description: "Review the options over dinner.", cost: [Resource.FOOD, Resource.FOOD]),
+      ReplaceAction(RetrieveTheHispaniolanTreasure(), "A hefty fee to pay.",
+          [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
+      ExileAction(reward: [Resource.CREW, Resource.DOUBLOON, Resource.LANDLUBBER],
+          description: "Too rich for our blood.")
     ];
   }
 }

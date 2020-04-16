@@ -13,10 +13,9 @@ class RumoursOfAnIsland extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - flavour text required
       DiscardAction(description: "Maintain current course."),
-      ReplaceAction(LandAhoy(), "Sail towards it."),
-      ExileAction(description: "Sail away from it.", reward: [Resource.MAP])
+      ReplaceAction(LandAhoy(), "Take a gamble and change course."),
+      ExileAction(description: "Sail away, sail away.", reward: [Resource.MAP])
     ];
   }
 }

@@ -11,10 +11,10 @@ class Utopia extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - flavour text required
-      EndGameAction(GameResult.WIN, [Resource.MAP]),
-      EndGameAction(GameResult.WIN, [Resource.CREW, Resource.CREW, Resource.CREW, Resource.FOOD, Resource.FOOD]),
-      EndGameAction(GameResult.LOSE, [])
+      EndGameAction(GameResult.WIN, [Resource.MAP], "Behold its majesty!"),
+      EndGameAction(GameResult.WIN, [Resource.CREW, Resource.CREW, Resource.CREW, Resource.FOOD, Resource.FOOD],
+        "'S alright."),
+      EndGameAction(GameResult.LOSE, [], "Didn't quite escape the Kraken.")
     ];
   }
 }

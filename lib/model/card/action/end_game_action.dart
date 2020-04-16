@@ -8,7 +8,7 @@ import 'card_action.dart';
 class EndGameAction extends CardAction {
   final GameResult result;
 
-  EndGameAction(this.result, List<Resource> cost) : super(cost, result.description);
+  EndGameAction(this.result, List<Resource> cost, description) : super(cost, description);
 
   @override
   void performActionImpl(GameState state) {

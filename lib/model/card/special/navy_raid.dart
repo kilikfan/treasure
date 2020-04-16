@@ -12,12 +12,11 @@ class NavyRaid extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - flavour text required
       //TODO - should be pay half your Resource.INFAMY (rounded up) and one less Resource.CREW
-      ExileAction(cost: [Resource.CREW, Resource.INFAMY, Resource.INFAMY]),
+      ExileAction(description: "A manner of conscription.", cost: [Resource.CREW, Resource.INFAMY, Resource.INFAMY]),
       //TODO - should be pay half your Resource.INFAMY (rounded up) and equal Resource.DOUBLOON
-      ExileAction(cost: [Resource.FOOD, Resource.FOOD, Resource.INFAMY, Resource.INFAMY]),
-      EndGameAction(GameResult.LOSE, [])
+      ExileAction(description: "A manner of taxation.", cost: [Resource.FOOD, Resource.FOOD, Resource.INFAMY, Resource.INFAMY]),
+      EndGameAction(GameResult.LOSE, [], "No manners, just capital punishment.")
     ];
   }
 }

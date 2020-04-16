@@ -122,7 +122,7 @@ void main() {
 
   testWidgets('should render a win action, and not display the Discard line', (WidgetTester tester) async {
     final action =
-    EndGameAction(GameResult.WIN, []);
+    EndGameAction(GameResult.WIN, [], "You Win!");
     await tester.pumpWidget(createWidgetForTesting(
         child: CardActionPanel(action, makeGameState())));
 
@@ -137,7 +137,7 @@ void main() {
 
   testWidgets('should render a loss action, and not display the Discard line', (WidgetTester tester) async {
     final action =
-    EndGameAction(GameResult.LOSE, []);
+    EndGameAction(GameResult.LOSE, [], "You Lose!");
     await tester.pumpWidget(createWidgetForTesting(
         child: CardActionPanel(action, makeGameState())));
 
