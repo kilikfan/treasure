@@ -1,5 +1,5 @@
 import 'package:treasure_of_the_high_seas/model/card/basic/basic_cards.dart';
-import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_1_rumours_of_an_island.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/quest_starters.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
@@ -27,6 +27,8 @@ GameState startNewGame() {
 
 List<Card> generateRandomDeck() {
   final deck = List<Card>.from(ALL_BASIC_CARDS);
-  deck.add(RumoursOfAnIsland());
+  for (var quest in ALL_QUEST_STARTERS) {
+    deck.add(quest);
+  }
   return deck;
 }

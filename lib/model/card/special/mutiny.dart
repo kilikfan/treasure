@@ -9,11 +9,12 @@ class Mutiny extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - flavour text required
       //TODO - should be lose five resource cards at random
-      ExileAction(cost: [Resource.CREW, Resource.DOUBLOON, Resource.FOOD, Resource.LANDLUBBER, Resource.INFAMY]),
-      ExileAction(cost: [Resource.MAP, Resource.CREW, Resource.CREW, Resource.DOUBLOON]),
-      ExileAction(cost: [Resource.MAP])
+      ExileAction(description: "Devastation in the melee!",
+          cost: [Resource.CREW, Resource.DOUBLOON, Resource.FOOD, Resource.LANDLUBBER, Resource.INFAMY]),
+      ExileAction(description: "Pay off the mutineers to leave your crew.",
+          cost: [Resource.CREW, Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
+      ExileAction(description: "Share your map with the crew.", cost: [Resource.MAP])
     ];
   }
 }

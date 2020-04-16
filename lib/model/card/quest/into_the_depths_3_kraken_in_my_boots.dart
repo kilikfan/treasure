@@ -13,11 +13,10 @@ class KrakenInMyBoots extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - flavour text required
-      DiscardAction(cost: [Resource.FOOD]),
-      ReplaceAction(ShoallyYouCantBeSerious(), "???"),
+      DiscardAction(cost: [Resource.FOOD], description: "You satiate its hunger. For now."),
+      ReplaceAction(ShoallyYouCantBeSerious(), """AAAARRGGH!"""),
       //TODO - final crew can be C/L. Also need the flip a coin bit
-      ReplaceAction(Utopia(), "???", [Resource.CREW, Resource.CREW, Resource.CREW])
+      ReplaceAction(Utopia(), "What could she be guarding?", [Resource.CREW, Resource.CREW, Resource.CREW])
     ];
   }
 }

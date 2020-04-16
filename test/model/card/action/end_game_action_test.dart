@@ -9,8 +9,8 @@ main() {
   test('should support winning the game', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
 
-    final action = new EndGameAction(GameResult.WIN, [Resource.CREW]);
-    expect(action.description, "You Win!");
+    final action = new EndGameAction(GameResult.WIN, [Resource.CREW], "The winner takes it all!");
+    expect(action.description, "The winner takes it all!");
 
     action.performAction(state);
     expect(state.result, GameResult.WIN);
@@ -19,8 +19,8 @@ main() {
   test('should support losing the game', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
 
-    final action = new EndGameAction(GameResult.LOSE, []);
-    expect(action.description, "You Lose!");
+    final action = new EndGameAction(GameResult.LOSE, [], "The loser standing small.");
+    expect(action.description, "The loser standing small.");
 
     action.performAction(state);
     expect(state.result, GameResult.LOSE);

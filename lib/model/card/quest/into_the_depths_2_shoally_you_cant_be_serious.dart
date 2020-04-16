@@ -13,11 +13,10 @@ class ShoallyYouCantBeSerious extends Card {
   @override
   List<CardAction> getActions() {
     return [
-      //TODO - flavour text required
-      DiscardAction(cost: [Resource.FOOD]),
+      DiscardAction(cost: [Resource.FOOD], description: "The fishy smell persists."),
       //TODO - optional C/L C/L cost
-      ReplaceAction(KrakenInMyBoots(), "???", [Resource.CREW, Resource.CREW, Resource.FOOD]),
-      ReplaceAction(ASenseOfPorpoise(), "???")
+      ReplaceAction(KrakenInMyBoots(), "You have an exi-stench-ial crisis.", [Resource.CREW, Resource.CREW, Resource.FOOD]),
+      ReplaceAction(ASenseOfPorpoise(), "Why couldn’t it be follow the butterflies?")
     ];
   }
 }
