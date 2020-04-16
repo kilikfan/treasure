@@ -28,9 +28,10 @@ class PlayPage extends StatelessWidget {
                     child: CurrentCardDisplay(state)
                 ),
                 SizedBox(
-                  height: (MediaQuery.of(context).size.height) * 0.2,
+                  height: (MediaQuery.of(context).size.height) * 0.1,
                 ),
                 Container(
+                  height: (MediaQuery.of(context).size.height) * 0.4,
                   padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: PlayerHand(state.playerHand),
                 ),

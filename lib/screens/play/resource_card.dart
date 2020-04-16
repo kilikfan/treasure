@@ -17,7 +17,7 @@ class ResourceCard extends StatelessWidget {
           child: Text(
             resource.getText(),
             style: TextStyle(
-              fontSize: 28.0,
+              fontSize: 22.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'TreasureHunt'
             ),
