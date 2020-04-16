@@ -13,7 +13,7 @@ class Mutiny extends Card {
       ExileAction(description: "Devastation in the melee!",
           cost: [Resource.CREW, Resource.DOUBLOON, Resource.FOOD, Resource.LANDLUBBER, Resource.INFAMY]),
       ExileAction(description: "Pay off the mutineers to leave your crew.",
-          cost: [Resource.MAP, Resource.CREW, Resource.CREW, Resource.DOUBLOON]),
+          cost: [Resource.CREW, Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
       ExileAction(description: "Share your map with the crew.", cost: [Resource.MAP])
     ];
   }
