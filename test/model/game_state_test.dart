@@ -3,7 +3,9 @@ import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/port_fees.dart';
+import 'package:treasure_of_the_high_seas/model/card/special/special_cards.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
+import 'package:treasure_of_the_high_seas/model/resource.dart';
 
 import '../mocks.dart';
 import '../test_utils.dart';
@@ -115,5 +117,48 @@ void main() {
     });
   });
 
+  group('Special cards', ()
+  {
+    test('should put Mutiny in next if too many resources', () {
+      const plunderAWreck = PlunderAWreck();
+      const aRivalShip = ARivalShip();
+      const mutiny = Mutiny();
+      final GameState state = makeGameState(
+          deck: [plunderAWreck, aRivalShip],
+          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+          Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+          Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+          Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
+      );
+
+      expect(state.nextCard(), mutiny);
+    });
+
+    test('should put Navy Raid in next if too much infamy', () {
+      const plunderAWreck = PlunderAWreck();
+      const aRivalShip = ARivalShip();
+      final GameState state = makeGameState(
+          deck: [plunderAWreck, aRivalShip],
+          playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.INFAMY,
+            Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
+      );
+      // TODO - currently it's reliant on toss of a coin
+      expect(state.nextCard(), [NavyRaid]);
+    });
+
+    test('should put Ravenous Crew in next if no food', () {
+      const plunderAWreck = PlunderAWreck();
+      const aRivalShip = ARivalShip();
+      final GameState state = makeGameState(
+          deck: [plunderAWreck, aRivalShip],
+          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
+      );
+
+      expect(state.nextCard(), [RavenousCrew]);
+    });
+  });
 
 }

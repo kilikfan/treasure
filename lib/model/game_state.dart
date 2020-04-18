@@ -1,12 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:treasure_of_the_high_seas/model/card/special/mutiny.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
+import 'package:treasure_of_the_high_seas/model/special_triggers.dart';
 import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
 
 import 'card/card.dart';
 import 'game_result.dart';
 import 'hand.dart';
+import 'card/special/special_cards.dart';
 
 enum ScryOption {
   TOP,
@@ -34,6 +37,29 @@ class GameState with ChangeNotifier {
     if (currentCard != null) {
       discard.add(currentCard);
     }
+
+    // TODO - Game Result
+    switch (result){
+      case GameResult.WIN: {
+
+      }
+      break;
+
+      case GameResult.LOSE: {
+
+      }
+      break;
+
+    }
+
+    // Check special card conditions
+    if (checkMutiny(playerHand)){
+      deck.insert(0, Mutiny());
+    }else if (checkNavyRaid(playerHand)){
+      deck.insert(0, NavyRaid());
+    }else if (checkRavenousCrew(playerHand)){
+      deck.insert(0, RavenousCrew());
+    };
 
     if (deck.isEmpty) {
       deck.addAll(discard);

@@ -14,6 +14,18 @@ class Hand {
     cards.sort((r1, r2) => r1.index.compareTo(r2.index));
   }
 
+  int countResource(Resource countResource){
+    int count = 0;
+
+    this.cards.forEach((resource)=>{
+      if (resource == countResource){
+        count++
+      }
+    });
+
+    return count;
+  }
+
   bool canAfford(List<Resource> cost) {
     try {
       final handCopy = new List<Resource>.from(cards);
