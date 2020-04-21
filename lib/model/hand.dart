@@ -15,15 +15,8 @@ class Hand {
   }
 
   int countResource(Resource countResource){
-    int count = 0;
-
-    this.cards.forEach((resource)=>{
-      if (resource == countResource){
-        count++
-      }
-    });
-
-    return count;
+    final filtered = cards.where((res) => res == countResource);
+    return filtered.length;
   }
 
   bool canAfford(List<Resource> cost) {

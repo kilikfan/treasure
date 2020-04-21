@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:matcher/matcher.dart' as matcher;
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
@@ -31,18 +32,18 @@ void main() {
     const plunderAWreck = PlunderAWreck();
     const aRivalShip = ARivalShip();
 
-    final MockListShuffler shuffler = MockListShuffler();
-    logInvocations([shuffler]);
+    final MockRandomiser randomiser = MockRandomiser();
+    logInvocations([randomiser]);
 
-    final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip], shuffler: shuffler);
+    final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip], randomiser: randomiser);
     state.nextCard();
     state.nextCard();
     expect(state.deck, []);
 
-    verifyNever(shuffler.shuffle(any));
+    verifyNever(randomiser.shuffle(any));
 
     state.nextCard();
-    verify(shuffler.shuffle(state.deck));
+    verify(randomiser.shuffle(state.deck));
 
     expect(state.currentCard, plunderAWreck);
     expect(state.discard, []);
@@ -120,44 +121,79 @@ void main() {
   group('Special cards', ()
   {
     test('should put Mutiny in next if too many resources', () {
-      const plunderAWreck = PlunderAWreck();
-      const aRivalShip = ARivalShip();
-      const mutiny = Mutiny();
       final GameState state = makeGameState(
-          deck: [plunderAWreck, aRivalShip],
           playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
           Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
           Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
           Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
       );
 
-      expect(state.nextCard(), mutiny);
+      expect(state.nextCard(), new matcher.TypeMatcher<Mutiny>());
     });
 
-    test('should put Navy Raid in next if too much infamy', () {
-      const plunderAWreck = PlunderAWreck();
-      const aRivalShip = ARivalShip();
+    test('should not put Mutiny in next if resource count under 15', () {
       final GameState state = makeGameState(
-          deck: [plunderAWreck, aRivalShip],
+          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
+      );
+
+      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
+    });
+
+    test('should put Navy Raid in next if too much infamy and coin true', () {
+      final FakeRandomiser randomiser = FakeRandomiser(true);
+
+      final GameState state = makeGameState(
           playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.INFAMY,
             Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON],
+          randomiser: randomiser
       );
-      // TODO - currently it's reliant on toss of a coin
-      expect(state.nextCard(), [NavyRaid]);
+
+      expect(state.nextCard(), new matcher.TypeMatcher<NavyRaid>());
+    });
+
+    test('should not put Navy Raid in next if too much infamy and coin false', () {
+      final FakeRandomiser randomiser = FakeRandomiser(false);
+
+      final GameState state = makeGameState(
+          playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.INFAMY,
+            Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD],
+        randomiser: randomiser
+      );
+
+      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
+    });
+
+    test('should not put Navy Raid in next if infamy under 4', () {
+      final GameState state = makeGameState(
+          playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
+      );
+
+      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
     });
 
     test('should put Ravenous Crew in next if no food', () {
-      const plunderAWreck = PlunderAWreck();
-      const aRivalShip = ARivalShip();
       final GameState state = makeGameState(
-          deck: [plunderAWreck, aRivalShip],
           playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
       );
 
-      expect(state.nextCard(), [RavenousCrew]);
+      expect(state.nextCard(), new matcher.TypeMatcher<RavenousCrew>());
+    });
+
+    test('should not put Ravenous Crew in next if we have some food', () {
+      final GameState state = makeGameState(
+          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
+            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
+      );
+
+      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
     });
   });
 

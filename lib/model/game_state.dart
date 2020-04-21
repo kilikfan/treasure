@@ -1,15 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:treasure_of_the_high_seas/model/card/special/mutiny.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/special_triggers.dart';
-import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
+import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'card/card.dart';
 import 'game_result.dart';
 import 'hand.dart';
-import 'card/special/special_cards.dart';
 
 enum ScryOption {
   TOP,
@@ -17,7 +15,7 @@ enum ScryOption {
 }
 
 class GameState with ChangeNotifier {
-  final ListShuffler _shuffler;
+  final Randomiser randomiser;
 
   Card currentCard;
   List<Card> deck;
@@ -29,7 +27,7 @@ class GameState with ChangeNotifier {
 
   GameResult result;
 
-  GameState(this._shuffler, this.deck, [List<Resource> initialResources]) {
+  GameState(this.randomiser, this.deck, [List<Resource> initialResources]) {
     playerHand.addResources(initialResources);
   }
 
@@ -38,28 +36,8 @@ class GameState with ChangeNotifier {
       discard.add(currentCard);
     }
 
-    // TODO - Game Result
-    switch (result){
-      case GameResult.WIN: {
-
-      }
-      break;
-
-      case GameResult.LOSE: {
-
-      }
-      break;
-
-    }
-
     // Check special card conditions
-    if (checkMutiny(playerHand)){
-      deck.insert(0, Mutiny());
-    }else if (checkNavyRaid(playerHand)){
-      deck.insert(0, NavyRaid());
-    }else if (checkRavenousCrew(playerHand)){
-      deck.insert(0, RavenousCrew());
-    };
+    addSpecialTopCardToDeck(this);
 
     if (deck.isEmpty) {
       deck.addAll(discard);
@@ -73,7 +51,7 @@ class GameState with ChangeNotifier {
   }
 
   void shuffleDeck() {
-    _shuffler.shuffle(deck);
+    randomiser.shuffle(deck);
   }
 
   void scryCards(int numToScry) {

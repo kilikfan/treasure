@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treasure_of_the_high_seas/screens/play/rules.dart';
 
 import '../play/play.dart';
 import 'menu_button.dart';
@@ -32,6 +33,15 @@ class MainMenuPage extends StatelessWidget {
               ),
               MenuButton(
                 'Settings'
+              ),
+              MenuButton(
+                  'Rules',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RulesPage(title: 'Rules')),
+                    );
+                  }
               ),
               MenuButton(
                 'Credits'
