@@ -31,14 +31,3 @@ class RulesPage extends StatelessWidget {
         });
   }
 }
-
-Text loadSnapshot(AsyncSnapshot<String> text){
-  switch (text.connectionState) {
-    case ConnectionState.waiting: return new Text('Loading...');
-    default:
-      if (text.hasError)
-        return new Text('Error: ${text.error}');
-      else
-        return new Text('${text.data}');
-  }
-}
