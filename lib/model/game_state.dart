@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
-import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
+import 'package:treasure_of_the_high_seas/model/special_triggers.dart';
+import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'card/card.dart';
 import 'game_result.dart';
@@ -14,7 +15,7 @@ enum ScryOption {
 }
 
 class GameState with ChangeNotifier {
-  final ListShuffler _shuffler;
+  final Randomiser randomiser;
 
   Card currentCard;
   List<Card> deck;
@@ -26,7 +27,7 @@ class GameState with ChangeNotifier {
 
   GameResult result;
 
-  GameState(this._shuffler, this.deck, [List<Resource> initialResources]) {
+  GameState(this.randomiser, this.deck, [List<Resource> initialResources]) {
     playerHand.addResources(initialResources);
   }
 
@@ -34,6 +35,9 @@ class GameState with ChangeNotifier {
     if (currentCard != null) {
       discard.add(currentCard);
     }
+
+    // Check special card conditions
+    addSpecialTopCardToDeck(this);
 
     if (deck.isEmpty) {
       deck.addAll(discard);
@@ -47,7 +51,7 @@ class GameState with ChangeNotifier {
   }
 
   void shuffleDeck() {
-    _shuffler.shuffle(deck);
+    randomiser.shuffle(deck);
   }
 
   void scryCards(int numToScry) {
