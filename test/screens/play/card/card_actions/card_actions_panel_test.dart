@@ -5,9 +5,9 @@ import 'package:treasure_of_the_high_seas/model/card/action/trade_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/discard_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/card.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
-import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_actions_panel.dart';
+import 'package:treasure_of_the_high_seas/screens/play/card/card_actions/card_actions_panel.dart';
 
-import '../../../test_utils.dart';
+import '../../../../test_utils.dart';
 
 
 class CardWithTwoActions extends Card {

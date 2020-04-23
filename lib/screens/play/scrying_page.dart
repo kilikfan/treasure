@@ -4,7 +4,7 @@ import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 import '../../model/card/card.dart' as Model;
 
-import 'current_card/card_display.dart';
+import 'card/card_display.dart';
 
 class ScryingPage extends StatelessWidget {
   final GameState state;
@@ -20,7 +20,11 @@ class ScryingPage extends StatelessWidget {
             Container(
                 padding: EdgeInsets.symmetric(vertical: 5),
                 height: MediaQuery.of(context).size.height * 0.65,
-                child: CardDisplay(state, card, readOnly: true,)),
+                child: CardDisplay(
+                  state,
+                  card,
+                  readOnly: true,
+                )),
             _getScryButton(context, card, ScryOption.TOP),
             _getScryButton(context, card, ScryOption.BOTTOM)
           ]));

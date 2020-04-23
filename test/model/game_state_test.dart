@@ -102,7 +102,21 @@ void main() {
       expect(state.scrying, [aRivalShip]);
     });
 
-    test('should be able to replace a scryed card on the bottom of the deck', () {
+    test('should be able to replace a scryed card on bottom of the deck', () {
+      const plunderAWreck = PlunderAWreck();
+      const aRivalShip = ARivalShip();
+      const portFees = PortFees();
+      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+
+      state.scryCards(2);
+
+      state.replaceScryedCard(plunderAWreck, ScryOption.BOTTOM);
+
+      expect(state.deck, [portFees, plunderAWreck]);
+      expect(state.scrying, [aRivalShip]);
+    });
+
+    test('should draw the next card after scrying is finished', () {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();

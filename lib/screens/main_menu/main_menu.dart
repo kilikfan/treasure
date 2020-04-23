@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/play/rules.dart';
 
 import '../play/play_page.dart';
@@ -24,7 +25,7 @@ class MainMenuPage extends StatelessWidget {
                 onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PlayPage(title: 'Play Page')),
+                      MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
                     );
                   }
               ),

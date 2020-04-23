@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 
@@ -31,6 +32,17 @@ main() {
     expect(state.playerHand.cards, [Resource.LANDLUBBER]);
     verify(fn());
     expect(state.discard.length, 1);
+  });
+
+  test('should not automatically move on to the next card for certain actions', () {
+    final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
+    state.nextCard();
+    final card = state.currentCard;
+
+    final action = new ScryAction("Look into the future", [Resource.CREW], 2);
+    action.performAction(state);
+
+    expect(state.currentCard, card);
   });
 }
 
