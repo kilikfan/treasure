@@ -17,4 +17,7 @@ class ScryAction extends CardAction {
   CardActionDetails get actionDetails =>
       CardActionDetails(cost, description,
           cardsToScry: numToScry);
+
+  @override
+  bool autoProgress() => false;
 }

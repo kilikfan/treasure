@@ -17,4 +17,7 @@ class EndGameAction extends CardAction {
 
   @override
   CardActionDetails get actionDetails => CardActionDetails(cost, description, result: result);
+
+  @override
+  bool autoProgress() => false;
 }

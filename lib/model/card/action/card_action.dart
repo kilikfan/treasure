@@ -17,11 +17,13 @@ abstract class CardAction {
   void performAction(GameState state) {
     state.playerHand.deductResources(cost);
     performActionImpl(state);
-    if (state.result == null) {
+    if (autoProgress()) {
       state.nextCard();
     }
   }
 
   @protected
   void performActionImpl(GameState state);
+
+  bool autoProgress() => true;
 }
