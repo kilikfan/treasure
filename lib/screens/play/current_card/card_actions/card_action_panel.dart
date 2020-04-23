@@ -13,28 +13,36 @@ import 'card_action_line.dart';
 class CardActionPanel extends StatelessWidget {
   final Model.CardAction action;
   final GameState state;
+  final bool readOnly;
 
-  CardActionPanel(this.action, this.state);
+  CardActionPanel(this.action, this.state, this.readOnly);
 
   @override
   Widget build(BuildContext context) {
     final actionDetails = action?.actionDetails;
     final enabled = action?.isEnabled(state) ?? false;
 
+    final shape = RoundedRectangleBorder(
+      side: BorderSide(color: Colors.black, width: 1),
+      borderRadius: BorderRadius.circular(10),
+    );
+
     return Padding(
         padding: EdgeInsets.symmetric(vertical: 4),
-        child: MaterialButton(
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.black, width: 1),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            onPressed: enabled
-                ? () {
-                    action?.performAction(state);
-                  }
-                : null,
-            color: _getButtonColor(actionDetails),
-            child: _getActionComponents(actionDetails)));
+        child: readOnly
+            ? Card(
+                shape: shape,
+                color: _getButtonColor(actionDetails),
+                child: _getActionComponents(actionDetails))
+            : MaterialButton(
+                shape: shape,
+                onPressed: enabled
+                    ? () {
+                        action?.performAction(state);
+                      }
+                    : null,
+                color: _getButtonColor(actionDetails),
+                child: _getActionComponents(actionDetails)));
   }
 
   Column _getActionComponents(CardActionDetails actionDetails) {

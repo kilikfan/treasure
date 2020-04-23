@@ -8,8 +8,9 @@ import '../../../model/card/card.dart' as Model;
 class CardDisplay extends StatelessWidget {
   final GameState state;
   final Model.Card card;
+  final bool readOnly;
 
-  CardDisplay(this.state, this.card);
+  CardDisplay(this.state, this.card, { this.readOnly = false });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class CardDisplay extends StatelessWidget {
               CardHeader(card.name),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: CardActionsPanel(state, card))
+                  child: CardActionsPanel(state, card, readOnly))
             ],
           ),
         ));

@@ -19,8 +19,8 @@ class ScryingPage extends StatelessWidget {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                height: MediaQuery.of(context).size.height * 0.6,
-                child: CardDisplay(state, card)),
+                height: MediaQuery.of(context).size.height * 0.65,
+                child: CardDisplay(state, card, readOnly: true,)),
             _getScryButton(context, card, ScryOption.TOP),
             _getScryButton(context, card, ScryOption.BOTTOM)
           ]));
