@@ -66,6 +66,10 @@ class GameState with ChangeNotifier {
       deck.add(card);
     }
 
+    if (scrying.isEmpty) {
+      nextCard();
+    }
+
     notifyListeners();
   }
 
