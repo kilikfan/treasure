@@ -1,7 +1,7 @@
 import 'package:treasure_of_the_high_seas/model/card/basic/basic_cards.dart';
 import 'package:treasure_of_the_high_seas/model/card/quest/quest_starters.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
-import 'package:treasure_of_the_high_seas/util/list_shuffler.dart';
+import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'card/card.dart';
 import 'game_state.dart';
@@ -19,7 +19,7 @@ const INITIAL_RESOURCES = [
 
 GameState startNewGame() {
   final List<Card> deck = generateRandomDeck();
-  final GameState state = new GameState(new ListShuffler(), deck, INITIAL_RESOURCES);
+  final GameState state = new GameState(new Randomiser(), deck, INITIAL_RESOURCES);
   state.shuffleDeck();
   state.nextCard();
   return state;

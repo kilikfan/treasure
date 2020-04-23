@@ -17,7 +17,9 @@ abstract class CardAction {
   void performAction(GameState state) {
     state.playerHand.deductResources(cost);
     performActionImpl(state);
-    state.nextCard();
+    if (state.result == null) {
+      state.nextCard();
+    }
   }
 
   @protected

@@ -39,6 +39,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/text/
   fonts:
     - family: TreasureHunt
       fonts:
