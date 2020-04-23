@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 import '../../model/card/card.dart' as Model;
@@ -25,7 +26,13 @@ class ScryingPage extends StatelessWidget {
           ]));
     }).toList();
 
-    return ListView(scrollDirection: Axis.horizontal, children: scryingCards);
+    return Swiper(
+        itemCount: scryingCards.length,
+        control: new SwiperControl(),
+        loop: false,
+        itemBuilder: (BuildContext context, int index) {
+          return scryingCards[index];
+        });
   }
 
   Widget _getScryButton(

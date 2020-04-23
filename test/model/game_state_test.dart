@@ -7,6 +7,7 @@ import 'package:treasure_of_the_high_seas/model/card/basic/port_fees.dart';
 import 'package:treasure_of_the_high_seas/model/card/special/special_cards.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
+import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 
 import '../mocks.dart';
 import '../test_utils.dart';
