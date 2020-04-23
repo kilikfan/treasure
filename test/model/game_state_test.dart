@@ -212,4 +212,24 @@ void main() {
     });
   });
 
+
+  group('ChangeNotifier', () {
+    _verifyChangeNotifier(GameState state, Function() stateFunction) {
+      final fn = MockFunction().fn;
+      state.addListener(() {
+        fn();
+      });
+
+      stateFunction();
+      verify(fn());
+    }
+
+    test('state methods should notifier listeners', () {
+      final state = makeGameState();
+      _verifyChangeNotifier(state, state.nextCard);
+      _verifyChangeNotifier(state, () => state.scryCards(1));
+      _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
+      _verifyChangeNotifier(state, state.exileCurrentCard);
+    });
+  });
 }
