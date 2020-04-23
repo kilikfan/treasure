@@ -13,28 +13,17 @@ class CardActionsPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final actions = card.getActions();
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Row(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
         // Using .asMap() to help check if the list contains index before accessing that index
         // https://stackoverflow.com/questions/59762997/flutter-check-if-an-index-exists-in-list
-          children: [
-            Expanded(
-              flex: 4,
-              child: CardActionPanel(
-                  actions.asMap().containsKey(0) ? actions[0] : null, state),
-            ),
-            Expanded(
-              flex: 4,
-              child: CardActionPanel(
-                  actions.asMap().containsKey(1) ? actions[1] : null, state),
-            ),
-            Expanded(
-              flex: 4,
-              child: CardActionPanel(
-                  actions.asMap().containsKey(2) ? actions[2] : null, state),
-            ),
-          ])
-    );
+        children: [
+          CardActionPanel(
+              actions.asMap().containsKey(0) ? actions[0] : null, state),
+          CardActionPanel(
+              actions.asMap().containsKey(1) ? actions[1] : null, state),
+          CardActionPanel(
+              actions.asMap().containsKey(2) ? actions[2] : null, state),
+        ]);
   }
 }

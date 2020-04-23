@@ -15,37 +15,28 @@ class PlayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: ChangeNotifierProvider(
-        create: (context) => startNewGame(),
-        child: Consumer<GameState>(
-          builder: (context, state, _) {
-            if (state.scrying.isNotEmpty) {
-              return ScryingPage(state);
-            } else {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Expanded(
-                      child: CardDisplay(state, state.currentCard)
-                  ),
-                  SizedBox(
-                    height: (MediaQuery.of(context).size.height) * 0.1,
-                  ),
-                  Container(
-                    height: (MediaQuery.of(context).size.height) * 0.4,
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: PlayerHand(state.playerHand),
-                  ),
-                ],
-              );
-            }
-
-          }
-        )
-      )
-    );
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: ChangeNotifierProvider(
+            create: (context) => startNewGame(),
+            child: Consumer<GameState>(builder: (context, state, _) {
+              if (state.scrying.isNotEmpty) {
+                return ScryingPage(state);
+              } else {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    SizedBox(height: 10),
+                    Expanded(child: CardDisplay(state, state.currentCard)),
+                    Container(
+                      height: (MediaQuery.of(context).size.height) * 0.25,
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      child: PlayerHand(state.playerHand),
+                    ),
+                  ],
+                );
+              }
+            })));
   }
 }
