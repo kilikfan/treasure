@@ -20,6 +20,6 @@ GameState makeGameState(
 
 Widget createWidgetForTesting({Widget child}) {
   return MaterialApp(
-        home: child,
-      );
+    home: child,
+  );
 }
