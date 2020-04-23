@@ -110,11 +110,11 @@ void main() {
 
       state.scryCards(2);
 
-
       state.replaceScryedCard(aRivalShip, ScryOption.BOTTOM);
       state.replaceScryedCard(plunderAWreck, ScryOption.BOTTOM);
 
-      expect(state.deck, [portFees, aRivalShip, plunderAWreck]);
+      expect(state.currentCard, portFees);
+      expect(state.deck, [aRivalShip, plunderAWreck]);
       expect(state.scrying, []);
     });
   });

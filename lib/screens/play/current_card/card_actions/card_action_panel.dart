@@ -15,7 +15,7 @@ class CardActionPanel extends StatelessWidget {
   final GameState state;
   final bool readOnly;
 
-  CardActionPanel(this.action, this.state, this.readOnly);
+  CardActionPanel(this.action, this.state, { this.readOnly = false });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class CardActionPanel extends StatelessWidget {
                 shape: shape,
                 color: _getButtonColor(actionDetails),
                 child: _getActionComponents(actionDetails))
-            : MaterialButton(
+            : RaisedButton(
                 shape: shape,
                 onPressed: enabled
                     ? () {
