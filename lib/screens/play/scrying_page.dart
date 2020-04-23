@@ -15,9 +15,9 @@ class ScryingPage extends StatelessWidget {
     List<Widget> scryingCards = state.scrying.map((card) {
       return Container(
           width: MediaQuery.of(context).size.width,
-          child: Column(children: [
-            SizedBox(height: 5),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Container(
+                padding: EdgeInsets.symmetric(vertical: 5),
                 height: MediaQuery.of(context).size.height * 0.6,
                 child: CardDisplay(state, card)),
             _getScryButton(context, card, ScryOption.TOP),
@@ -28,8 +28,10 @@ class ScryingPage extends StatelessWidget {
     return ListView(scrollDirection: Axis.horizontal, children: scryingCards);
   }
 
-  Widget _getScryButton(BuildContext context, Model.Card card, ScryOption scryOption) {
+  Widget _getScryButton(
+      BuildContext context, Model.Card card, ScryOption scryOption) {
     return Container(
+        padding: EdgeInsets.symmetric(vertical: 5),
         width: MediaQuery.of(context).size.width * 0.7,
         child: RaisedButton(
           shape: RoundedRectangleBorder(
@@ -40,7 +42,8 @@ class ScryingPage extends StatelessWidget {
             state.replaceScryedCard(card, scryOption);
           },
           color: scryOption.getColour(),
-          child: Text(scryOption.getDescription(), style: TextStyle(fontSize: 30)),
+          child:
+              Text(scryOption.getDescription(), style: TextStyle(fontSize: 30)),
         ));
   }
 }
