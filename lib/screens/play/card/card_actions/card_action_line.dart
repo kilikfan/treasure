@@ -9,7 +9,7 @@ class CardActionLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Padding(padding: EdgeInsets.symmetric(horizontal: 5), child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(icon, color: iconColor),
@@ -18,6 +18,6 @@ class CardActionLine extends StatelessWidget {
           textAlign: TextAlign.center,
         )
       ],
-    );
+    ));
   }
 }

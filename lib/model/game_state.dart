@@ -2,17 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
+import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 import 'package:treasure_of_the_high_seas/model/special_triggers.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'card/card.dart';
 import 'game_result.dart';
 import 'hand.dart';
-
-enum ScryOption {
-  TOP,
-  BOTTOM
-}
 
 class GameState with ChangeNotifier {
   final Randomiser randomiser;
@@ -68,6 +64,10 @@ class GameState with ChangeNotifier {
       deck.insert(0, card);
     } else {
       deck.add(card);
+    }
+
+    if (scrying.isEmpty) {
+      nextCard();
     }
 
     notifyListeners();

@@ -7,6 +7,7 @@ import 'package:treasure_of_the_high_seas/model/card/basic/port_fees.dart';
 import 'package:treasure_of_the_high_seas/model/card/special/special_cards.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
+import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 
 import '../mocks.dart';
 import '../test_utils.dart';
@@ -101,7 +102,7 @@ void main() {
       expect(state.scrying, [aRivalShip]);
     });
 
-    test('should be able to replace a scryed card on the bottom of the deck', () {
+    test('should be able to replace a scryed card on bottom of the deck', () {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();
@@ -109,11 +110,25 @@ void main() {
 
       state.scryCards(2);
 
+      state.replaceScryedCard(plunderAWreck, ScryOption.BOTTOM);
+
+      expect(state.deck, [portFees, plunderAWreck]);
+      expect(state.scrying, [aRivalShip]);
+    });
+
+    test('should draw the next card after scrying is finished', () {
+      const plunderAWreck = PlunderAWreck();
+      const aRivalShip = ARivalShip();
+      const portFees = PortFees();
+      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+
+      state.scryCards(2);
 
       state.replaceScryedCard(aRivalShip, ScryOption.BOTTOM);
       state.replaceScryedCard(plunderAWreck, ScryOption.BOTTOM);
 
-      expect(state.deck, [portFees, aRivalShip, plunderAWreck]);
+      expect(state.currentCard, portFees);
+      expect(state.deck, [aRivalShip, plunderAWreck]);
       expect(state.scrying, []);
     });
   });
@@ -197,4 +212,24 @@ void main() {
     });
   });
 
+
+  group('ChangeNotifier', () {
+    _verifyChangeNotifier(GameState state, Function() stateFunction) {
+      final fn = MockFunction().fn;
+      state.addListener(() {
+        fn();
+      });
+
+      stateFunction();
+      verify(fn());
+    }
+
+    test('state methods should notifier listeners', () {
+      final state = makeGameState();
+      _verifyChangeNotifier(state, state.nextCard);
+      _verifyChangeNotifier(state, () => state.scryCards(1));
+      _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
+      _verifyChangeNotifier(state, state.exileCurrentCard);
+    });
+  });
 }

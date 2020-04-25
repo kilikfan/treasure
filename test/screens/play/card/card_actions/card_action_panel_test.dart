@@ -11,12 +11,12 @@ import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_2_land_aho
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
-import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_line.dart';
-import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_panel.dart';
-import 'package:treasure_of_the_high_seas/screens/play/current_card/card_actions/card_action_text.dart';
+import 'package:treasure_of_the_high_seas/screens/play/card/card_actions/card_action_line.dart';
+import 'package:treasure_of_the_high_seas/screens/play/card/card_actions/card_action_panel.dart';
+import 'package:treasure_of_the_high_seas/screens/play/card/card_actions/card_action_text.dart';
 
-import '../../../mocks.dart';
-import '../../../test_utils.dart';
+import '../../../../mocks.dart';
+import '../../../../test_utils.dart';
 
 class DummyAction extends CardAction {
   final bool enabled;
@@ -164,5 +164,19 @@ void main() {
 
     expect(find.byIcon(Icons.delete), findsOneWidget);
     expect(find.text('Exile'), findsOneWidget);
+  });
+
+  testWidgets('should support readOnly mode', (WidgetTester tester) async {
+    final action = DummyAction([Resource.DOUBLOON], true);
+    await tester.pumpWidget(createWidgetForTesting(
+        child: CardActionPanel(action, makeGameState(), readOnly: true)));
+
+    expect(find.byType(Card), findsOneWidget);
+    expect(find.byType(RaisedButton), findsNothing);
+
+    final textFinder = find.text('Some Action');
+    final costFinder = find.text('(D)');
+    expect(textFinder, findsOneWidget);
+    expect(costFinder, findsOneWidget);
   });
 }

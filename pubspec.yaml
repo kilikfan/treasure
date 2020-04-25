@@ -22,6 +22,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   meta: 1.1.8
   provider: 4.0.5
+  flutter_swiper: 1.1.6
 
 dev_dependencies:
   flutter_test:
