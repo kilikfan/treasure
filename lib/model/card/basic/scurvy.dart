@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -8,13 +9,17 @@ class Scurvy extends Card {
   const Scurvy() : super("Scurvy!");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
+    final allCrew = state.playerHand.getAllOfResource(Resource.CREW);
+    final halfCrew = allCrew.take((allCrew.length/2).ceil()).toList();
+
+    final discardAction = DiscardAction(description: "Find port to see a doctor.");
+    discardAction.enabled = allCrew.isEmpty;
+
     return [
       TradeAction("Oranges all round!", [Resource.FOOD, Resource.FOOD], []),
-      //TODO - action should be half of crew owned
-      TradeAction("Weevils too! Lose half your crew (round up) if one or more.", [Resource.CREW], []),
-      //TODO - action should not be enabled unless it's the only available action
-      DiscardAction(description: "Find port to see a doctor (if no crew).")
+      TradeAction("Weevils too!", halfCrew, []),
+      discardAction
     ];
   }
 }

@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -8,7 +9,7 @@ class Trawlerman extends Card {
   const Trawlerman() : super("Trawlerman!");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Fresh fish.", [], [Resource.FOOD]),
       TradeAction("Fresh fish and fresh trawlerman!", [], [Resource.CREW, Resource.FOOD, Resource.INFAMY]),

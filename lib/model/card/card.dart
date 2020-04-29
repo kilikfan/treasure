@@ -1,3 +1,4 @@
+import '../game_state.dart';
 import 'action/card_action.dart';
 
 abstract class Card {
@@ -5,5 +6,5 @@ abstract class Card {
 
   const Card(this.name);
 
-  List<CardAction> getActions();
+  List<CardAction> getActions(GameState state);
 }

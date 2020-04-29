@@ -1,5 +1,6 @@
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -11,7 +12,7 @@ class ASenseOfPorpoise extends Card {
   const ASenseOfPorpoise() : super("A Sense of Porpoise");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(description: "No bites yet."),
       ReplaceAction(ShoallyYouCantBeSerious(), "Something smells fishy…"),

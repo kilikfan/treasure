@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/trade_action.dart';
@@ -7,7 +8,7 @@ class TavernBrawl extends Card {
     const TavernBrawl() : super("Tavern Brawl");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Pick over the aftermath.",[], [Resource.DOUBLOON]),
       TradeAction("Hold your corner.", [Resource.CREW], [Resource.DOUBLOON, Resource.LANDLUBBER, Resource.LANDLUBBER]),

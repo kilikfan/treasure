@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -8,7 +9,7 @@ class AnIsland extends Card {
   const AnIsland() : super("An Island?");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Pick up some crew.", [Resource.DOUBLOON, Resource.DOUBLOON], [Resource.CREW, Resource.CREW]),
       TradeAction("Kidnap some natives.", [Resource.CREW],

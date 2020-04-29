@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -8,7 +9,7 @@ class AGameOfCards extends Card {
   const AGameOfCards() : super("A Game of Cards");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("A straight wins.", [Resource.CREW, Resource.DOUBLOON, Resource.FOOD, Resource.LANDLUBBER, Resource.INFAMY],
           [Resource.MAP]),

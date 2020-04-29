@@ -8,9 +8,11 @@ abstract class CardAction {
   final List<Resource> cost;
   final String description;
 
+  bool enabled = true;
+
   CardAction(this.cost, this.description);
 
-  bool isEnabled(GameState state) => state.playerHand.canAfford(cost);
+  bool isEnabled(GameState state) => state.playerHand.canAfford(cost) && enabled;
 
   CardActionDetails get actionDetails;
 

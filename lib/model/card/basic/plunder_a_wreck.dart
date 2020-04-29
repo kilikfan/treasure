@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/trade_action.dart';
@@ -7,7 +8,7 @@ class PlunderAWreck extends Card {
   const PlunderAWreck() : super("Plunder a Wreck");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Treacherous seas indeed.", [Resource.CREW, Resource.CREW],
           [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]),

@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -8,7 +9,7 @@ class ARivalShip extends Card {
   const ARivalShip() : super("A Rival Ship");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Board the ship.", [Resource.CREW],
           [Resource.DOUBLOON, Resource.LANDLUBBER, Resource.INFAMY]),
