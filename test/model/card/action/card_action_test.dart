@@ -20,6 +20,14 @@ main() {
     expect(unaffordable.isEnabled(state), false);
   });
 
+  test('should be possible to disable regardless of cost', () {
+    final state = makeGameState();
+    final freeAction = new _FakeAction([]);
+    freeAction.enabled = false;
+
+    expect(freeAction.isEnabled(state), false);
+  });
+
   test('should deduct the cost, perform the action then move on to the next card', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
     state.nextCard();

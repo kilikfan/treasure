@@ -11,9 +11,9 @@ class Scurvy extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     final allCrew = state.playerHand.getAllOfResource(Resource.CREW);
-    final halfCrew = allCrew.take((allCrew.length/2).ceil());
+    final halfCrew = allCrew.take((allCrew.length/2).ceil()).toList();
 
-    final discardAction = DiscardAction(description: "Find port to see a doctor (if no crew).");
+    final discardAction = DiscardAction(description: "Find port to see a doctor.");
     discardAction.enabled = allCrew.isEmpty;
 
     return [
