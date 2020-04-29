@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 
 import './card_actions/card_actions_panel.dart';
@@ -21,7 +22,7 @@ class CardDisplay extends StatelessWidget {
             side: BorderSide(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(10),
           ),
-          color: Colors.yellow[100],
+          color: _getButtonColor(card),
           child: Column(
             children: [
               CardHeader(card.name),
@@ -31,5 +32,16 @@ class CardDisplay extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  Color _getButtonColor(Model.Card card) {
+    switch (card.type) {
+      case CardType.QUEST:
+        return Colors.purple[100];
+      case CardType.SPECIAL:
+        return Colors.red[100];
+      default:
+        return Colors.yellow[100];
+    }
   }
 }

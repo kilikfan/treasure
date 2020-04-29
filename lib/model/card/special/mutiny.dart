@@ -2,9 +2,10 @@ import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/exile_action.dart';
 import '../card.dart';
+import '../card_types.dart';
 
 class Mutiny extends Card {
-  const Mutiny() : super("Mutiny!");
+  const Mutiny() : super("Mutiny!", type: CardType.SPECIAL);
 
   @override
   List<CardAction> getActions() {

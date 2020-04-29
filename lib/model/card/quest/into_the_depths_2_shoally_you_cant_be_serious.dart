@@ -4,11 +4,12 @@ import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
 import '../card.dart';
+import '../card_types.dart';
 import 'into_the_depths_1_a_sense_of_porpoise.dart';
 import 'into_the_depths_3_kraken_in_my_boots.dart';
 
 class ShoallyYouCantBeSerious extends Card {
-  const ShoallyYouCantBeSerious() : super("Shoally You Can't Be Serious!");
+  const ShoallyYouCantBeSerious() : super("Shoally You Can't Be Serious!", type: CardType.QUEST);
 
   @override
   List<CardAction> getActions() {

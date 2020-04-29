@@ -4,9 +4,10 @@ import 'package:treasure_of_the_high_seas/model/card/action/end_game_action.dart
 import '../../game_result.dart';
 import '../../resource.dart';
 import '../card.dart';
+import '../card_types.dart';
 
 class RetrieveTheHispaniolanTreasure extends Card {
-  const RetrieveTheHispaniolanTreasure() : super("Retrieve the Hispaniolan Treasure");
+  const RetrieveTheHispaniolanTreasure() : super("Retrieve the Hispaniolan Treasure", type: CardType.QUEST);
 
   @override
   List<CardAction> getActions() {

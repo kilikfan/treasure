@@ -5,10 +5,11 @@ import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart'
 
 import '../../resource.dart';
 import '../card.dart';
+import '../card_types.dart';
 import 'hispaniola_4_retrieve_the_hispaniolan_treasure.dart';
 
 class BribeThePort extends Card {
-  const BribeThePort() : super("Bribe the Port");
+  const BribeThePort() : super("Bribe the Port", type: CardType.QUEST);
 
   @override
   List<CardAction> getActions() {
