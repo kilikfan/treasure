@@ -6,7 +6,7 @@ import '../../resource.dart';
 class SimpleCost extends CardActionCost {
   final List<Resource> cost;
 
-  SimpleCost(this.cost);
+  const SimpleCost(this.cost);
 
   @override
   void deductCost(Hand hand) {

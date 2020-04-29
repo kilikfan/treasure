@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 
 import '../../game_state.dart';
@@ -20,8 +21,8 @@ class NavyRaid extends Card {
     final doubloons = List.generate(infamyCost, (int _) => Resource.DOUBLOON);
 
     return [
-      ExileAction(description: "A manner of conscription.", cost: infamies + crews),
-      ExileAction(description: "A manner of taxation.", cost: infamies + doubloons),
+      ExileAction(description: "A manner of conscription.", cost: SimpleCost(infamies + crews)),
+      ExileAction(description: "A manner of taxation.", cost: SimpleCost(infamies + doubloons)),
       EndGameAction(GameResult.LOSE, [], "No manners, just capital punishment.")
     ];
   }
