@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/scurvy.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
@@ -19,12 +20,12 @@ void main() {
 
   test('weevils action should cost half the players crew', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW]);
-    expect(Scurvy().getWeevilsAction(state).cost.getDescription(), "(C)");
+    expect(Scurvy().getWeevilsAction(state).cost, SimpleCost([Resource.CREW]));
   });
 
   test('weevils action should round up the cost if player has an odd crew number', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW, Resource.CREW]);
-    expect(Scurvy().getWeevilsAction(state).cost.getDescription(), "(C, C)");
+    expect(Scurvy().getWeevilsAction(state).cost, SimpleCost([Resource.CREW, Resource.CREW]));
   });
 }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_cost.dart';
 
 import '../../hand.dart';
@@ -21,4 +22,15 @@ class SimpleCost extends CardActionCost {
 
   @override
   bool isEmpty() => cost.isEmpty;
+
+  /// Generated boilerplate yuck for equals/hashcode
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is SimpleCost &&
+              runtimeType == other.runtimeType &&
+              listEquals(cost, other.cost);
+
+  @override
+  int get hashCode => cost.hashCode;
 }
