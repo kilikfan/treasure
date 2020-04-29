@@ -22,7 +22,7 @@ class CardDisplay extends StatelessWidget {
             side: BorderSide(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(10),
           ),
-          color: _getButtonColor(card),
+          color: _getCardColor(card),
           child: Column(
             children: [
               CardHeader(card.name),
@@ -34,14 +34,14 @@ class CardDisplay extends StatelessWidget {
         ));
   }
 
-  Color _getButtonColor(Model.Card card) {
+  Color _getCardColor(Model.Card card) {
     switch (card.type) {
       case CardType.QUEST:
-        return Colors.purple[100];
+        return questCardColour;
       case CardType.SPECIAL:
-        return Colors.red[100];
+        return specialCardColour;
       default:
-        return Colors.yellow[100];
+        return basicCardColour;
     }
   }
 }
