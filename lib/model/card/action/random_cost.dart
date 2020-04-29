@@ -14,7 +14,7 @@ class RandomCost extends CardActionCost {
     final cardsCopy = hand.cards.toList();
     randomiser.shuffle(cardsCopy);
 
-    final cost = cardsCopy.take(resourceCount);
+    final cost = cardsCopy.take(resourceCount).toList();
     hand.deductResources(cost);
   }
 
@@ -25,5 +25,5 @@ class RandomCost extends CardActionCost {
   bool isAffordable(Hand hand) => hand.size() >= resourceCount;
 
   @override
-  bool isEmpty() => false;
+  bool isEmpty() => resourceCount == 0;
 }

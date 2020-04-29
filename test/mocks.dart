@@ -8,7 +8,12 @@ class FakeRandomiser extends Fake implements Randomiser {
 
   final bool coinFlip;
 
-  FakeRandomiser(this.coinFlip);
+  FakeRandomiser([this.coinFlip = true]);
+
+  @override
+  void shuffle(List<Object> list) {
+    list.setAll(0, list.reversed);
+  }
 
   @override
   bool flipCoin() {
