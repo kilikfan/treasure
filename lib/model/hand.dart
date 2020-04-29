@@ -14,10 +14,9 @@ class Hand {
     cards.sort((r1, r2) => r1.index.compareTo(r2.index));
   }
 
-  int countResource(Resource countResource){
-    final filtered = cards.where((res) => res == countResource);
-    return filtered.length;
-  }
+  Iterable<Resource> getAllOfResource(Resource resource) => cards.where((res) => res == resource);
+
+  int countResource(Resource resource) => getAllOfResource(resource).length;
 
   bool canAfford(List<Resource> cost) {
     try {

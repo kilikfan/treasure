@@ -10,12 +10,16 @@ class Scurvy extends Card {
 
   @override
   List<CardAction> getActions(GameState state) {
+    final allCrew = state.playerHand.getAllOfResource(Resource.CREW);
+    final halfCrew = allCrew.take((allCrew.length/2).ceil());
+
+    final discardAction = DiscardAction(description: "Find port to see a doctor (if no crew).");
+    discardAction.enabled = allCrew.isEmpty;
+
     return [
       TradeAction("Oranges all round!", [Resource.FOOD, Resource.FOOD], []),
-      //TODO - action should be half of crew owned
-      TradeAction("Weevils too! Lose half your crew (round up) if one or more.", [Resource.CREW], []),
-      //TODO - action should not be enabled unless it's the only available action
-      DiscardAction(description: "Find port to see a doctor (if no crew).")
+      TradeAction("Weevils too!", halfCrew, []),
+      discardAction
     ];
   }
 }
