@@ -11,16 +11,16 @@ void main() {
     final oddState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY]);
     final eventState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY]);
 
-    expect(NavyRaid().getConscriptionAction(oddState).cost, [Resource.INFAMY, Resource.INFAMY, Resource.CREW]);
-    expect(NavyRaid().getConscriptionAction(eventState).cost, [Resource.INFAMY]);
+    expect(NavyRaid().getConscriptionAction(oddState).cost.getDescription(), "(I, I, C)");
+    expect(NavyRaid().getConscriptionAction(eventState).cost.getDescription(), "(I)");
   });
 
   test('taxation action should have correct costs', () {
     final oddState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY]);
     final eventState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY]);
 
-    expect(NavyRaid().getTaxationAction(oddState).cost, [Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON]);
-    expect(NavyRaid().getTaxationAction(eventState).cost, [Resource.INFAMY, Resource.DOUBLOON]);
+    expect(NavyRaid().getTaxationAction(oddState).cost.getDescription(), "(I, I, D, D)");
+    expect(NavyRaid().getTaxationAction(eventState).cost.getDescription(), "(I, D)");
   });
 }
 

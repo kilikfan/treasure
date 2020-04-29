@@ -3,6 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 
@@ -57,7 +58,7 @@ main() {
 class _FakeAction extends CardAction {
   final Function() fn;
 
-  _FakeAction(List<Resource> cost, [this.fn]) : super(cost, "Fake Action");
+  _FakeAction(List<Resource> cost, [this.fn]) : super(SimpleCost(cost), "Fake Action");
 
   @override
   void performActionImpl(GameState state) {

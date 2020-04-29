@@ -19,12 +19,12 @@ void main() {
 
   test('weevils action should cost half the players crew', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW]);
-    expect(Scurvy().getWeevilsAction(state).cost, [Resource.CREW]);
+    expect(Scurvy().getWeevilsAction(state).cost.getDescription(), "(C)");
   });
 
   test('weevils action should round up the cost if player has an odd crew number', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW, Resource.CREW]);
-    expect(Scurvy().getWeevilsAction(state).cost, [Resource.CREW, Resource.CREW]);
+    expect(Scurvy().getWeevilsAction(state).cost.getDescription(), "(C, C)");
   });
 }
 

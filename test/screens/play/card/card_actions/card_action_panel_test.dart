@@ -6,6 +6,7 @@ import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.
 import 'package:treasure_of_the_high_seas/model/card/action/end_game_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/trade_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_2_land_ahoy.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
@@ -23,7 +24,7 @@ class DummyAction extends CardAction {
   final Function(Object) fn;
 
   DummyAction(List<Resource> cost, this.enabled, [this.fn])
-      : super(cost, "Some Action");
+      : super(SimpleCost(cost), "Some Action");
 
   @override
   void performAction(GameState state) {

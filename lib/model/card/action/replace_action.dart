@@ -1,3 +1,5 @@
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
+
 import '../../../model/game_state.dart';
 import '../../../model/resource.dart';
 import '../card.dart';
@@ -8,7 +10,7 @@ class ReplaceAction extends CardAction {
   Card replacementCard;
 
   ReplaceAction(this.replacementCard, String description, [List<Resource> cost = const []])
-      : super(cost,
+      : super(SimpleCost(cost),
       description);
 
   @override

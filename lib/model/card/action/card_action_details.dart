@@ -1,3 +1,5 @@
+import 'package:treasure_of_the_high_seas/model/card/action/card_action_cost.dart';
+
 import '../../game_result.dart';
 import '../../resource.dart';
 import '../card.dart';
@@ -6,7 +8,7 @@ enum CardDestination { DISCARD, EXILE }
 
 class CardActionDetails {
   final String description;
-  final List<Resource> cost;
+  final CardActionCost cost;
   final List<Resource> reward;
   final int cardsToScry;
   final GameResult result;
