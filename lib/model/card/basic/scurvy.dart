@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -8,7 +9,7 @@ class Scurvy extends Card {
   const Scurvy() : super("Scurvy!");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Oranges all round!", [Resource.FOOD, Resource.FOOD], []),
       //TODO - action should be half of crew owned

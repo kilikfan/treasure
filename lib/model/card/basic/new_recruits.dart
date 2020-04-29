@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/trade_action.dart';
@@ -7,7 +8,7 @@ class NewRecruits extends Card {
     const NewRecruits() : super("New Recruits");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Train some men.",[Resource.LANDLUBBER, Resource.LANDLUBBER], [Resource.CREW, Resource.CREW]),
       TradeAction("Steal a crew.", [], [Resource.CREW, Resource.CREW, Resource.INFAMY, Resource.INFAMY]),

@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/trade_action.dart';
@@ -7,7 +8,7 @@ class MeetingAnInformant extends Card {
   const MeetingAnInformant() : super("Meeting an Informant");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Would you like a map?", [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON],
           [Resource.MAP]),

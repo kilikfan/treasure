@@ -1,5 +1,6 @@
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/exile_action.dart';
@@ -10,7 +11,7 @@ class NavyRaid extends Card {
   const NavyRaid() : super("Navy Raid!");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       //TODO - should be pay half your Resource.INFAMY (rounded up) and one less Resource.CREW
       ExileAction(description: "A manner of conscription.", cost: [Resource.CREW, Resource.INFAMY, Resource.INFAMY]),

@@ -13,7 +13,7 @@ class CardActionsPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final actions = card.getActions();
+    final actions = card.getActions(state);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
         // Using .asMap() to help check if the list contains index before accessing that index

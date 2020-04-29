@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/trade_action.dart';
@@ -7,7 +8,7 @@ class ExperienceAtTheWheel extends Card {
   const ExperienceAtTheWheel() : super("Experience at the Wheel");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Recruitment drive.", [], [Resource.CREW]),
       TradeAction("Packed extra supplies.", [], [Resource.FOOD]),

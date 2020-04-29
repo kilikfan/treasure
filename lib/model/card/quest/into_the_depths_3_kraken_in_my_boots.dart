@@ -1,5 +1,6 @@
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -11,7 +12,7 @@ class KrakenInMyBoots extends Card {
   const KrakenInMyBoots() : super("Kraken in My Boots");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(cost: [Resource.FOOD], description: "You satiate its hunger. For now."),
       ReplaceAction(ShoallyYouCantBeSerious(), """AAAARRGGH!"""),

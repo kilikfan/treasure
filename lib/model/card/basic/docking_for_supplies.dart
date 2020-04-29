@@ -1,3 +1,4 @@
+import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
@@ -8,7 +9,7 @@ class DockingForSupplies extends Card {
   const DockingForSupplies() : super("Docking for Supplies");
 
   @override
-  List<CardAction> getActions() {
+  List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Fresh food.", [Resource.DOUBLOON, Resource.DOUBLOON],
           [Resource.FOOD]),
