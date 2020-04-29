@@ -12,12 +12,12 @@ abstract class CardAction {
 
   CardAction(this.cost, this.description);
 
-  bool isEnabled(GameState state) => cost.isAffordable(state) && enabled;
+  bool isEnabled(GameState state) => cost.isAffordable(state.playerHand) && enabled;
 
   CardActionDetails get actionDetails;
 
   void performAction(GameState state) {
-    cost.deductCost(state);
+    cost.deductCost(state.playerHand);
     performActionImpl(state);
     if (autoProgress()) {
       state.nextCard();

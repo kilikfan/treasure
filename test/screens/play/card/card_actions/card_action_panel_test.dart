@@ -20,11 +20,12 @@ import '../../../../mocks.dart';
 import '../../../../test_utils.dart';
 
 class DummyAction extends CardAction {
-  final bool enabled;
   final Function(Object) fn;
 
-  DummyAction(List<Resource> cost, this.enabled, [this.fn])
-      : super(SimpleCost(cost), "Some Action");
+  DummyAction(List<Resource> cost, bool enabled, [this.fn])
+      : super(SimpleCost(cost), "Some Action") {
+    this.enabled = enabled;
+  }
 
   @override
   void performAction(GameState state) {
@@ -36,11 +37,6 @@ class DummyAction extends CardAction {
   @override
   void performActionImpl(GameState state) {
     // do nothing
-  }
-
-  @override
-  bool isEnabled(GameState state) {
-    return enabled;
   }
 
   @override

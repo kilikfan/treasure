@@ -1,8 +1,8 @@
-import '../../game_state.dart';
+import '../../hand.dart';
 
 abstract class CardActionCost {
   String getDescription();
-  bool isAffordable(GameState state);
-  void deductCost(GameState state);
+  bool isAffordable(Hand hand);
+  void deductCost(Hand hand);
   bool isEmpty();
 }

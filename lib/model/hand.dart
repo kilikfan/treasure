@@ -18,6 +18,8 @@ class Hand {
 
   int countResource(Resource resource) => getAllOfResource(resource).length;
 
+  int size() => cards.length;
+
   bool canAfford(List<Resource> cost) {
     try {
       final handCopy = new List<Resource>.from(cards);
