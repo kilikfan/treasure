@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/exile_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 
 import '../../../test_utils.dart';
@@ -33,7 +34,7 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
-    final action = new ExileAction(description: "Foo", cost: [Resource.CREW], reward: [Resource.DOUBLOON]);
+    final action = new ExileAction(description: "Foo", cost: SimpleCost([Resource.CREW]), reward: [Resource.DOUBLOON]);
     expect(action.description, "Foo");
 
     action.performAction(state);

@@ -1,4 +1,5 @@
 import 'package:treasure_of_the_high_seas/model/resource.dart';
+
 import 'card/special/special_cards.dart';
 import 'game_state.dart';
 import 'hand.dart';
@@ -11,7 +12,6 @@ void addSpecialTopCardToDeck(GameState state) {
   } else if (checkRavenousCrew(state.playerHand)) {
     state.deck.insert(0, RavenousCrew());
   }
-  ;
 }
 
 bool checkMutiny(Hand playerHand) => playerHand.cards.length > 15;

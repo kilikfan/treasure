@@ -1,8 +1,10 @@
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 
 import '../../../model/game_state.dart';
 import '../../../model/resource.dart';
 import 'card_action.dart';
+import 'card_action_cost.dart';
 
 class ExileAction extends CardAction {
   final List<Resource> reward;
@@ -10,7 +12,7 @@ class ExileAction extends CardAction {
   ExileAction(
       {this.reward = const [],
       String description = "Exile this card.",
-      List<Resource> cost = const []})
+      CardActionCost cost = const SimpleCost([])})
       : super(cost, description);
 
   @override

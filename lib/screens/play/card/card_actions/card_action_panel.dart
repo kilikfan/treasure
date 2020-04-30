@@ -52,10 +52,9 @@ class CardActionPanel extends StatelessWidget {
 
     final effects = <CardActionLine>[];
 
-    if (actionDetails.cost.isNotEmpty) {
-      final description = '${actionDetails.cost.map((res) => res.getText())}';
+    if (!actionDetails.cost.isEmpty()) {
       effects
-          .add(CardActionLine(description, Icons.arrow_downward, Colors.red));
+          .add(CardActionLine(actionDetails.cost.getDescription(), Icons.arrow_downward, Colors.red));
     }
 
     if (actionDetails.reward.isNotEmpty) {

@@ -1,3 +1,6 @@
+import 'package:treasure_of_the_high_seas/model/card/action/random_cost.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
+
 import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
@@ -10,12 +13,19 @@ class Mutiny extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      //TODO - should be lose five resource cards at random
-      ExileAction(description: "Devastation in the melee!",
-          cost: [Resource.CREW, Resource.DOUBLOON, Resource.FOOD, Resource.LANDLUBBER, Resource.INFAMY]),
-      ExileAction(description: "Pay off the mutineers to leave your crew.",
-          cost: [Resource.CREW, Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
-      ExileAction(description: "Share your map with the crew.", cost: [Resource.MAP])
+      ExileAction(
+          description: "Devastation in the melee!", cost: RandomCost(5)),
+      ExileAction(
+          description: "Pay off the mutineers to leave your crew.",
+          cost: SimpleCost([
+            Resource.CREW,
+            Resource.CREW,
+            Resource.DOUBLOON,
+            Resource.DOUBLOON
+          ])),
+      ExileAction(
+          description: "Share your map with the crew.",
+          cost: SimpleCost([Resource.MAP]))
     ];
   }
 }

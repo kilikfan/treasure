@@ -6,6 +6,7 @@ import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.
 import 'package:treasure_of_the_high_seas/model/card/action/end_game_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/trade_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_2_land_ahoy.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
@@ -19,11 +20,12 @@ import '../../../../mocks.dart';
 import '../../../../test_utils.dart';
 
 class DummyAction extends CardAction {
-  final bool enabled;
   final Function(Object) fn;
 
-  DummyAction(List<Resource> cost, this.enabled, [this.fn])
-      : super(cost, "Some Action");
+  DummyAction(List<Resource> cost, bool enabled, [this.fn])
+      : super(SimpleCost(cost), "Some Action") {
+    this.enabled = enabled;
+  }
 
   @override
   void performAction(GameState state) {
@@ -35,11 +37,6 @@ class DummyAction extends CardAction {
   @override
   void performActionImpl(GameState state) {
     // do nothing
-  }
-
-  @override
-  bool isEnabled(GameState state) {
-    return enabled;
   }
 
   @override

@@ -1,23 +1,23 @@
 import 'package:meta/meta.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/card_action_cost.dart';
 
 import '../../game_state.dart';
-import '../../resource.dart';
 import 'card_action_details.dart';
 
 abstract class CardAction {
-  final List<Resource> cost;
+  final CardActionCost cost;
   final String description;
 
   bool enabled = true;
 
   CardAction(this.cost, this.description);
 
-  bool isEnabled(GameState state) => state.playerHand.canAfford(cost) && enabled;
+  bool isEnabled(GameState state) => cost.isAffordable(state.playerHand) && enabled;
 
   CardActionDetails get actionDetails;
 
   void performAction(GameState state) {
-    state.playerHand.deductResources(cost);
+    cost.deductCost(state.playerHand);
     performActionImpl(state);
     if (autoProgress()) {
       state.nextCard();

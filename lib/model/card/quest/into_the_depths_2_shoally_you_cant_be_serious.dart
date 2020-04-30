@@ -1,4 +1,5 @@
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 
 import '../../game_state.dart';
 import '../../resource.dart';
@@ -14,7 +15,7 @@ class ShoallyYouCantBeSerious extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      DiscardAction(cost: [Resource.FOOD], description: "The fishy smell persists."),
+      DiscardAction(cost: SimpleCost([Resource.FOOD]), description: "The fishy smell persists."),
       //TODO - optional C/L C/L cost
       ReplaceAction(KrakenInMyBoots(), "You have an exi-stench-ial crisis.", [Resource.CREW, Resource.CREW, Resource.FOOD]),
       ReplaceAction(ASenseOfPorpoise(), "Why couldn’t it be follow the butterflies?")
