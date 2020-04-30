@@ -20,7 +20,7 @@ main() {
     expect(RandomCost(3).getDescription(), "3 x ?");
   });
 
-  test('should correctly report when its empty', () {
+  test('should correctly report when it is empty', () {
     expect(RandomCost(0).isEmpty(), true);
     expect(RandomCost(1).isEmpty(), false);
     expect(RandomCost(5).isEmpty(), false);

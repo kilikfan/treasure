@@ -18,7 +18,7 @@ main() {
     expect(SimpleCost([Resource.FOOD, Resource.FOOD, Resource.LANDLUBBER]).getDescription(), "(F, F, L)");
   });
 
-  test('should correctly report when its empty', () {
+  test('should correctly report when it is empty', () {
     expect(SimpleCost([]).isEmpty(), true);
     expect(SimpleCost([Resource.FOOD]).isEmpty(), false);
   });
