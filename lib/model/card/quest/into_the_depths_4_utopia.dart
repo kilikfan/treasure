@@ -5,9 +5,10 @@ import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/end_game_action.dart';
 import '../card.dart';
+import '../card_types.dart';
 
 class Utopia extends Card {
-  const Utopia() : super("Utopia");
+  const Utopia() : super("Utopia", type: CardType.QUEST);
 
   @override
   List<CardAction> getActions(GameState state) {

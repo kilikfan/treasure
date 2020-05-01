@@ -6,10 +6,11 @@ import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart'
 import '../../game_state.dart';
 import '../../resource.dart';
 import '../card.dart';
+import '../card_types.dart';
 import 'hispaniola_3_bribe_the_port.dart';
 
 class LandAhoy extends Card {
-  const LandAhoy() : super("Land Ahoy!");
+  const LandAhoy() : super("Land Ahoy!", type: CardType.QUEST);
 
   @override
   List<CardAction> getActions(GameState state) {
