@@ -79,4 +79,9 @@ class GameState with ChangeNotifier {
 
     notifyListeners();
   }
+
+  void endGame() {
+    // TODO - other tidying up?
+    notifyListeners();
+  }
 }
