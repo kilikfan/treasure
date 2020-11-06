@@ -29,7 +29,7 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: "^0.7.4"
   mockito: 4.1.1
-  matcher: 0.12.6
+  matcher: 0.12.8
 
 flutter_icons:
   android: "launcher_icon"
