@@ -80,8 +80,8 @@ class GameState with ChangeNotifier {
     notifyListeners();
   }
 
-  void endGame() {
-    // TODO - other tidying up?
+  void endGame(GameResult result) {
+    this.result = result;
     notifyListeners();
   }
 }

@@ -13,8 +13,7 @@ class EndGameAction extends CardAction {
 
   @override
   void performActionImpl(GameState state) {
-    state.result = this.result;
-    state.endGame();
+    state.endGame(result);
   }
 
   @override
