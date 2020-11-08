@@ -14,47 +14,42 @@ import 'package:treasure_of_the_high_seas/screens/play/scrying_page.dart';
 import '../../test_utils.dart';
 
 void main() {
-  testWidgets('should display the ScryPage if there are cards being scryed',
-      (WidgetTester tester) async {
+  testWidgets('should display the ScryPage if there are cards being scryed', (WidgetTester tester) async {
     //ugly hack to set a stupid size, so this test doesn't complain about random overflows
     tester.binding.window.physicalSizeTestValue = Size(2000, 1920);
 
     final state = makeGameState();
     state.scryCards(1);
 
-    await tester
-        .pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
+    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
 
     expect(find.byType(ScryingPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
   });
 
-  testWidgets('should display the regular page if no cards being scryed',
-      (WidgetTester tester) async {
+  testWidgets('should display the regular page if no cards being scryed', (WidgetTester tester) async {
     final state = makeGameState();
     state.nextCard();
 
-    await tester
-        .pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
+    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
 
     expect(find.byType(ScryingPage), findsNothing);
     expect(find.byType(PlayerHand), findsOneWidget);
   });
 
-  testWidgets('should change colour based on the card type displayed',
-      (WidgetTester tester) async {
+  testWidgets('should change colour based on the card type displayed', (WidgetTester tester) async {
     var cardFinder = find.byType(Card);
 
     await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), PlunderAWreck())));
-        final basicCard = tester.widget<Card>(cardFinder);
+    final basicCard = tester.widget<Card>(cardFinder);
     expect(basicCard.color, basicCardColour);
 
     await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), RumoursOfAnIsland())));
-        final questCard= tester.widget<Card>(cardFinder);
+    final questCard = tester.widget<Card>(cardFinder);
     expect(questCard.color, questCardColour);
 
     await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), Mutiny())));
-        final specialCard= tester.widget<Card>(cardFinder);
+    final specialCard = tester.widget<Card>(cardFinder);
     expect(specialCard.color, specialCardColour);
   });
 }
