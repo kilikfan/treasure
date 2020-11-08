@@ -30,9 +30,6 @@ class MainMenuPage extends StatelessWidget {
                   }
               ),
               MenuButton(
-                'Achievements'
-              ),
-              MenuButton(
                 'Settings'
               ),
               MenuButton(
