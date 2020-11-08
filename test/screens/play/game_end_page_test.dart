@@ -11,8 +11,6 @@ import '../../test_utils.dart';
 void main() {
   testWidgets('should display correct text for win and loss', (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetForTesting(child: GameEndPage(GameResult.WIN)));
-    expect(find.byType(GameEndPage), findsOneWidget);
-    expect(find.byType(PlayerHand), findsNothing);
 
     var gameWinTextFinder = find.text(GameResult.WIN.description);
     var gameLoseTextFinder = find.text(GameResult.LOSE.description);
@@ -20,8 +18,6 @@ void main() {
     expect(gameLoseTextFinder, findsNothing);
 
     await tester.pumpWidget(createWidgetForTesting(child: GameEndPage(GameResult.LOSE)));
-    expect(find.byType(GameEndPage), findsOneWidget);
-    expect(find.byType(PlayerHand), findsNothing);
 
     gameWinTextFinder = find.text(GameResult.WIN.description);
     gameLoseTextFinder = find.text(GameResult.LOSE.description);
@@ -31,16 +27,12 @@ void main() {
 
   testWidgets('new game button should start a new game', (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetForTesting(child: GameEndPage(GameResult.WIN)));
-    expect(find.byType(GameEndPage), findsOneWidget);
-    expect(find.byType(PlayerHand), findsNothing);
 
     final button1Finder = find.text('New Game');
     expect(button1Finder, findsOneWidget);
 
     await tester.tap(button1Finder);
     await tester.pumpAndSettle();
-    expect(find.byType(PlayerHand), findsOneWidget);
-    expect(find.text('Rules'), findsNothing);
 
     final playPage = tester.widget<PlayPage>(find.byType(PlayPage));
     final gameState = playPage.state;
@@ -71,6 +63,6 @@ void main() {
     await tester.tap(button2Finder);
     await tester.pumpAndSettle();
     expect(find.byType(PlayerHand), findsNothing);
-    expect(find.text('Rules'), findsOneWidget);
+    expect(find.byType(MainMenuPage), findsOneWidget);
   });
 }

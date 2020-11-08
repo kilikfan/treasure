@@ -29,22 +29,13 @@ void main() {
     expect(find.byType(PlayerHand), findsNothing);
   });
 
-  testWidgets('should display the regular page if no cards being scryed', (WidgetTester tester) async {
+  testWidgets('should display the regular page if game is in progress with no cards being scryed', (WidgetTester tester) async {
     final state = makeGameState();
     state.nextCard();
 
     await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
 
     expect(find.byType(ScryingPage), findsNothing);
-    expect(find.byType(PlayerHand), findsOneWidget);
-  });
-
-  testWidgets('should not display the game over page with no game result', (WidgetTester tester) async {
-    final state = makeGameState();
-    state.nextCard();
-
-    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('Play Page', state)));
-
     expect(find.byType(GameEndPage), findsNothing);
     expect(find.byType(PlayerHand), findsOneWidget);
   });
