@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
-import 'package:treasure_of_the_high_seas/screens/play/rules.dart';
+import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
+import 'package:treasure_of_the_high_seas/util/resource_loader.dart';
 
 import '../play/play_page.dart';
 import 'menu_button.dart';
@@ -30,9 +31,6 @@ class MainMenuPage extends StatelessWidget {
                   }
               ),
               MenuButton(
-                'Achievements'
-              ),
-              MenuButton(
                 'Settings'
               ),
               MenuButton(
@@ -40,7 +38,7 @@ class MainMenuPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RulesPage(title: 'Rules')),
+                      MaterialPageRoute(builder: (context) => RulesPage(const ResourceLoader())),
                     );
                   }
               ),
