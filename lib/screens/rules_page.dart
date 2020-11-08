@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:treasure_of_the_high_seas/util/load_rules.dart';
+import 'package:treasure_of_the_high_seas/util/resource_loader.dart';
 
 class RulesPage extends StatelessWidget {
-  RulesPage({Key key, this.title}) : super(key: key);
+  const RulesPage(this._loader, {Key key}) : super(key: key);
 
-  final String title;
+  final ResourceLoader _loader;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
-        future: readRules(),
+        future: _loader.readTextResource("assets/text/rules.txt"),
         builder: (BuildContext context, AsyncSnapshot<String> text) {
           return Scaffold(
               appBar: AppBar(
-                title: Text(title),
+                title: Text('Rules'),
               ),
               body: Container(
                 padding: const EdgeInsets.all(16.0),
                 child: new SingleChildScrollView(
                     child: new Text(
                       text.data != null ? text.data : "",
+                      key: Key('rules_content'),
                       style: new TextStyle(
                         fontSize: 16.0,
                       ),

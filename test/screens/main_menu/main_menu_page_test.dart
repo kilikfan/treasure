@@ -3,7 +3,7 @@ import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu_page.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
-import 'package:treasure_of_the_high_seas/screens/play/rules.dart';
+import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 
 import '../../test_utils.dart';
 
