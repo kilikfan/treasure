@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
+import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
+import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 
-import '../play/play_page.dart';
 import '../main_menu/menu_button.dart';
 
 class GameEndPage extends StatelessWidget {
@@ -26,7 +25,7 @@ class GameEndPage extends StatelessWidget {
               MenuButton(
                   'New Game',
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
                     );
@@ -35,10 +34,7 @@ class GameEndPage extends StatelessWidget {
               MenuButton(
                   'Exit',
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MainMenuPage()),
-                    );
+                    Navigator.of(context).pop();
                   }
               )
             ],

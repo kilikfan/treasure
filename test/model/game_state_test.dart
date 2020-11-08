@@ -5,6 +5,7 @@ import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/port_fees.dart';
 import 'package:treasure_of_the_high_seas/model/card/special/special_cards.dart';
+import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
@@ -224,12 +225,13 @@ void main() {
       verify(fn());
     }
 
-    test('state methods should notifier listeners', () {
+    test('state methods should notify listeners', () {
       final state = makeGameState();
       _verifyChangeNotifier(state, state.nextCard);
       _verifyChangeNotifier(state, () => state.scryCards(1));
       _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
       _verifyChangeNotifier(state, state.exileCurrentCard);
+      _verifyChangeNotifier(state, () => state.endGame(GameResult.WIN));
     });
   });
 }
