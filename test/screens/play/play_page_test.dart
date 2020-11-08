@@ -39,36 +39,34 @@ void main() {
     expect(find.byType(PlayerHand), findsOneWidget);
   });
 
-  testWidgets('should display the game over page with correct text if we have a game result', (WidgetTester tester) async {
+  testWidgets('should not display the game over page with no game result', (WidgetTester tester) async {
     final state = makeGameState();
+    state.nextCard();
 
-    //Test for a win
+    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('Play Page', state)));
+
+    expect(find.byType(GameEndPage), findsNothing);
+    expect(find.byType(PlayerHand), findsOneWidget);
+  });
+
+  testWidgets('should display the game over page if the game result is a win', (WidgetTester tester) async {
+    final state = makeGameState();
     state.endGame(GameResult.WIN);
+
     await tester.pumpWidget(createWidgetForTesting(child: PlayPage('Play Page', state)));
+
     expect(find.byType(GameEndPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
+  });
 
-    final gameWinTextFinder = find.text(GameResult.WIN.description);
-    expect(gameWinTextFinder, findsOneWidget);
-
-    final button1Finder = find.text('New Game');
-    final button2Finder = find.text('Exit');
-    expect(button1Finder, findsOneWidget);
-    expect(button2Finder, findsOneWidget);
-
-    //Test for a loss
+  testWidgets('should display the game over page if the game result is a loss', (WidgetTester tester) async {
+    final state = makeGameState();
     state.endGame(GameResult.LOSE);
+
     await tester.pumpWidget(createWidgetForTesting(child: PlayPage('Play Page', state)));
+
     expect(find.byType(GameEndPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
-
-    final gameLoseTextFinder = find.text(GameResult.LOSE.description);
-    expect(gameLoseTextFinder, findsOneWidget);
-
-    final button3Finder = find.text('New Game');
-    final button4Finder = find.text('Exit');
-    expect(button3Finder, findsOneWidget);
-    expect(button4Finder, findsOneWidget);
   });
 
   testWidgets('should change colour based on the card type displayed', (WidgetTester tester) async {
