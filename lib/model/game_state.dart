@@ -79,4 +79,9 @@ class GameState with ChangeNotifier {
 
     notifyListeners();
   }
+
+  void endGame(GameResult result) {
+    this.result = result;
+    notifyListeners();
+  }
 }
