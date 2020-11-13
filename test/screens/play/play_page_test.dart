@@ -7,6 +7,7 @@ import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
 import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_1_rumours_of_an_island.dart';
 import 'package:treasure_of_the_high_seas/model/card/special/mutiny.dart';
 import 'package:treasure_of_the_high_seas/screens/play/card/card_display.dart';
+import 'package:treasure_of_the_high_seas/screens/play/card/card_pile.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/player_hand.dart';
 import 'package:treasure_of_the_high_seas/screens/play/scrying_page.dart';
@@ -51,5 +52,25 @@ void main() {
     await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), Mutiny())));
     final specialCard = tester.widget<Card>(cardFinder);
     expect(specialCard.color, specialCardColour);
+  });
+
+  testWidgets('should display correct count in deck and discard piles', (WidgetTester tester) async {
+    //ugly hack to set a stupid size, so this test doesn't complain about random overflows
+    tester.binding.window.physicalSizeTestValue = Size(2000, 1920);
+
+    final state = makeGameState();
+    state.nextCard();
+    state.nextCard();
+
+    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
+
+    final deckFinder = find.widgetWithText(CardPile, 'Deck: ' + state.deck.length.toString());
+    final discardFinder = find.widgetWithText(CardPile, 'Discard: ' + state.discard.length.toString());
+
+    final deckPile = tester.widget<CardPile>(deckFinder);
+    expect(deckPile.pileSize.toString(), state.deck.length.toString());
+
+    final discardPile = tester.widget<CardPile>(discardFinder);
+    expect(discardPile.pileSize.toString(), state.discard.length.toString());
   });
 }
