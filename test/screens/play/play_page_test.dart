@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
@@ -16,9 +14,6 @@ import '../../test_utils.dart';
 
 void main() {
   testWidgets('should display the ScryPage if there are cards being scryed', (WidgetTester tester) async {
-    //ugly hack to set a stupid size, so this test doesn't complain about random overflows
-    tester.binding.window.physicalSizeTestValue = Size(2000, 1920);
-
     final state = makeGameState();
     state.scryCards(1);
 
@@ -55,9 +50,6 @@ void main() {
   });
 
   testWidgets('should display correct count in deck and discard piles', (WidgetTester tester) async {
-    //ugly hack to set a stupid size, so this test doesn't complain about random overflows
-    tester.binding.window.physicalSizeTestValue = Size(2000, 1920);
-
     final state = makeGameState();
     state.nextCard();
     state.nextCard();
@@ -67,10 +59,7 @@ void main() {
     final deckFinder = find.widgetWithText(CardPile, 'Deck: ' + state.deck.length.toString());
     final discardFinder = find.widgetWithText(CardPile, 'Discard: ' + state.discard.length.toString());
 
-    final deckPile = tester.widget<CardPile>(deckFinder);
-    expect(deckPile.pileSize.toString(), state.deck.length.toString());
-
-    final discardPile = tester.widget<CardPile>(discardFinder);
-    expect(discardPile.pileSize.toString(), state.discard.length.toString());
+    expect(deckFinder, findsOneWidget);
+    expect(discardFinder, findsOneWidget);
   });
 }
