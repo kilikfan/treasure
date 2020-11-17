@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
@@ -8,6 +6,7 @@ import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_1_rumours_
 import 'package:treasure_of_the_high_seas/model/card/special/mutiny.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/screens/play/card/card_display.dart';
+import 'package:treasure_of_the_high_seas/screens/play/card/card_pile.dart';
 import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/player_hand.dart';
@@ -17,9 +16,6 @@ import '../../test_utils.dart';
 
 void main() {
   testWidgets('should display the ScryPage if there are cards being scryed', (WidgetTester tester) async {
-    //ugly hack to set a stupid size, so this test doesn't complain about random overflows
-    tester.binding.window.physicalSizeTestValue = Size(2000, 1920);
-
     final state = makeGameState();
     state.scryCards(1);
 
@@ -74,5 +70,19 @@ void main() {
     await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), Mutiny())));
     final specialCard = tester.widget<Card>(cardFinder);
     expect(specialCard.color, specialCardColour);
+  });
+
+  testWidgets('should display correct count in deck and discard piles', (WidgetTester tester) async {
+    final state = makeGameState();
+    state.nextCard();
+    state.nextCard();
+
+    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
+
+    final deckFinder = find.widgetWithText(CardPile, 'Deck: ' + state.deck.length.toString());
+    final discardFinder = find.widgetWithText(CardPile, 'Discard: ' + state.discard.length.toString());
+
+    expect(deckFinder, findsOneWidget);
+    expect(discardFinder, findsOneWidget);
   });
 }

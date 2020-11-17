@@ -23,7 +23,7 @@ class CardDisplay extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           color: _getCardColor(card),
-          child: Column(
+          child: ListView(
             children: [
               CardHeader(card.name),
               Padding(
