@@ -14,6 +14,7 @@ class GameState with ChangeNotifier {
   final Randomiser randomiser;
 
   Card currentCard;
+  bool showScryButtons;
   List<Card> deck;
   List<Card> discard = new List<Card>();
   List<Card> exile = new List<Card>();
@@ -50,10 +51,17 @@ class GameState with ChangeNotifier {
     randomiser.shuffle(deck);
   }
 
+  void viewDiscards() {
+    scrying.addAll(discard);
+    showScryButtons = false;
+    notifyListeners();
+  }
+
   void scryCards(int numToScry) {
     final actualNumToScry = min(deck.length, numToScry);
     scrying.addAll(deck.getRange(0, actualNumToScry));
     deck.removeRange(0, actualNumToScry);
+    showScryButtons = true;
     notifyListeners();
   }
 

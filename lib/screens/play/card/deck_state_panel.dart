@@ -13,9 +13,9 @@ class DeckStatePanel extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        CardPile(state.deck.length, 'Deck'),
+        CardPile(state.deck.length, 'Deck', state),
         Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
-        CardPile(state.discard.length, 'Discard')
+        CardPile(state.discard.length, 'Discard', state)
       ],
     );
   }

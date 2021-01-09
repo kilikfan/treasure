@@ -41,20 +41,22 @@ class ScryingPage extends StatelessWidget {
 
   Widget _getScryButton(
       BuildContext context, Model.Card card, ScryOption scryOption) {
-    return Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        width: MediaQuery.of(context).size.width * 0.7,
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          onPressed: () {
-            state.replaceScryedCard(card, scryOption);
-          },
-          color: scryOption.getColour(),
-          child:
-              Text(scryOption.getDescription(), style: TextStyle(fontSize: 30)),
-        ));
+    return Visibility(
+        visible: state.showScryButtons,
+        child: Container(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              onPressed: () {
+                state.replaceScryedCard(card, scryOption);
+              },
+              color: scryOption.getColour(),
+              child: Text(scryOption.getDescription(),
+                  style: TextStyle(fontSize: 30)),
+            )));
   }
 }
