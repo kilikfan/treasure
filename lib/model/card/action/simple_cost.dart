@@ -15,7 +15,11 @@ class SimpleCost extends CardActionCost {
   }
 
   @override
-  String getDescription() => "${cost.map((res) => res.getText())}";
+  String getDescription(Hand hand) {
+    final realCost = hand.getRealCost(cost) ?? cost;
+    realCost.sort((r1, r2) => r1.index.compareTo(r2.index));
+    return "${realCost.map((res) => res.getText())}";
+  }
 
   @override
   bool isAffordable(Hand hand) => hand.canAfford(cost);
