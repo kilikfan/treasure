@@ -24,7 +24,7 @@ class PlayPage extends StatelessWidget {
             create: (context) => state,
             child: Consumer<GameState>(builder: (context, state, _) {
               if (state.scrying.isNotEmpty) {
-                return ScryingPage(state);
+                return ScryingPage();
               } else if (state.result != null) {
                 return GameEndPage(state.result);
               } else {
@@ -39,7 +39,7 @@ class PlayPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Expanded(child: CardDisplay(state, state.currentCard)),
+                    Expanded(child: CardDisplay(state.currentCard)),
                     Container(
                       height: (MediaQuery.of(context).size.height) * 0.25,
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),

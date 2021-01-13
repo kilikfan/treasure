@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart'
     as Model;
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
@@ -12,14 +12,14 @@ import 'card_action_line.dart';
 
 class CardActionPanel extends StatelessWidget {
   final Model.CardAction action;
-  final GameState state;
   final bool readOnly;
 
-  CardActionPanel(this.action, this.state, { this.readOnly = false });
+  CardActionPanel(this.action, { this.readOnly = false });
 
   @override
   Widget build(BuildContext context) {
     final actionDetails = action?.actionDetails;
+    final state = context.watch<GameState>();
     final enabled = action?.isEnabled(state) ?? false;
 
     final shape = RoundedRectangleBorder(
