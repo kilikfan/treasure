@@ -1,11 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
-import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
-import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_1_rumours_of_an_island.dart';
-import 'package:treasure_of_the_high_seas/model/card/special/mutiny.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
-import 'package:treasure_of_the_high_seas/screens/play/card/card_display.dart';
 import 'package:treasure_of_the_high_seas/screens/play/card/card_pile.dart';
 import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
@@ -54,22 +48,6 @@ void main() {
 
     expect(find.byType(GameEndPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
-  });
-
-  testWidgets('should change colour based on the card type displayed', (WidgetTester tester) async {
-    var cardFinder = find.byType(Card);
-
-    await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), PlunderAWreck())));
-    final basicCard = tester.widget<Card>(cardFinder);
-    expect(basicCard.color, basicCardColour);
-
-    await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), RumoursOfAnIsland())));
-    final questCard = tester.widget<Card>(cardFinder);
-    expect(questCard.color, questCardColour);
-
-    await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(makeGameState(), Mutiny())));
-    final specialCard = tester.widget<Card>(cardFinder);
-    expect(specialCard.color, specialCardColour);
   });
 
   testWidgets('should display correct count in deck and discard piles', (WidgetTester tester) async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/card/card.dart' as ModelCard;
@@ -18,8 +19,10 @@ GameState makeGameState(
   return state;
 }
 
-Widget createWidgetForTesting({Widget child}) {
+Widget createWidgetForTesting({Widget child, GameState state}) {
   return MaterialApp(
-    home: child,
-  );
+    home: ChangeNotifierProvider(
+      create: (context) => state,
+      child: child
+  ));
 }

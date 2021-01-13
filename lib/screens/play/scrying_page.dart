@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
+import 'card/card_display.dart';
 import '../../model/card/card.dart' as Model;
 
-import 'card/card_display.dart';
-
 class ScryingPage extends StatelessWidget {
-  final GameState state;
-
-  ScryingPage(this.state);
-
   @override
   Widget build(BuildContext context) {
-    List<Widget> scryingCards = state.scrying.map((card) {
+    final scrying = context.select<GameState, List<Model.Card>>((state) => state.scrying);
+
+    List<Widget> scryingCards = scrying.map((card) {
       return Container(
           width: MediaQuery.of(context).size.width,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -21,7 +19,6 @@ class ScryingPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5),
                 height: MediaQuery.of(context).size.height * 0.65,
                 child: CardDisplay(
-                  state,
                   card,
                   readOnly: true,
                 )),
@@ -50,7 +47,7 @@ class ScryingPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           onPressed: () {
-            state.replaceScryedCard(card, scryOption);
+            Provider.of<GameState>(context, listen: false).replaceScryedCard(card, scryOption);
           },
           color: scryOption.getColour(),
           child:

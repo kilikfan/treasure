@@ -37,7 +37,7 @@ void main() {
     final state = makeGameState();
     await tester.pumpWidget(
       createWidgetForTesting(
-        child: CardActionsPanel(state, CardWithTwoActions(), false))
+        child: CardActionsPanel(CardWithTwoActions(), false), state: state),
     );
 
     final action1Finder = find.text('Test action 1');
@@ -51,7 +51,7 @@ void main() {
     final state = makeGameState();
     await tester.pumpWidget(
         createWidgetForTesting(
-            child: CardActionsPanel(state, CardWithThreeActions(), false))
+            child: CardActionsPanel(CardWithThreeActions(), false), state: state)
     );
 
     final action1Finder = find.text('Test action 1');
