@@ -35,7 +35,7 @@ class PlayPage extends StatelessWidget {
                       height: (MediaQuery.of(context).size.height) * 0.08,
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: Center(
-                          child: DeckStatePanel(state)
+                          child: DeckStatePanel()
                       ),
                     ),
                     SizedBox(height: 10),
