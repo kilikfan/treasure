@@ -16,14 +16,6 @@ class PlayerHand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*
-    return Row(
-      children: <Widget>[
-        for (var card in hand.cards) ResourceCard(card)
-      ],
-      mainAxisAlignment: MainAxisAlignment.center,
-    );
-    */
     List<Widget> resourceCards = hand.cards.asMap().map((i, card) {
       
       return MapEntry(i, 

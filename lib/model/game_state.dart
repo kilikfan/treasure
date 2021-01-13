@@ -14,13 +14,13 @@ class GameState with ChangeNotifier {
   final Randomiser randomiser;
 
   Card currentCard;
+  final List<Card> deck;
+  final List<Card> discard = new List<Card>();
+  final List<Card> exile = new List<Card>();
+  final List<Card> scrying = new List<Card>();
   bool showScryButtons;
-  List<Card> deck;
-  List<Card> discard = new List<Card>();
-  List<Card> exile = new List<Card>();
-  List<Card> scrying = new List<Card>();
 
-  Hand playerHand = new Hand();
+  final Hand playerHand = new Hand();
 
   GameResult result;
 
