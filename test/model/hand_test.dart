@@ -47,6 +47,18 @@ void main() {
     expect(hand.cards, [Resource.CREW]);
   });
 
+  test('should describe the real cost if maps are required', () {
+    final hand = new Hand([Resource.CREW, Resource.MAP, Resource.FOOD, Resource.FOOD]);
+
+    expect(hand.getRealCost([Resource.FOOD, Resource.FOOD]), [Resource.FOOD, Resource.FOOD]);
+    expect(hand.getRealCost([Resource.LANDLUBBER]), [Resource.MAP]);
+  });
+
+  test('should return a real cost of null if not affordable', () {
+    final hand = new Hand([]);
+    expect(hand.getRealCost([Resource.FOOD]), null);
+  });
+
   test('should throw an error if trying to deduct resources that cannot be afforded', () {
     final hand = new Hand([Resource.CREW, Resource.FOOD]);
 

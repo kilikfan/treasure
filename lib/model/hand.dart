@@ -20,26 +20,32 @@ class Hand {
 
   int size() => cards.length;
 
-  bool canAfford(List<Resource> cost) {
+  bool canAfford(List<Resource> cost) => getRealCost(cost) != null;
+
+  List<Resource> getRealCost(List<Resource> rawCost) {
     try {
       final handCopy = new List<Resource>.from(cards);
-      _deductResources(cost, handCopy);
-      return true;
+      return _deductResources(rawCost, handCopy);
     } catch (_) {
-      return false;
+      return null;
     }
   }
 
   void deductResources(List<Resource> resources) => _deductResources(resources, cards);
-  void _deductResources(List<Resource> resources, List<Resource> playerHand) {
-    resources.forEach((resource) => {
+  List<Resource> _deductResources(List<Resource> resources, List<Resource> playerHand) {
+    final List<Resource> resourcesRemoved = [];
+    for (final resource in resources) {
       if (playerHand.contains(resource)) {
-        playerHand.remove(resource)
+        playerHand.remove(resource);
+        resourcesRemoved.add(resource);
       } else if (playerHand.contains(Resource.MAP)) {
-        playerHand.remove(Resource.MAP)
+        playerHand.remove(Resource.MAP);
+        resourcesRemoved.add(Resource.MAP);
       } else {
-        throw new CannotAffordError()
+        throw new CannotAffordError();
       }
-    });
+    }
+
+    return resourcesRemoved;
   }
 }
