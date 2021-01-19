@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -9,7 +10,7 @@ import '../test_utils.dart';
 
 void main() {
   testWidgets('should initialise with an empty string while rules text is loaded', (WidgetTester tester) async {
-    await tester.launchWidget(child: RulesPage(const ResourceLoader()));
+    await tester.pumpWidget(MaterialApp(home: RulesPage(const ResourceLoader())));
     final rulesText = tester.widget<Text>(find.byKey(Key("rules_content")));
     expect(rulesText.data, "");
   });
