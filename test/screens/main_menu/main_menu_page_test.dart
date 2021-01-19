@@ -10,7 +10,7 @@ import '../../test_utils.dart';
 
 void main() {
   testWidgets('should navigate to the Rules page', (WidgetTester tester) async {
-    await tester.pumpWidget(createWidgetForTesting(child: MainMenuPage()));
+    await tester.launchWidget(child: MainMenuPage());
 
     final rulesButtonFinder = find.widgetWithText(MenuButton, 'Rules');
     expect(rulesButtonFinder, findsOneWidget);
@@ -22,7 +22,7 @@ void main() {
   });
 
   testWidgets('should navigate to the Settings page', (WidgetTester tester) async {
-    await tester.pumpWidget(createWidgetForTesting(child: MainMenuPage()));
+    await tester.launchWidget(child: MainMenuPage());
 
     final settingsButtonFinder = find.widgetWithText(MenuButton, 'Settings');
     expect(settingsButtonFinder, findsOneWidget);
@@ -34,7 +34,7 @@ void main() {
   });
 
   testWidgets('should start a new game', (WidgetTester tester) async {
-    await tester.pumpWidget(createWidgetForTesting(child: MainMenuPage()));
+    await tester.launchWidget(child: MainMenuPage());
 
     final newGameFinder = find.widgetWithText(MenuButton, 'Play');
     expect(newGameFinder, findsOneWidget);
