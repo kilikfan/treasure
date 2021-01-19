@@ -4,6 +4,7 @@ import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu_page.dart'
 import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
+import 'package:treasure_of_the_high_seas/screens/settings_page.dart';
 
 import '../../test_utils.dart';
 
@@ -18,6 +19,18 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(RulesPage), findsOneWidget);
+  });
+
+  testWidgets('should navigate to the Settings page', (WidgetTester tester) async {
+    await tester.pumpWidget(createWidgetForTesting(child: MainMenuPage()));
+
+    final settingsButtonFinder = find.widgetWithText(MenuButton, 'Settings');
+    expect(settingsButtonFinder, findsOneWidget);
+
+    await tester.tap(settingsButtonFinder);
+    await tester.pumpAndSettle();
+
+    expect(find.byType(SettingsPage), findsOneWidget);
   });
 
   testWidgets('should start a new game', (WidgetTester tester) async {
