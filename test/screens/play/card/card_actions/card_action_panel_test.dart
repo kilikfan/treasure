@@ -46,8 +46,7 @@ class DummyAction extends CardAction {
 void main() {
   testWidgets('should display a blank, disabled button if not passed an action',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-        createWidgetForTesting(child: CardActionPanel(null), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(null), state: makeGameState());
 
     final textFinder = find.byElementType(CardActionText);
     final cardLineFinder = find.byElementType(CardActionLine);
@@ -63,8 +62,7 @@ void main() {
       'should display a disabled button if the action should not be enabled',
       (WidgetTester tester) async {
     final action = DummyAction([Resource.DOUBLOON], false);
-    await tester.pumpWidget(createWidgetForTesting(
-        child: CardActionPanel(action), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
     expect(button.enabled, false);
@@ -80,8 +78,7 @@ void main() {
     final performAction = new MockFunction().fnOne;
     final state = makeGameState();
     final action = DummyAction([Resource.DOUBLOON], true, performAction);
-    await tester.pumpWidget(
-        createWidgetForTesting(child: CardActionPanel(action), state: state));
+    await tester.launchWidget(child: CardActionPanel(action), state: state);
 
     final buttonFinder = find.byType(RaisedButton);
     final button = tester.widget<RaisedButton>(buttonFinder);
@@ -98,8 +95,7 @@ void main() {
 
   testWidgets('should render a scry action', (WidgetTester tester) async {
     final action = ScryAction("See the future.", [Resource.FOOD], 3);
-    await tester.pumpWidget(createWidgetForTesting(
-        child: CardActionPanel(action), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('See the future.'), findsOneWidget);
     expect(find.byIcon(Icons.remove_red_eye), findsOneWidget);
@@ -109,8 +105,7 @@ void main() {
   testWidgets('should render a reward', (WidgetTester tester) async {
     final action =
         TradeAction("Buy some food", [Resource.DOUBLOON], [Resource.FOOD]);
-    await tester.pumpWidget(createWidgetForTesting(
-        child: CardActionPanel(action), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Buy some food'), findsOneWidget);
     expect(find.byIcon(Icons.arrow_upward), findsOneWidget);
@@ -120,8 +115,7 @@ void main() {
   testWidgets('should render a win action, and not display the Discard line', (WidgetTester tester) async {
     final action =
     EndGameAction(GameResult.WIN, [], "You Win!");
-    await tester.pumpWidget(createWidgetForTesting(
-        child: CardActionPanel(action), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Win!'), findsWidgets);
 
@@ -135,8 +129,7 @@ void main() {
   testWidgets('should render a loss action, and not display the Discard line', (WidgetTester tester) async {
     final action =
     EndGameAction(GameResult.LOSE, [], "You Lose!");
-    await tester.pumpWidget(createWidgetForTesting(
-        child: CardActionPanel(action), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Lose!'), findsWidgets);
 
@@ -151,8 +144,7 @@ void main() {
     final replacementCard = LandAhoy();
     final action =
     ReplaceAction(replacementCard, "Sail for land", [Resource.FOOD, Resource.FOOD]);
-    await tester.pumpWidget(createWidgetForTesting(
-        child: CardActionPanel(action), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Sail for land'), findsWidgets);
     expect(find.text('(F, F)'), findsWidgets);
@@ -165,8 +157,7 @@ void main() {
 
   testWidgets('should support readOnly mode', (WidgetTester tester) async {
     final action = DummyAction([Resource.DOUBLOON], true);
-    await tester.pumpWidget(createWidgetForTesting(
-        child: CardActionPanel(action, readOnly: true), state: makeGameState()));
+    await tester.launchWidget(child: CardActionPanel(action, readOnly: true), state: makeGameState());
 
     expect(find.byType(Card), findsOneWidget);
     expect(find.byType(RaisedButton), findsNothing);

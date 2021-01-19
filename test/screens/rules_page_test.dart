@@ -9,7 +9,7 @@ import '../test_utils.dart';
 
 void main() {
   testWidgets('should initialise with an empty string while rules text is loaded', (WidgetTester tester) async {
-    await tester.pumpWidget(createWidgetForTesting(child: RulesPage(const ResourceLoader())));
+    await tester.launchWidget(child: RulesPage(const ResourceLoader()));
     final rulesText = tester.widget<Text>(find.byKey(Key("rules_content")));
     expect(rulesText.data, "");
   });
@@ -18,8 +18,7 @@ void main() {
     final mockResourceLoader = MockResourceLoader();
     when(mockResourceLoader.readTextResource(any)).thenAnswer((_) => Future.value("Resource text"));
 
-    await tester.pumpWidget(createWidgetForTesting(child: RulesPage(mockResourceLoader)));
-    await tester.pumpAndSettle();
+    await tester.launchWidget(child: RulesPage(mockResourceLoader));
 
     final rulesText = tester.widget<Text>(find.byKey(Key("rules_content")));
     expect(rulesText.data, "Resource text");
