@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum AppSetting { musicEnabled, sfxEnabled }
 
 extension AppSettingExtension on AppSetting {
-  bool isEnabled(BuildContext context, {bool listen = true}) =>
-      Provider.of<SettingsModel>(context, listen: listen).isSettingEnabled(this);
+  bool isEnabled(BuildContext context) =>
+      Provider.of<SettingsModel>(context).isSettingEnabled(this);
 }
 
 class SettingsModel extends ChangeNotifier {
