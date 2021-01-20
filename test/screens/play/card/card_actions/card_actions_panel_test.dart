@@ -35,10 +35,8 @@ class CardWithThreeActions extends Card {
 void main() {
   testWidgets('should be able to display 2 card actions', (WidgetTester tester) async {
     final state = makeGameState();
-    await tester.pumpWidget(
-      createWidgetForTesting(
-        child: CardActionsPanel(CardWithTwoActions(), false), state: state),
-    );
+    await tester.launchWidget(
+        child: CardActionsPanel(CardWithTwoActions(), false), state: state);
 
     final action1Finder = find.text('Test action 1');
     final action2Finder = find.text('Test action 2');
@@ -49,10 +47,8 @@ void main() {
 
   testWidgets('should be able to display 3 card actions', (WidgetTester tester) async {
     final state = makeGameState();
-    await tester.pumpWidget(
-        createWidgetForTesting(
-            child: CardActionsPanel(CardWithThreeActions(), false), state: state)
-    );
+    await tester.launchWidget(
+            child: CardActionsPanel(CardWithThreeActions(), false), state: state);
 
     final action1Finder = find.text('Test action 1');
     final action2Finder = find.text('Test action 2');

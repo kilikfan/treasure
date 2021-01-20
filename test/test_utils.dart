@@ -36,13 +36,3 @@ extension WidgetTesterExtension on WidgetTester {
     await pumpAndSettle();
   }
 }
-
-/// TODO - Plan to phase this out in favour of the tester.launchWidget pattern above,
-/// but will do in a separate PR to keep PR size down.
-Widget createWidgetForTesting(
-    {Widget child, GameState state, SettingsModel settingsModel}) {
-  return MultiProvider(providers: [
-    ChangeNotifierProvider<GameState>.value(value: state),
-    ChangeNotifierProvider<SettingsModel>.value(value: settingsModel)
-  ], child: MaterialApp(home: child));
-}

@@ -12,15 +12,15 @@ void main() {
   testWidgets('should change colour based on the card type displayed', (WidgetTester tester) async {
     final cardFinder = find.byType(Card);
 
-    await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(PlunderAWreck()), state: makeGameState()));
+    await tester.launchWidget(child: CardDisplay(PlunderAWreck()), state: makeGameState());
     final basicCard = tester.widget<Card>(cardFinder);
     expect(basicCard.color, basicCardColour);
 
-    await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(RumoursOfAnIsland()), state: makeGameState()));
+    await tester.launchWidget(child: CardDisplay(RumoursOfAnIsland()), state: makeGameState());
     final questCard = tester.widget<Card>(cardFinder);
     expect(questCard.color, questCardColour);
 
-    await tester.pumpWidget(createWidgetForTesting(child: CardDisplay(Mutiny()), state: makeGameState()));
+    await tester.launchWidget(child: CardDisplay(Mutiny()), state: makeGameState());
     final specialCard = tester.widget<Card>(cardFinder);
     expect(specialCard.color, specialCardColour);
   });
