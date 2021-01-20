@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './main_menu/main_menu_page.dart';
 
-class MyApp extends StatelessWidget {
+class TreasureApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

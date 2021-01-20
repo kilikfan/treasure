@@ -4,6 +4,7 @@ import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 import 'package:treasure_of_the_high_seas/util/resource_loader.dart';
 
 import '../play/play_page.dart';
+import '../settings_page.dart';
 import 'menu_button.dart';
 
 class MainMenuPage extends StatelessWidget {
@@ -31,7 +32,13 @@ class MainMenuPage extends StatelessWidget {
                   }
               ),
               MenuButton(
-                'Settings'
+                'Settings',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SettingsPage()),
+                    );
+                  }
               ),
               MenuButton(
                   'Rules',
