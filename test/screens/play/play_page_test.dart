@@ -13,7 +13,7 @@ void main() {
     final state = makeGameState();
     state.scryCards(1);
 
-    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
+    await tester.launchWidget(child: PlayPage('New Game', state));
 
     expect(find.byType(ScryingPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
@@ -23,7 +23,7 @@ void main() {
     final state = makeGameState();
     state.nextCard();
 
-    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
+    await tester.launchWidget(child: PlayPage('New Game', state));
 
     expect(find.byType(ScryingPage), findsNothing);
     expect(find.byType(GameEndPage), findsNothing);
@@ -34,7 +34,7 @@ void main() {
     final state = makeGameState();
     state.endGame(GameResult.WIN);
 
-    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('Play Page', state)));
+    await tester.launchWidget(child: PlayPage('Play Page', state));
 
     expect(find.byType(GameEndPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
@@ -44,7 +44,7 @@ void main() {
     final state = makeGameState();
     state.endGame(GameResult.LOSE);
 
-    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('Play Page', state)));
+    await tester.launchWidget(child: PlayPage('Play Page', state));
 
     expect(find.byType(GameEndPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
@@ -55,7 +55,7 @@ void main() {
     state.nextCard();
     state.nextCard();
 
-    await tester.pumpWidget(createWidgetForTesting(child: PlayPage('New Game', state)));
+    await tester.launchWidget(child: PlayPage('New Game', state));
 
     final deckFinder = find.widgetWithText(CardPile, 'Deck: ' + state.deck.length.toString());
     final discardFinder = find.widgetWithText(CardPile, 'Discard: ' + state.discard.length.toString());

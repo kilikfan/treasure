@@ -13,9 +13,20 @@ main() {
     expect(cost.isAffordable(Hand([Resource.FOOD])), true);
   });
 
-  test('should describe its cost', () {
-    expect(SimpleCost([Resource.FOOD]).getDescription(), "(F)");
-    expect(SimpleCost([Resource.FOOD, Resource.FOOD, Resource.LANDLUBBER]).getDescription(), "(F, F, L)");
+  test('should describe its cost as-is when it can be afforded', () {
+    final hand = Hand([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD]);
+    expect(SimpleCost([Resource.FOOD]).getDescription(hand), "(F)");
+    expect(SimpleCost([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD]).getDescription(hand), "(L, F, F)");
+  });
+
+  test('should describe its cost as-is when it cannot be afforded', () {
+    expect(SimpleCost([Resource.FOOD]).getDescription(Hand()), "(F)");
+    expect(SimpleCost([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD]).getDescription(Hand()), "(L, F, F)");
+  });
+
+  test('should describe its cost in real terms when a map will be required', () {
+    final hand = Hand([Resource.FOOD, Resource.FOOD, Resource.MAP]);
+    expect(SimpleCost([Resource.FOOD, Resource.FOOD, Resource.FOOD]).getDescription(hand), "(M, F, F)");
   });
 
   test('should correctly report when it is empty', () {

@@ -16,8 +16,8 @@ main() {
   });
 
   test('should describe its cost', () {
-    expect(RandomCost(1).getDescription(), "1 x ?");
-    expect(RandomCost(3).getDescription(), "3 x ?");
+    expect(RandomCost(1).getDescription(null), "1 x ?");
+    expect(RandomCost(3).getDescription(null), "3 x ?");
   });
 
   test('should correctly report when it is empty', () {

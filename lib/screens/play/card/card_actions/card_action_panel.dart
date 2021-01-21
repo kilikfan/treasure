@@ -5,6 +5,7 @@ import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart'
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
+import 'package:treasure_of_the_high_seas/model/hand.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 
 import './card_action_text.dart';
@@ -33,7 +34,7 @@ class CardActionPanel extends StatelessWidget {
             ? Card(
                 shape: shape,
                 color: _getButtonColor(actionDetails),
-                child: _getActionComponents(actionDetails))
+                child: _getActionComponents(actionDetails, state.playerHand))
             : RaisedButton(
                 shape: shape,
                 onPressed: enabled
@@ -42,10 +43,10 @@ class CardActionPanel extends StatelessWidget {
                       }
                     : null,
                 color: _getButtonColor(actionDetails),
-                child: _getActionComponents(actionDetails)));
+                child: _getActionComponents(actionDetails, state.playerHand)));
   }
 
-  Column _getActionComponents(CardActionDetails actionDetails) {
+  Column _getActionComponents(CardActionDetails actionDetails, Hand hand) {
     if (actionDetails == null) {
       return null;
     }
@@ -54,7 +55,7 @@ class CardActionPanel extends StatelessWidget {
 
     if (!actionDetails.cost.isEmpty()) {
       effects
-          .add(CardActionLine(actionDetails.cost.getDescription(), Icons.arrow_downward, Colors.red));
+          .add(CardActionLine(actionDetails.cost.getDescription(hand), Icons.arrow_downward, Colors.red));
     }
 
     if (actionDetails.reward.isNotEmpty) {
