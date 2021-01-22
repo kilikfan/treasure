@@ -24,7 +24,7 @@ class PlayPage extends StatelessWidget {
             create: (context) => state,
             child: Consumer<GameState>(builder: (context, state, _) {
               if (state.scrying.isNotEmpty) {
-                return ScryingPage();
+                return ScryingPage(state);
               } else if (state.result != null) {
                 return GameEndPage(state.result);
               } else {

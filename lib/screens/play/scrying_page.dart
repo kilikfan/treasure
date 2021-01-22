@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
-import 'card/card_display.dart';
+import 'package:treasure_of_the_high_seas/model/view_mode.dart';
 import '../../model/card/card.dart' as Model;
+import 'card_viewer.dart';
 
 class ScryingPage extends StatelessWidget {
   final GameState state;
@@ -13,29 +13,15 @@ class ScryingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> scryingCards = state.scrying.map((card) {
-      return Container(
-          width: MediaQuery.of(context).size.width,
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Container(
-                padding: EdgeInsets.symmetric(vertical: 5),
-                height: MediaQuery.of(context).size.height * 0.65,
-                child: CardDisplay(
-                  card,
-                  readOnly: true,
-                )),
-            _getScryButton(context, card, ScryOption.TOP),
-            _getScryButton(context, card, ScryOption.BOTTOM)
-          ]));
-    }).toList();
+    final scrying = context.select<GameState, List<Model.Card>>((state) => state.scrying);
 
-    return Swiper(
-        itemCount: scryingCards.length,
-        control: new SwiperControl(),
-        loop: false,
-        itemBuilder: (BuildContext context, int index) {
-          return scryingCards[index];
-        });
+    return CardViewer(scrying,
+        ViewMode.SCRYING, scryButtons);
+  }
+
+  Function scryButtons(context, card, components){
+    components = [_getScryButton(context, card, ScryOption.TOP),
+    _getScryButton(context, card, ScryOption.BOTTOM)];
   }
 
   Widget _getScryButton(

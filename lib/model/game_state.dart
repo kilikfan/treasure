@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 import 'package:treasure_of_the_high_seas/model/special_triggers.dart';
+import 'package:treasure_of_the_high_seas/screens/play/view_discard_page.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'card/card.dart';
@@ -18,7 +19,6 @@ class GameState with ChangeNotifier {
   final List<Card> discard = new List<Card>();
   final List<Card> exile = new List<Card>();
   final List<Card> scrying = new List<Card>();
-  bool showScryButtons;
 
   final Hand playerHand = new Hand();
 
@@ -52,8 +52,7 @@ class GameState with ChangeNotifier {
   }
 
   void viewDiscards() {
-    scrying.addAll(discard);
-    showScryButtons = false;
+    ViewDiscardPage(this);
     notifyListeners();
   }
 
@@ -61,7 +60,6 @@ class GameState with ChangeNotifier {
     final actualNumToScry = min(deck.length, numToScry);
     scrying.addAll(deck.getRange(0, actualNumToScry));
     deck.removeRange(0, actualNumToScry);
-    showScryButtons = true;
     notifyListeners();
   }
 
