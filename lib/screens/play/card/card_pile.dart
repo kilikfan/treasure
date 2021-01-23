@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
-import 'package:treasure_of_the_high_seas/screens/play/view_discard_page.dart';
 
 class CardPile extends StatelessWidget {
   final int pileSize;
@@ -31,11 +30,11 @@ class CardPile extends StatelessWidget {
             child: Padding(
                 padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
                 child: pileName == 'Deck'
-                    ? TextButton(child: text)
+                    ? TextButton(child: text, onPressed: null)
                     : TextButton(
                         onPressed: pileSize > 0
                             ? () {
-                                ViewDiscardPage(state);
+                                state.toggleDiscardView();
                               }
                             : null,
                         child: text))));

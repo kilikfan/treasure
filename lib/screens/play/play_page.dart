@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
+import 'package:treasure_of_the_high_seas/model/view_mode.dart';
 import 'package:treasure_of_the_high_seas/screens/play/scrying_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
+import 'package:treasure_of_the_high_seas/screens/play/view_discard_page.dart';
 
 import './player_hand.dart';
 import 'card/card_display.dart';
@@ -25,6 +27,8 @@ class PlayPage extends StatelessWidget {
             child: Consumer<GameState>(builder: (context, state, _) {
               if (state.scrying.isNotEmpty) {
                 return ScryingPage(state);
+              } else if (state.viewMode == ViewMode.DISCARD) {
+                return ViewDiscardPage(state);
               } else if (state.result != null) {
                 return GameEndPage(state.result);
               } else {
@@ -34,9 +38,7 @@ class PlayPage extends StatelessWidget {
                     Container(
                       height: (MediaQuery.of(context).size.height) * 0.08,
                       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: Center(
-                          child: DeckStatePanel()
-                      ),
+                      child: Center(child: DeckStatePanel()),
                     ),
                     SizedBox(height: 10),
                     Expanded(child: CardDisplay(state.currentCard)),

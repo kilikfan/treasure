@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/view_mode.dart';
-import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import '../../model/card/card.dart' as Model;
 import 'card_viewer.dart';
 
@@ -19,8 +18,8 @@ class ViewDiscardPage extends StatelessWidget {
         ViewMode.DISCARD, closeButton);
   }
 
-  Function closeButton(context, card, components){
-    components = [_getCloseButton(context, card)];
+  List<Widget> closeButton(context, card){
+    return [_getCloseButton(context, card)];
   }
 
   Widget _getCloseButton(
@@ -35,10 +34,11 @@ class ViewDiscardPage extends StatelessWidget {
           ),
           onPressed: () {
             // TODO - Provider.of<GameState>(context, listen: false);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PlayPage("Play Page", state)),
-            );
+            //Navigator.push(
+              //context,
+              //MaterialPageRoute(builder: (context) => PlayPage("Play Page", state)),
+            //);
+            state.toggleDiscardView(closeWindow: true);
           },
           color: Colors.green,
           child:

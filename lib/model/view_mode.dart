@@ -1,5 +1,1 @@
-enum ViewMode {
-  NONE,
-  SCRYING,
-  DISCARD
-}
+enum ViewMode { NORMAL, SCRYING, DISCARD }

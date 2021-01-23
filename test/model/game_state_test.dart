@@ -134,6 +134,26 @@ void main() {
     });
   });
 
+  group('View Discard Pile', () {
+    test('should show the same card after viewing discard pile is finished', () {
+      const plunderAWreck = PlunderAWreck();
+      const aRivalShip = ARivalShip();
+      const portFees = PortFees();
+      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+
+      state.nextCard();
+      state.nextCard();
+      expect(state.discard, [plunderAWreck]);
+      expect(state.currentCard, aRivalShip);
+
+      state.toggleDiscardView();
+      state.toggleDiscardView(closeWindow: true);
+
+      expect(state.discard, [plunderAWreck]);
+      expect(state.currentCard, aRivalShip);
+    });
+  });
+
   group('Special cards', ()
   {
     test('should put Mutiny in next if too many resources', () {
@@ -232,6 +252,7 @@ void main() {
       _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
       _verifyChangeNotifier(state, state.exileCurrentCard);
       _verifyChangeNotifier(state, () => state.endGame(GameResult.WIN));
+      _verifyChangeNotifier(state, () => state.toggleDiscardView());
     });
   });
 }

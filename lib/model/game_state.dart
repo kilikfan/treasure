@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 import 'package:treasure_of_the_high_seas/model/special_triggers.dart';
-import 'package:treasure_of_the_high_seas/screens/play/view_discard_page.dart';
+import 'package:treasure_of_the_high_seas/model/view_mode.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'card/card.dart';
@@ -23,6 +23,7 @@ class GameState with ChangeNotifier {
   final Hand playerHand = new Hand();
 
   GameResult result;
+  ViewMode viewMode = ViewMode.NORMAL;
 
   GameState(this.randomiser, this.deck, [List<Resource> initialResources]) {
     playerHand.addResources(initialResources);
@@ -51,8 +52,13 @@ class GameState with ChangeNotifier {
     randomiser.shuffle(deck);
   }
 
-  void viewDiscards() {
-    ViewDiscardPage(this);
+  void toggleDiscardView({bool closeWindow = false}) {
+    if (closeWindow) {
+      viewMode = ViewMode.NORMAL;
+    } else {
+      viewMode = ViewMode.DISCARD;
+    }
+
     notifyListeners();
   }
 

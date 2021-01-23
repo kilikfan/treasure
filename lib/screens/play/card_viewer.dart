@@ -14,23 +14,24 @@ class CardViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> components;
+    Widget _getCardWidget(Model.Card card) {
+      return Container(
+          padding: EdgeInsets.symmetric(vertical: 5),
+          height: MediaQuery.of(context).size.height * 0.65,
+          child: CardDisplay(
+            card,
+            readOnly: true,
+          ));
+    }
 
     List<Widget> cardWidgetList = cardList.map((card) {
-      getButtons(context, card, components);
-      components.insert(0,
-          Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
-      height: MediaQuery.of(context).size.height * 0.65,
-      child: CardDisplay(
-      card,
-      readOnly: true,
-      )));
+      final List<Widget> buttons = getButtons(context, card);
+      final List<Widget> columnComponents = [_getCardWidget(card), ...buttons];
 
       return Container(
           width: MediaQuery.of(context).size.width,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children:
-            components
+            columnComponents
           ));
     }).toList();
 

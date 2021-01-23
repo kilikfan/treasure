@@ -19,8 +19,8 @@ class ScryingPage extends StatelessWidget {
         ViewMode.SCRYING, scryButtons);
   }
 
-  Function scryButtons(context, card, components){
-    components = [_getScryButton(context, card, ScryOption.TOP),
+  List<Widget> scryButtons(context, card){
+    return [_getScryButton(context, card, ScryOption.TOP),
     _getScryButton(context, card, ScryOption.BOTTOM)];
   }
 
