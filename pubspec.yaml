@@ -24,7 +24,7 @@ dependencies:
   provider: 4.3.2
   flutter_swiper: 1.1.6
   shared_preferences: 0.5.12+4
-  audioplayers: 0.17.2
+  audioplayers: 0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +43,7 @@ flutter:
   assets:
     - assets/images/
     - assets/text/
+    - assets/music/
   fonts:
     - family: TreasureHunt
       fonts:

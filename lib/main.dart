@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'model/audio/audio_model.dart';
 import 'model/settings/settings_model.dart';
 import 'screens/app.dart';
 
@@ -13,7 +14,11 @@ Future<void> _buildAndRunApp() async {
 
 Future<Widget> _buildApp() async {
   final prefs = await SharedPreferences.getInstance();
+  final settingsModel = SettingsModel(prefs);
+  final audioModel = AudioModel(settingsModel);
+
   return MultiProvider(providers: [
-    ChangeNotifierProvider<SettingsModel>.value(value: SettingsModel(prefs))
+    ChangeNotifierProvider<SettingsModel>.value(value: settingsModel),
+    Provider<AudioModel>.value(value: audioModel)
   ], child: TreasureApp());
 }
