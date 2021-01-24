@@ -29,10 +29,8 @@ class CardPile extends StatelessWidget {
             shape: shape,
             child: Padding(
                 padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
-                child: pileName == 'Deck'
-                    ? TextButton(child: text, onPressed: null)
-                    : TextButton(
-                        onPressed: pileSize > 0
+                child: TextButton(
+                onPressed: pileName == 'Discard' && pileSize > 0
                             ? () {
                                 state.toggleDiscardView();
                               }

@@ -9,6 +9,7 @@ import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
+import 'package:treasure_of_the_high_seas/model/view_mode.dart';
 
 import '../mocks.dart';
 import '../test_utils.dart';
@@ -135,22 +136,15 @@ void main() {
   });
 
   group('View Discard Pile', () {
-    test('should show the same card after viewing discard pile is finished', () {
-      const plunderAWreck = PlunderAWreck();
-      const aRivalShip = ARivalShip();
-      const portFees = PortFees();
-      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
-
-      state.nextCard();
-      state.nextCard();
-      expect(state.discard, [plunderAWreck]);
-      expect(state.currentCard, aRivalShip);
+    test('toggle discard method should toggle discard view', () {
+      final GameState state = makeGameState();
+      expect(state.viewMode, ViewMode.NORMAL);
 
       state.toggleDiscardView();
-      state.toggleDiscardView(closeWindow: true);
+      expect(state.viewMode, ViewMode.DISCARD);
 
-      expect(state.discard, [plunderAWreck]);
-      expect(state.currentCard, aRivalShip);
+      state.toggleDiscardView(closeWindow: true);
+      expect(state.viewMode, ViewMode.NORMAL);
     });
   });
 
