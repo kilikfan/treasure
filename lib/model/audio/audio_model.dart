@@ -7,30 +7,25 @@ const String GAME_MUSIC = 'the_buccaneers_haul.mp3';
 
 class AudioModel {
   final SettingsModel _settingsModel;
-  final AudioCache _musicPlayer = AudioCache(prefix: 'assets/music/', fixedPlayer: AudioPlayer());
+  final AudioPlayer _musicPlayer;
+  final AudioCache _musicCache;
   var _playingMusic = false;
 
-  AudioModel(this._settingsModel) {
+  AudioModel(this._settingsModel, this._musicPlayer, this._musicCache) {
     _settingsModel.addListener(_settingsChanged);
-    loopMusic(MENU_MUSIC);
   }
 
   Future<void> loopMusic(String track) async {
     if (_settingsModel.isSettingEnabled(AppSetting.musicEnabled)) {
-      await _musicPlayer.fixedPlayer.stop();
-      await _musicPlayer.loop(track);
+      await _musicCache.loop(track);
       _playingMusic = true;
     }
   }
 
-  Future<void> stopMusic() async {
-    await _musicPlayer.fixedPlayer.stop();
-    _playingMusic = false;
-  }
-
   void _settingsChanged() async {
-    if (!_settingsModel.isSettingEnabled(AppSetting.musicEnabled)) {
-      await stopMusic();
+    if (!_settingsModel.isSettingEnabled(AppSetting.musicEnabled) && _playingMusic) {
+      await _musicPlayer.stop();
+      _playingMusic = false;
     } else if (!_playingMusic) {
       loopMusic(MENU_MUSIC);
     }

@@ -1,3 +1,5 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +17,11 @@ Future<void> _buildAndRunApp() async {
 Future<Widget> _buildApp() async {
   final prefs = await SharedPreferences.getInstance();
   final settingsModel = SettingsModel(prefs);
-  final audioModel = AudioModel(settingsModel);
+  final musicPlayer = AudioPlayer();
+  final musicCache = AudioCache(prefix: 'assets/music/', fixedPlayer: musicPlayer);
+  final audioModel = AudioModel(settingsModel, musicPlayer, musicCache);
+
+  audioModel.loopMusic(MENU_MUSIC);
 
   return MultiProvider(providers: [
     ChangeNotifierProvider<SettingsModel>.value(value: settingsModel),
