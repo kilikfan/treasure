@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu_page.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
@@ -6,6 +8,7 @@ import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 import 'package:treasure_of_the_high_seas/screens/settings_page.dart';
 
+import '../../mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
@@ -48,5 +51,16 @@ void main() {
     final gameState = playPage.state;
     expect(gameState.playerHand.cards, INITIAL_RESOURCES);
     expect(gameState.currentCard, isNotNull);
+  });
+
+  testWidgets('should play game music when launching a new game', (WidgetTester tester) async {
+    final audioModel = MockAudioModel();
+    await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);
+
+    final newGameFinder = find.widgetWithText(MenuButton, 'Play');
+    await tester.tap(newGameFinder);
+    await tester.pumpAndSettle();
+
+    verify(audioModel.loopMusic(GAME_MUSIC));
   });
 }
