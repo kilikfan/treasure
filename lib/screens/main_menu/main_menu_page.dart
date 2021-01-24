@@ -59,12 +59,12 @@ class MainMenuPage extends StatelessWidget {
   }
   
   Future<void> _startGame(BuildContext context) async {
-    Navigator.push(
+    final audioModel = context.read<AudioModel>();
+    await audioModel.loopMusic(GAME_MUSIC);
+
+    await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
     );
-
-    final audioModel = context.read<AudioModel>();
-    await audioModel.loopMusic('the-buccaneers-haul');
   }
 }
