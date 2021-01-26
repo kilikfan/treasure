@@ -1,4 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu_page.dart';
@@ -6,6 +8,7 @@ import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/player_hand.dart';
 
+import '../../mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
@@ -41,28 +44,27 @@ void main() {
     expect(gameState.currentCard, isNotNull);
   });
 
-  testWidgets('exit button should start exit to main menu', (WidgetTester tester) async {
-    await tester.launchWidget(child: MainMenuPage());
-
-    final button1Finder = find.text('Play');
-    expect(button1Finder, findsOneWidget);
-    await tester.tap(button1Finder);
-    await tester.pumpAndSettle();
+  testWidgets('exit button should exit to main menu, and play menu music', (WidgetTester tester) async {
+    final audioModel = MockAudioModel();
+    await launchGameFromMenu(tester, audioModel: audioModel);
 
     final playPage = tester.widget<PlayPage>(find.byType(PlayPage));
     final gameState = playPage.state;
 
     gameState.endGame(GameResult.LOSE);
     await tester.pumpAndSettle();
+
     expect(find.byType(GameEndPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
 
-    final button2Finder = find.text('Exit');
-    expect(button2Finder, findsOneWidget);
+    final exitFinder = find.text('Exit');
+    expect(exitFinder, findsOneWidget);
 
-    await tester.tap(button2Finder);
+    await tester.tap(exitFinder);
     await tester.pumpAndSettle();
     expect(find.byType(PlayerHand), findsNothing);
     expect(find.byType(MainMenuPage), findsOneWidget);
+
+    verify(audioModel.loopMusic(MENU_MUSIC));
   });
 }

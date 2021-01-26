@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 import 'package:treasure_of_the_high_seas/util/resource_loader.dart';
@@ -25,11 +27,8 @@ class MainMenuPage extends StatelessWidget {
               MenuButton(
                 'Play',
                 onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
-                    );
-                  }
+                  _startGame(context);
+                }
               ),
               MenuButton(
                 'Settings',
@@ -56,6 +55,16 @@ class MainMenuPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+  
+  Future<void> _startGame(BuildContext context) async {
+    final audioModel = context.read<AudioModel>();
+    await audioModel.loopMusic(GAME_MUSIC);
+
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
     );
   }
 }
