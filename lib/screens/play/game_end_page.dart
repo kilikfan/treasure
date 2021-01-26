@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
@@ -10,6 +12,7 @@ class GameEndPage extends StatelessWidget {
   final GameResult result;
 
   GameEndPage(this.result);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +36,8 @@ class GameEndPage extends StatelessWidget {
               ),
               MenuButton(
                   'Exit',
-                  onPressed: () {
+                  onPressed: () async {
+                    await context.read<AudioModel>().loopMusic(MENU_MUSIC);
                     Navigator.of(context).pop();
                   }
               )
