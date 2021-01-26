@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 
 class CardPile extends StatelessWidget {
   final int pileSize;
   final String pileName;
 
-  final GameState state;
-
-  CardPile(this.pileSize, this.pileName, this.state);
+  CardPile(this.pileSize, this.pileName);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +29,11 @@ class CardPile extends StatelessWidget {
             child: Padding(
                 padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
                 child: TextButton(
-                onPressed: pileName == 'Discard' && pileSize > 0
-                            ? () {
-                                state.toggleDiscardView();
-                              }
-                            : null,
-                        child: text))));
+                    onPressed: pileName == 'Discard' && pileSize > 0
+                        ? () {
+                            context.read<GameState>().toggleDiscardView();
+                          }
+                        : null,
+                    child: text))));
   }
 }
