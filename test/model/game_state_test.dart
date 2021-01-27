@@ -134,6 +134,19 @@ void main() {
     });
   });
 
+  group('View Discard Pile', () {
+    test('toggle discard method should toggle discard view', () {
+      final GameState state = makeGameState();
+      expect(state.viewingDiscard, false);
+
+      state.toggleDiscardView();
+      expect(state.viewingDiscard, true);
+
+      state.toggleDiscardView();
+      expect(state.viewingDiscard, false);
+    });
+  });
+
   group('Special cards', ()
   {
     test('should put Mutiny in next if too many resources', () {
@@ -232,6 +245,7 @@ void main() {
       _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
       _verifyChangeNotifier(state, state.exileCurrentCard);
       _verifyChangeNotifier(state, () => state.endGame(GameResult.WIN));
+      _verifyChangeNotifier(state, () => state.toggleDiscardView());
     });
   });
 }

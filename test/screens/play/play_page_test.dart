@@ -7,6 +7,7 @@ import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/player_hand.dart';
 import 'package:treasure_of_the_high_seas/screens/play/scrying_page.dart';
+import 'package:treasure_of_the_high_seas/screens/play/view_discard_page.dart';
 
 import '../../mocks.dart';
 import '../../test_utils.dart';
@@ -19,6 +20,19 @@ void main() {
     await tester.launchWidget(child: PlayPage('New Game', state));
 
     expect(find.byType(ScryingPage), findsOneWidget);
+    expect(find.byType(PlayerHand), findsNothing);
+  });
+
+  testWidgets('should display the Discard Viewer if chosen', (WidgetTester tester) async {
+    final state = makeGameState();
+    state.nextCard();
+    state.nextCard();
+
+    state.toggleDiscardView();
+
+    await tester.launchWidget(child: PlayPage('New Game', state));
+
+    expect(find.byType(ViewDiscardPage), findsOneWidget);
     expect(find.byType(PlayerHand), findsNothing);
   });
 
