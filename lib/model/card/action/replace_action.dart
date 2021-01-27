@@ -11,7 +11,7 @@ class ReplaceAction extends CardAction {
 
   ReplaceAction(this.replacementCard, String description, {List<Resource> cost = const [], String soundEffect})
       : super(SimpleCost(cost),
-      description);
+      description, soundEffect: soundEffect);
 
   @override
   void performActionImpl(GameState state) {

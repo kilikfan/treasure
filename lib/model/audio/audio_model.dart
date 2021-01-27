@@ -2,8 +2,7 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 
-const String MENU_MUSIC = 'menu_music.wav';
-const String GAME_MUSIC = 'the_buccaneers_haul.mp3';
+import 'audio_constants.dart';
 
 class AudioModel {
   final SettingsModel _settingsModel;

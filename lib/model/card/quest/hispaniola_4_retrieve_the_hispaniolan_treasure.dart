@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/end_game_action.dart';
 
@@ -13,10 +14,10 @@ class RetrieveTheHispaniolanTreasure extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      EndGameAction(GameResult.WIN, [Resource.MAP], "X marks the spot!", soundEffect: "map.mp3"),
+      EndGameAction(GameResult.WIN, [Resource.MAP], "X marks the spot!", soundEffect: SFX_MAP),
       EndGameAction(GameResult.WIN, [Resource.CREW, Resource.CREW, Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON],
           "Very well buried, but we found it!"),
-      EndGameAction(GameResult.LOSE, [], "Marooned by your crew!", soundEffect: "walk_the_plank.mp3")
+      EndGameAction(GameResult.LOSE, [], "Marooned by your crew!", soundEffect: SFX_WALK_THE_PLANK)
     ];
   }
 }

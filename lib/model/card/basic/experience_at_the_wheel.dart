@@ -1,3 +1,5 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
+
 import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
@@ -10,9 +12,9 @@ class ExperienceAtTheWheel extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Recruitment drive.", [], [Resource.CREW], soundEffect: "marching.mp3"),
-      TradeAction("Packed extra supplies.", [], [Resource.FOOD], soundEffect: "apple_bite.wav"),
-      TradeAction("A lucrative day of 'trading'.", [], [Resource.DOUBLOON], soundEffect: "coins.wav")
+      TradeAction("Recruitment drive.", [], [Resource.CREW], soundEffect: SFX_MARCHING),
+      TradeAction("Packed extra supplies.", [], [Resource.FOOD], soundEffect: SFX_APPLE),
+      TradeAction("A lucrative day of 'trading'.", [], [Resource.DOUBLOON], soundEffect: SFX_COINS)
     ];
   }
 }

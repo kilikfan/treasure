@@ -1,3 +1,5 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
+
 import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
@@ -13,7 +15,7 @@ class TheGovernorsDaughter extends Card {
     return [
       //TODO - action should allow crew/landlubber payments
       TradeAction("Kidnap the debutante.", [Resource.CREW, Resource.CREW],
-          [Resource.CREW, Resource.CREW, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY], soundEffect: "kidnap.mp3"),
+          [Resource.CREW, Resource.CREW, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY], soundEffect: SFX_KIDNAP),
       //TODO - action should allow crew/landlubber payments
       TradeAction("Return her for the ransom.", [Resource.CREW], [Resource.DOUBLOON, Resource.DOUBLOON]),
       DiscardAction(description: "Tell your crew to focus.")

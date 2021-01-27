@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/screens/play/card/card_pile.dart';
 import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';

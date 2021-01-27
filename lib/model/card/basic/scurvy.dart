@@ -1,3 +1,5 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
+
 import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
@@ -17,8 +19,8 @@ class Scurvy extends Card {
     discardAction.enabled = allCrew.isEmpty;
 
     return [
-      TradeAction("Oranges all round!", [Resource.FOOD, Resource.FOOD], [], soundEffect: "apple_bite.wav"),
-      TradeAction("Weevils too!", halfCrew, [], soundEffect: "death_1.mp3"),
+      TradeAction("Oranges all round!", [Resource.FOOD, Resource.FOOD], [], soundEffect: SFX_APPLE),
+      TradeAction("Weevils too!", halfCrew, [], soundEffect: SFX_DEATH),
       discardAction
     ];
   }
