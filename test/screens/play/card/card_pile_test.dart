@@ -23,7 +23,7 @@ void main() {
     final buttonFinder = find.byType(TextButton);
     GameState state = makeGameState();
 
-    await tester.launchWidget(child: CardPile(5, 'Discard'));
+    await tester.launchWidget(child: CardPile(5, 'Discard'), state: state);
     final button = tester.widget<TextButton>(buttonFinder);
     expect(button.enabled, true);
 
