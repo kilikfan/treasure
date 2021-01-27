@@ -42,7 +42,7 @@ void main() {
         await makeAudioModel(musicCache: musicCache);
     await model.loopMusic(MENU_MUSIC);
 
-    verify(musicCache.loop(MENU_MUSIC));
+    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
   });
 
   test('should stop playing music when music setting toggled off', () async {
@@ -67,7 +67,7 @@ void main() {
     await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
 
     settingsModel.updateSetting(AppSetting.musicEnabled, true);
-    verify(musicCache.loop(MENU_MUSIC));
+    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
   });
 
   test('should do nothing if settings change and music already playing', () async {
