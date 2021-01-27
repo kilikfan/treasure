@@ -28,7 +28,7 @@ class ViewDiscardPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           onPressed: () {
-            context.read<GameState>().toggleDiscardView(closeWindow: true);
+            context.read<GameState>().toggleDiscardView();
           },
           color: Colors.green,
           child:
