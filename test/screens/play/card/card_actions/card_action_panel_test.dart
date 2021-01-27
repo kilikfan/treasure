@@ -22,8 +22,8 @@ import '../../../../test_utils.dart';
 class DummyAction extends CardAction {
   final Function(Object) fn;
 
-  DummyAction(List<Resource> cost, bool enabled, [this.fn])
-      : super(SimpleCost(cost), "Some Action") {
+  DummyAction(List<Resource> cost, bool enabled, {this.fn, String soundEffect})
+      : super(SimpleCost(cost), "Some Action", soundEffect: soundEffect) {
     this.enabled = enabled;
   }
 
@@ -77,7 +77,7 @@ void main() {
       (WidgetTester tester) async {
     final performAction = new MockFunction().fnOne;
     final state = makeGameState();
-    final action = DummyAction([Resource.DOUBLOON], true, performAction);
+    final action = DummyAction([Resource.DOUBLOON], true, fn: performAction);
     await tester.launchWidget(child: CardActionPanel(action), state: state);
 
     final buttonFinder = find.byType(RaisedButton);
@@ -91,6 +91,30 @@ void main() {
 
     await tester.tap(buttonFinder);
     verify(performAction(state));
+  });
+
+  testWidgets('should play sound effect on tap if the action has one',
+      (WidgetTester tester) async {
+    final audioModel = MockAudioModel();
+    final action = DummyAction([Resource.DOUBLOON], true, soundEffect: 'baa.mp3');
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState(), audioModel: audioModel);
+
+    final buttonFinder = find.byType(RaisedButton);
+    await tester.tap(buttonFinder);
+
+    verify(audioModel.playSound('baa.mp3'));
+  });
+
+  testWidgets('should not attempt to play sound if none specified',
+      (WidgetTester tester) async {
+    final audioModel = MockAudioModel();
+    final action = DummyAction([Resource.DOUBLOON], true, soundEffect: null);
+    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState(), audioModel: audioModel);
+
+    final buttonFinder = find.byType(RaisedButton);
+    await tester.tap(buttonFinder);
+
+    verifyZeroInteractions(audioModel);
   });
 
   testWidgets('should render a scry action', (WidgetTester tester) async {
