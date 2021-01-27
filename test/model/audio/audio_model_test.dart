@@ -11,11 +11,13 @@ import '../../mocks.dart';
 Future<AudioModel> makeAudioModel(
     {SettingsModel settingsModel,
     AudioPlayer musicPlayer,
-    AudioCache musicCache}) async {
+    AudioCache musicCache,
+    AudioCache soundCache}) async {
   return AudioModel(
       settingsModel ?? SettingsModel(await SharedPreferences.getInstance()),
       musicPlayer ?? MockAudioPlayer(),
-      musicCache ?? MockAudioCache());
+      musicCache ?? MockAudioCache(),
+      soundCache ?? MockAudioCache());
 }
 
 void main() {
@@ -99,5 +101,27 @@ void main() {
 
     verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);
+  });
+
+  test('should not play sounds if setting disbaled', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.sfxEnabled.toString(): false});
+
+    final soundCache = MockAudioCache();
+    final audioModel = await makeAudioModel(soundCache: soundCache);
+
+    await audioModel.playSound('baa.mp3');
+    verifyZeroInteractions(soundCache);
+  });
+
+  test('should play the specified sound if the setting is enabled', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.sfxEnabled.toString(): true});
+
+    final soundCache = MockAudioCache();
+    final audioModel = await makeAudioModel(soundCache: soundCache);
+
+    await audioModel.playSound('baa.mp3');
+    verify(soundCache.play('baa.mp3'));
   });
 }
