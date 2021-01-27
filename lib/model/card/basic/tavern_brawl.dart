@@ -10,11 +10,11 @@ class TavernBrawl extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Pick over the aftermath.",[], [Resource.DOUBLOON]),
-      TradeAction("Hold your corner.", [Resource.CREW], [Resource.DOUBLOON, Resource.LANDLUBBER, Resource.LANDLUBBER]),
+      TradeAction("Pick over the aftermath.",[], [Resource.DOUBLOON], soundEffect: "coins.wav"),
+      TradeAction("Hold your corner.", [Resource.CREW], [Resource.DOUBLOON, Resource.LANDLUBBER, Resource.LANDLUBBER], soundEffect: "sword.wav"),
       //TODO - one of the crew in the payment is a crew/landlubber
       TradeAction("Show them who's the captain!", [Resource.CREW, Resource.CREW, Resource.FOOD],
-          [Resource.CREW, Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
+          [Resource.CREW, Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON], soundEffect: "sword.wav"),
     ];
   }
 }

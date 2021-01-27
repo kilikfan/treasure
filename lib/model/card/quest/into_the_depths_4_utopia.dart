@@ -16,7 +16,7 @@ class Utopia extends Card {
       EndGameAction(GameResult.WIN, [Resource.MAP], "Behold its majesty!"),
       EndGameAction(GameResult.WIN, [Resource.CREW, Resource.CREW, Resource.CREW, Resource.FOOD, Resource.FOOD],
         "'S alright."),
-      EndGameAction(GameResult.LOSE, [], "Didn't quite escape the Kraken.")
+      EndGameAction(GameResult.LOSE, [], "Didn't quite escape the Kraken.", soundEffect: "kraken.wav")
     ];
   }
 }

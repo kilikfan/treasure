@@ -9,7 +9,7 @@ import 'card_action_details.dart';
 class ReplaceAction extends CardAction {
   Card replacementCard;
 
-  ReplaceAction(this.replacementCard, String description, [List<Resource> cost = const []])
+  ReplaceAction(this.replacementCard, String description, {List<Resource> cost = const [], String soundEffect})
       : super(SimpleCost(cost),
       description);
 

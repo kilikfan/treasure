@@ -17,9 +17,9 @@ class KrakenInMyBoots extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(cost: SimpleCost([Resource.FOOD]), description: "You satiate its hunger. For now."),
-      ReplaceAction(ShoallyYouCantBeSerious(), """AAAARRGGH!"""),
+      ReplaceAction(ShoallyYouCantBeSerious(), "AAAARRGGH!", soundEffect: "kraken.wav"),
       //TODO - final crew can be C/L. Also need the flip a coin bit
-      ReplaceAction(Utopia(), "What could she be guarding?", [Resource.CREW, Resource.CREW, Resource.CREW])
+      ReplaceAction(Utopia(), "What could she be guarding?", cost: [Resource.CREW, Resource.CREW, Resource.CREW])
     ];
   }
 }

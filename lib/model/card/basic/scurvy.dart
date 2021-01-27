@@ -17,8 +17,8 @@ class Scurvy extends Card {
     discardAction.enabled = allCrew.isEmpty;
 
     return [
-      TradeAction("Oranges all round!", [Resource.FOOD, Resource.FOOD], []),
-      TradeAction("Weevils too!", halfCrew, []),
+      TradeAction("Oranges all round!", [Resource.FOOD, Resource.FOOD], [], soundEffect: "apple_bite.wav"),
+      TradeAction("Weevils too!", halfCrew, [], soundEffect: "death_1.mp3"),
       discardAction
     ];
   }

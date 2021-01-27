@@ -13,10 +13,10 @@ class RetrieveTheHispaniolanTreasure extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      EndGameAction(GameResult.WIN, [Resource.MAP], "X marks the spot!"),
+      EndGameAction(GameResult.WIN, [Resource.MAP], "X marks the spot!", soundEffect: "map.mp3"),
       EndGameAction(GameResult.WIN, [Resource.CREW, Resource.CREW, Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON],
           "Very well buried, but we found it!"),
-      EndGameAction(GameResult.LOSE, [], "Marooned by your crew!")
+      EndGameAction(GameResult.LOSE, [], "Marooned by your crew!", soundEffect: "walk_the_plank.mp3")
     ];
   }
 }

@@ -9,7 +9,9 @@ import 'card_action.dart';
 class EndGameAction extends CardAction {
   final GameResult result;
 
-  EndGameAction(this.result, List<Resource> cost, description) : super(SimpleCost(cost), description);
+  EndGameAction(this.result, List<Resource> cost, description,
+      {String soundEffect})
+      : super(SimpleCost(cost), description, soundEffect: soundEffect);
 
   @override
   void performActionImpl(GameState state) {
@@ -17,7 +19,8 @@ class EndGameAction extends CardAction {
   }
 
   @override
-  CardActionDetails get actionDetails => CardActionDetails(cost, description, result: result);
+  CardActionDetails get actionDetails =>
+      CardActionDetails(cost, description, result: result);
 
   @override
   bool autoProgress() => false;

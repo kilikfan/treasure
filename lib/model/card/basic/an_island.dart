@@ -11,9 +11,9 @@ class AnIsland extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Pick up some crew.", [Resource.DOUBLOON, Resource.DOUBLOON], [Resource.CREW, Resource.CREW]),
+      TradeAction("Pick up some crew.", [Resource.DOUBLOON, Resource.DOUBLOON], [Resource.CREW, Resource.CREW], soundEffect: "marching.mp3"),
       TradeAction("Kidnap some natives.", [Resource.CREW],
-          [Resource.LANDLUBBER, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY]),
+          [Resource.LANDLUBBER, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY], soundEffect: "kidnap.mp3"),
       DiscardAction(description: "Just a mirage.")
     ];
   }

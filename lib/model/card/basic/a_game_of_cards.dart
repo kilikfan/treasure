@@ -12,8 +12,8 @@ class AGameOfCards extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       TradeAction("A straight wins.", [Resource.CREW, Resource.DOUBLOON, Resource.FOOD, Resource.LANDLUBBER, Resource.INFAMY],
-          [Resource.MAP]),
-      TradeAction("Better luck next time.", [Resource.DOUBLOON, Resource.DOUBLOON], []),
+          [Resource.MAP], soundEffect: "poker_chips.wav"),
+      TradeAction("Better luck next time.", [Resource.DOUBLOON, Resource.DOUBLOON], [], soundEffect: "coins.wav"),
       DiscardAction(description: "Not worth the risk.")
     ];
   }

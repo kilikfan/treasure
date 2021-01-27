@@ -11,8 +11,8 @@ class MeetingAnInformant extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Would you like a map?", [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON],
-          [Resource.MAP]),
-      TradeAction("Keep him in your pocket.", [Resource.DOUBLOON], []),
+          [Resource.MAP], soundEffect: "map.mp3"),
+      TradeAction("Keep him in your pocket.", [Resource.DOUBLOON], [], soundEffect: "coins.wav"),
       TradeAction("Do you really want to cross him?", [], [Resource.INFAMY, Resource.INFAMY])
     ];
   }

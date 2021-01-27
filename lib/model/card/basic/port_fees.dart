@@ -10,9 +10,9 @@ class PortFees extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Pay the fee.", [Resource.DOUBLOON, Resource.DOUBLOON], []),
-      TradeAction("Sail off.", [], [Resource.INFAMY]),
-      TradeAction("Kidnap the clerk and sail off.", [], [Resource.LANDLUBBER, Resource.INFAMY])
+      TradeAction("Pay the fee.", [Resource.DOUBLOON, Resource.DOUBLOON], [], soundEffect: "coins.wav"),
+      TradeAction("Sail off.", [], [Resource.INFAMY], soundEffect: "rowing.mp3"),
+      TradeAction("Kidnap the clerk and sail off.", [], [Resource.LANDLUBBER, Resource.INFAMY], soundEffect: "rowing.mp3")
     ];
   }
 }

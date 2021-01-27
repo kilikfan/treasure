@@ -15,9 +15,9 @@ class RumoursOfAnIsland extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      DiscardAction(description: "Maintain current course."),
-      ReplaceAction(LandAhoy(), "Take a gamble and change course."),
-      ExileAction(description: "Sail away, sail away.", reward: [Resource.MAP])
+      DiscardAction(description: "Maintain current course.", soundEffect: "ship_bell.wav"),
+      ReplaceAction(LandAhoy(), "Take a gamble and change course.", soundEffect: "land_ho.mp3"),
+      ExileAction(description: "Sail away, sail away.", reward: [Resource.MAP], soundEffect: "map.mp3")
     ];
   }
 }

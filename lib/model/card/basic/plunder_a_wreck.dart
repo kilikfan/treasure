@@ -11,10 +11,10 @@ class PlunderAWreck extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       TradeAction("Treacherous seas indeed.", [Resource.CREW, Resource.CREW],
-          [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]),
-      TradeAction("Slim pickings.", [], [Resource.DOUBLOON]),
+          [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON], soundEffect: "death_2.mp3"),
+      TradeAction("Slim pickings.", [], [Resource.DOUBLOON], soundEffect: "coins.wav"),
       TradeAction("Some Survivors.", [],
-          [Resource.CREW, Resource.DOUBLOON, Resource.INFAMY])
+          [Resource.CREW, Resource.DOUBLOON, Resource.INFAMY], soundEffect: "coins.wav")
     ];
   }
 }

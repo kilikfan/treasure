@@ -16,9 +16,9 @@ class BribeThePort extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      DiscardAction(description: "Review the options over dinner.", cost: SimpleCost([Resource.FOOD, Resource.FOOD])),
+      DiscardAction(description: "Review the options over dinner.", cost: SimpleCost([Resource.FOOD, Resource.FOOD]), soundEffect: "apple_bite.wav"),
       ReplaceAction(RetrieveTheHispaniolanTreasure(), "A hefty fee to pay.",
-          [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
+          cost: [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON], soundEffect: "coins.wav"),
       ExileAction(reward: [Resource.CREW, Resource.DOUBLOON, Resource.LANDLUBBER],
           description: "Too rich for our blood.")
     ];

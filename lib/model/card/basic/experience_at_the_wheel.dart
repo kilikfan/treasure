@@ -10,9 +10,9 @@ class ExperienceAtTheWheel extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Recruitment drive.", [], [Resource.CREW]),
-      TradeAction("Packed extra supplies.", [], [Resource.FOOD]),
-      TradeAction("A lucrative day of 'trading'.", [], [Resource.DOUBLOON])
+      TradeAction("Recruitment drive.", [], [Resource.CREW], soundEffect: "marching.mp3"),
+      TradeAction("Packed extra supplies.", [], [Resource.FOOD], soundEffect: "apple_bite.wav"),
+      TradeAction("A lucrative day of 'trading'.", [], [Resource.DOUBLOON], soundEffect: "coins.wav")
     ];
   }
 }

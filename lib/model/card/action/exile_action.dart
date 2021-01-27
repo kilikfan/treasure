@@ -12,8 +12,9 @@ class ExileAction extends CardAction {
   ExileAction(
       {this.reward = const [],
       String description = "Exile this card.",
-      CardActionCost cost = const SimpleCost([])})
-      : super(cost, description);
+      CardActionCost cost = const SimpleCost([]),
+      String soundEffect})
+      : super(cost, description, soundEffect: soundEffect);
 
   @override
   void performActionImpl(GameState state) {

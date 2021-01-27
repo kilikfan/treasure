@@ -32,7 +32,7 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW], deck: [rumoursOfAnIsland, plunderAWreck]);
     final currentCard = state.nextCard();
 
-    final action = new ReplaceAction(landAhoy, "", [Resource.CREW]);
+    final action = new ReplaceAction(landAhoy, "", cost: [Resource.CREW]);
     action.performAction(state);
 
     expect(state.exile, [currentCard]);

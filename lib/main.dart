@@ -19,7 +19,7 @@ Future<Widget> _buildApp() async {
   final settingsModel = SettingsModel(prefs);
   final musicPlayer = AudioPlayer();
   final musicCache = AudioCache(prefix: 'assets/music/', fixedPlayer: musicPlayer);
-  final soundCache = AudioCache(prefix: 'assets/sfx/', fixedPlayer: AudioPlayer(mode: PlayerMode.LOW_LATENCY));
+  final soundCache = AudioCache(prefix: 'assets/sfx/', fixedPlayer: AudioPlayer());
   final audioModel = AudioModel(settingsModel, musicPlayer, musicCache, soundCache);
 
   audioModel.loopMusic(MENU_MUSIC);

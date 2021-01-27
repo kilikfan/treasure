@@ -18,7 +18,7 @@ class AudioModel {
 
   Future<void> loopMusic(String track) async {
     if (_settingsModel.isSettingEnabled(AppSetting.musicEnabled)) {
-      await _musicCache.loop(track);
+      await _musicCache.loop(track, volume: 0.5);
       _playingMusic = true;
     }
   }

@@ -16,7 +16,7 @@ class LandAhoy extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(description: "Still finding a quiet cove."),
-      ReplaceAction(BribeThePort(), "Prepare to dock.", [Resource.FOOD]),
+      ReplaceAction(BribeThePort(), "Prepare to dock.", cost: [Resource.FOOD]),
       ExileAction(description: "Snag some new recruits.", reward: [Resource.CREW, Resource.CREW])
     ];
   }
