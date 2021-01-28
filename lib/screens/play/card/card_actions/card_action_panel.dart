@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart'
     as Model;
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
@@ -39,7 +40,11 @@ class CardActionPanel extends StatelessWidget {
                 shape: shape,
                 onPressed: enabled
                     ? () {
-                        action?.performAction(state);
+                        action.performAction(state);
+
+                        if (action.soundEffect != null) {
+                          context.read<AudioModel>().playSound(action.soundEffect);
+                        }
                       }
                     : null,
                 color: _getButtonColor(actionDetails),

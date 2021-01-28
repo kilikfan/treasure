@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/discard_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/exile_action.dart';
@@ -16,9 +17,9 @@ class BribeThePort extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      DiscardAction(description: "Review the options over dinner.", cost: SimpleCost([Resource.FOOD, Resource.FOOD])),
+      DiscardAction(description: "Review the options over dinner.", cost: SimpleCost([Resource.FOOD, Resource.FOOD]), soundEffect: SFX_APPLE),
       ReplaceAction(RetrieveTheHispaniolanTreasure(), "A hefty fee to pay.",
-          [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON]),
+          cost: [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON], soundEffect: SFX_COINS),
       ExileAction(reward: [Resource.CREW, Resource.DOUBLOON, Resource.LANDLUBBER],
           description: "Too rich for our blood.")
     ];

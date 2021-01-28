@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 
 import '../../game_state.dart';
@@ -16,7 +17,7 @@ class Utopia extends Card {
       EndGameAction(GameResult.WIN, [Resource.MAP], "Behold its majesty!"),
       EndGameAction(GameResult.WIN, [Resource.CREW, Resource.CREW, Resource.CREW, Resource.FOOD, Resource.FOOD],
         "'S alright."),
-      EndGameAction(GameResult.LOSE, [], "Didn't quite escape the Kraken.")
+      EndGameAction(GameResult.LOSE, [], "Didn't quite escape the Kraken.", soundEffect: SFX_KRAKEN)
     ];
   }
 }

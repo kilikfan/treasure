@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/discard_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/exile_action.dart';
@@ -16,8 +17,8 @@ class LandAhoy extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(description: "Still finding a quiet cove."),
-      ReplaceAction(BribeThePort(), "Prepare to dock.", [Resource.FOOD]),
-      ExileAction(description: "Snag some new recruits.", reward: [Resource.CREW, Resource.CREW])
+      ReplaceAction(BribeThePort(), "Prepare to dock.", cost: [Resource.FOOD], soundEffect: SFX_SHIP_BELL),
+      ExileAction(description: "Snag some new recruits.", reward: [Resource.CREW, Resource.CREW], soundEffect: SFX_MARCHING)
     ];
   }
 }

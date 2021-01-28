@@ -44,6 +44,7 @@ flutter:
     - assets/images/
     - assets/text/
     - assets/music/
+    - assets/sfx/
   fonts:
     - family: TreasureHunt
       fonts:

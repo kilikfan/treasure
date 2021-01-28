@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 
@@ -24,7 +25,7 @@ class NavyRaid extends Card {
     return [
       ExileAction(description: "A manner of conscription.", cost: SimpleCost(infamies + crews)),
       ExileAction(description: "A manner of taxation.", cost: SimpleCost(infamies + doubloons)),
-      EndGameAction(GameResult.LOSE, [], "No manners, just capital punishment.")
+      EndGameAction(GameResult.LOSE, [], "No manners, just capital punishment.", soundEffect: SFX_WALK_THE_PLANK)
     ];
   }
 }

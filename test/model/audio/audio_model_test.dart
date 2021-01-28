@@ -3,6 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 
@@ -11,11 +12,13 @@ import '../../mocks.dart';
 Future<AudioModel> makeAudioModel(
     {SettingsModel settingsModel,
     AudioPlayer musicPlayer,
-    AudioCache musicCache}) async {
+    AudioCache musicCache,
+    AudioCache soundCache}) async {
   return AudioModel(
       settingsModel ?? SettingsModel(await SharedPreferences.getInstance()),
       musicPlayer ?? MockAudioPlayer(),
-      musicCache ?? MockAudioCache());
+      musicCache ?? MockAudioCache(),
+      soundCache ?? MockAudioCache());
 }
 
 void main() {
@@ -39,7 +42,7 @@ void main() {
         await makeAudioModel(musicCache: musicCache);
     await model.loopMusic(MENU_MUSIC);
 
-    verify(musicCache.loop(MENU_MUSIC));
+    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
   });
 
   test('should stop playing music when music setting toggled off', () async {
@@ -64,7 +67,7 @@ void main() {
     await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
 
     settingsModel.updateSetting(AppSetting.musicEnabled, true);
-    verify(musicCache.loop(MENU_MUSIC));
+    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
   });
 
   test('should do nothing if settings change and music already playing', () async {
@@ -99,5 +102,27 @@ void main() {
 
     verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);
+  });
+
+  test('should not play sounds if setting disbaled', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.sfxEnabled.toString(): false});
+
+    final soundCache = MockAudioCache();
+    final audioModel = await makeAudioModel(soundCache: soundCache);
+
+    await audioModel.playSound('baa.mp3');
+    verifyZeroInteractions(soundCache);
+  });
+
+  test('should play the specified sound if the setting is enabled', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.sfxEnabled.toString(): true});
+
+    final soundCache = MockAudioCache();
+    final audioModel = await makeAudioModel(soundCache: soundCache);
+
+    await audioModel.playSound('baa.mp3');
+    verify(soundCache.play('baa.mp3'));
   });
 }

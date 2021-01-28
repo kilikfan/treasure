@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 
 import '../../game_state.dart';
@@ -15,9 +16,9 @@ class RumoursOfAnIsland extends Card {
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      DiscardAction(description: "Maintain current course."),
-      ReplaceAction(LandAhoy(), "Take a gamble and change course."),
-      ExileAction(description: "Sail away, sail away.", reward: [Resource.MAP])
+      DiscardAction(description: "Maintain current course.", soundEffect: SFX_SHIP_BELL),
+      ReplaceAction(LandAhoy(), "Take a gamble and change course.", soundEffect: SFX_LAND_HO),
+      ExileAction(description: "Sail away, sail away.", reward: [Resource.MAP], soundEffect: SFX_MAP)
     ];
   }
 }

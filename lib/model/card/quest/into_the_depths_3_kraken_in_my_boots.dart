@@ -1,3 +1,4 @@
+import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
 
@@ -17,9 +18,9 @@ class KrakenInMyBoots extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(cost: SimpleCost([Resource.FOOD]), description: "You satiate its hunger. For now."),
-      ReplaceAction(ShoallyYouCantBeSerious(), """AAAARRGGH!"""),
+      ReplaceAction(ShoallyYouCantBeSerious(), "AAAARRGGH!", soundEffect: SFX_KRAKEN),
       //TODO - final crew can be C/L. Also need the flip a coin bit
-      ReplaceAction(Utopia(), "What could she be guarding?", [Resource.CREW, Resource.CREW, Resource.CREW])
+      ReplaceAction(Utopia(), "What could she be guarding?", cost: [Resource.CREW, Resource.CREW, Resource.CREW])
     ];
   }
 }

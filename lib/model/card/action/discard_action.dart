@@ -6,7 +6,11 @@ import '../../../model/game_state.dart';
 import 'card_action.dart';
 
 class DiscardAction extends CardAction {
-  DiscardAction({String description="Discard this card.", CardActionCost cost = const SimpleCost([])}) : super(cost, description);
+  DiscardAction(
+      {String description = "Discard this card.",
+      CardActionCost cost = const SimpleCost([]),
+      String soundEffect})
+      : super(cost, description, soundEffect: soundEffect);
 
   @override
   void performActionImpl(GameState state) {
