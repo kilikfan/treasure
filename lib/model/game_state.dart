@@ -22,7 +22,6 @@ class GameState with ChangeNotifier {
   final Hand playerHand = new Hand();
 
   GameResult result;
-  bool viewingDiscard = false;
 
   GameState(this.randomiser, this.deck, [List<Resource> initialResources]) {
     playerHand.addResources(initialResources);
@@ -49,11 +48,6 @@ class GameState with ChangeNotifier {
 
   void shuffleDeck() {
     randomiser.shuffle(deck);
-  }
-
-  void toggleDiscardView() {
-    viewingDiscard = !viewingDiscard;
-    notifyListeners();
   }
 
   void scryCards(int numToScry) {

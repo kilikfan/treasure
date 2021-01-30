@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
+import 'package:treasure_of_the_high_seas/screens/play/view_discard_page.dart';
 
 class CardPile extends StatelessWidget {
   final int pileSize;
   final String pileName;
+  final GameState state;
 
-  CardPile(this.pileSize, this.pileName);
+  CardPile(this.pileSize, this.pileName, this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,10 @@ class CardPile extends StatelessWidget {
                 child: TextButton(
                     onPressed: pileName == 'Discard' && pileSize > 0
                         ? () {
-                            context.read<GameState>().toggleDiscardView();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewDiscardPage(state)));
                           }
                         : null,
                     child: text))));
