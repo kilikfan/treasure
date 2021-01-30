@@ -24,7 +24,6 @@ GameState makeGameState(
   final deckToUse = deck != null ? deck : [PlunderAWreck(), ARivalShip()];
   final state = GameState(randomiser, deckToUse, playerHand);
   state.currentCard = currentCard;
-  state.viewingDiscard = false;
   return state;
 }
 

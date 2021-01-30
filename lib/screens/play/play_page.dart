@@ -5,7 +5,6 @@ import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/screens/play/scrying_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
-import 'package:treasure_of_the_high_seas/screens/play/view_discard_page.dart';
 
 import './player_hand.dart';
 import 'card/card_display.dart';
@@ -32,8 +31,6 @@ class PlayPage extends StatelessWidget {
                 child: Consumer<GameState>(builder: (context, state, _) {
                   if (state.scrying.isNotEmpty) {
                     return ScryingPage();
-                  } else if (state.viewingDiscard) {
-                    return ViewDiscardPage();
                   } else if (state.result != null) {
                     return GameEndPage(state.result);
                   } else {
