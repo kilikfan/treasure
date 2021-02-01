@@ -21,6 +21,7 @@ jobs:
     - run: flutter build apk --split-per-abi
     - name: Create a Release APK
       uses: ncipollo/release-action@v1
+      if: github.ref == 'refs/heads/master'
       with:
         artifacts: "build/app/outputs/apk/release/*.apk"
         token: ${{ secrets.TREASURE_REPO_SECRET }}
