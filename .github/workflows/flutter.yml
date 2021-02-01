@@ -24,3 +24,4 @@ jobs:
       with:
         artifacts: "build/app/outputs/apk/release/*.apk"
         token: ${{ secrets.TREASURE_REPO_SECRET }}
+        tag: "latest"
