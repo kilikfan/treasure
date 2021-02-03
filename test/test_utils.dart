@@ -11,7 +11,7 @@ import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu_page.dart';
+import 'package:treasure_of_the_high_seas/screens/play_menu_page.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'mocks.dart';
@@ -47,7 +47,7 @@ extension WidgetTesterExtension on WidgetTester {
 
 Future<void> launchGameFromMenu(WidgetTester tester,
     {MockAudioModel audioModel}) async {
-  await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);
+  await tester.launchWidget(child: PlayMenuPage(), audioModel: audioModel);
 
   final button1Finder = find.text('Play');
   expect(button1Finder, findsOneWidget);

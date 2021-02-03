@@ -4,6 +4,7 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'card/card.dart';
+import 'card/basic/the_shipping_forecast.dart';
 import 'game_state.dart';
 
 const INITIAL_RESOURCES = [
@@ -19,8 +20,37 @@ const INITIAL_RESOURCES = [
 
 GameState startNewGame() {
   final List<Card> deck = generateRandomDeck();
-  final GameState state = new GameState(new Randomiser(), deck, INITIAL_RESOURCES);
+  final GameState state =
+      new GameState(new Randomiser(), deck, INITIAL_RESOURCES);
   state.shuffleDeck();
+  state.nextCard();
+  return state;
+}
+
+GameState premadeDeck1() {
+  final List<Card> deck = generateRandomDeck();
+  final GameState state =
+      new GameState(new Randomiser(), deck, INITIAL_RESOURCES);
+  state.shuffleDeck();
+  state.nextCard();
+  return state;
+}
+
+GameState premadeDeck2() {
+  final List<Card> deck = generateRandomDeck();
+  final GameState state =
+      new GameState(new Randomiser(), deck, INITIAL_RESOURCES);
+  state.shuffleDeck();
+  state.nextCard();
+  return state;
+}
+
+GameState debugScryingGameState() {
+  final List<Card> deck = generateRandomDeck();
+  deck.insert(0, TheShippingForecast());
+  final GameState state =
+      new GameState(new Randomiser(), deck, INITIAL_RESOURCES);
+
   state.nextCard();
   return state;
 }
