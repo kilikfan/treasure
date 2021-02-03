@@ -11,7 +11,7 @@ import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu_page.dart';
+import 'package:treasure_of_the_high_seas/screens/main_menu_page.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 import 'mocks.dart';
@@ -28,8 +28,10 @@ GameState makeGameState(
 }
 
 extension WidgetTesterExtension on WidgetTester {
-  Future<void> launchWidget({Widget child, GameState state, AudioModel audioModel}) async {
-    final prefs = await runAsync(() async => await SharedPreferences.getInstance());
+  Future<void> launchWidget(
+      {Widget child, GameState state, AudioModel audioModel}) async {
+    final prefs =
+        await runAsync(() async => await SharedPreferences.getInstance());
     final settingsModel = SettingsModel(prefs);
 
     final app = MultiProvider(providers: [
@@ -43,7 +45,8 @@ extension WidgetTesterExtension on WidgetTester {
   }
 }
 
-Future<void> launchGameFromMenu(WidgetTester tester, {MockAudioModel audioModel}) async {
+Future<void> launchGameFromMenu(WidgetTester tester,
+    {MockAudioModel audioModel}) async {
   await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);
 
   final button1Finder = find.text('Play');

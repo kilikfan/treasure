@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './main_menu/main_menu_page.dart';
+import './main_menu_page.dart';
 
 class TreasureApp extends StatelessWidget {
   @override

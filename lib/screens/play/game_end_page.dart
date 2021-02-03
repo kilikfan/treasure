@@ -4,10 +4,8 @@ import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
+import 'package:treasure_of_the_high_seas/widgets/menu_button.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
-
-import '../main_menu/menu_button.dart';
 
 class GameEndPage extends StatelessWidget {
   final GameResult result;
@@ -26,22 +24,18 @@ class GameEndPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               _getText(context, result),
-              MenuButton(
-                  'New Game',
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
-                    );
-                  }
-              ),
-              MenuButton(
-                  'Exit',
-                  onPressed: () async {
-                    await context.read<AudioModel>().loopMusic(MENU_MUSIC);
-                    Navigator.of(context).pop();
-                  }
-              )
+              MenuButton('New Game', onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PlayPage('Play Page', startNewGame())),
+                );
+              }),
+              MenuButton('Exit', onPressed: () async {
+                await context.read<AudioModel>().loopMusic(MENU_MUSIC);
+                Navigator.of(context).pop();
+              })
             ],
           ),
         ),
@@ -52,10 +46,7 @@ class GameEndPage extends StatelessWidget {
   Widget _getText(BuildContext context, GameResult result) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-        child: Text(
-            result.description,
-            style: TextStyle(fontSize: 30)
-        ),
+      child: Text(result.description, style: TextStyle(fontSize: 30)),
     );
   }
 }

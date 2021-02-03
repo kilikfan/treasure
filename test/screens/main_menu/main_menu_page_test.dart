@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu_page.dart';
-import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
+import 'package:treasure_of_the_high_seas/screens/main_menu_page.dart';
+import 'package:treasure_of_the_high_seas/widgets/menu_button.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 import 'package:treasure_of_the_high_seas/screens/settings_page.dart';
@@ -24,7 +24,8 @@ void main() {
     expect(find.byType(RulesPage), findsOneWidget);
   });
 
-  testWidgets('should navigate to the Settings page', (WidgetTester tester) async {
+  testWidgets('should navigate to the Settings page',
+      (WidgetTester tester) async {
     await tester.launchWidget(child: MainMenuPage());
 
     final settingsButtonFinder = find.widgetWithText(MenuButton, 'Settings');
@@ -53,7 +54,8 @@ void main() {
     expect(gameState.currentCard, isNotNull);
   });
 
-  testWidgets('should play game music when launching a new game', (WidgetTester tester) async {
+  testWidgets('should play game music when launching a new game',
+      (WidgetTester tester) async {
     final audioModel = MockAudioModel();
     await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);
 
