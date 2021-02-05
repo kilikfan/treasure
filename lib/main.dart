@@ -28,5 +28,5 @@ Future<Widget> _buildApp() async {
   return MultiProvider(providers: [
     ChangeNotifierProvider<SettingsModel>.value(value: settingsModel),
     Provider<AudioModel>.value(value: audioModel)
-  ], child: TreasureApp());
+  ], child: TreasureApp(audioModel));
 }
