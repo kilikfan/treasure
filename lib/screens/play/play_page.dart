@@ -6,6 +6,7 @@ import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/screens/play/scrying_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 
+import '../quick_rules_page.dart';
 import './player_hand.dart';
 import 'card/card_display.dart';
 import 'card/deck_state_panel.dart';
@@ -25,6 +26,21 @@ class PlayPage extends StatelessWidget {
         child: Scaffold(
             appBar: AppBar(
               title: Text(title),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.help),
+                  tooltip: 'Quick Help',
+                  onPressed: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => QuickRulesPage()),
+                  );},
+                ),
+                IconButton(
+                  icon: Icon(Icons.settings),
+                  tooltip: 'Settings',
+                  onPressed: () {},
+                ),
+              ],
             ),
             body: ChangeNotifierProvider(
                 create: (context) => state,
