@@ -6,8 +6,8 @@ on:
       - '*'
 
 jobs:
-  test:
-
+  job1:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -18,3 +18,23 @@ jobs:
     - run: flutter pub get
     - run: flutter analyze
     - run: flutter test
+      
+  job2:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - uses: subosito/flutter-action@v1.4.0
+      with:
+        channel: 'stable'
+    - run: flutter pub get
+    - run: flutter build apk --split-per-abi
+    - name: Create a Release APK
+      if: github.ref == 'refs/heads/master'
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/apk/release/*.apk"
+        token: ${{ secrets.TREASURE_REPO_SECRET }}
+        commit: master
+        tag: v0.${{ github.run_number }}
