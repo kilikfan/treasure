@@ -125,4 +125,36 @@ void main() {
     await audioModel.playSound('baa.mp3');
     verify(soundCache.play('baa.mp3'));
   });
+
+  test('should support pausing music', () async {
+    final musicPlayer = MockAudioPlayer();
+    final audioModel = await makeAudioModel(musicPlayer: musicPlayer);
+
+    await audioModel.pauseMusic();
+    verify(musicPlayer.pause());
+  });
+
+  test('should support resuming music if music was playing', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.musicEnabled.toString(): true});
+
+    final musicPlayer = MockAudioPlayer();
+    final audioModel = await makeAudioModel(musicPlayer: musicPlayer);
+    await audioModel.loopMusic('foobar');
+
+    await audioModel.resumeMusic();
+    verify(musicPlayer.resume());
+  });
+
+  test('should not resume music if music was not playing', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.musicEnabled.toString(): false});
+
+    final musicPlayer = MockAudioPlayer();
+    final audioModel = await makeAudioModel(musicPlayer: musicPlayer);
+    await audioModel.loopMusic('foobar');
+
+    await audioModel.resumeMusic();
+    verifyZeroInteractions(musicPlayer);
+  });
 }
