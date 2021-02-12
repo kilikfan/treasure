@@ -58,7 +58,7 @@ void main() {
     verify(musicPlayer.stop());
   });
 
-  test('should start playing menu music when music setting toggled on', () async {
+  test('should start playing menu music when music setting toggled on by default', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
@@ -104,7 +104,7 @@ void main() {
     verifyZeroInteractions(musicPlayer);
   });
 
-  test('should not play sounds if setting disbaled', () async {
+  test('should not play sounds if setting disabled', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.sfxEnabled.toString(): false});
 

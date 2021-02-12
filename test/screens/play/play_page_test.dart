@@ -69,7 +69,7 @@ void main() {
 
   testWidgets('should play menu music when returning to menu', (WidgetTester tester) async {
     final audioModel = MockAudioModel();
-    await launchGameFromMenu(tester, audioModel: audioModel);
+    await launchGameFromMenuMock(tester, audioModel: audioModel);
 
     await tester.pageBack();
     await tester.pumpAndSettle();

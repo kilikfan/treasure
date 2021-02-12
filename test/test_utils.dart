@@ -43,13 +43,16 @@ extension WidgetTesterExtension on WidgetTester {
   }
 }
 
-Future<void> launchGameFromMenu(WidgetTester tester, {MockAudioModel audioModel}) async {
+Future<void> launchGameFromMenu(WidgetTester tester, {AudioModel audioModel}) async {
   await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);
 
   final button1Finder = find.text('Play');
   expect(button1Finder, findsOneWidget);
   await tester.tap(button1Finder);
   await tester.pumpAndSettle();
+}
 
+Future<void> launchGameFromMenuMock(WidgetTester tester, {MockAudioModel audioModel}) async {
+  await launchGameFromMenu(tester);
   reset(audioModel);
 }
