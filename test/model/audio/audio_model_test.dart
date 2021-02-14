@@ -138,6 +138,7 @@ void main() {
 
     await settingsModel.updateSetting(AppSetting.musicEnabled, true);
     verify(musicCache.loop(GAME_MUSIC, volume: 0.5));
+  });
 
   test('should support pausing music', () async {
     final musicPlayer = MockAudioPlayer();
