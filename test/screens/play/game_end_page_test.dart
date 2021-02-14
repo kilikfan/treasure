@@ -46,7 +46,7 @@ void main() {
 
   testWidgets('exit button should exit to main menu, and play menu music', (WidgetTester tester) async {
     final audioModel = MockAudioModel();
-    await launchGameFromMenu(tester, audioModel: audioModel);
+    await launchGameFromMenuMock(tester, audioModel: audioModel);
 
     final playPage = tester.widget<PlayPage>(find.byType(PlayPage));
     final gameState = playPage.state;
