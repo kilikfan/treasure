@@ -28,13 +28,12 @@ GameState makeGameState(
 }
 
 extension WidgetTesterExtension on WidgetTester {
-  Future<void> launchWidget({Widget child, GameState state, AudioModel audioModel}) async {
+  Future<void> launchWidget({Widget child, GameState state, AudioModel audioModel, SettingsModel settingsModel}) async {
     final prefs = await runAsync(() async => await SharedPreferences.getInstance());
-    final settingsModel = SettingsModel(prefs);
 
     final app = MultiProvider(providers: [
       ChangeNotifierProvider<GameState>.value(value: state),
-      ChangeNotifierProvider<SettingsModel>.value(value: settingsModel),
+      ChangeNotifierProvider<SettingsModel>.value(value: settingsModel ?? SettingsModel(prefs)),
       Provider<AudioModel>.value(value: audioModel ?? MockAudioModel())
     ], child: MaterialApp(home: child));
 
@@ -43,8 +42,8 @@ extension WidgetTesterExtension on WidgetTester {
   }
 }
 
-Future<void> launchGameFromMenu(WidgetTester tester, {AudioModel audioModel}) async {
-  await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);
+Future<void> launchGameFromMenu(WidgetTester tester, {AudioModel audioModel, SettingsModel settingsModel}) async {
+  await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel, settingsModel: settingsModel);
 
   final button1Finder = find.text('Play');
   expect(button1Finder, findsOneWidget);
@@ -53,6 +52,6 @@ Future<void> launchGameFromMenu(WidgetTester tester, {AudioModel audioModel}) as
 }
 
 Future<void> launchGameFromMenuMock(WidgetTester tester, {MockAudioModel audioModel}) async {
-  await launchGameFromMenu(tester);
+  await launchGameFromMenu(tester, audioModel: audioModel);
   reset(audioModel);
 }

@@ -2,15 +2,13 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 
-import 'audio_constants.dart';
-
 class AudioModel {
   final SettingsModel _settingsModel;
   final AudioPlayer _musicPlayer;
   final AudioCache _musicCache;
   final AudioCache _soundCache;
   var _playingMusic = false;
-  var _lastRequestedMusic = MENU_MUSIC;
+  var _lastRequestedMusic;
 
   AudioModel(this._settingsModel, this._musicPlayer, this._musicCache, this._soundCache) {
     _settingsModel.addListener(_settingsChanged);

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,11 +17,18 @@ void main() {
 
     final musicCache = MockAudioCache();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    var audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
 
-    await launchGameFromMenu(tester, audioModel: audioModel);
+    await launchGameFromMenu(tester, audioModel: audioModel, settingsModel: settingsModel);
 
-    settingsModel.updateSetting(AppSetting.musicEnabled, true);
+    final settingsFinder = find.byIcon(Icons.settings);
+    await tester.tap(settingsFinder);
+    await tester.pumpAndSettle();
+
+    final musicSwitchFinder = find.widgetWithText(SwitchListTile, 'Music');
+    await tester.tap(musicSwitchFinder);
+    await tester.pumpAndSettle();
+
     verify(musicCache.loop(GAME_MUSIC, volume: 0.5));
   });
 

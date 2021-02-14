@@ -125,4 +125,18 @@ void main() {
     await audioModel.playSound('baa.mp3');
     verify(soundCache.play('baa.mp3'));
   });
+
+  test('should start playing the last requested track when music setting toggled on', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.musicEnabled.toString(): false});
+
+    final musicCache = MockAudioCache();
+    final settingsModel = SettingsModel(await SharedPreferences.getInstance());
+    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    await audioModel.loopMusic(GAME_MUSIC);
+    verifyZeroInteractions(musicCache);
+
+    await settingsModel.updateSetting(AppSetting.musicEnabled, true);
+    verify(musicCache.loop(GAME_MUSIC, volume: 0.5));
+  });
 }
