@@ -10,7 +10,7 @@ import '../../test_utils.dart';
 void main() {
   testWidgets('close button should return to play page', (WidgetTester tester) async {
     final audioModel = MockAudioModel();
-    await launchGameFromMenu(tester, audioModel: audioModel);
+    await launchGameFromMenuMock(tester, audioModel: audioModel);
 
     var playPage = tester.widget<PlayPage>(find.byType(PlayPage));
     var gameState = playPage.state;

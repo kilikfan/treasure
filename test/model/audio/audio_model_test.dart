@@ -58,7 +58,7 @@ void main() {
     verify(musicPlayer.stop());
   });
 
-  test('should start playing menu music when music setting toggled on', () async {
+  test('should start playing menu music when music setting toggled on by default', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
@@ -104,7 +104,7 @@ void main() {
     verifyZeroInteractions(musicPlayer);
   });
 
-  test('should not play sounds if setting disbaled', () async {
+  test('should not play sounds if setting disabled', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.sfxEnabled.toString(): false});
 
@@ -124,6 +124,20 @@ void main() {
 
     await audioModel.playSound('baa.mp3');
     verify(soundCache.play('baa.mp3'));
+  });
+
+  test('should start playing the last requested track when music setting toggled on', () async {
+    SharedPreferences.setMockInitialValues(
+        {AppSetting.musicEnabled.toString(): false});
+
+    final musicCache = MockAudioCache();
+    final settingsModel = SettingsModel(await SharedPreferences.getInstance());
+    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    await audioModel.loopMusic(GAME_MUSIC);
+    verifyZeroInteractions(musicCache);
+
+    await settingsModel.updateSetting(AppSetting.musicEnabled, true);
+    verify(musicCache.loop(GAME_MUSIC, volume: 0.5));
   });
 
   test('should support pausing music', () async {

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
@@ -7,6 +8,8 @@ import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/player_hand.dart';
 import 'package:treasure_of_the_high_seas/screens/play/scrying_page.dart';
+import 'package:treasure_of_the_high_seas/screens/quick_rules_page.dart';
+import 'package:treasure_of_the_high_seas/screens/settings_page.dart';
 
 import '../../mocks.dart';
 import '../../test_utils.dart';
@@ -69,11 +72,49 @@ void main() {
 
   testWidgets('should play menu music when returning to menu', (WidgetTester tester) async {
     final audioModel = MockAudioModel();
-    await launchGameFromMenu(tester, audioModel: audioModel);
+    await launchGameFromMenuMock(tester, audioModel: audioModel);
 
     await tester.pageBack();
     await tester.pumpAndSettle();
 
     verify(audioModel.loopMusic(MENU_MUSIC));
+  });
+
+  testWidgets('should launch the quick rules page', (WidgetTester tester) async {
+    final state = makeGameState();
+    state.nextCard();
+    await tester.launchWidget(child: PlayPage('New Game', state));
+
+    await tester.tap(find.byIcon(Icons.help));
+    await tester.pumpAndSettle();
+
+    final quickRulesPageFinder = find.byType(QuickRulesPage);
+    final playPageFinder = find.byType(PlayPage);
+    expect(quickRulesPageFinder, findsOneWidget);
+    expect(playPageFinder, findsNothing);
+
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(quickRulesPageFinder, findsNothing);
+    expect(playPageFinder, findsOneWidget);
+  });
+
+  testWidgets('should launch the settings page', (WidgetTester tester) async {
+    final state = makeGameState();
+    state.nextCard();
+    await tester.launchWidget(child: PlayPage('New Game', state));
+
+    await tester.tap(find.byIcon(Icons.settings));
+    await tester.pumpAndSettle();
+
+    final settingsFinder = find.byType(SettingsPage);
+    final playPageFinder = find.byType(PlayPage);
+    expect(settingsFinder, findsOneWidget);
+    expect(playPageFinder, findsNothing);
+
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(settingsFinder, findsNothing);
+    expect(playPageFinder, findsOneWidget);
   });
 }
