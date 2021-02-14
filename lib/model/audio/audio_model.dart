@@ -22,6 +22,16 @@ class AudioModel {
     }
   }
 
+  Future<void> pauseMusic() async {
+    await _musicPlayer.pause();
+  }
+
+  Future<void> resumeMusic() async {
+    if (_playingMusic) {
+      await _musicPlayer.resume();
+    }
+  }
+
   Future<void> playSound(String sound) async {
     if (_settingsModel.isSettingEnabled(AppSetting.sfxEnabled)) {
       await _soundCache.play(sound);
