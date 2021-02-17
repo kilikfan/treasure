@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
 
 import './card_actions/card_actions_panel.dart';
 import './card_header.dart';
@@ -23,7 +24,7 @@ class CardDisplay extends StatelessWidget {
           color: _getCardColor(card),
           child: ListView(
             children: [
-              CardHeader(card.name),
+              CardHeader(card.name, _getSubHeaderText(card)),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: CardActionsPanel(card, readOnly))
@@ -41,5 +42,17 @@ class CardDisplay extends StatelessWidget {
       default:
         return basicCardColour;
     }
+  }
+
+  String _getSubHeaderText(Model.Card card){
+    if (card.questLine == QuestLine.NULL){
+      return '';
+    } else {
+      return card.questLine.description + ' ' + _getQuestStage(card);
+    }
+  }
+  
+  String _getQuestStage(Model.Card card){
+    return card.questStage.toString() + "/" + card.questLine.maxStage.toString();
   }
 }

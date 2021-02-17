@@ -1,5 +1,6 @@
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
 
 import '../../game_state.dart';
 import '../../resource.dart';
@@ -11,15 +12,23 @@ import 'into_the_depths_1_a_sense_of_porpoise.dart';
 import 'into_the_depths_3_kraken_in_my_boots.dart';
 
 class ShoallyYouCantBeSerious extends Card {
-  const ShoallyYouCantBeSerious() : super("Shoally You Can't Be Serious!", type: CardType.QUEST);
+  const ShoallyYouCantBeSerious()
+      : super("Shoally You Can't Be Serious!",
+            type: CardType.QUEST,
+            questLine: QuestLine.INTO_THE_DEPTHS,
+            questStage: 2);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      DiscardAction(cost: SimpleCost([Resource.FOOD]), description: "The fishy smell persists."),
+      DiscardAction(
+          cost: SimpleCost([Resource.FOOD]),
+          description: "The fishy smell persists."),
       //TODO - optional C/L C/L cost
-      ReplaceAction(KrakenInMyBoots(), "You have an exi-stench-ial crisis.", cost: [Resource.CREW, Resource.CREW, Resource.FOOD]),
-      ReplaceAction(ASenseOfPorpoise(), "Why couldn’t it be follow the butterflies?")
+      ReplaceAction(KrakenInMyBoots(), "You have an exi-stench-ial crisis.",
+          cost: [Resource.CREW, Resource.CREW, Resource.FOOD]),
+      ReplaceAction(
+          ASenseOfPorpoise(), "Why couldn’t it be follow the butterflies?")
     ];
   }
 }

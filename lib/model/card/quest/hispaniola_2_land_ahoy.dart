@@ -3,6 +3,7 @@ import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/discard_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/exile_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
 
 import '../../game_state.dart';
 import '../../resource.dart';
@@ -11,14 +12,22 @@ import '../card_types.dart';
 import 'hispaniola_3_bribe_the_port.dart';
 
 class LandAhoy extends Card {
-  const LandAhoy() : super("Land Ahoy!", type: CardType.QUEST);
+  const LandAhoy()
+      : super("Land Ahoy!",
+            type: CardType.QUEST,
+            questLine: QuestLine.HISPANIOLA,
+            questStage: 2);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(description: "Still finding a quiet cove."),
-      ReplaceAction(BribeThePort(), "Prepare to dock.", cost: [Resource.FOOD], soundEffect: SFX_SHIP_BELL),
-      ExileAction(description: "Snag some new recruits.", reward: [Resource.CREW, Resource.CREW], soundEffect: SFX_MARCHING)
+      ReplaceAction(BribeThePort(), "Prepare to dock.",
+          cost: [Resource.FOOD], soundEffect: SFX_SHIP_BELL),
+      ExileAction(
+          description: "Snag some new recruits.",
+          reward: [Resource.CREW, Resource.CREW],
+          soundEffect: SFX_MARCHING)
     ];
   }
 }
