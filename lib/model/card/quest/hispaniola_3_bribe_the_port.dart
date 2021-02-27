@@ -26,7 +26,8 @@ class BribeThePort extends Card {
           description: "Review the options over dinner.",
           cost: SimpleCost([Resource.FOOD, Resource.FOOD]),
           soundEffect: SFX_APPLE),
-      ReplaceAction(RetrieveTheHispaniolanTreasure(), "A hefty fee to pay.",
+      ReplaceAction(RetrieveTheHispaniolanTreasure(), ReplaceType.FORWARDS,
+          "A hefty fee to pay.",
           cost: [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON],
           soundEffect: SFX_COINS),
       ExileAction(

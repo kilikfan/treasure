@@ -4,6 +4,7 @@ import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart'
     as Model;
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/replace_action.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 import 'package:treasure_of_the_high_seas/model/hand.dart';
@@ -75,8 +76,9 @@ class CardActionPanel extends StatelessWidget {
     }
 
     if (actionDetails.replacement != null) {
+      final icon = _getReplacementIcon(actionDetails);
       effects.add(CardActionLine("${actionDetails.replacement.name}",
-          Icons.description, Colors.purpleAccent));
+          icon, Colors.purpleAccent));
     }
 
     return Column(
@@ -117,6 +119,17 @@ class CardActionPanel extends StatelessWidget {
         return Colors.red[50];
       default:
         return Colors.yellow[50];
+    }
+  }
+
+  IconData _getReplacementIcon(CardActionDetails actionDetails) {
+    switch (actionDetails.replaceType) {
+      case ReplaceType.BACKWARDS:
+        return Icons.arrow_back;
+      case ReplaceType.FORWARDS:
+        return Icons.arrow_forward;
+      default:
+        return Icons.description;
     }
   }
 }

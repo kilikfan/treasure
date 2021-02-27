@@ -6,12 +6,15 @@ import '../card.dart';
 import 'card_action.dart';
 import 'card_action_details.dart';
 
+enum ReplaceType { FORWARDS, BACKWARDS }
+
 class ReplaceAction extends CardAction {
   Card replacementCard;
+  ReplaceType replaceType;
 
-  ReplaceAction(this.replacementCard, String description, {List<Resource> cost = const [], String soundEffect})
-      : super(SimpleCost(cost),
-      description, soundEffect: soundEffect);
+  ReplaceAction(this.replacementCard, this.replaceType, String description,
+      {List<Resource> cost = const [], String soundEffect})
+      : super(SimpleCost(cost), description, soundEffect: soundEffect);
 
   @override
   void performActionImpl(GameState state) {
@@ -23,5 +26,6 @@ class ReplaceAction extends CardAction {
   CardActionDetails get actionDetails =>
       CardActionDetails(cost, this.description,
           replacement: this.replacementCard,
-          destination: CardDestination.EXILE);
+          destination: CardDestination.EXILE,
+          replaceType: this.replaceType);
 }

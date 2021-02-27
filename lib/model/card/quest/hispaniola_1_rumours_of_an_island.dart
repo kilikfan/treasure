@@ -23,7 +23,8 @@ class RumoursOfAnIsland extends Card {
     return [
       DiscardAction(
           description: "Maintain current course.", soundEffect: SFX_SHIP_BELL),
-      ReplaceAction(LandAhoy(), "Take a gamble and change course.",
+      ReplaceAction(
+          LandAhoy(), ReplaceType.FORWARDS, "Take a gamble and change course.",
           soundEffect: SFX_LAND_HO),
       ExileAction(
           description: "Sail away, sail away.",

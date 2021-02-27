@@ -25,10 +25,11 @@ class ShoallyYouCantBeSerious extends Card {
           cost: SimpleCost([Resource.FOOD]),
           description: "The fishy smell persists."),
       //TODO - optional C/L C/L cost
-      ReplaceAction(KrakenInMyBoots(), "You have an exi-stench-ial crisis.",
+      ReplaceAction(KrakenInMyBoots(), ReplaceType.FORWARDS,
+          "You have an exi-stench-ial crisis.",
           cost: [Resource.CREW, Resource.CREW, Resource.FOOD]),
-      ReplaceAction(
-          ASenseOfPorpoise(), "Why couldn’t it be follow the butterflies?")
+      ReplaceAction(ASenseOfPorpoise(), ReplaceType.BACKWARDS,
+          "Why couldn’t it be follow the butterflies?")
     ];
   }
 }

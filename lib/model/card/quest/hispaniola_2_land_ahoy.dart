@@ -22,7 +22,7 @@ class LandAhoy extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(description: "Still finding a quiet cove."),
-      ReplaceAction(BribeThePort(), "Prepare to dock.",
+      ReplaceAction(BribeThePort(), ReplaceType.FORWARDS, "Prepare to dock.",
           cost: [Resource.FOOD], soundEffect: SFX_SHIP_BELL),
       ExileAction(
           description: "Snag some new recruits.",
