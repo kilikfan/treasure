@@ -10,11 +10,9 @@ void main() {
   testWidgets('close button should return to play page', (WidgetTester tester) async {
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
-
     await tester.pumpAndSettle();
 
     final activeQuestsFinder = find.byIcon(Icons.assignment);
-    expect(activeQuestsFinder, findsOneWidget);
     await tester.tap(activeQuestsFinder);
     await tester.pumpAndSettle();
 
@@ -22,10 +20,9 @@ void main() {
     expect(find.byType(PlayerHand), findsNothing);
 
     final exitFinder = find.text('Close');
-    expect(exitFinder, findsOneWidget);
-
     await tester.tap(exitFinder);
     await tester.pumpAndSettle();
+
     expect(find.byType(PlayerHand), findsOneWidget);
   });
 }
