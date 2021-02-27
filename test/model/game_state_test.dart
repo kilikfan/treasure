@@ -257,7 +257,7 @@ void main() {
       final GameState state = makeGameState(deck: [aGameOfCards, landAhoy, aSenseOfPorpoise]);
       state.discard.addAll([aRivalShip, krakenInMyBoots, shoallyYouCantBeSerious]);
       state.currentCard = rumoursOfAnIsland;
-      state.scrying.addAll([utopia, aGameOfCards]);
+      state.scrying.addAll([utopia, aGameOfCards]); // shouldn't include quests from scrying
 
       final activeQuestCards = state.getActiveQuestCards();
       activeQuestCards.sort((card1, card2) => card1.name.compareTo(card2.name)); // sort so test doesn't care about order
