@@ -1,9 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:matcher/matcher.dart' as matcher;
 import 'package:mockito/mockito.dart';
+import 'package:treasure_of_the_high_seas/model/card/basic/a_game_of_cards.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/port_fees.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_1_rumours_of_an_island.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_2_land_ahoy.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/into_the_depths_1_a_sense_of_porpoise.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/into_the_depths_2_shoally_you_cant_be_serious.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/into_the_depths_3_kraken_in_my_boots.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/into_the_depths_4_utopia.dart';
 import 'package:treasure_of_the_high_seas/model/card/special/special_cards.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
@@ -213,7 +220,6 @@ void main() {
     });
   });
 
-
   group('ChangeNotifier', () {
     _verifyChangeNotifier(GameState state, Function() stateFunction) {
       final fn = MockFunction().fn;
@@ -232,6 +238,30 @@ void main() {
       _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
       _verifyChangeNotifier(state, state.exileCurrentCard);
       _verifyChangeNotifier(state, () => state.endGame(GameResult.WIN));
+    });
+  });
+
+  group('Getting active quests', () {
+    test('should return only quest cards from the current card, deck and discard pile', () {
+      // basic cards:
+      const aGameOfCards = AGameOfCards();
+      const aRivalShip = ARivalShip();
+      // quest cards: (note we have at most 2 active quests in reality, but this makes the test stricter)
+      const rumoursOfAnIsland = RumoursOfAnIsland();
+      const landAhoy = LandAhoy();
+      const aSenseOfPorpoise = ASenseOfPorpoise();
+      const krakenInMyBoots = KrakenInMyBoots();
+      const shoallyYouCantBeSerious = ShoallyYouCantBeSerious();
+      const utopia = Utopia();
+
+      final GameState state = makeGameState(deck: [aGameOfCards, landAhoy, aSenseOfPorpoise]);
+      state.discard.addAll([aRivalShip, krakenInMyBoots, shoallyYouCantBeSerious]);
+      state.currentCard = rumoursOfAnIsland;
+      state.scrying.addAll([utopia, aGameOfCards]); // shouldn't include quests from scrying
+
+      final activeQuestCards = state.getActiveQuestCards();
+      activeQuestCards.sort((card1, card2) => card1.name.compareTo(card2.name)); // sort so test doesn't care about order
+      expect(activeQuestCards, [aSenseOfPorpoise, krakenInMyBoots, landAhoy, rumoursOfAnIsland, shoallyYouCantBeSerious]);
     });
   });
 }
