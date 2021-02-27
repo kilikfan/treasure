@@ -11,6 +11,7 @@ import '../settings_page.dart';
 import './player_hand.dart';
 import 'card/card_display.dart';
 import 'card/deck_state_panel.dart';
+import 'view_active_quests_page.dart';
 
 class PlayPage extends StatelessWidget {
   PlayPage(this.title, this.state, {Key key}) : super(key: key);
@@ -35,6 +36,16 @@ class PlayPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => QuickRulesPage()),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.assignment),
+                  tooltip: 'Active Quests',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ViewActiveQuestsPage(state)),
                     );
                   },
                 ),

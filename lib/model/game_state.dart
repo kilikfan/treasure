@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'package:treasure_of_the_high_seas/model/scry_option.dart';
 import 'package:treasure_of_the_high_seas/model/special_triggers.dart';
@@ -78,6 +79,12 @@ class GameState with ChangeNotifier {
     currentCard = null;
 
     notifyListeners();
+  }
+
+  List<Card> getActiveQuestCards() {
+    final discardQuestCards = discard.reversed.where((card) => card.type == CardType.QUEST).toList();
+    final deckQuestCards = deck.reversed.where((card) => card.type == CardType.QUEST).toList();
+    return discardQuestCards + deckQuestCards;
   }
 
   void endGame(GameResult result) {
