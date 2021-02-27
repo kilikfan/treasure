@@ -76,7 +76,7 @@ void main() {
 
     await tester.launchWidget(child: PlayPage('New Game', state));
 
-    final resourceCountFinder = find.widgetWithText(Center, 'Resource Count: ' + state.playerHand.cards.length.toString());
+    final resourceCountFinder = find.widgetWithText(Center, "Resource Count: ${state.playerHand.cards.length}");
 
     expect(resourceCountFinder, findsOneWidget);
   });

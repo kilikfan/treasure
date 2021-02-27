@@ -71,7 +71,7 @@ class PlayPage extends StatelessWidget {
                         Container(
                           height: (MediaQuery.of(context).size.height) * 0.05,
                           padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                          child: Center(child: Text('Resource Count: ' + state.playerHand.cards.length.toString())),
+                          child: Center(child: Text("Resource Count: ${state.playerHand.cards.length}")),
                         ),
                         Container(
                           height: (MediaQuery.of(context).size.height) * 0.2,
