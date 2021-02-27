@@ -70,6 +70,17 @@ void main() {
     expect(discardFinder, findsOneWidget);
   });
 
+  testWidgets('should display the correct resource card count', (WidgetTester tester) async {
+    final state = makeGameState();
+    state.nextCard();
+
+    await tester.launchWidget(child: PlayPage('New Game', state));
+
+    final resourceCountFinder = find.widgetWithText(Center, "Resource Count: ${state.playerHand.cards.length}");
+
+    expect(resourceCountFinder, findsOneWidget);
+  });
+
   testWidgets('should play menu music when returning to menu', (WidgetTester tester) async {
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
