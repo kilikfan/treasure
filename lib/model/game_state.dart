@@ -82,8 +82,8 @@ class GameState with ChangeNotifier {
   }
 
   List<Card> getActiveQuestCards() {
-    final discardQuestCards = discard.reversed.where((card) => card.type == CardType.QUEST).toList();
-    final deckQuestCards = deck.reversed.where((card) => card.type == CardType.QUEST).toList();
+    final discardQuestCards = discard.where((card) => card.type == CardType.QUEST).toList();
+    final deckQuestCards = deck.where((card) => card.type == CardType.QUEST).toList();
     return discardQuestCards + deckQuestCards;
   }
 

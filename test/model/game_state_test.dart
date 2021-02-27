@@ -240,7 +240,7 @@ void main() {
   });
 
   group('Getting active quests', () {
-    test('should return only quest cards from the deck and discard pile in reverse order', () {
+    test('should return only quest cards from the deck and discard pile', () {
       const aGameOfCards = AGameOfCards(); // basic card
       const aRivalShip = ARivalShip(); // basic card
       const landAhoy = LandAhoy(); // quest card
@@ -252,7 +252,9 @@ void main() {
       state.currentCard = shoallyYouCantBeSerious;
       state.scrying.add(shoallyYouCantBeSerious);
 
-      expect(state.getActiveQuestCards(), [shoallyYouCantBeSerious, krakenInMyBoots, aSenseOfPorpoise, landAhoy]);
+      final activeQuestCards = state.getActiveQuestCards();
+      activeQuestCards.sort((card1, card2) => card1.name.compareTo(card2.name)); // sort so test doesn't care about order
+      expect(activeQuestCards, [aSenseOfPorpoise, krakenInMyBoots, landAhoy, shoallyYouCantBeSerious]);
     });
   });
 }
