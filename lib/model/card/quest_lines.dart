@@ -2,22 +2,24 @@ enum QuestLine { NULL, HISPANIOLA, INTO_THE_DEPTHS }
 
 extension QuestLineExt on QuestLine {
   String get description {
-    if (this == QuestLine.HISPANIOLA) {
-      return "Hispaniola";
-    } else if (this == QuestLine.INTO_THE_DEPTHS) {
-      return "Into the Depths";
-    } else {
-      return "";
+    switch (this) {
+      case QuestLine.HISPANIOLA:
+        return "Hispaniola";
+      case QuestLine.INTO_THE_DEPTHS:
+        return "Into the Depths";
+      default:
+        return "";
     }
   }
 
   int get maxStage {
-    if (this == QuestLine.HISPANIOLA) {
-      return 4;
-    } else if (this == QuestLine.INTO_THE_DEPTHS) {
-      return 4;
-    } else {
-      return 0;
+    switch (this) {
+      case QuestLine.HISPANIOLA:
+        return 4;
+      case QuestLine.INTO_THE_DEPTHS:
+        return 4;
+      default:
+        return 0;
     }
   }
 }

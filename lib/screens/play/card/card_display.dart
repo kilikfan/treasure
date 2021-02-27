@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
 import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
+import 'package:treasure_of_the_high_seas/model/card/special_card_types.dart';
 
 import './card_actions/card_actions_panel.dart';
 import './card_header.dart';
@@ -45,10 +46,12 @@ class CardDisplay extends StatelessWidget {
   }
 
   String _getSubHeaderText(Model.Card card){
-    if (card.questLine == QuestLine.NULL){
-      return '';
+    if (card.questLine != QuestLine.NULL) {
+      return card.questLine.description + " " + _getQuestStage(card);
+    } else if (card.specialType != SpecialType.NULL){
+      return card.specialType.description;
     } else {
-      return card.questLine.description + ' ' + _getQuestStage(card);
+      return "";
     }
   }
   

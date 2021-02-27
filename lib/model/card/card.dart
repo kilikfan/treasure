@@ -1,4 +1,5 @@
 import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
+import 'package:treasure_of_the_high_seas/model/card/special_card_types.dart';
 
 import '../game_state.dart';
 import 'action/card_action.dart';
@@ -9,11 +10,13 @@ abstract class Card {
   final CardType type;
   final int questStage;
   final QuestLine questLine;
+  final SpecialType specialType;
 
   const Card(this.name,
       {this.type = CardType.BASIC,
       this.questStage = 0,
-      this.questLine = QuestLine.NULL});
+      this.questLine = QuestLine.NULL,
+      this.specialType = SpecialType.NULL});
 
   List<CardAction> getActions(GameState state);
 }
