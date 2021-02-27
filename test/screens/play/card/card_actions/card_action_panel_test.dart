@@ -172,7 +172,7 @@ void main() {
 
     expect(find.text('Sail for land'), findsWidgets);
     expect(find.text('(F, F)'), findsWidgets);
-    expect(find.byIcon(Icons.description), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
     expect(find.text(replacementCard.name), findsOneWidget);
 
     expect(find.byIcon(Icons.delete), findsOneWidget);
