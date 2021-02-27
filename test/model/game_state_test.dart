@@ -1,9 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:matcher/matcher.dart' as matcher;
 import 'package:mockito/mockito.dart';
+import 'package:treasure_of_the_high_seas/model/card/basic/a_game_of_cards.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/port_fees.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_2_land_ahoy.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/into_the_depths_1_a_sense_of_porpoise.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/into_the_depths_2_shoally_you_cant_be_serious.dart';
+import 'package:treasure_of_the_high_seas/model/card/quest/into_the_depths_3_kraken_in_my_boots.dart';
 import 'package:treasure_of_the_high_seas/model/card/special/special_cards.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
@@ -213,7 +218,6 @@ void main() {
     });
   });
 
-
   group('ChangeNotifier', () {
     _verifyChangeNotifier(GameState state, Function() stateFunction) {
       final fn = MockFunction().fn;
@@ -232,6 +236,23 @@ void main() {
       _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
       _verifyChangeNotifier(state, state.exileCurrentCard);
       _verifyChangeNotifier(state, () => state.endGame(GameResult.WIN));
+    });
+  });
+
+  group('Getting active quests', () {
+    test('should return only quest cards from the deck and discard pile in reverse order', () {
+      const aGameOfCards = AGameOfCards(); // basic card
+      const aRivalShip = ARivalShip(); // basic card
+      const landAhoy = LandAhoy(); // quest card
+      const aSenseOfPorpoise = ASenseOfPorpoise(); // quest card
+      const krakenInMyBoots = KrakenInMyBoots(); // quest card
+      const shoallyYouCantBeSerious = ShoallyYouCantBeSerious(); // quest card
+      final GameState state = makeGameState(deck: [aGameOfCards, landAhoy, aSenseOfPorpoise]);
+      state.discard.addAll([aRivalShip, krakenInMyBoots, shoallyYouCantBeSerious]);
+      state.currentCard = shoallyYouCantBeSerious;
+      state.scrying.add(shoallyYouCantBeSerious);
+
+      expect(state.getActiveQuestCards(), [shoallyYouCantBeSerious, krakenInMyBoots, aSenseOfPorpoise, landAhoy]);
     });
   });
 }
