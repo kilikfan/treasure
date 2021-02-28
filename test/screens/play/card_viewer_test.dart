@@ -11,7 +11,7 @@ import '../../test_utils.dart';
 void main() {
 
   List<Widget> getButtons(context, card) {
-    return [Text("Test Button 1"), Text("Test Button 2")];
+    return [Text("${card.name} button 1"), Text("${card.name} button 2")];
   }
   final List<Model.Card> cardList = [AGameOfCards(), ARivalShip(), AnIsland()];
 
@@ -58,8 +58,21 @@ void main() {
   testWidgets('the provided buttons should be rendered on the page', (WidgetTester tester) async {
     await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
 
-    final button1Finder = find.text("Test Button 1");
-    final button2Finder = find.text("Test Button 2");
+    final button1Finder = find.text("${cardList.first.name} button 1");
+    final button2Finder = find.text("${cardList.first.name} button 2");
+    expect(button1Finder, findsOneWidget);
+    expect(button2Finder, findsOneWidget);
+  });
+
+  testWidgets('the provided buttons should change depending on the card being viewed', (WidgetTester tester) async {
+    await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
+    final rightArrow = find.byIcon(Icons.arrow_forward_ios);
+
+    await tester.tap(rightArrow);
+    await tester.pumpAndSettle();
+
+    final button1Finder = find.text("${cardList.elementAt(1).name} button 1");
+    final button2Finder = find.text("${cardList.elementAt(1).name} button 2");
     expect(button1Finder, findsOneWidget);
     expect(button2Finder, findsOneWidget);
   });
