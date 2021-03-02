@@ -32,31 +32,42 @@ void main() {
     expect(specialCard.color, specialCardColour);
   });
 
-  testWidgets(
-      'should display the correct sub heading based on the card displayed',
-      (WidgetTester tester) async {
-    final cardFinder = find.byType(CardHeader);
+  group('Sub Heading Tests', () {
+    testWidgets('should display no sub heading for a basic card',
+        (WidgetTester tester) async {
+      final cardFinder = find.byType(CardHeader);
 
-    await tester.launchWidget(
-        child: CardDisplay(PlunderAWreck()), state: makeGameState());
-    final basicCard = tester.widget<CardHeader>(cardFinder);
-    expect(basicCard.subHeaderText, '');
+      await tester.launchWidget(
+          child: CardDisplay(PlunderAWreck()), state: makeGameState());
+      final basicCard = tester.widget<CardHeader>(cardFinder);
+      expect(basicCard.subHeaderText, '');
+    });
 
-    final rumoursOfAnIsland = RumoursOfAnIsland();
-    await tester.launchWidget(
-        child: CardDisplay(rumoursOfAnIsland), state: makeGameState());
-    final questCard = tester.widget<CardHeader>(cardFinder);
-    expect(
-        questCard.subHeaderText,
-        QuestLine.HISPANIOLA.description +
-            " " +
-            rumoursOfAnIsland.questStage.toString() +
-            "/" +
-            QuestLine.HISPANIOLA.maxStage.toString());
+    testWidgets('should display the correct sub heading for a quest card',
+        (WidgetTester tester) async {
+      final cardFinder = find.byType(CardHeader);
+      final rumoursOfAnIsland = RumoursOfAnIsland();
 
-    await tester.launchWidget(
-        child: CardDisplay(Mutiny()), state: makeGameState());
-    final specialCard = tester.widget<CardHeader>(cardFinder);
-    expect(specialCard.subHeaderText, SpecialType.MUTINY.description);
+      await tester.launchWidget(
+          child: CardDisplay(rumoursOfAnIsland), state: makeGameState());
+      final questCard = tester.widget<CardHeader>(cardFinder);
+      expect(
+          questCard.subHeaderText,
+          QuestLine.HISPANIOLA.description +
+              " " +
+              rumoursOfAnIsland.questStage.toString() +
+              "/" +
+              QuestLine.HISPANIOLA.maxStage.toString());
+    });
+
+    testWidgets('should display the correct heading for a special card',
+        (WidgetTester tester) async {
+      final cardFinder = find.byType(CardHeader);
+
+      await tester.launchWidget(
+          child: CardDisplay(Mutiny()), state: makeGameState());
+      final specialCard = tester.widget<CardHeader>(cardFinder);
+      expect(specialCard.subHeaderText, SpecialType.MUTINY.description);
+    });
   });
 }
