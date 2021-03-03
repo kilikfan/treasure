@@ -157,12 +157,12 @@ void main() {
   testWidgets('should render a replace action', (WidgetTester tester) async {
     final replacementCard = LandAhoy();
     final action =
-    ReplaceAction(replacementCard, "Sail for land", cost: [Resource.FOOD, Resource.FOOD]);
+    ReplaceAction(replacementCard, ReplaceType.FORWARDS, "Sail for land", cost: [Resource.FOOD, Resource.FOOD]);
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Sail for land'), findsWidgets);
     expect(find.text('(F, F)'), findsWidgets);
-    expect(find.byIcon(Icons.description), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
     expect(find.text(replacementCard.name), findsOneWidget);
 
     expect(find.byIcon(Icons.delete), findsOneWidget);

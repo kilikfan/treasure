@@ -23,7 +23,7 @@ class CardDisplay extends StatelessWidget {
           color: _getCardColor(card),
           child: ListView(
             children: [
-              CardHeader(card.name),
+              CardHeader(card.name, card.getSubHeaderText()),
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   child: CardActionsPanel(card, readOnly))

@@ -18,8 +18,7 @@ class QuickRulesPage extends StatelessWidget {
                       "Object\nComplete a quest line by managing your resources to win!\n"),
                   plainText(
                       "Resources\nM - Maps - Valuable resource and can also act as a wildcard"),
-                  plainText(
-                      "C - Crew - Basic resource, experienced seafarers"),
+                  plainText("C - Crew - Basic resource, experienced seafarers"),
                   plainText(
                       "L - Landlubbers - Basic resource, inexperienced seafarers"),
                   plainText(
@@ -33,8 +32,10 @@ class QuickRulesPage extends StatelessWidget {
                       Icons.arrow_downward, Colors.red, "Cost of an action"),
                   iconText(Icons.arrow_upward, Colors.green,
                       "Reward from an action"),
-                  iconText(Icons.description, Colors.purpleAccent,
-                      "The named card will go into the discard pile, either gaining or losing quest progress"),
+                  iconText(Icons.arrow_forward, Colors.purpleAccent,
+                      "The named card will go into the discard pile, gaining quest progress"),
+                  iconText(Icons.arrow_back, Colors.purpleAccent,
+                      "The named card will go into the discard pile, losing quest progress"),
                   iconText(Icons.remove_red_eye, Colors.blue,
                       "Scry (See and reorder the top cards of the deck)"),
                   iconText(Icons.replay, Colors.black,
@@ -45,6 +46,4 @@ class QuickRulesPage extends StatelessWidget {
                   iconText(Icons.close, Colors.red, "You lose the game!"),
                 ]))));
   }
-
-
 }
