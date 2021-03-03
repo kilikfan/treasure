@@ -36,8 +36,8 @@ void main() {
   testWidgets('should navigate to the Credits page', (WidgetTester tester) async {
     await tester.launchWidget(child: MainMenuPage());
 
-    final settingsButtonFinder = find.widgetWithText(MenuButton, 'Credits');
-    await tester.tap(settingsButtonFinder);
+    final creditsButtonFinder = find.widgetWithText(MenuButton, 'Credits');
+    await tester.tap(creditsButtonFinder);
     await tester.pumpAndSettle();
 
     expect(find.byType(CreditsPage), findsOneWidget);
