@@ -23,15 +23,15 @@ class ViewDiscardPage extends StatelessWidget {
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     width: MediaQuery.of(context).size.width * 0.7,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.circular(10),
-                      ),
+                      )),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      color: Colors.green,
                       child: Text("Close", style: TextStyle(fontSize: 30)),
                     ))
               ]);

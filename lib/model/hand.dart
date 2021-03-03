@@ -3,7 +3,7 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 import 'exceptions.dart';
 
 class Hand {
-  List<Resource> cards = new List<Resource>();
+  List<Resource> cards = [];
 
   Hand([List<Resource> initialCards = const []]) {
     cards.addAll(initialCards);
