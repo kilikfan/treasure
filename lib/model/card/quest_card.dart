@@ -7,9 +7,8 @@ abstract class QuestCard extends Card {
   final QuestLine questLine;
   final int questStage;
 
-  const QuestCard(String name, this.questLine, this.questStage,
-      {type: CardType.QUEST})
-      : super(name, type: type);
+  const QuestCard(String name, this.questLine, this.questStage)
+      : super(name, type: CardType.QUEST);
 
   @override
   String getSubHeaderText() =>

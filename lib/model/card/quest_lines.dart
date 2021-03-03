@@ -1,4 +1,4 @@
-enum QuestLine { NULL, HISPANIOLA, INTO_THE_DEPTHS }
+enum QuestLine { HISPANIOLA, INTO_THE_DEPTHS }
 
 extension QuestLineExt on QuestLine {
   String get description {

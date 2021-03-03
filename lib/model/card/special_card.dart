@@ -6,9 +6,8 @@ import 'card_types.dart';
 abstract class SpecialCard extends Card {
   final SpecialType specialType;
 
-  const SpecialCard(String name, this.specialType,
-      {type: CardType.SPECIAL})
-      : super(name, type: type);
+  const SpecialCard(String name, this.specialType)
+      : super(name, type: CardType.SPECIAL);
 
   @override
   String getSubHeaderText() =>
