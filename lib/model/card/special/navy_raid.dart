@@ -7,14 +7,12 @@ import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/exile_action.dart';
 import '../action/end_game_action.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../special_card.dart';
 import '../special_card_types.dart';
 
-class NavyRaid extends Card {
+class NavyRaid extends SpecialCard {
   const NavyRaid()
-      : super("Navy Raid!",
-            type: CardType.SPECIAL, specialType: SpecialType.NAVY_RAID);
+      : super("Navy Raid!", SpecialType.NAVY_RAID);
 
   @override
   List<CardAction> getActions(GameState state) {

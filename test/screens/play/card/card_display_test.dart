@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
 import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_1_rumours_of_an_island.dart';
-import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
 import 'package:treasure_of_the_high_seas/model/card/special/mutiny.dart';
 import 'package:treasure_of_the_high_seas/model/card/special_card_types.dart';
 import 'package:treasure_of_the_high_seas/screens/play/card/card_display.dart';
@@ -51,13 +50,7 @@ void main() {
       await tester.launchWidget(
           child: CardDisplay(rumoursOfAnIsland), state: makeGameState());
       final questCard = tester.widget<CardHeader>(cardFinder);
-      expect(
-          questCard.subHeaderText,
-          QuestLine.HISPANIOLA.description +
-              " " +
-              rumoursOfAnIsland.questStage.toString() +
-              "/" +
-              QuestLine.HISPANIOLA.maxStage.toString());
+      expect(questCard.subHeaderText, rumoursOfAnIsland.getSubHeaderText());
     });
 
     testWidgets('should display the correct heading for a special card',

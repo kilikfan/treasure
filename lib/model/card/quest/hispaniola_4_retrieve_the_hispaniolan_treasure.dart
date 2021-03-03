@@ -6,15 +6,11 @@ import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
 import '../../game_result.dart';
 import '../../game_state.dart';
 import '../../resource.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 
-class RetrieveTheHispaniolanTreasure extends Card {
+class RetrieveTheHispaniolanTreasure extends QuestCard {
   const RetrieveTheHispaniolanTreasure()
-      : super("Retrieve the Hispaniolan Treasure",
-            type: CardType.QUEST,
-            questLine: QuestLine.HISPANIOLA,
-            questStage: 4);
+      : super("Retrieve the Hispaniolan Treasure", QuestLine.HISPANIOLA, 4);
 
   @override
   List<CardAction> getActions(GameState state) {

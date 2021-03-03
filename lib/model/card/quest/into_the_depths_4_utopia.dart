@@ -6,15 +6,10 @@ import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/end_game_action.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 
-class Utopia extends Card {
-  const Utopia()
-      : super("Utopia",
-            type: CardType.QUEST,
-            questLine: QuestLine.INTO_THE_DEPTHS,
-            questStage: 4);
+class Utopia extends QuestCard {
+  const Utopia() : super("Utopia", QuestLine.INTO_THE_DEPTHS, 4);
 
   @override
   List<CardAction> getActions(GameState state) {

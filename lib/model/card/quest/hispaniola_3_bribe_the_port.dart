@@ -8,16 +8,11 @@ import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
 
 import '../../game_state.dart';
 import '../../resource.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 import 'hispaniola_4_retrieve_the_hispaniolan_treasure.dart';
 
-class BribeThePort extends Card {
-  const BribeThePort()
-      : super("Bribe the Port",
-            type: CardType.QUEST,
-            questLine: QuestLine.HISPANIOLA,
-            questStage: 3);
+class BribeThePort extends QuestCard {
+  const BribeThePort() : super("Bribe the Port", QuestLine.HISPANIOLA, 3);
 
   @override
   List<CardAction> getActions(GameState state) {

@@ -6,16 +6,14 @@ import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
 import '../action/exile_action.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 import 'into_the_depths_2_shoally_you_cant_be_serious.dart';
 
-class ASenseOfPorpoise extends Card {
+class ASenseOfPorpoise extends QuestCard {
   const ASenseOfPorpoise()
       : super("A Sense of Porpoise",
-            type: CardType.QUEST,
-            questLine: QuestLine.INTO_THE_DEPTHS,
-            questStage: 1);
+            QuestLine.INTO_THE_DEPTHS,
+            1);
 
   @override
   List<CardAction> getActions(GameState state) {

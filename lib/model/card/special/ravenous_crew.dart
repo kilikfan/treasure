@@ -5,14 +5,12 @@ import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/exile_action.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../special_card.dart';
 import '../special_card_types.dart';
 
-class RavenousCrew extends Card {
+class RavenousCrew extends SpecialCard {
   const RavenousCrew()
-      : super("Ravenous Crew",
-            type: CardType.SPECIAL, specialType: SpecialType.RAVENOUS_CREW);
+      : super("Ravenous Crew", SpecialType.RAVENOUS_CREW);
 
   @override
   List<CardAction> getActions(GameState state) {

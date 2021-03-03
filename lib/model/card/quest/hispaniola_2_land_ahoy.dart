@@ -7,16 +7,11 @@ import 'package:treasure_of_the_high_seas/model/card/quest_lines.dart';
 
 import '../../game_state.dart';
 import '../../resource.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 import 'hispaniola_3_bribe_the_port.dart';
 
-class LandAhoy extends Card {
-  const LandAhoy()
-      : super("Land Ahoy!",
-            type: CardType.QUEST,
-            questLine: QuestLine.HISPANIOLA,
-            questStage: 2);
+class LandAhoy extends QuestCard {
+  const LandAhoy() : super("Land Ahoy!", QuestLine.HISPANIOLA, 2);
 
   @override
   List<CardAction> getActions(GameState state) {

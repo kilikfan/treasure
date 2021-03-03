@@ -7,16 +7,12 @@ import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
 import '../action/exile_action.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 import 'hispaniola_2_land_ahoy.dart';
 
-class RumoursOfAnIsland extends Card {
+class RumoursOfAnIsland extends QuestCard {
   const RumoursOfAnIsland()
-      : super("Rumours of an Island",
-            type: CardType.QUEST,
-            questLine: QuestLine.HISPANIOLA,
-            questStage: 1);
+      : super("Rumours of an Island", QuestLine.HISPANIOLA, 1);
 
   @override
   List<CardAction> getActions(GameState state) {

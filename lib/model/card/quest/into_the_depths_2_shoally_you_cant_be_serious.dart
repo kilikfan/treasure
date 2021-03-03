@@ -6,17 +6,13 @@ import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 import 'into_the_depths_1_a_sense_of_porpoise.dart';
 import 'into_the_depths_3_kraken_in_my_boots.dart';
 
-class ShoallyYouCantBeSerious extends Card {
+class ShoallyYouCantBeSerious extends QuestCard {
   const ShoallyYouCantBeSerious()
-      : super("Shoally You Can't Be Serious!",
-            type: CardType.QUEST,
-            questLine: QuestLine.INTO_THE_DEPTHS,
-            questStage: 2);
+      : super("Shoally You Can't Be Serious!", QuestLine.INTO_THE_DEPTHS, 2);
 
   @override
   List<CardAction> getActions(GameState state) {

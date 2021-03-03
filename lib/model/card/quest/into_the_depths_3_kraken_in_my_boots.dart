@@ -7,17 +7,13 @@ import '../../game_state.dart';
 import '../../resource.dart';
 import '../action/card_action.dart';
 import '../action/discard_action.dart';
-import '../card.dart';
-import '../card_types.dart';
+import '../quest_card.dart';
 import 'into_the_depths_2_shoally_you_cant_be_serious.dart';
 import 'into_the_depths_4_utopia.dart';
 
-class KrakenInMyBoots extends Card {
+class KrakenInMyBoots extends QuestCard {
   const KrakenInMyBoots()
-      : super("Kraken in My Boots",
-            type: CardType.QUEST,
-            questLine: QuestLine.INTO_THE_DEPTHS,
-            questStage: 3);
+      : super("Kraken in My Boots", QuestLine.INTO_THE_DEPTHS, 3);
 
   @override
   List<CardAction> getActions(GameState state) {
