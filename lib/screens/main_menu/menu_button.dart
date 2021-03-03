@@ -11,8 +11,7 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: RaisedButton(
-        color: Theme.of(context).accentColor,
+      child: ElevatedButton(
         onPressed: onPressed,
         child: Text(buttonText, style: TextStyle(fontSize: 30)),
       ),
