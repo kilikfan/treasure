@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:treasure_of_the_high_seas/screens/text_utils.dart';
 
 class QuickRulesPage extends StatelessWidget {
   @override
@@ -13,58 +14,37 @@ class QuickRulesPage extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                  _plainText(
+                  plainText(
                       "Object\nComplete a quest line by managing your resources to win!\n"),
-                  _plainText(
+                  plainText(
                       "Resources\nM - Maps - Valuable resource and can also act as a wildcard"),
-                  _plainText(
+                  plainText(
                       "C - Crew - Basic resource, experienced seafarers"),
-                  _plainText(
+                  plainText(
                       "L - Landlubbers - Basic resource, inexperienced seafarers"),
-                  _plainText(
+                  plainText(
                       "F - Food - Basic resource, needed to sustain your crew"),
-                  _plainText(
+                  plainText(
                       "D - Doubloons - Basic resource, the local currency"),
-                  _plainText(
+                  plainText(
                       "I - Infamy - Special resource tracking unwanted attention"),
-                  _plainText("\nSymbols"),
-                  _iconText(
+                  plainText("\nSymbols"),
+                  iconText(
                       Icons.arrow_downward, Colors.red, "Cost of an action"),
-                  _iconText(Icons.arrow_upward, Colors.green,
+                  iconText(Icons.arrow_upward, Colors.green,
                       "Reward from an action"),
-                  _iconText(Icons.description, Colors.purpleAccent,
+                  iconText(Icons.description, Colors.purpleAccent,
                       "The named card will go into the discard pile, either gaining or losing quest progress"),
-                  _iconText(Icons.remove_red_eye, Colors.blue,
+                  iconText(Icons.remove_red_eye, Colors.blue,
                       "Scry (See and reorder the top cards of the deck)"),
-                  _iconText(Icons.replay, Colors.black,
+                  iconText(Icons.replay, Colors.black,
                       "This card will go into the discard pile"),
-                  _iconText(Icons.delete, Colors.black,
+                  iconText(Icons.delete, Colors.black,
                       "This card will be removed, exiled, from the deck"),
-                  _iconText(Icons.check, Colors.green, "You win the game!"),
-                  _iconText(Icons.close, Colors.red, "You lose the game!"),
+                  iconText(Icons.check, Colors.green, "You win the game!"),
+                  iconText(Icons.close, Colors.red, "You lose the game!"),
                 ]))));
   }
 
-  Widget _iconText(IconData icon, Color iconColor, String text) {
-    return RichText(
-      text: TextSpan(
-        children: [
-          WidgetSpan(
-            child: Icon(icon, color: iconColor),
-          ),
-          TextSpan(
-            text: " - " + text,
-            style: TextStyle(color: Colors.black, fontSize: 16),
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget _plainText(String text) {
-    return Text(
-      text,
-      style: TextStyle(color: Colors.black, fontSize: 16),
-    );
-  }
 }

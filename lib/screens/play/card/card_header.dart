@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../text_utils.dart';
+
 class CardHeader extends StatelessWidget {
   final String headerText;
 
@@ -9,14 +11,7 @@ class CardHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Text(
-        headerText,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 24,
-        ),
-      )
+      child: heading(headerText),
     );
   }
 }
