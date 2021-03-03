@@ -19,57 +19,53 @@ class MainMenuPage extends StatelessWidget {
         title: Text('Treasure of the High Seas'),
       ),
       body: Center(
-        child: ButtonTheme(
-          height: 100,
-          minWidth: (MediaQuery.of(context).size.width) * 0.8,       
+        child: ElevatedButtonTheme(
+          data: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).accentColor,
+                  minimumSize:
+                      Size((MediaQuery.of(context).size.width) * 0.8, 100))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              MenuButton(
-                'Play',
-                onPressed: () {
-                  _startGame(context);
-                }
-              ),
-              MenuButton(
-                'Settings',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SettingsPage()),
-                    );
-                  }
-              ),
-              MenuButton(
-                  'Rules',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RulesPage(const ResourceLoader())),
-                    );
-                  }
-              ),
-              MenuButton(
-                'Credits',
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const CreditsPage()));
-                }
-              )
+              MenuButton('Play', onPressed: () {
+                _startGame(context);
+              }),
+              MenuButton('Settings', onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                );
+              }),
+              MenuButton('Rules', onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RulesPage(const ResourceLoader())),
+                );
+              }),
+              MenuButton('Credits', onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreditsPage()));
+              })
             ],
           ),
         ),
       ),
     );
   }
-  
+
   Future<void> _startGame(BuildContext context) async {
     final audioModel = context.read<AudioModel>();
     await audioModel.loopMusic(GAME_MUSIC);
 
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
+      MaterialPageRoute(
+          builder: (context) => PlayPage('Play Page', startNewGame())),
     );
   }
 }

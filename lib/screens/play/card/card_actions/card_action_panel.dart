@@ -37,8 +37,8 @@ class CardActionPanel extends StatelessWidget {
                 shape: shape,
                 color: _getButtonColor(actionDetails),
                 child: _getActionComponents(actionDetails, state.playerHand))
-            : RaisedButton(
-                shape: shape,
+            : ElevatedButton(
+                style: ElevatedButton.styleFrom(shape: shape, primary: _getButtonColor(actionDetails)),
                 onPressed: enabled
                     ? () {
                         action.performAction(state);
@@ -48,7 +48,6 @@ class CardActionPanel extends StatelessWidget {
                         }
                       }
                     : null,
-                color: _getButtonColor(actionDetails),
                 child: _getActionComponents(actionDetails, state.playerHand)));
   }
 

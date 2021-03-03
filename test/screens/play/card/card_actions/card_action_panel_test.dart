@@ -54,7 +54,7 @@ void main() {
     expect(textFinder, findsNothing);
     expect(cardLineFinder, findsNothing);
 
-    final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
+    final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     expect(button.enabled, false);
   });
 
@@ -64,7 +64,7 @@ void main() {
     final action = DummyAction([Resource.DOUBLOON], false);
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
-    final button = tester.widget<RaisedButton>(find.byType(RaisedButton));
+    final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     expect(button.enabled, false);
 
     final textFinder = find.text('Some Action');
@@ -80,8 +80,8 @@ void main() {
     final action = DummyAction([Resource.DOUBLOON], true, fn: performAction);
     await tester.launchWidget(child: CardActionPanel(action), state: state);
 
-    final buttonFinder = find.byType(RaisedButton);
-    final button = tester.widget<RaisedButton>(buttonFinder);
+    final buttonFinder = find.byType(ElevatedButton);
+    final button = tester.widget<ElevatedButton>(buttonFinder);
     expect(button.enabled, true);
 
     final textFinder = find.text('Some Action');
@@ -99,7 +99,7 @@ void main() {
     final action = DummyAction([Resource.DOUBLOON], true, soundEffect: 'baa.mp3');
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState(), audioModel: audioModel);
 
-    final buttonFinder = find.byType(RaisedButton);
+    final buttonFinder = find.byType(ElevatedButton);
     await tester.tap(buttonFinder);
 
     verify(audioModel.playSound('baa.mp3'));
@@ -111,7 +111,7 @@ void main() {
     final action = DummyAction([Resource.DOUBLOON], true, soundEffect: null);
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState(), audioModel: audioModel);
 
-    final buttonFinder = find.byType(RaisedButton);
+    final buttonFinder = find.byType(ElevatedButton);
     await tester.tap(buttonFinder);
 
     verifyZeroInteractions(audioModel);
@@ -142,11 +142,6 @@ void main() {
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Win!'), findsWidgets);
-
-    final buttonFinder = find.byType(RaisedButton);
-    final button = tester.widget<RaisedButton>(buttonFinder);
-    expect(button.color, Colors.green[50]);
-
     expect(find.text('Discard'), findsNothing);
   });
 
@@ -156,11 +151,6 @@ void main() {
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Lose!'), findsWidgets);
-
-    final buttonFinder = find.byType(RaisedButton);
-    final button = tester.widget<RaisedButton>(buttonFinder);
-    expect(button.color, Colors.red[50]);
-
     expect(find.text('Discard'), findsNothing);
   });
 
@@ -184,7 +174,7 @@ void main() {
     await tester.launchWidget(child: CardActionPanel(action, readOnly: true), state: makeGameState());
 
     expect(find.byType(Card), findsOneWidget);
-    expect(find.byType(RaisedButton), findsNothing);
+    expect(find.byType(ElevatedButton), findsNothing);
 
     final textFinder = find.text('Some Action');
     final costFinder = find.text('(D)');
