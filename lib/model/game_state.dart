@@ -16,9 +16,9 @@ class GameState with ChangeNotifier {
 
   Card currentCard;
   final List<Card> deck;
-  final List<Card> discard = new List<Card>();
-  final List<Card> exile = new List<Card>();
-  final List<Card> scrying = new List<Card>();
+  final List<Card> discard = [];
+  final List<Card> exile = [];
+  final List<Card> scrying = [];
 
   final Hand playerHand = new Hand();
 

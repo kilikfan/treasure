@@ -6,17 +6,19 @@ import '../../model/card/card.dart' as Model;
 import 'card_viewer.dart';
 
 class ScryingPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    final scrying = context.select<GameState, List<Model.Card>>((state) => state.scrying);
+    final scrying =
+        context.select<GameState, List<Model.Card>>((state) => state.scrying);
 
     return CardViewer(scrying, scryButtons);
   }
 
-  List<Widget> scryButtons(context, card){
-    return [_getScryButton(context, card, ScryOption.TOP),
-    _getScryButton(context, card, ScryOption.BOTTOM)];
+  List<Widget> scryButtons(context, card) {
+    return [
+      _getScryButton(context, card, ScryOption.TOP),
+      _getScryButton(context, card, ScryOption.BOTTOM)
+    ];
   }
 
   Widget _getScryButton(
@@ -24,15 +26,17 @@ class ScryingPage extends StatelessWidget {
     return Container(
         padding: EdgeInsets.symmetric(vertical: 5),
         width: MediaQuery.of(context).size.width * 0.7,
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: scryOption.getColour(),
+              shape: RoundedRectangleBorder(
             side: BorderSide(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(10),
-          ),
+          )),
           onPressed: () {
-            Provider.of<GameState>(context, listen: false).replaceScryedCard(card, scryOption);
+            Provider.of<GameState>(context, listen: false)
+                .replaceScryedCard(card, scryOption);
           },
-          color: scryOption.getColour(),
           child:
               Text(scryOption.getDescription(), style: TextStyle(fontSize: 30)),
         ));
