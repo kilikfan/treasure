@@ -142,11 +142,6 @@ void main() {
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Win!'), findsWidgets);
-
-    final buttonFinder = find.byType(ElevatedButton);
-    final button = tester.widget<ElevatedButton>(buttonFinder);
-    expect(button.style.foregroundColor, Colors.green[50]);
-
     expect(find.text('Discard'), findsNothing);
   });
 
@@ -156,11 +151,6 @@ void main() {
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Lose!'), findsWidgets);
-
-    final buttonFinder = find.byType(ElevatedButton);
-    final button = tester.widget<ElevatedButton>(buttonFinder);
-    expect(button.style.foregroundColor, Colors.red[50]);
-
     expect(find.text('Discard'), findsNothing);
   });
 
