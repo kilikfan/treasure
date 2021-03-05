@@ -18,30 +18,29 @@ class GameEndPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ButtonTheme(
-          height: 100,
-          minWidth: (MediaQuery.of(context).size.width) * 0.8,
+        child: ElevatedButtonTheme(
+          data: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).accentColor,
+                  minimumSize:
+                      Size((MediaQuery.of(context).size.width) * 0.8, 100))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               _getText(context, result),
-              MenuButton(
-                  'New Game',
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => PlayPage('Play Page', startNewGame())),
-                    );
-                  }
-              ),
-              MenuButton(
-                  'Exit',
-                  onPressed: () async {
-                    await context.read<AudioModel>().loopMusic(MENU_MUSIC);
-                    Navigator.of(context).pop();
-                  }
-              )
+              MenuButton('New Game', onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PlayPage('Play Page', startNewGame())),
+                );
+              }),
+              MenuButton('Exit', onPressed: () async {
+                await context.read<AudioModel>().loopMusic(MENU_MUSIC);
+                Navigator.of(context).pop();
+              })
             ],
           ),
         ),
@@ -51,11 +50,8 @@ class GameEndPage extends StatelessWidget {
 
   Widget _getText(BuildContext context, GameResult result) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
-        child: Text(
-            result.description,
-            style: TextStyle(fontSize: 30)
-        ),
+      padding: const EdgeInsets.all(10),
+      child: Text(result.description, style: TextStyle(fontSize: 30)),
     );
   }
 }

@@ -27,17 +27,15 @@ class CardPile extends StatelessWidget {
     return Center(
         child: Card(
             shape: shape,
-            child: Padding(
-                padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
-                child: TextButton(
-                    onPressed: pileName == 'Discard' && pileSize > 0
-                        ? () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ViewDiscardPage(state)));
-                          }
-                        : null,
-                    child: text))));
+            child: TextButton(
+                onPressed: pileName == 'Discard' && pileSize > 0
+                    ? () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewDiscardPage(state)));
+                      }
+                    : null,
+                child: text)));
   }
 }
