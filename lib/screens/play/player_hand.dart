@@ -20,7 +20,7 @@ class PlayerHand extends StatelessWidget {
       
       return MapEntry(i, 
         Align(
-          alignment: Alignment(_getCardXAlignment(i), _getCardXAlignment(i).abs()),
+          alignment: Alignment(_getCardXAlignment(i), _getCardXAlignment(i).abs() - .5),
           child: SizedBox(
             width: (MediaQuery.of(context).size.width) / (maxCardsBeforeOverlapping + 2),
             height: ((MediaQuery.of(context).size.width) / (maxCardsBeforeOverlapping + 2)) * 1.4,
