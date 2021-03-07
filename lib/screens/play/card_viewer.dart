@@ -14,8 +14,11 @@ class CardViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> cardWidgetList = cardList.map((card) {
       final List<Widget> buttons = getButtons(context, card);
-      final List<Widget> columnComponents = [_getCardWidget(context, card), ...buttons];
-
+      final List<Widget> columnComponents = [
+        _buildCardNumberWidget(context, cardList, card),
+        _buildCardWidget(context, card),
+        ...buttons
+      ];
       return Container(
           width: MediaQuery.of(context).size.width,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children:
@@ -32,7 +35,7 @@ class CardViewer extends StatelessWidget {
         });
   }
 
-  Widget _getCardWidget(BuildContext context, Model.Card card) {
+  Widget _buildCardWidget(BuildContext context, Model.Card card) {
     return Container(
         padding: EdgeInsets.symmetric(vertical: 5),
         height: MediaQuery.of(context).size.height * 0.65,
@@ -40,6 +43,15 @@ class CardViewer extends StatelessWidget {
           card,
           readOnly: true,
         ));
+  }
+
+  Widget _buildCardNumberWidget(BuildContext context, List<Model.Card> cardList, Model.Card currentCard) {
+    final position = cardList.indexOf(currentCard) + 1;
+    return Container(
+        padding: EdgeInsets.symmetric(vertical: 5),
+        height: MediaQuery.of(context).size.height * 0.03,
+        child: Text("$position / ${cardList.length}")
+    );
   }
 
 }

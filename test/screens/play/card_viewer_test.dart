@@ -15,66 +15,106 @@ void main() {
   }
   final List<Model.Card> cardList = [AGameOfCards(), ARivalShip(), AnIsland()];
 
-  testWidgets('the first card in the list should be shown initially', (WidgetTester tester) async {
-    await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
+  group('displaying cards should', () {
 
-    _expectOnlyCard(cardList.first.name, cardList);
+    testWidgets('show the first card in the list initially', (
+        WidgetTester tester) async {
+      await tester.launchWidget(
+          child: CardViewer(cardList, getButtons), state: makeGameState());
+
+      _expectOnlyCard(cardList.first.name, cardList);
+    });
+
+    testWidgets('show the second card in the list after tapping the right arrow', (
+        WidgetTester tester) async {
+      await tester.launchWidget(
+          child: CardViewer(cardList, getButtons), state: makeGameState());
+      final rightArrow = find.byIcon(Icons.arrow_forward_ios);
+
+      await tester.tap(rightArrow);
+      await tester.pumpAndSettle();
+
+      _expectOnlyCard(cardList
+          .elementAt(1)
+          .name, cardList);
+    });
+
+    testWidgets('loop around to show the first card after tapping the right arrow from the final card', (
+        WidgetTester tester) async {
+      await tester.launchWidget(
+          child: CardViewer(cardList, getButtons), state: makeGameState());
+      final rightArrow = find.byIcon(Icons.arrow_forward_ios);
+
+      await tester.tap(rightArrow);
+      await tester.pumpAndSettle();
+      await tester.tap(rightArrow);
+      await tester.pumpAndSettle();
+      await tester.tap(rightArrow);
+      await tester.pumpAndSettle();
+
+      _expectOnlyCard(cardList.first.name, cardList);
+    });
+
+    testWidgets('loop around to show the last card after tapping the left arrow from the first card', (
+        WidgetTester tester) async {
+      await tester.launchWidget(
+          child: CardViewer(cardList, getButtons), state: makeGameState());
+      final leftArrow = find.byIcon(Icons.arrow_back_ios);
+
+      await tester.tap(leftArrow);
+      await tester.pumpAndSettle();
+
+      _expectOnlyCard(cardList.last.name, cardList);
+    });
+
   });
 
-  testWidgets('tapping the right arrow should advance the selected card', (WidgetTester tester) async {
-    await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
-    final rightArrow = find.byIcon(Icons.arrow_forward_ios);
+  group('displaying buttons should', () {
 
-    await tester.tap(rightArrow);
-    await tester.pumpAndSettle();
+    testWidgets('show the provided buttons on the page', (WidgetTester tester) async {
+      await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
 
-    _expectOnlyCard(cardList.elementAt(1).name, cardList);
+      final button1Finder = find.text("${cardList.first.name} button 1");
+      final button2Finder = find.text("${cardList.first.name} button 2");
+      expect(button1Finder, findsOneWidget);
+      expect(button2Finder, findsOneWidget);
+    });
+
+    testWidgets('change the buttons depending on the card being viewed', (WidgetTester tester) async {
+      await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
+      final rightArrow = find.byIcon(Icons.arrow_forward_ios);
+
+      await tester.tap(rightArrow);
+      await tester.pumpAndSettle();
+
+      final button1Finder = find.text("${cardList.elementAt(1).name} button 1");
+      final button2Finder = find.text("${cardList.elementAt(1).name} button 2");
+      expect(button1Finder, findsOneWidget);
+      expect(button2Finder, findsOneWidget);
+    });
+
   });
 
-  testWidgets('tapping the right arrow when at the last card should loop around to the first card', (WidgetTester tester) async {
-    await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
-    final rightArrow = find.byIcon(Icons.arrow_forward_ios);
+  group('displaying the card numbering should', () {
 
-    await tester.tap(rightArrow);
-    await tester.pumpAndSettle();
-    await tester.tap(rightArrow);
-    await tester.pumpAndSettle();
-    await tester.tap(rightArrow);
-    await tester.pumpAndSettle();
+    testWidgets('show the position of the card currently being viewed in the list of cards', (WidgetTester tester) async {
+      await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
 
-    _expectOnlyCard(cardList.first.name, cardList);
-  });
+      final cardNumberFinder = find.text("1 / ${cardList.length}");
+      expect(cardNumberFinder, findsOneWidget);
+    });
 
-  testWidgets('tapping the left arrow should loop around to the last card', (WidgetTester tester) async {
-    await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
-    final leftArrow = find.byIcon(Icons.arrow_back_ios);
+    testWidgets('change the card number after changing the card being viewed', (WidgetTester tester) async {
+      await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
+      final rightArrow = find.byIcon(Icons.arrow_forward_ios);
 
-    await tester.tap(leftArrow);
-    await tester.pumpAndSettle();
+      await tester.tap(rightArrow);
+      await tester.pumpAndSettle();
 
-    _expectOnlyCard(cardList.last.name, cardList);
-  });
+      final cardNumberFinder = find.text("2 / ${cardList.length}");
+      expect(cardNumberFinder, findsOneWidget);
+    });
 
-  testWidgets('the provided buttons should be rendered on the page', (WidgetTester tester) async {
-    await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
-
-    final button1Finder = find.text("${cardList.first.name} button 1");
-    final button2Finder = find.text("${cardList.first.name} button 2");
-    expect(button1Finder, findsOneWidget);
-    expect(button2Finder, findsOneWidget);
-  });
-
-  testWidgets('the provided buttons should change depending on the card being viewed', (WidgetTester tester) async {
-    await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
-    final rightArrow = find.byIcon(Icons.arrow_forward_ios);
-
-    await tester.tap(rightArrow);
-    await tester.pumpAndSettle();
-
-    final button1Finder = find.text("${cardList.elementAt(1).name} button 1");
-    final button2Finder = find.text("${cardList.elementAt(1).name} button 2");
-    expect(button1Finder, findsOneWidget);
-    expect(button2Finder, findsOneWidget);
   });
 
 }
