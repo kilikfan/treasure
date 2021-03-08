@@ -25,7 +25,7 @@ class CardDisplay extends StatelessWidget {
             children: [
               CardHeader(card.name, card.getSubHeaderText()),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: CardActionsPanel(card, readOnly))
             ],
           ),

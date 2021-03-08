@@ -71,25 +71,23 @@ class PlayPage extends StatelessWidget {
                     return GameEndPage(state.result);
                   } else {
                     return Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Container(
                               height:
-                                  (MediaQuery.of(context).size.height) * 0.10,
+                                  (MediaQuery.of(context).size.height) * 0.07,
                               child: Center(child: DeckStatePanel()),
                             ),
                             Expanded(child: CardDisplay(state.currentCard)),
                             Container(
-                                height:
-                                    (MediaQuery.of(context).size.height) * 0.25,
-                                child: Column(children: [
-                                  Expanded(child: PlayerHand(state.playerHand)),
-                                  Center(
-                                      child: Text(
-                                          "Resource Count: ${state.playerHand.cards.length}"))
-                                ])),
+                              height:
+                                  (MediaQuery.of(context).size.height) * 0.15,
+                              child: Column(children: [
+                                Expanded(child: PlayerHand(state.playerHand))
+                              ]),
+                            )
                           ],
                         ));
                   }
