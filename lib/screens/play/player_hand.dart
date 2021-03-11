@@ -37,13 +37,12 @@ class PlayerHand extends StatelessWidget {
         .values
         .toList();
 
-    final resourceCount = Align(
+    Widget _resourceCount() => Align(
           alignment: AlignmentDirectional.topEnd, // Top right corner
           child: Text("Count: ${hand.cards.length}"));
-    }
 
     // Add the other widget to the stack
-    resourceCards.add(resourceCount());
+    resourceCards.add(_resourceCount());
 
     return Stack(children: resourceCards);
   }
