@@ -43,7 +43,7 @@ class PlayerHand extends StatelessWidget {
     }
 
     // Add the other widget to the stack
-    resourceCards.add(_resourceCount());
+    resourceCards.add(resourceCount());
 
     return Stack(children: resourceCards);
   }
