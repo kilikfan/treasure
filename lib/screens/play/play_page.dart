@@ -45,7 +45,8 @@ class PlayPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ViewActiveQuestsPage(state)),
+                      MaterialPageRoute(
+                          builder: (context) => ViewActiveQuestsPage(state)),
                     );
                   },
                 ),
@@ -69,28 +70,26 @@ class PlayPage extends StatelessWidget {
                   } else if (state.result != null) {
                     return GameEndPage(state.result);
                   } else {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Container(
-                          height: (MediaQuery.of(context).size.height) * 0.08,
-                          padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          child: Center(child: DeckStatePanel()),
-                        ),
-                        SizedBox(height: 5),
-                        Expanded(child: CardDisplay(state.currentCard)),
-                        Container(
-                          height: (MediaQuery.of(context).size.height) * 0.05,
-                          padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                          child: Center(child: Text("Resource Count: ${state.playerHand.cards.length}")),
-                        ),
-                        Container(
-                          height: (MediaQuery.of(context).size.height) * 0.2,
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: PlayerHand(state.playerHand),
-                        ),
-                      ],
-                    );
+                    return Container(
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              height:
+                                  (MediaQuery.of(context).size.height) * 0.07,
+                              child: Center(child: DeckStatePanel()),
+                            ),
+                            Expanded(child: CardDisplay(state.currentCard)),
+                            Container(
+                              height:
+                                  (MediaQuery.of(context).size.height) * 0.15,
+                              child: Column(children: [
+                                Expanded(child: PlayerHand(state.playerHand))
+                              ]),
+                            )
+                          ],
+                        ));
                   }
                 }))));
   }
