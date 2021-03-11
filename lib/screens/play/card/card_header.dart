@@ -16,10 +16,8 @@ class CardHeader extends StatelessWidget {
   }
 
   List<Widget> _getHeadings(String headerText, String subHeaderText) {
-    List<Widget> headings;
-
     //Card heading should always be displayed
-    headings = [heading(headerText)];
+    final headings = [heading(headerText)];
 
     //Only make room for a subheader if we have one
     if (subHeaderText != '') {
