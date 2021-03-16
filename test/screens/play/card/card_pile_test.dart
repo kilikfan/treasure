@@ -9,7 +9,7 @@ import '../../../test_utils.dart';
 void main() {
   testWidgets('clicking discard pile when discard is empty should do nothing', (WidgetTester tester) async {
     final buttonFinder = find.byType(TextButton);
-    GameState state = makeGameState();
+    final GameState state = makeGameState();
 
     await tester.launchWidget(child: CardPile(0, 'Discard', state), state: state);
     final button = tester.widget<TextButton>(buttonFinder);
@@ -23,7 +23,7 @@ void main() {
 
   testWidgets('clicking discard pile when discard has cards in should toggle discard view', (WidgetTester tester) async {
     final buttonFinder = find.byType(TextButton);
-    GameState state = makeGameState();
+    final GameState state = makeGameState();
 
     await tester.launchWidget(child: CardPile(5, 'Discard', state), state: state);
     final button = tester.widget<TextButton>(buttonFinder);
@@ -37,7 +37,7 @@ void main() {
 
   testWidgets('clicking deck pile should do nothing', (WidgetTester tester) async {
     final buttonFinder = find.byType(TextButton);
-    GameState state = makeGameState();
+    final GameState state = makeGameState();
 
     await tester.launchWidget(child: CardPile(5, 'Deck', state), state: state);
     final button = tester.widget<TextButton>(buttonFinder);

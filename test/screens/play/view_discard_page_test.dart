@@ -12,8 +12,8 @@ void main() {
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
 
-    var playPage = tester.widget<PlayPage>(find.byType(PlayPage));
-    var gameState = playPage.state;
+    final playPage = tester.widget<PlayPage>(find.byType(PlayPage));
+    final gameState = playPage.state;
 
     //Play a couple of cards to populate the discard pile
     gameState.nextCard();

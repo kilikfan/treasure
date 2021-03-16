@@ -16,7 +16,7 @@ class PlayerHand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> resourceCards = hand.cards.asMap().map((i, card) {
+    final List<Widget> resourceCards = hand.cards.asMap().map((i, card) {
       
       return MapEntry(i, 
         Align(

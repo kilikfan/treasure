@@ -1,0 +1,21 @@
+analyzer:
+  errors:
+    avoid_init_to_null: error
+    camel_case_extensions: error
+    camel_case_types: error
+    non_constant_identifier_names: error
+    only_throw_errors: error
+    prefer_final_locals: error
+    prefer_single_quotes: info
+    unawaited_futures: info
+
+linter:
+  rules:
+    avoid_init_to_null: true
+    camel_case_extensions: true
+    camel_case_types: true
+    non_constant_identifier_names: true
+    only_throw_errors: true
+    prefer_final_locals: true
+    prefer_single_quotes: true
+    unawaited_futures: true

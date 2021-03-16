@@ -12,7 +12,7 @@ class CardViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> cardWidgetList = cardList.map((card) {
+    final List<Widget> cardWidgetList = cardList.map((card) {
       final List<Widget> buttons = getButtons(context, card);
       final List<Widget> columnComponents = [
         _buildCardNumberWidget(context, cardList, card),
