@@ -45,7 +45,7 @@ class AudioModel {
       await _musicPlayer.stop();
       _playingMusic = false;
     } else if (!_playingMusic) {
-      loopMusic(_lastRequestedMusic);
+      await loopMusic(_lastRequestedMusic);
     }
   }
 }

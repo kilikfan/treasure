@@ -54,7 +54,7 @@ void main() {
     final audioModel = await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
     await audioModel.loopMusic(MENU_MUSIC);
 
-    settingsModel.updateSetting(AppSetting.musicEnabled, false);
+    await settingsModel.updateSetting(AppSetting.musicEnabled, false);
     verify(musicPlayer.stop());
   });
 
@@ -66,7 +66,7 @@ void main() {
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
     await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
 
-    settingsModel.updateSetting(AppSetting.musicEnabled, true);
+    await settingsModel.updateSetting(AppSetting.musicEnabled, true);
     verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
   });
 
@@ -83,7 +83,7 @@ void main() {
     reset(musicCache);
     reset(musicPlayer);
 
-    settingsModel.updateSetting(AppSetting.sfxEnabled, true);
+    await settingsModel.updateSetting(AppSetting.sfxEnabled, true);
 
     verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);
@@ -98,7 +98,7 @@ void main() {
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
     await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache, musicPlayer: musicPlayer);
 
-    settingsModel.updateSetting(AppSetting.sfxEnabled, true);
+    await settingsModel.updateSetting(AppSetting.sfxEnabled, true);
 
     verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);

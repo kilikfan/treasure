@@ -23,7 +23,7 @@ Future<Widget> _buildApp() async {
   final soundCache = AudioCache(prefix: 'assets/sfx/', fixedPlayer: AudioPlayer());
   final audioModel = AudioModel(settingsModel, musicPlayer, musicCache, soundCache);
 
-  audioModel.loopMusic(MENU_MUSIC);
+  await audioModel.loopMusic(MENU_MUSIC);
 
   return MultiProvider(providers: [
     ChangeNotifierProvider<SettingsModel>.value(value: settingsModel),

@@ -16,7 +16,7 @@ class PlayerHand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> resourceCards = hand.cards
+    final List<Widget> resourceCards = hand.cards
         .asMap()
         .map((i, card) {
           return MapEntry(
@@ -39,6 +39,9 @@ class PlayerHand extends StatelessWidget {
     final Widget resourceCount = Align(
         alignment: AlignmentDirectional.topEnd, // Top right corner
         child: Text("Count: ${hand.cards.length}"));
+
+    // Add the other widget to the stack
+    resourceCards.add(resourceCount);
 
     return Stack(
       children: resourceCards
