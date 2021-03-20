@@ -16,19 +16,29 @@ class PlayerHand extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> resourceCards = hand.cards.asMap().map((i, card) {
-      
-      return MapEntry(i, 
-        Align(
-          alignment: Alignment(_getCardXAlignment(i), _getCardXAlignment(i).abs()),
-          child: SizedBox(
-            width: (MediaQuery.of(context).size.width) / (maxCardsBeforeOverlapping + 2),
-            height: ((MediaQuery.of(context).size.width) / (maxCardsBeforeOverlapping + 2)) * 1.4,
-            child: ResourceCard(card)
-          ),
-        )
-      );
-    }).values.toList();
+    List<Widget> resourceCards = hand.cards
+        .asMap()
+        .map((i, card) {
+          return MapEntry(
+              i,
+              Align(
+                alignment: Alignment(
+                    _getCardXAlignment(i), _getCardXAlignment(i).abs() - .5),
+                child: SizedBox(
+                    width: (MediaQuery.of(context).size.width) /
+                        (maxCardsBeforeOverlapping + 2),
+                    height: ((MediaQuery.of(context).size.width) /
+                            (maxCardsBeforeOverlapping + 2)) *
+                        1.4,
+                    child: ResourceCard(card)),
+              ));
+        })
+        .values
+        .toList();
+
+    final Widget resourceCount = Align(
+        alignment: AlignmentDirectional.topEnd, // Top right corner
+        child: Text("Count: ${hand.cards.length}"));
 
     return Stack(
       children: resourceCards
