@@ -24,7 +24,7 @@ class MainMenuPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   primary: Theme.of(context).accentColor,
                   minimumSize:
-                      Size((MediaQuery.of(context).size.width) * 0.8, 100))),
+                      Size((MediaQuery.of(context).size.width) * 0.8, 64))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
