@@ -11,17 +11,17 @@ import '../special_card.dart';
 
 class Mutiny extends SpecialCard {
   const Mutiny()
-      : super("Mutiny!", SpecialType.MUTINY);
+      : super('Mutiny!', SpecialType.MUTINY);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
       ExileAction(
-          description: "Devastation in the melee!",
+          description: 'Devastation in the melee!',
           cost: RandomCost(5),
           soundEffect: SFX_SWORD),
       ExileAction(
-          description: "Pay off the mutineers to leave your crew.",
+          description: 'Pay off the mutineers to leave your crew.',
           cost: SimpleCost([
             Resource.CREW,
             Resource.CREW,
@@ -30,7 +30,7 @@ class Mutiny extends SpecialCard {
           ]),
           soundEffect: SFX_COINS),
       ExileAction(
-          description: "Share your map with the crew.",
+          description: 'Share your map with the crew.',
           cost: SimpleCost([Resource.MAP]),
           soundEffect: SFX_MAP)
     ];

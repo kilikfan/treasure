@@ -11,19 +11,19 @@ import '../test_utils.dart';
 void main() {
   testWidgets('should initialise with an empty string while rules text is loaded', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(home: RulesPage(const ResourceLoader())));
-    final rulesText = tester.widget<Text>(find.byKey(Key("rules_content")));
-    expect(rulesText.data, "");
+    final rulesText = tester.widget<Text>(find.byKey(Key('rules_content')));
+    expect(rulesText.data, '');
   });
 
   testWidgets('should load the right resource, and display the rules text once loaded', (WidgetTester tester) async {
     final mockResourceLoader = MockResourceLoader();
-    when(mockResourceLoader.readTextResource(any)).thenAnswer((_) => Future.value("Resource text"));
+    when(mockResourceLoader.readTextResource(any)).thenAnswer((_) => Future.value('Resource text'));
 
     await tester.launchWidget(child: RulesPage(mockResourceLoader));
 
-    final rulesText = tester.widget<Text>(find.byKey(Key("rules_content")));
-    expect(rulesText.data, "Resource text");
+    final rulesText = tester.widget<Text>(find.byKey(Key('rules_content')));
+    expect(rulesText.data, 'Resource text');
 
-    verify(mockResourceLoader.readTextResource("assets/text/rules.txt"));
+    verify(mockResourceLoader.readTextResource('assets/text/rules.txt'));
   });
 }

@@ -11,7 +11,7 @@ import '../../test_utils.dart';
 void main() {
 
   List<Widget> getButtons(context, card) {
-    return [Text("${card.name} button 1"), Text("${card.name} button 2")];
+    return [Text('${card.name} button 1'), Text('${card.name} button 2')];
   }
   final List<Model.Card> cardList = [AGameOfCards(), ARivalShip(), AnIsland()];
 
@@ -74,8 +74,8 @@ void main() {
     testWidgets('show the provided buttons on the page', (WidgetTester tester) async {
       await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
 
-      final button1Finder = find.text("${cardList.first.name} button 1");
-      final button2Finder = find.text("${cardList.first.name} button 2");
+      final button1Finder = find.text('${cardList.first.name} button 1');
+      final button2Finder = find.text('${cardList.first.name} button 2');
       expect(button1Finder, findsOneWidget);
       expect(button2Finder, findsOneWidget);
     });
@@ -87,8 +87,8 @@ void main() {
       await tester.tap(rightArrow);
       await tester.pumpAndSettle();
 
-      final button1Finder = find.text("${cardList.elementAt(1).name} button 1");
-      final button2Finder = find.text("${cardList.elementAt(1).name} button 2");
+      final button1Finder = find.text('${cardList.elementAt(1).name} button 1');
+      final button2Finder = find.text('${cardList.elementAt(1).name} button 2');
       expect(button1Finder, findsOneWidget);
       expect(button2Finder, findsOneWidget);
     });
@@ -100,7 +100,7 @@ void main() {
     testWidgets('show the position of the card currently being viewed in the list of cards', (WidgetTester tester) async {
       await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
 
-      final cardNumberFinder = find.text("1 / ${cardList.length}");
+      final cardNumberFinder = find.text('1 / ${cardList.length}');
       expect(cardNumberFinder, findsOneWidget);
     });
 
@@ -111,7 +111,7 @@ void main() {
       await tester.tap(rightArrow);
       await tester.pumpAndSettle();
 
-      final cardNumberFinder = find.text("2 / ${cardList.length}");
+      final cardNumberFinder = find.text('2 / ${cardList.length}');
       expect(cardNumberFinder, findsOneWidget);
     });
 

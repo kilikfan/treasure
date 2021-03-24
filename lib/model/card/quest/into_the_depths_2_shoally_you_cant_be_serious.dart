@@ -12,20 +12,20 @@ import 'into_the_depths_3_kraken_in_my_boots.dart';
 
 class ShoallyYouCantBeSerious extends QuestCard {
   const ShoallyYouCantBeSerious()
-      : super("Shoally You Can't Be Serious!", QuestLine.INTO_THE_DEPTHS, 2);
+      : super('Shoally You Can\'t Be Serious!', QuestLine.INTO_THE_DEPTHS, 2);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(
           cost: SimpleCost([Resource.FOOD]),
-          description: "The fishy smell persists."),
+          description: 'The fishy smell persists.'),
       //TODO - optional C/L C/L cost
       ReplaceAction(KrakenInMyBoots(), ReplaceType.FORWARDS,
-          "You have an exi-stench-ial crisis.",
+          'You have an exi-stench-ial crisis.',
           cost: [Resource.CREW, Resource.CREW, Resource.FOOD]),
       ReplaceAction(ASenseOfPorpoise(), ReplaceType.BACKWARDS,
-          "Why couldn’t it be follow the butterflies?")
+          'Why couldn’t it be follow the butterflies?')
     ];
   }
 }

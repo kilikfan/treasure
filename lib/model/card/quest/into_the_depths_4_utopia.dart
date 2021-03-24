@@ -9,12 +9,12 @@ import '../action/end_game_action.dart';
 import '../quest_card.dart';
 
 class Utopia extends QuestCard {
-  const Utopia() : super("Utopia", QuestLine.INTO_THE_DEPTHS, 4);
+  const Utopia() : super('Utopia', QuestLine.INTO_THE_DEPTHS, 4);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      EndGameAction(GameResult.WIN, [Resource.MAP], "Behold its majesty!"),
+      EndGameAction(GameResult.WIN, [Resource.MAP], 'Behold its majesty!'),
       EndGameAction(
           GameResult.WIN,
           [
@@ -24,8 +24,8 @@ class Utopia extends QuestCard {
             Resource.FOOD,
             Resource.FOOD
           ],
-          "'S alright."),
-      EndGameAction(GameResult.LOSE, [], "Didn't quite escape the Kraken.",
+          '\'S alright.'),
+      EndGameAction(GameResult.LOSE, [], 'Didn\'t quite escape the Kraken.',
           soundEffect: SFX_KRAKEN)
     ];
   }

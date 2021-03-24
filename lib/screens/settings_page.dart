@@ -14,9 +14,9 @@ class SettingsPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           _buildPreferenceTile(
-              context, AppSetting.musicEnabled, "Music", Icons.music_note),
+              context, AppSetting.musicEnabled, 'Music', Icons.music_note),
           _buildPreferenceTile(
-              context, AppSetting.sfxEnabled, "Sound Effects", Icons.speaker),
+              context, AppSetting.sfxEnabled, 'Sound Effects', Icons.speaker),
         ],
       ),
     );

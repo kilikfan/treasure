@@ -10,22 +10,22 @@ import '../special_card_types.dart';
 
 class RavenousCrew extends SpecialCard {
   const RavenousCrew()
-      : super("Ravenous Crew", SpecialType.RAVENOUS_CREW);
+      : super('Ravenous Crew', SpecialType.RAVENOUS_CREW);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
       ExileAction(
-          description: "Theft is the only way.",
+          description: 'Theft is the only way.',
           reward: [Resource.FOOD, Resource.INFAMY],
           soundEffect: SFX_APPLE),
       ExileAction(
-          description: "Resort to cannibalism.",
+          description: 'Resort to cannibalism.',
           reward: [Resource.FOOD],
           cost: SimpleCost([Resource.LANDLUBBER]),
           soundEffect: SFX_DEATH),
       ExileAction(
-          description: "Emergency port stop.",
+          description: 'Emergency port stop.',
           reward: [Resource.FOOD],
           cost: SimpleCost([Resource.DOUBLOON]),
           soundEffect: SFX_COINS)

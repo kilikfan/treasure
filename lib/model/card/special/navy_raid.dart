@@ -12,7 +12,7 @@ import '../special_card_types.dart';
 
 class NavyRaid extends SpecialCard {
   const NavyRaid()
-      : super("Navy Raid!", SpecialType.NAVY_RAID);
+      : super('Navy Raid!', SpecialType.NAVY_RAID);
 
   @override
   List<CardAction> getActions(GameState state) {
@@ -25,12 +25,12 @@ class NavyRaid extends SpecialCard {
 
     return [
       ExileAction(
-          description: "A manner of conscription.",
+          description: 'A manner of conscription.',
           cost: SimpleCost(infamies + crews)),
       ExileAction(
-          description: "A manner of taxation.",
+          description: 'A manner of taxation.',
           cost: SimpleCost(infamies + doubloons)),
-      EndGameAction(GameResult.LOSE, [], "No manners, just capital punishment.",
+      EndGameAction(GameResult.LOSE, [], 'No manners, just capital punishment.',
           soundEffect: SFX_WALK_THE_PLANK)
     ];
   }

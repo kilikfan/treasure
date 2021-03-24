@@ -7,14 +7,14 @@ import '../action/trade_action.dart';
 import '../card.dart';
 
 class PortFees extends Card {
-  const PortFees() : super("Port Fees");
+  const PortFees() : super('Port Fees');
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Pay the fee.", [Resource.DOUBLOON, Resource.DOUBLOON], [], soundEffect: SFX_COINS),
-      TradeAction("Sail off.", [], [Resource.INFAMY], soundEffect: SFX_SHIP_BELL),
-      TradeAction("Kidnap the clerk and sail off.", [], [Resource.LANDLUBBER, Resource.INFAMY], soundEffect: SFX_SHIP_BELL)
+      TradeAction('Pay the fee.', [Resource.DOUBLOON, Resource.DOUBLOON], [], soundEffect: SFX_COINS),
+      TradeAction('Sail off.', [], [Resource.INFAMY], soundEffect: SFX_SHIP_BELL),
+      TradeAction('Kidnap the clerk and sail off.', [], [Resource.LANDLUBBER, Resource.INFAMY], soundEffect: SFX_SHIP_BELL)
     ];
   }
 }

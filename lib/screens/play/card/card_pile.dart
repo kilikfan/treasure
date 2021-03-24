@@ -17,7 +17,7 @@ class CardPile extends StatelessWidget {
     );
 
     final text = Text(
-      pileName + ": " + pileSize.toString(),
+      pileName + ': ' + pileSize.toString(),
       style: TextStyle(
         fontSize: 12.0,
         fontWeight: FontWeight.bold,

@@ -9,7 +9,7 @@ class RulesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
-        future: _loader.readTextResource("assets/text/rules.txt"),
+        future: _loader.readTextResource('assets/text/rules.txt'),
         builder: (BuildContext context, AsyncSnapshot<String> text) {
           return Scaffold(
               appBar: AppBar(
@@ -19,7 +19,7 @@ class RulesPage extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: new SingleChildScrollView(
                     child: new Text(
-                      text.data != null ? text.data : "",
+                      text.data != null ? text.data : '',
                       key: Key('rules_content'),
                       style: new TextStyle(
                         fontSize: 16.0,

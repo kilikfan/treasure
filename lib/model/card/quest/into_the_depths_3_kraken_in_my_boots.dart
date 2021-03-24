@@ -13,20 +13,20 @@ import 'into_the_depths_4_utopia.dart';
 
 class KrakenInMyBoots extends QuestCard {
   const KrakenInMyBoots()
-      : super("Kraken in My Boots", QuestLine.INTO_THE_DEPTHS, 3);
+      : super('Kraken in My Boots', QuestLine.INTO_THE_DEPTHS, 3);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(
           cost: SimpleCost([Resource.FOOD]),
-          description: "You satiate its hunger. For now."),
+          description: 'You satiate its hunger. For now.'),
       ReplaceAction(
-          ShoallyYouCantBeSerious(), ReplaceType.BACKWARDS, "AAAARRGGH!",
+          ShoallyYouCantBeSerious(), ReplaceType.BACKWARDS, 'AAAARRGGH!',
           soundEffect: SFX_KRAKEN),
       //TODO - final crew can be C/L. Also need the flip a coin bit
       ReplaceAction(
-          Utopia(), ReplaceType.FORWARDS, "What could she be guarding?",
+          Utopia(), ReplaceType.FORWARDS, 'What could she be guarding?',
           cost: [Resource.CREW, Resource.CREW, Resource.CREW])
     ];
   }

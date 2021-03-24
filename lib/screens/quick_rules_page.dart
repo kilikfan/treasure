@@ -15,35 +15,35 @@ class QuickRulesPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                   plainText(
-                      "Object\nComplete a quest line by managing your resources to win!\n"),
+                      'Object\nComplete a quest line by managing your resources to win!\n'),
                   plainText(
-                      "Resources\nM - Maps - Valuable resource and can also act as a wildcard"),
-                  plainText("C - Crew - Basic resource, experienced seafarers"),
+                      'Resources\nM - Maps - Valuable resource and can also act as a wildcard'),
+                  plainText('C - Crew - Basic resource, experienced seafarers'),
                   plainText(
-                      "L - Landlubbers - Basic resource, inexperienced seafarers"),
+                      'L - Landlubbers - Basic resource, inexperienced seafarers'),
                   plainText(
-                      "F - Food - Basic resource, needed to sustain your crew"),
+                      'F - Food - Basic resource, needed to sustain your crew'),
                   plainText(
-                      "D - Doubloons - Basic resource, the local currency"),
+                      'D - Doubloons - Basic resource, the local currency'),
                   plainText(
-                      "I - Infamy - Special resource tracking unwanted attention"),
-                  plainText("\nSymbols"),
+                      'I - Infamy - Special resource tracking unwanted attention'),
+                  plainText('\nSymbols'),
                   iconText(
-                      Icons.arrow_downward, Colors.red, "Cost of an action"),
+                      Icons.arrow_downward, Colors.red, 'Cost of an action'),
                   iconText(Icons.arrow_upward, Colors.green,
-                      "Reward from an action"),
+                      'Reward from an action'),
                   iconText(Icons.arrow_forward, Colors.purpleAccent,
-                      "The named card will go into the discard pile, gaining quest progress"),
+                      'The named card will go into the discard pile, gaining quest progress'),
                   iconText(Icons.arrow_back, Colors.purpleAccent,
-                      "The named card will go into the discard pile, losing quest progress"),
+                      'The named card will go into the discard pile, losing quest progress'),
                   iconText(Icons.remove_red_eye, Colors.blue,
-                      "Scry (See and reorder the top cards of the deck)"),
+                      'Scry (See and reorder the top cards of the deck)'),
                   iconText(Icons.replay, Colors.black,
-                      "This card will go into the discard pile"),
+                      'This card will go into the discard pile'),
                   iconText(Icons.delete, Colors.black,
-                      "This card will be removed, exiled, from the deck"),
-                  iconText(Icons.check, Colors.green, "You win the game!"),
-                  iconText(Icons.close, Colors.red, "You lose the game!"),
+                      'This card will be removed, exiled, from the deck'),
+                  iconText(Icons.check, Colors.green, 'You win the game!'),
+                  iconText(Icons.close, Colors.red, 'You lose the game!'),
                 ]))));
   }
 }

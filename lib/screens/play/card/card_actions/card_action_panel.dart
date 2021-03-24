@@ -70,13 +70,13 @@ class CardActionPanel extends StatelessWidget {
     }
 
     if (actionDetails.cardsToScry != null) {
-      effects.add(CardActionLine("Scry ${actionDetails.cardsToScry}",
+      effects.add(CardActionLine('Scry ${actionDetails.cardsToScry}',
           Icons.remove_red_eye, Colors.blue));
     }
 
     if (actionDetails.replacement != null) {
       final icon = _getReplacementIcon(actionDetails);
-      effects.add(CardActionLine("${actionDetails.replacement.name}",
+      effects.add(CardActionLine('${actionDetails.replacement.name}',
           icon, Colors.purpleAccent));
     }
 
@@ -99,13 +99,13 @@ class CardActionPanel extends StatelessWidget {
 
   Widget _getResultWidget(CardActionDetails actionDetails) {
     if (actionDetails.result == GameResult.WIN) {
-      return CardActionLine("You Win!", Icons.check, Colors.green);
+      return CardActionLine('You Win!', Icons.check, Colors.green);
     } else if (actionDetails.result == GameResult.LOSE) {
-      return CardActionLine("You Lose!", Icons.close, Colors.red);
+      return CardActionLine('You Lose!', Icons.close, Colors.red);
     } else if (actionDetails.destination == CardDestination.DISCARD) {
-      return CardActionLine("Discard", Icons.replay, Colors.black);
+      return CardActionLine('Discard', Icons.replay, Colors.black);
     } else {
-      return CardActionLine("Exile", Icons.delete, Colors.black);
+      return CardActionLine('Exile', Icons.delete, Colors.black);
     }
   }
 

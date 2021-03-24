@@ -12,22 +12,22 @@ import '../quest_card.dart';
 import 'hispaniola_4_retrieve_the_hispaniolan_treasure.dart';
 
 class BribeThePort extends QuestCard {
-  const BribeThePort() : super("Bribe the Port", QuestLine.HISPANIOLA, 3);
+  const BribeThePort() : super('Bribe the Port', QuestLine.HISPANIOLA, 3);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(
-          description: "Review the options over dinner.",
+          description: 'Review the options over dinner.',
           cost: SimpleCost([Resource.FOOD, Resource.FOOD]),
           soundEffect: SFX_APPLE),
       ReplaceAction(RetrieveTheHispaniolanTreasure(), ReplaceType.FORWARDS,
-          "A hefty fee to pay.",
+          'A hefty fee to pay.',
           cost: [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON],
           soundEffect: SFX_COINS),
       ExileAction(
           reward: [Resource.CREW, Resource.DOUBLOON, Resource.LANDLUBBER],
-          description: "Too rich for our blood.")
+          description: 'Too rich for our blood.')
     ];
   }
 }

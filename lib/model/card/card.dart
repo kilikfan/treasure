@@ -11,5 +11,5 @@ abstract class Card {
 
   List<CardAction> getActions(GameState state);
 
-  String getSubHeaderText() => "";
+  String getSubHeaderText() => '';
 }

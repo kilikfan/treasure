@@ -4,11 +4,11 @@ extension QuestLineExt on QuestLine {
   String get description {
     switch (this) {
       case QuestLine.HISPANIOLA:
-        return "Hispaniola";
+        return 'Hispaniola';
       case QuestLine.INTO_THE_DEPTHS:
-        return "Into the Depths";
+        return 'Into the Depths';
       default:
-        return "";
+        return '';
     }
   }
 

@@ -7,7 +7,7 @@ analyzer:
     non_constant_identifier_names: error
     only_throw_errors: error
     prefer_final_locals: error
-    # prefer_single_quotes: info
+    prefer_single_quotes: error
     unawaited_futures: error
 
 linter:
@@ -18,5 +18,5 @@ linter:
     non_constant_identifier_names: true
     only_throw_errors: true
     prefer_final_locals: true
-    # prefer_single_quotes: true
+    prefer_single_quotes: true
     unawaited_futures: true

@@ -10,12 +10,12 @@ import '../quest_card.dart';
 
 class RetrieveTheHispaniolanTreasure extends QuestCard {
   const RetrieveTheHispaniolanTreasure()
-      : super("Retrieve the Hispaniolan Treasure", QuestLine.HISPANIOLA, 4);
+      : super('Retrieve the Hispaniolan Treasure', QuestLine.HISPANIOLA, 4);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      EndGameAction(GameResult.WIN, [Resource.MAP], "X marks the spot!",
+      EndGameAction(GameResult.WIN, [Resource.MAP], 'X marks the spot!',
           soundEffect: SFX_MAP),
       EndGameAction(
           GameResult.WIN,
@@ -26,8 +26,8 @@ class RetrieveTheHispaniolanTreasure extends QuestCard {
             Resource.DOUBLOON,
             Resource.DOUBLOON
           ],
-          "Very well buried, but we found it!"),
-      EndGameAction(GameResult.LOSE, [], "Marooned by your crew!",
+          'Very well buried, but we found it!'),
+      EndGameAction(GameResult.LOSE, [], 'Marooned by your crew!',
           soundEffect: SFX_WALK_THE_PLANK)
     ];
   }
