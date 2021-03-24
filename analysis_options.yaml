@@ -7,6 +7,7 @@ linter:
     - non_constant_identifier_names
     - only_throw_errors
     - prefer_final_locals
+    - prefer_single_quotes
     - unawaited_futures
     - library_names
     - file_names
@@ -45,7 +46,6 @@ linter:
     - use_function_type_syntax_for_parameters
     - hash_and_equals
     - avoid_null_checks_in_equality_operators
-    - prefer_single_quotes
     - always_declare_return_types
     - prefer_const_declarations
     - prefer_const_constructors
