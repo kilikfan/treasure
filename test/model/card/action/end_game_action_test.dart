@@ -9,8 +9,8 @@ main() {
   test('should support winning the game', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
 
-    final action = new EndGameAction(GameResult.WIN, [Resource.CREW], "The winner takes it all!");
-    expect(action.description, "The winner takes it all!");
+    final action = new EndGameAction(GameResult.WIN, [Resource.CREW], 'The winner takes it all!');
+    expect(action.description, 'The winner takes it all!');
 
     final lastCard = state.currentCard;
     action.performAction(state);
@@ -23,8 +23,8 @@ main() {
   test('should support losing the game', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
 
-    final action = new EndGameAction(GameResult.LOSE, [], "The loser standing small.");
-    expect(action.description, "The loser standing small.");
+    final action = new EndGameAction(GameResult.LOSE, [], 'The loser standing small.');
+    expect(action.description, 'The loser standing small.');
 
     final lastCard = state.currentCard;
     action.performAction(state);

@@ -12,7 +12,7 @@ import '../../../../test_utils.dart';
 
 
 class CardWithTwoActions extends Card {
-  CardWithTwoActions() : super("Test");
+  CardWithTwoActions() : super('Test');
 
   @override
   List<CardAction> getActions(GameState state) => [
@@ -22,7 +22,7 @@ class CardWithTwoActions extends Card {
 }
 
 class CardWithThreeActions extends Card {
-  CardWithThreeActions() : super("Test");
+  CardWithThreeActions() : super('Test');
 
   @override
   List<CardAction> getActions(GameState state) => [

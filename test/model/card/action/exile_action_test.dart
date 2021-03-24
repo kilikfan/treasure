@@ -22,7 +22,7 @@ main() {
     final currentCard = state.nextCard();
 
     final action = new ExileAction();
-    expect(action.description, "Exile this card.");
+    expect(action.description, 'Exile this card.');
 
     action.performAction(state);
 
@@ -34,8 +34,8 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
-    final action = new ExileAction(description: "Foo", cost: SimpleCost([Resource.CREW]), reward: [Resource.DOUBLOON]);
-    expect(action.description, "Foo");
+    final action = new ExileAction(description: 'Foo', cost: SimpleCost([Resource.CREW]), reward: [Resource.DOUBLOON]);
+    expect(action.description, 'Foo');
 
     action.performAction(state);
 

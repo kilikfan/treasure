@@ -4,13 +4,13 @@ extension SpecialTypeExt on SpecialType {
   String get description {
     switch (this) {
       case SpecialType.MUTINY:
-        return "Too many riches breed jealousy!";
+        return 'Too many riches breed jealousy!';
       case SpecialType.NAVY_RAID:
-        return "You've become too infamous!";
+        return 'You\'ve become too infamous!';
       case SpecialType.RAVENOUS_CREW:
-        return "You've run out of food!";
+        return 'You\'ve run out of food!';
       default:
-        return "";
+        return '';
     }
   }
 }

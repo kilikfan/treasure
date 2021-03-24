@@ -50,7 +50,7 @@ class CardViewer extends StatelessWidget {
     return Container(
         padding: EdgeInsets.symmetric(vertical: 5),
         height: MediaQuery.of(context).size.height * 0.03,
-        child: Text("$position / ${cardList.length}")
+        child: Text('$position / ${cardList.length}')
     );
   }
 

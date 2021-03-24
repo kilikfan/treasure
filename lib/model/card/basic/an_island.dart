@@ -8,15 +8,15 @@ import '../action/trade_action.dart';
 import '../card.dart';
 
 class AnIsland extends Card {
-  const AnIsland() : super("An Island?");
+  const AnIsland() : super('An Island?');
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Pick up some crew.", [Resource.DOUBLOON, Resource.DOUBLOON], [Resource.CREW, Resource.CREW], soundEffect: SFX_MARCHING),
-      TradeAction("Kidnap some natives.", [Resource.CREW],
+      TradeAction('Pick up some crew.', [Resource.DOUBLOON, Resource.DOUBLOON], [Resource.CREW, Resource.CREW], soundEffect: SFX_MARCHING),
+      TradeAction('Kidnap some natives.', [Resource.CREW],
           [Resource.LANDLUBBER, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY], soundEffect: SFX_KIDNAP),
-      DiscardAction(description: "Just a mirage.")
+      DiscardAction(description: 'Just a mirage.')
     ];
   }
 }

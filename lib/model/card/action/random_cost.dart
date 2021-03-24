@@ -19,7 +19,7 @@ class RandomCost extends CardActionCost {
   }
 
   @override
-  String getDescription(Hand hand) => "$resourceCount x ?";
+  String getDescription(Hand hand) => '$resourceCount x ?';
 
   @override
   bool isAffordable(Hand hand) => hand.size() >= resourceCount;

@@ -8,15 +8,15 @@ import '../action/trade_action.dart';
 import '../card.dart';
 
 class DockingForSupplies extends Card {
-  const DockingForSupplies() : super("Docking for Supplies");
+  const DockingForSupplies() : super('Docking for Supplies');
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
-      TradeAction("Fresh food.", [Resource.DOUBLOON, Resource.DOUBLOON],
+      TradeAction('Fresh food.', [Resource.DOUBLOON, Resource.DOUBLOON],
           [Resource.FOOD], soundEffect: SFX_APPLE),
-      TradeAction("Honest trading.", [Resource.FOOD, Resource.FOOD], [Resource.DOUBLOON], soundEffect: SFX_COINS),
-      DiscardAction(description: "Nothing to declare.")
+      TradeAction('Honest trading.', [Resource.FOOD, Resource.FOOD], [Resource.DOUBLOON], soundEffect: SFX_COINS),
+      DiscardAction(description: 'Nothing to declare.')
     ];
   }
 }

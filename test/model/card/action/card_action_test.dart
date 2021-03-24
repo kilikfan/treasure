@@ -48,7 +48,7 @@ main() {
     state.nextCard();
     final card = state.currentCard;
 
-    final action = new ScryAction("Look into the future", [Resource.CREW], 2);
+    final action = new ScryAction('Look into the future', [Resource.CREW], 2);
     action.performAction(state);
 
     expect(state.currentCard, card);
@@ -58,7 +58,7 @@ main() {
 class _FakeAction extends CardAction {
   final Function() fn;
 
-  _FakeAction(List<Resource> cost, [this.fn]) : super(SimpleCost(cost), "Fake Action");
+  _FakeAction(List<Resource> cost, [this.fn]) : super(SimpleCost(cost), 'Fake Action');
 
   @override
   void performActionImpl(GameState state) {

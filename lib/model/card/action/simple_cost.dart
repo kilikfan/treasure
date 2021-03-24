@@ -18,7 +18,7 @@ class SimpleCost extends CardActionCost {
   String getDescription(Hand hand) {
     final realCost = hand.getRealCost(cost) ?? cost;
     realCost.sort((r1, r2) => r1.index.compareTo(r2.index));
-    return "${realCost.map((res) => res.getText())}";
+    return '${realCost.map((res) => res.getText())}';
   }
 
   @override

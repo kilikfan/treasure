@@ -32,7 +32,7 @@ class ViewActiveQuestsPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text("Close", style: TextStyle(fontSize: 30)),
+                      child: Text('Close', style: TextStyle(fontSize: 30)),
                     ))
               ]);
             })));

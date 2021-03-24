@@ -12,18 +12,18 @@ import 'hispaniola_2_land_ahoy.dart';
 
 class RumoursOfAnIsland extends QuestCard {
   const RumoursOfAnIsland()
-      : super("Rumours of an Island", QuestLine.HISPANIOLA, 1);
+      : super('Rumours of an Island', QuestLine.HISPANIOLA, 1);
 
   @override
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(
-          description: "Maintain current course.", soundEffect: SFX_SHIP_BELL),
+          description: 'Maintain current course.', soundEffect: SFX_SHIP_BELL),
       ReplaceAction(
-          LandAhoy(), ReplaceType.FORWARDS, "Take a gamble and change course.",
+          LandAhoy(), ReplaceType.FORWARDS, 'Take a gamble and change course.',
           soundEffect: SFX_LAND_HO),
       ExileAction(
-          description: "Sail away, sail away.",
+          description: 'Sail away, sail away.',
           reward: [Resource.MAP],
           soundEffect: SFX_MAP)
     ];

@@ -7,7 +7,7 @@ import 'card_action.dart';
 
 class DiscardAction extends CardAction {
   DiscardAction(
-      {String description = "Discard this card.",
+      {String description = 'Discard this card.',
       CardActionCost cost = const SimpleCost([]),
       String soundEffect})
       : super(cost, description, soundEffect: soundEffect);

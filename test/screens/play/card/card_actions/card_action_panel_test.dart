@@ -23,7 +23,7 @@ class DummyAction extends CardAction {
   final Function(Object) fn;
 
   DummyAction(List<Resource> cost, bool enabled, {this.fn, String soundEffect})
-      : super(SimpleCost(cost), "Some Action", soundEffect: soundEffect) {
+      : super(SimpleCost(cost), 'Some Action', soundEffect: soundEffect) {
     this.enabled = enabled;
   }
 
@@ -118,7 +118,7 @@ void main() {
   });
 
   testWidgets('should render a scry action', (WidgetTester tester) async {
-    final action = ScryAction("See the future.", [Resource.FOOD], 3);
+    final action = ScryAction('See the future.', [Resource.FOOD], 3);
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('See the future.'), findsOneWidget);
@@ -128,7 +128,7 @@ void main() {
 
   testWidgets('should render a reward', (WidgetTester tester) async {
     final action =
-        TradeAction("Buy some food", [Resource.DOUBLOON], [Resource.FOOD]);
+        TradeAction('Buy some food', [Resource.DOUBLOON], [Resource.FOOD]);
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Buy some food'), findsOneWidget);
@@ -138,7 +138,7 @@ void main() {
 
   testWidgets('should render a win action, and not display the Discard line', (WidgetTester tester) async {
     final action =
-    EndGameAction(GameResult.WIN, [], "You Win!");
+    EndGameAction(GameResult.WIN, [], 'You Win!');
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Win!'), findsWidgets);
@@ -147,7 +147,7 @@ void main() {
 
   testWidgets('should render a loss action, and not display the Discard line', (WidgetTester tester) async {
     final action =
-    EndGameAction(GameResult.LOSE, [], "You Lose!");
+    EndGameAction(GameResult.LOSE, [], 'You Lose!');
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Lose!'), findsWidgets);
@@ -157,7 +157,7 @@ void main() {
   testWidgets('should render a replace action', (WidgetTester tester) async {
     final replacementCard = LandAhoy();
     final action =
-    ReplaceAction(replacementCard, ReplaceType.FORWARDS, "Sail for land", cost: [Resource.FOOD, Resource.FOOD]);
+    ReplaceAction(replacementCard, ReplaceType.FORWARDS, 'Sail for land', cost: [Resource.FOOD, Resource.FOOD]);
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Sail for land'), findsWidgets);

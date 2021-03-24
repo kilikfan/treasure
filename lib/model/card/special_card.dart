@@ -11,5 +11,5 @@ abstract class SpecialCard extends Card {
 
   @override
   String getSubHeaderText() =>
-      "${this.specialType.description}";
+      '${this.specialType.description}';
 }

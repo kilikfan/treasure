@@ -16,9 +16,9 @@ extension ScryOptionExt on ScryOption {
 
   String getDescription() {
     if (this == ScryOption.TOP) {
-      return "Top";
+      return 'Top';
     } else {
-      return "Bottom";
+      return 'Bottom';
     }
   }
 }
