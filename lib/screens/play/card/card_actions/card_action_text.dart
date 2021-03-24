@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CardActionText extends StatelessWidget {
   final String actionText;
 
-  CardActionText(this.actionText);
+  const CardActionText(this.actionText);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class CardActionText extends StatelessWidget {
       child: Text(
         actionText,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),

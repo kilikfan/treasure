@@ -13,7 +13,7 @@ class ViewDiscardPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Discard Pile'),
+          title: const Text('Discard Pile'),
         ),
         body: ChangeNotifierProvider.value(
             value: state,
@@ -21,18 +21,18 @@ class ViewDiscardPage extends StatelessWidget {
               return Column(children: <Widget>[
                 Expanded(child: CardViewer(discard, buttons)),
                 Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     width: MediaQuery.of(context).size.width * 0.7,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black, width: 1),
+                        side: const BorderSide(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.circular(10),
                       )),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text('Close', style: TextStyle(fontSize: 30)),
+                      child: const Text('Close', style: TextStyle(fontSize: 30)),
                     ))
               ]);
             })));

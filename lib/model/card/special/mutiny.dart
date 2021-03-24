@@ -22,7 +22,7 @@ class Mutiny extends SpecialCard {
           soundEffect: SFX_SWORD),
       ExileAction(
           description: 'Pay off the mutineers to leave your crew.',
-          cost: SimpleCost([
+          cost: const SimpleCost([
             Resource.CREW,
             Resource.CREW,
             Resource.DOUBLOON,
@@ -31,7 +31,7 @@ class Mutiny extends SpecialCard {
           soundEffect: SFX_COINS),
       ExileAction(
           description: 'Share your map with the crew.',
-          cost: SimpleCost([Resource.MAP]),
+          cost: const SimpleCost([Resource.MAP]),
           soundEffect: SFX_MAP)
     ];
   }

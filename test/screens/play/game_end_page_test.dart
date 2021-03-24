@@ -13,14 +13,14 @@ import '../../test_utils.dart';
 
 void main() {
   testWidgets('should display correct text for win and loss', (WidgetTester tester) async {
-    await tester.launchWidget(child: GameEndPage(GameResult.WIN));
+    await tester.launchWidget(child: const GameEndPage(GameResult.WIN));
 
     var gameWinTextFinder = find.text(GameResult.WIN.description);
     var gameLoseTextFinder = find.text(GameResult.LOSE.description);
     expect(gameWinTextFinder, findsOneWidget);
     expect(gameLoseTextFinder, findsNothing);
 
-    await tester.launchWidget(child: GameEndPage(GameResult.LOSE));
+    await tester.launchWidget(child: const GameEndPage(GameResult.LOSE));
 
     gameWinTextFinder = find.text(GameResult.WIN.description);
     gameLoseTextFinder = find.text(GameResult.LOSE.description);
@@ -29,7 +29,7 @@ void main() {
   });
 
   testWidgets('new game button should start a new game', (WidgetTester tester) async {
-    await tester.launchWidget(child: GameEndPage(GameResult.WIN));
+    await tester.launchWidget(child: const GameEndPage(GameResult.WIN));
 
     final button1Finder = find.text('New Game');
     expect(button1Finder, findsOneWidget);

@@ -46,7 +46,7 @@ class DummyAction extends CardAction {
 void main() {
   testWidgets('should display a blank, disabled button if not passed an action',
       (WidgetTester tester) async {
-    await tester.launchWidget(child: CardActionPanel(null), state: makeGameState());
+    await tester.launchWidget(child: const CardActionPanel(null), state: makeGameState());
 
     final textFinder = find.byElementType(CardActionText);
     final cardLineFinder = find.byElementType(CardActionLine);
@@ -75,7 +75,7 @@ void main() {
 
   testWidgets('should be enabled if appropriate, and call performAction on tap',
       (WidgetTester tester) async {
-    final performAction = new MockFunction().fnOne;
+    final performAction = MockFunction().fnOne;
     final state = makeGameState();
     final action = DummyAction([Resource.DOUBLOON], true, fn: performAction);
     await tester.launchWidget(child: CardActionPanel(action), state: state);
@@ -155,9 +155,8 @@ void main() {
   });
 
   testWidgets('should render a replace action', (WidgetTester tester) async {
-    final replacementCard = LandAhoy();
-    final action =
-    ReplaceAction(replacementCard, ReplaceType.FORWARDS, 'Sail for land', cost: [Resource.FOOD, Resource.FOOD]);
+    const replacementCard = LandAhoy();
+    final action = ReplaceAction(replacementCard, ReplaceType.FORWARDS, 'Sail for land', cost: [Resource.FOOD, Resource.FOOD]);
     await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Sail for land'), findsWidgets);

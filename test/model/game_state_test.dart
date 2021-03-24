@@ -24,7 +24,7 @@ void main() {
   test('should draw cards in order, placing the current card into the discard', () {
     const plunderAWreck = PlunderAWreck();
     const aRivalShip = ARivalShip();
-    final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip]);
+    final state = makeGameState(deck: [plunderAWreck, aRivalShip]);
 
     state.nextCard();
     expect(state.currentCard, plunderAWreck);
@@ -41,10 +41,10 @@ void main() {
     const plunderAWreck = PlunderAWreck();
     const aRivalShip = ARivalShip();
 
-    final MockRandomiser randomiser = MockRandomiser();
+    final randomiser = MockRandomiser();
     logInvocations([randomiser]);
 
-    final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip], randomiser: randomiser);
+    final state = makeGameState(deck: [plunderAWreck, aRivalShip], randomiser: randomiser);
     state.nextCard();
     state.nextCard();
     expect(state.deck, []);
@@ -62,7 +62,7 @@ void main() {
   test('should exile the current card', () {
     const plunderAWreck = PlunderAWreck();
     const aRivalShip = ARivalShip();
-    final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip]);
+    final state = makeGameState(deck: [plunderAWreck, aRivalShip]);
 
     state.nextCard();
     state.exileCurrentCard();
@@ -76,7 +76,7 @@ void main() {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();
-      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+      final state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
 
       state.scryCards(2);
 
@@ -88,7 +88,7 @@ void main() {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();
-      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+      final state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
 
       state.scryCards(4);
 
@@ -100,7 +100,7 @@ void main() {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();
-      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+      final state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
 
       state.scryCards(2);
 
@@ -114,7 +114,7 @@ void main() {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();
-      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+      final state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
 
       state.scryCards(2);
 
@@ -128,7 +128,7 @@ void main() {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();
-      final GameState state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
+      final state = makeGameState(deck: [plunderAWreck, aRivalShip, portFees]);
 
       state.scryCards(2);
 
@@ -144,88 +144,86 @@ void main() {
   group('Special cards', ()
   {
     test('should put Mutiny in next if too many resources', () {
-      final GameState state = makeGameState(
+      final state = makeGameState(
           playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
           Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
           Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
           Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
       );
 
-      expect(state.nextCard(), new matcher.TypeMatcher<Mutiny>());
+      expect(state.nextCard(), const matcher.TypeMatcher<Mutiny>());
     });
 
     test('should not put Mutiny in next if resource count under 15', () {
-      final GameState state = makeGameState(
+      final state = makeGameState(
           playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
       );
 
-      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
+      expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
 
     test('should put Navy Raid in next if too much infamy and coin true', () {
-      final FakeRandomiser randomiser = FakeRandomiser(true);
+      final randomiser = FakeRandomiser(true);
 
-      final GameState state = makeGameState(
+      final state = makeGameState(
           playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.INFAMY,
             Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON],
           randomiser: randomiser
       );
 
-      expect(state.nextCard(), new matcher.TypeMatcher<NavyRaid>());
+      expect(state.nextCard(), const matcher.TypeMatcher<NavyRaid>());
     });
 
     test('should not put Navy Raid in next if too much infamy and coin false', () {
-      final FakeRandomiser randomiser = FakeRandomiser(false);
+      final randomiser = FakeRandomiser(false);
 
-      final GameState state = makeGameState(
+      final state = makeGameState(
           playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.INFAMY,
             Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD],
         randomiser: randomiser
       );
 
-      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
+      expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
 
     test('should not put Navy Raid in next if infamy under 4', () {
-      final GameState state = makeGameState(
+      final state = makeGameState(
           playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
       );
 
-      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
+      expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
 
     test('should put Ravenous Crew in next if no food', () {
-      final GameState state = makeGameState(
+      final state = makeGameState(
           playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
       );
 
-      expect(state.nextCard(), new matcher.TypeMatcher<RavenousCrew>());
+      expect(state.nextCard(), const matcher.TypeMatcher<RavenousCrew>());
     });
 
     test('should not put Ravenous Crew in next if we have some food', () {
-      final GameState state = makeGameState(
+      final state = makeGameState(
           playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
             Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
       );
 
-      expect(state.nextCard(), new matcher.TypeMatcher<PlunderAWreck>());
+      expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
   });
 
   group('ChangeNotifier', () {
-    _verifyChangeNotifier(GameState state, Function() stateFunction) {
+    void _verifyChangeNotifier(GameState state, Function() stateFunction) {
       final fn = MockFunction().fn;
-      state.addListener(() {
-        fn();
-      });
+      state.addListener(fn);
 
       stateFunction();
       verify(fn());
@@ -235,7 +233,7 @@ void main() {
       final state = makeGameState();
       _verifyChangeNotifier(state, state.nextCard);
       _verifyChangeNotifier(state, () => state.scryCards(1));
-      _verifyChangeNotifier(state, () => state.replaceScryedCard(PlunderAWreck(), ScryOption.TOP));
+      _verifyChangeNotifier(state, () => state.replaceScryedCard(const PlunderAWreck(), ScryOption.TOP));
       _verifyChangeNotifier(state, state.exileCurrentCard);
       _verifyChangeNotifier(state, () => state.endGame(GameResult.WIN));
     });
@@ -254,7 +252,7 @@ void main() {
       const shoallyYouCantBeSerious = ShoallyYouCantBeSerious();
       const utopia = Utopia();
 
-      final GameState state = makeGameState(deck: [aGameOfCards, landAhoy, aSenseOfPorpoise]);
+      final state = makeGameState(deck: [aGameOfCards, landAhoy, aSenseOfPorpoise]);
       state.discard.addAll([aRivalShip, krakenInMyBoots, shoallyYouCantBeSerious]);
       state.currentCard = rumoursOfAnIsland;
       state.scrying.addAll([utopia, aGameOfCards]); // shouldn't include quests from scrying

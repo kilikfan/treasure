@@ -13,15 +13,15 @@ class RulesPage extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<String> text) {
           return Scaffold(
               appBar: AppBar(
-                title: Text('Rules'),
+                title: const Text('Rules'),
               ),
               body: Container(
                 padding: const EdgeInsets.all(16.0),
-                child: new SingleChildScrollView(
-                    child: new Text(
+                child: SingleChildScrollView(
+                    child: Text(
                       text.data != null ? text.data : '',
-                      key: Key('rules_content'),
-                      style: new TextStyle(
+                      key: const Key('rules_content'),
+                      style: const TextStyle(
                         fontSize: 16.0,
                       ),
                     )

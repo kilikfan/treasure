@@ -16,7 +16,7 @@ class MainMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Treasure of the High Seas'),
+        title: const Text('Treasure of the High Seas'),
       ),
       body: Center(
         child: ElevatedButtonTheme(
@@ -42,7 +42,7 @@ class MainMenuPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => RulesPage(const ResourceLoader())),
+                      builder: (context) => const RulesPage(ResourceLoader())),
                 );
               }),
               MenuButton('Credits', onPressed: () {

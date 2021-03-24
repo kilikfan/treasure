@@ -6,11 +6,11 @@ class QuickRulesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Quick Rules'),
+          title: const Text('Quick Rules'),
         ),
         body: Container(
             padding: const EdgeInsets.all(16.0),
-            child: new SingleChildScrollView(
+            child: SingleChildScrollView(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

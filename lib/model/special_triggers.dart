@@ -6,11 +6,11 @@ import 'hand.dart';
 
 void addSpecialTopCardToDeck(GameState state) {
   if (checkMutiny(state.playerHand)) {
-    state.deck.insert(0, Mutiny());
+    state.deck.insert(0, const Mutiny());
   } else if (checkNavyRaid(state)) {
-    state.deck.insert(0, NavyRaid());
+    state.deck.insert(0, const NavyRaid());
   } else if (checkRavenousCrew(state.playerHand)) {
-    state.deck.insert(0, RavenousCrew());
+    state.deck.insert(0, const RavenousCrew());
   }
 }
 

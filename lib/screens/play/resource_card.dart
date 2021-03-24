@@ -5,7 +5,7 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 class ResourceCard extends StatelessWidget {
   final Resource resource;
 
-  ResourceCard(this.resource);
+  const ResourceCard(this.resource);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ResourceCard extends StatelessWidget {
           padding: const EdgeInsets.all(7),
           child: Text(
             resource.getText(),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'TreasureHunt'

@@ -18,13 +18,13 @@ class ShoallyYouCantBeSerious extends QuestCard {
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(
-          cost: SimpleCost([Resource.FOOD]),
+          cost: const SimpleCost([Resource.FOOD]),
           description: 'The fishy smell persists.'),
       //TODO - optional C/L C/L cost
-      ReplaceAction(KrakenInMyBoots(), ReplaceType.FORWARDS,
+      ReplaceAction(const KrakenInMyBoots(), ReplaceType.FORWARDS,
           'You have an exi-stench-ial crisis.',
           cost: [Resource.CREW, Resource.CREW, Resource.FOOD]),
-      ReplaceAction(ASenseOfPorpoise(), ReplaceType.BACKWARDS,
+      ReplaceAction(const ASenseOfPorpoise(), ReplaceType.BACKWARDS,
           'Why couldn’t it be follow the butterflies?')
     ];
   }

@@ -6,7 +6,7 @@ class CardHeader extends StatelessWidget {
   final String headerText;
   final String subHeaderText;
 
-  CardHeader([this.headerText = '', this.subHeaderText = '']);
+  const CardHeader([this.headerText = '', this.subHeaderText = '']);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CardHeader extends StatelessWidget {
       headings.add(Text(
         subHeaderText,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),

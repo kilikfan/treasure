@@ -24,8 +24,8 @@ class ReplaceAction extends CardAction {
 
   @override
   CardActionDetails get actionDetails =>
-      CardActionDetails(cost, this.description,
-          replacement: this.replacementCard,
+      CardActionDetails(cost, description,
+          replacement: replacementCard,
           destination: CardDestination.EXILE,
-          replaceType: this.replaceType);
+          replaceType: replaceType);
 }

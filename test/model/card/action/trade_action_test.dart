@@ -4,10 +4,10 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 
 import '../../../test_utils.dart';
 
-main () {
+void main () {
   test('should deduct its cost and add the reward', () {
     final state = makeGameState(playerHand: [Resource.DOUBLOON]);
-    final action = new TradeAction('Buy crew members', [Resource.DOUBLOON], [Resource.CREW, Resource.CREW]);
+    final action = TradeAction('Buy crew members', [Resource.DOUBLOON], [Resource.CREW, Resource.CREW]);
 
     expect(action.description, 'Buy crew members');
     action.performAction(state);

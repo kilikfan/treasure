@@ -14,7 +14,7 @@ import 'card/deck_state_panel.dart';
 import 'view_active_quests_page.dart';
 
 class PlayPage extends StatelessWidget {
-  PlayPage(this.title, this.state, {Key key}) : super(key: key);
+  const PlayPage(this.title, this.state, {Key key}) : super(key: key);
 
   final String title;
   final GameState state;
@@ -30,7 +30,7 @@ class PlayPage extends StatelessWidget {
               title: Text(title),
               actions: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.help),
+                  icon: const Icon(Icons.help),
                   tooltip: 'Quick Help',
                   onPressed: () {
                     Navigator.push(
@@ -40,7 +40,7 @@ class PlayPage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.assignment),
+                  icon: const Icon(Icons.assignment),
                   tooltip: 'Active Quests',
                   onPressed: () {
                     Navigator.push(
@@ -51,7 +51,7 @@ class PlayPage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.settings),
+                  icon: const Icon(Icons.settings),
                   tooltip: 'Settings',
                   onPressed: () {
                     Navigator.push(
@@ -71,14 +71,14 @@ class PlayPage extends StatelessWidget {
                     return GameEndPage(state.result);
                   } else {
                     return Container(
-                        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Container(
                               height:
                                   (MediaQuery.of(context).size.height) * 0.07,
-                              child: Center(child: DeckStatePanel()),
+                              child: const Center(child: DeckStatePanel()),
                             ),
                             Expanded(child: CardDisplay(state.currentCard)),
                             Container(

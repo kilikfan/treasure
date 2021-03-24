@@ -5,12 +5,12 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 
 import '../../../test_utils.dart';
 
-main() {
+void main() {
   test('should exile the current card and add resources', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
-    final action = new ExileAction(reward: [Resource.LANDLUBBER]);
+    final action = ExileAction(reward: [Resource.LANDLUBBER]);
     action.performAction(state);
 
     expect(state.exile, [currentCard]);
@@ -21,7 +21,7 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
-    final action = new ExileAction();
+    final action = ExileAction();
     expect(action.description, 'Exile this card.');
 
     action.performAction(state);
@@ -34,7 +34,7 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
-    final action = new ExileAction(description: 'Foo', cost: SimpleCost([Resource.CREW]), reward: [Resource.DOUBLOON]);
+    final action = ExileAction(description: 'Foo', cost: const SimpleCost([Resource.CREW]), reward: [Resource.DOUBLOON]);
     expect(action.description, 'Foo');
 
     action.performAction(state);
