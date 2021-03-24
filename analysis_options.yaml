@@ -1,21 +1,15 @@
 # https://dart-lang.github.io/linter/lints/
-analyzer:
-  errors:
-    avoid_init_to_null: error
-    camel_case_extensions: error
-    camel_case_types: error
-    non_constant_identifier_names: error
-    only_throw_errors: error
-    prefer_final_locals: error
-    prefer_single_quotes: error
-    unawaited_futures: error
-
 linter:
   rules:
+    - avoid_init_to_null
+    - camel_case_extensions
     - camel_case_types
+    - non_constant_identifier_names
+    - only_throw_errors
+    - prefer_final_locals
+    - unawaited_futures
     - library_names
     - file_names
-    - non_constant_identifier_names
     - curly_braces_in_flow_control_structures
     - slash_for_doc_comments
     - package_api_docs
@@ -30,7 +24,6 @@ linter:
     - prefer_function_declarations_over_variables
     - unnecessary_lambdas
     - prefer_equal_for_default_values
-    - avoid_init_to_null
     - unnecessary_getters_setters
     - unnecessary_this
     - prefer_initializing_formals
@@ -58,6 +51,5 @@ linter:
     - prefer_const_constructors
     - prefer_const_constructors_in_immutables
     - unnecessary_await_in_return
-    - unawaited_futures
     - await_only_futures
     - avoid_void_async
