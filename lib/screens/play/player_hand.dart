@@ -11,13 +11,12 @@ class PlayerHand extends StatelessWidget {
   PlayerHand(this.hand);
 
   double _getCardXAlignment(int index) {
-    return (2 / (max(hand.cards.length, maxCardsBeforeOverlapping) + 1)) *
-        (index - ((hand.cards.length - 1) / 2));
+    return (2 / (max(hand.cards.length, maxCardsBeforeOverlapping) + 1)) * (index - ((hand.cards.length - 1) / 2));
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> resourceCards = hand.cards
+    final List<Widget> resourceCards = hand.cards
         .asMap()
         .map((i, card) {
           return MapEntry(
@@ -44,6 +43,8 @@ class PlayerHand extends StatelessWidget {
     // Add the other widget to the stack
     resourceCards.add(resourceCount);
 
-    return Stack(children: resourceCards);
+    return Stack(
+      children: resourceCards
+    );
   }
 }
