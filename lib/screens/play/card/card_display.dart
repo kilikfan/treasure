@@ -9,7 +9,7 @@ class CardDisplay extends StatelessWidget {
   final Model.Card card;
   final bool readOnly;
 
-  CardDisplay(this.card, { this.readOnly = false });
+  const CardDisplay(this.card, { this.readOnly = false });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CardDisplay extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.8,
         child: Card(
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.black, width: 1),
+            side: const BorderSide(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(10),
           ),
           color: _getCardColor(card),
@@ -25,7 +25,7 @@ class CardDisplay extends StatelessWidget {
             children: [
               CardHeader(card.name, card.getSubHeaderText()),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: CardActionsPanel(card, readOnly))
             ],
           ),

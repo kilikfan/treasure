@@ -20,7 +20,7 @@ class GameState with ChangeNotifier {
   final List<Card> exile = [];
   final List<Card> scrying = [];
 
-  final Hand playerHand = new Hand();
+  final Hand playerHand = Hand();
 
   GameResult result;
 

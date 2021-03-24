@@ -6,7 +6,7 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 
 import '../../../mocks.dart';
 
-main() {
+void main() {
   test('should correctly report whether it is affordable', () {
     final hand = Hand([Resource.FOOD, Resource.LANDLUBBER, Resource.CREW]);
 

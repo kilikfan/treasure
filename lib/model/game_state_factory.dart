@@ -18,8 +18,8 @@ const INITIAL_RESOURCES = [
 ];
 
 GameState startNewGame() {
-  final List<Card> deck = generateRandomDeck();
-  final GameState state = new GameState(new Randomiser(), deck, INITIAL_RESOURCES);
+  final deck = generateRandomDeck();
+  final state = GameState(const Randomiser(), deck, INITIAL_RESOURCES);
   state.shuffleDeck();
   state.nextCard();
   return state;

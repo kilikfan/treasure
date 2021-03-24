@@ -22,12 +22,12 @@ class RavenousCrew extends SpecialCard {
       ExileAction(
           description: 'Resort to cannibalism.',
           reward: [Resource.FOOD],
-          cost: SimpleCost([Resource.LANDLUBBER]),
+          cost: const SimpleCost([Resource.LANDLUBBER]),
           soundEffect: SFX_DEATH),
       ExileAction(
           description: 'Emergency port stop.',
           reward: [Resource.FOOD],
-          cost: SimpleCost([Resource.DOUBLOON]),
+          cost: const SimpleCost([Resource.DOUBLOON]),
           soundEffect: SFX_COINS)
     ];
   }

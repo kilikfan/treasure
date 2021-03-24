@@ -17,7 +17,7 @@ class CardActionPanel extends StatelessWidget {
   final Model.CardAction action;
   final bool readOnly;
 
-  CardActionPanel(this.action, { this.readOnly = false });
+  const CardActionPanel(this.action, { this.readOnly = false });
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +26,12 @@ class CardActionPanel extends StatelessWidget {
     final enabled = action?.isEnabled(state) ?? false;
 
     final shape = RoundedRectangleBorder(
-      side: BorderSide(color: Colors.black, width: 1),
+      side: const BorderSide(color: Colors.black, width: 1),
       borderRadius: BorderRadius.circular(10),
     );
 
     return Padding(
-        padding: EdgeInsets.symmetric(vertical: 4),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         child: readOnly
             ? Card(
                 shape: shape,
@@ -82,16 +82,16 @@ class CardActionPanel extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         CardActionText(actionDetails.description),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           children: effects,
           mainAxisAlignment: MainAxisAlignment.center,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         _getResultWidget(actionDetails),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
       ],
       mainAxisAlignment: MainAxisAlignment.center,
     );
@@ -99,13 +99,13 @@ class CardActionPanel extends StatelessWidget {
 
   Widget _getResultWidget(CardActionDetails actionDetails) {
     if (actionDetails.result == GameResult.WIN) {
-      return CardActionLine('You Win!', Icons.check, Colors.green);
+      return const CardActionLine('You Win!', Icons.check, Colors.green);
     } else if (actionDetails.result == GameResult.LOSE) {
-      return CardActionLine('You Lose!', Icons.close, Colors.red);
+      return const CardActionLine('You Lose!', Icons.close, Colors.red);
     } else if (actionDetails.destination == CardDestination.DISCARD) {
-      return CardActionLine('Discard', Icons.replay, Colors.black);
+      return const CardActionLine('Discard', Icons.replay, Colors.black);
     } else {
-      return CardActionLine('Exile', Icons.delete, Colors.black);
+      return const CardActionLine('Exile', Icons.delete, Colors.black);
     }
   }
 

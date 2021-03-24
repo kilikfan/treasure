@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/game_state.dart';
 
-import './card_action_panel.dart';
 import '../../../../model/card/card.dart' as Model;
+import './card_action_panel.dart';
 
 class CardActionsPanel extends StatelessWidget {
   final Model.Card card;
   final bool readOnly;
 
-  CardActionsPanel(this.card, this.readOnly);
+  const CardActionsPanel(this.card, this.readOnly);
 
   @override
   Widget build(BuildContext context) {

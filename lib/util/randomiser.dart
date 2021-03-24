@@ -8,7 +8,7 @@ class Randomiser {
   }
 
   bool flipCoin() {
-    final random = new Random();
+    final random = Random();
     return random.nextBool();
   }
 }

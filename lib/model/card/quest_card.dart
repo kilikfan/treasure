@@ -12,5 +12,5 @@ abstract class QuestCard extends Card {
 
   @override
   String getSubHeaderText() =>
-      '${this.questLine.description} ${this.questStage}/${this.questLine.maxStage}';
+      '${questLine.description} $questStage/${questLine.maxStage}';
 }

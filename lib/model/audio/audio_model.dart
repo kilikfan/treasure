@@ -40,7 +40,7 @@ class AudioModel {
     }
   }
 
-  void _settingsChanged() async {
+  Future<void> _settingsChanged() async {
     if (!_settingsModel.isSettingEnabled(AppSetting.musicEnabled) && _playingMusic) {
       await _musicPlayer.stop();
       _playingMusic = false;

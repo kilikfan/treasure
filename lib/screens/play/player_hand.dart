@@ -8,7 +8,7 @@ class PlayerHand extends StatelessWidget {
   final int maxCardsBeforeOverlapping = 7;
   final Hand hand;
 
-  PlayerHand(this.hand);
+  const PlayerHand(this.hand);
 
   double _getCardXAlignment(int index) {
     return (2 / (max(hand.cards.length, maxCardsBeforeOverlapping) + 1)) * (index - ((hand.cards.length - 1) / 2));

@@ -24,7 +24,7 @@ class Hand {
 
   List<Resource> getRealCost(List<Resource> rawCost) {
     try {
-      final handCopy = new List<Resource>.from(cards);
+      final handCopy = List<Resource>.from(cards);
       return _deductResources(rawCost, handCopy);
     } catch (_) {
       return null;
@@ -33,7 +33,7 @@ class Hand {
 
   void deductResources(List<Resource> resources) => _deductResources(resources, cards);
   List<Resource> _deductResources(List<Resource> resources, List<Resource> playerHand) {
-    final List<Resource> resourcesRemoved = [];
+    final resourcesRemoved = <Resource>[];
     for (final resource in resources) {
       if (playerHand.contains(resource)) {
         playerHand.remove(resource);
@@ -42,7 +42,7 @@ class Hand {
         playerHand.remove(Resource.MAP);
         resourcesRemoved.add(Resource.MAP);
       } else {
-        throw new CannotAffordError();
+        throw CannotAffordError();
       }
     }
 

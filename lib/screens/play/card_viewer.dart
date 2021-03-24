@@ -8,13 +8,13 @@ class CardViewer extends StatelessWidget {
   final List<Model.Card> cardList;
   final Function getButtons;
 
-  CardViewer(this.cardList, this.getButtons);
+  const CardViewer(this.cardList, this.getButtons);
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> cardWidgetList = cardList.map((card) {
       final List<Widget> buttons = getButtons(context, card);
-      final List<Widget> columnComponents = [
+      final columnComponents = [
         _buildCardNumberWidget(context, cardList, card),
         _buildCardWidget(context, card),
         ...buttons
@@ -28,7 +28,7 @@ class CardViewer extends StatelessWidget {
 
     return Swiper(
         itemCount: cardWidgetList.length,
-        control: new SwiperControl(),
+        control: const SwiperControl(),
         loop: false,
         itemBuilder: (BuildContext context, int index) {
           return cardWidgetList[index];
@@ -37,7 +37,7 @@ class CardViewer extends StatelessWidget {
 
   Widget _buildCardWidget(BuildContext context, Model.Card card) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         height: MediaQuery.of(context).size.height * 0.65,
         child: CardDisplay(
           card,
@@ -48,7 +48,7 @@ class CardViewer extends StatelessWidget {
   Widget _buildCardNumberWidget(BuildContext context, List<Model.Card> cardList, Model.Card currentCard) {
     final position = cardList.indexOf(currentCard) + 1;
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         height: MediaQuery.of(context).size.height * 0.03,
         child: Text('$position / ${cardList.length}')
     );

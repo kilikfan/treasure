@@ -19,9 +19,9 @@ class BribeThePort extends QuestCard {
     return [
       DiscardAction(
           description: 'Review the options over dinner.',
-          cost: SimpleCost([Resource.FOOD, Resource.FOOD]),
+          cost: const SimpleCost([Resource.FOOD, Resource.FOOD]),
           soundEffect: SFX_APPLE),
-      ReplaceAction(RetrieveTheHispaniolanTreasure(), ReplaceType.FORWARDS,
+      ReplaceAction(const RetrieveTheHispaniolanTreasure(), ReplaceType.FORWARDS,
           'A hefty fee to pay.',
           cost: [Resource.CREW, Resource.DOUBLOON, Resource.DOUBLOON],
           soundEffect: SFX_COINS),

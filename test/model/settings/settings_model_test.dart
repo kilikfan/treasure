@@ -43,9 +43,7 @@ void main() {
     final model = SettingsModel(prefs);
 
     final stateChanged = MockFunction().fn;
-    model.addListener(() {
-      stateChanged();
-    });
+    model.addListener(stateChanged);
 
     await model.updateSetting(AppSetting.musicEnabled, true);
     verify(stateChanged());

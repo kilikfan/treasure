@@ -12,7 +12,7 @@ import '../main_menu/menu_button.dart';
 class GameEndPage extends StatelessWidget {
   final GameResult result;
 
-  GameEndPage(this.result);
+  const GameEndPage(this.result);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class GameEndPage extends StatelessWidget {
   Widget _getText(BuildContext context, GameResult result) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Text(result.description, style: TextStyle(fontSize: 30)),
+      child: Text(result.description, style: const TextStyle(fontSize: 30)),
     );
   }
 }

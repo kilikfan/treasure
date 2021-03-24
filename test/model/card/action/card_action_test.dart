@@ -10,12 +10,12 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 import '../../../mocks.dart';
 import '../../../test_utils.dart';
 
-main() {
+void main() {
   test('should be enabled if cost is affordable', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
 
-    final affordable = new _FakeAction([Resource.CREW]);
-    final unaffordable = new _FakeAction([Resource.LANDLUBBER]);
+    final affordable = _FakeAction([Resource.CREW]);
+    final unaffordable = _FakeAction([Resource.LANDLUBBER]);
 
     expect(affordable.isEnabled(state), true);
     expect(unaffordable.isEnabled(state), false);
@@ -23,7 +23,7 @@ main() {
 
   test('should be possible to disable regardless of cost', () {
     final state = makeGameState();
-    final freeAction = new _FakeAction([]);
+    final freeAction = _FakeAction([]);
     freeAction.enabled = false;
 
     expect(freeAction.isEnabled(state), false);
@@ -33,8 +33,8 @@ main() {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
     state.nextCard();
 
-    final fn = new MockFunction().fn;
-    final action = new _FakeAction([Resource.CREW], fn);
+    final fn = MockFunction().fn;
+    final action = _FakeAction([Resource.CREW], fn);
 
     action.performAction(state);
 
@@ -48,7 +48,7 @@ main() {
     state.nextCard();
     final card = state.currentCard;
 
-    final action = new ScryAction('Look into the future', [Resource.CREW], 2);
+    final action = ScryAction('Look into the future', [Resource.CREW], 2);
     action.performAction(state);
 
     expect(state.currentCard, card);

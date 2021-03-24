@@ -7,18 +7,18 @@ class CardPile extends StatelessWidget {
   final String pileName;
   final GameState state;
 
-  CardPile(this.pileSize, this.pileName, this.state);
+  const CardPile(this.pileSize, this.pileName, this.state);
 
   @override
   Widget build(BuildContext context) {
     final shape = RoundedRectangleBorder(
-      side: BorderSide(color: Colors.black, width: 1),
+      side: const BorderSide(color: Colors.black, width: 1),
       borderRadius: BorderRadius.circular(10),
     );
 
     final text = Text(
-      pileName + ': ' + pileSize.toString(),
-      style: TextStyle(
+      '$pileName: $pileSize',
+      style: const TextStyle(
         fontSize: 12.0,
         fontWeight: FontWeight.bold,
       ),

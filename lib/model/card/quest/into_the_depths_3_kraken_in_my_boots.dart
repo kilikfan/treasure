@@ -19,14 +19,14 @@ class KrakenInMyBoots extends QuestCard {
   List<CardAction> getActions(GameState state) {
     return [
       DiscardAction(
-          cost: SimpleCost([Resource.FOOD]),
+          cost: const SimpleCost([Resource.FOOD]),
           description: 'You satiate its hunger. For now.'),
       ReplaceAction(
-          ShoallyYouCantBeSerious(), ReplaceType.BACKWARDS, 'AAAARRGGH!',
+          const ShoallyYouCantBeSerious(), ReplaceType.BACKWARDS, 'AAAARRGGH!',
           soundEffect: SFX_KRAKEN),
       //TODO - final crew can be C/L. Also need the flip a coin bit
       ReplaceAction(
-          Utopia(), ReplaceType.FORWARDS, 'What could she be guarding?',
+          const Utopia(), ReplaceType.FORWARDS, 'What could she be guarding?',
           cost: [Resource.CREW, Resource.CREW, Resource.CREW])
     ];
   }

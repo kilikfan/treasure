@@ -26,7 +26,7 @@ void main() {
 
   testWidgets('should update shared preferences and screen value on tap', (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
-    final prefs = await tester.runAsync(() async => await SharedPreferences.getInstance());
+    final prefs = await tester.runAsync(() async => SharedPreferences.getInstance());
 
     await tester.launchWidget(child: SettingsPage());
 

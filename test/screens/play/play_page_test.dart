@@ -63,8 +63,8 @@ void main() {
 
     await tester.launchWidget(child: PlayPage('New Game', state));
 
-    final deckFinder = find.widgetWithText(CardPile, 'Deck: ' + state.deck.length.toString());
-    final discardFinder = find.widgetWithText(CardPile, 'Discard: ' + state.discard.length.toString());
+    final deckFinder = find.widgetWithText(CardPile, 'Deck: ${state.deck.length}');
+    final discardFinder = find.widgetWithText(CardPile, 'Discard: ${state.discard.length}');
 
     expect(deckFinder, findsOneWidget);
     expect(discardFinder, findsOneWidget);

@@ -13,7 +13,7 @@ void main() {
   List<Widget> getButtons(context, card) {
     return [Text('${card.name} button 1'), Text('${card.name} button 2')];
   }
-  final List<Model.Card> cardList = [AGameOfCards(), ARivalShip(), AnIsland()];
+  final cardList = [const AGameOfCards(), const ARivalShip(), const AnIsland()];
 
   group('displaying cards should', () {
 

@@ -5,11 +5,11 @@ class CardActionLine extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
 
-  CardActionLine(this.text, this.icon, this.iconColor);
+  const CardActionLine(this.text, this.icon, this.iconColor);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.symmetric(horizontal: 5), child: Row(
+    return Padding(padding: const EdgeInsets.symmetric(horizontal: 5), child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(icon, color: iconColor),

@@ -10,22 +10,22 @@ import '../../../test_utils.dart';
 void main() {
   test('should not enable the doctor action if hand contains at least one crew', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
-    expect(Scurvy().getDoctorAction(state).enabled, false);
+    expect(const Scurvy().getDoctorAction(state).enabled, false);
   });
 
   test('should enable the doctor action if hand contains 0 crew', () {
     final state = makeGameState(playerHand: [Resource.FOOD]);
-    expect(Scurvy().getDoctorAction(state).enabled, true);
+    expect(const Scurvy().getDoctorAction(state).enabled, true);
   });
 
   test('weevils action should cost half the players crew', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW]);
-    expect(Scurvy().getWeevilsAction(state).cost, SimpleCost([Resource.CREW]));
+    expect(const Scurvy().getWeevilsAction(state).cost, const SimpleCost([Resource.CREW]));
   });
 
   test('weevils action should round up the cost if player has an odd crew number', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW, Resource.CREW]);
-    expect(Scurvy().getWeevilsAction(state).cost, SimpleCost([Resource.CREW, Resource.CREW]));
+    expect(const Scurvy().getWeevilsAction(state).cost, const SimpleCost([Resource.CREW, Resource.CREW]));
   });
 }
 

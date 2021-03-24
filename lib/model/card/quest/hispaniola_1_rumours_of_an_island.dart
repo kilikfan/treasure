@@ -20,7 +20,7 @@ class RumoursOfAnIsland extends QuestCard {
       DiscardAction(
           description: 'Maintain current course.', soundEffect: SFX_SHIP_BELL),
       ReplaceAction(
-          LandAhoy(), ReplaceType.FORWARDS, 'Take a gamble and change course.',
+          const LandAhoy(), ReplaceType.FORWARDS, 'Take a gamble and change course.',
           soundEffect: SFX_LAND_HO),
       ExileAction(
           description: 'Sail away, sail away.',

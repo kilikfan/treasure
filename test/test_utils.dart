@@ -21,7 +21,7 @@ GameState makeGameState(
     Randomiser randomiser = const Randomiser(),
     List<Resource> playerHand = INITIAL_RESOURCES,
     ModelCard.Card currentCard}) {
-  final deckToUse = deck != null ? deck : [PlunderAWreck(), ARivalShip()];
+  final deckToUse = deck != null ? deck : [const PlunderAWreck(), const ARivalShip()];
   final state = GameState(randomiser, deckToUse, playerHand);
   state.currentCard = currentCard;
   return state;
@@ -29,7 +29,7 @@ GameState makeGameState(
 
 extension WidgetTesterExtension on WidgetTester {
   Future<void> launchWidget({Widget child, GameState state, AudioModel audioModel, SettingsModel settingsModel}) async {
-    final prefs = await runAsync(() async => await SharedPreferences.getInstance());
+    final prefs = await runAsync(() async => SharedPreferences.getInstance());
 
     final app = MultiProvider(providers: [
       ChangeNotifierProvider<GameState>.value(value: state),

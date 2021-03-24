@@ -16,17 +16,17 @@ void main() {
     final cardFinder = find.byType(Card);
 
     await tester.launchWidget(
-        child: CardDisplay(PlunderAWreck()), state: makeGameState());
+        child: const CardDisplay(PlunderAWreck()), state: makeGameState());
     final basicCard = tester.widget<Card>(cardFinder);
     expect(basicCard.color, basicCardColour);
 
     await tester.launchWidget(
-        child: CardDisplay(RumoursOfAnIsland()), state: makeGameState());
+        child: const CardDisplay(RumoursOfAnIsland()), state: makeGameState());
     final questCard = tester.widget<Card>(cardFinder);
     expect(questCard.color, questCardColour);
 
     await tester.launchWidget(
-        child: CardDisplay(Mutiny()), state: makeGameState());
+        child: const CardDisplay(Mutiny()), state: makeGameState());
     final specialCard = tester.widget<Card>(cardFinder);
     expect(specialCard.color, specialCardColour);
   });
@@ -37,7 +37,7 @@ void main() {
       final cardFinder = find.byType(CardHeader);
 
       await tester.launchWidget(
-          child: CardDisplay(PlunderAWreck()), state: makeGameState());
+          child: const CardDisplay(PlunderAWreck()), state: makeGameState());
       final basicCard = tester.widget<CardHeader>(cardFinder);
       expect(basicCard.subHeaderText, '');
     });
@@ -45,10 +45,10 @@ void main() {
     testWidgets('should display the correct sub heading for a quest card',
         (WidgetTester tester) async {
       final cardFinder = find.byType(CardHeader);
-      final rumoursOfAnIsland = RumoursOfAnIsland();
+      const rumoursOfAnIsland = RumoursOfAnIsland();
 
       await tester.launchWidget(
-          child: CardDisplay(rumoursOfAnIsland), state: makeGameState());
+          child: const CardDisplay(rumoursOfAnIsland), state: makeGameState());
       final questCard = tester.widget<CardHeader>(cardFinder);
       expect(questCard.subHeaderText, rumoursOfAnIsland.getSubHeaderText());
     });
@@ -58,7 +58,7 @@ void main() {
       final cardFinder = find.byType(CardHeader);
 
       await tester.launchWidget(
-          child: CardDisplay(Mutiny()), state: makeGameState());
+          child: const CardDisplay(Mutiny()), state: makeGameState());
       final specialCard = tester.widget<CardHeader>(cardFinder);
       expect(specialCard.subHeaderText, SpecialType.MUTINY.description);
     });

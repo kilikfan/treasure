@@ -24,13 +24,13 @@ class ScryingPage extends StatelessWidget {
   Widget _getScryButton(
       BuildContext context, Model.Card card, ScryOption scryOption) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         width: MediaQuery.of(context).size.width * 0.7,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: scryOption.getColour(),
               shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.black, width: 1),
+            side: const BorderSide(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(10),
           )),
           onPressed: () {
@@ -38,7 +38,7 @@ class ScryingPage extends StatelessWidget {
                 .replaceScryedCard(card, scryOption);
           },
           child:
-              Text(scryOption.getDescription(), style: TextStyle(fontSize: 30)),
+              Text(scryOption.getDescription(), style: const TextStyle(fontSize: 30)),
         ));
   }
 }
