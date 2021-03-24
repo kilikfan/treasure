@@ -30,7 +30,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.9.0
-  mockito: ^4.1.4
+  mockito: ^5.0.2
   matcher: 0.12.10
 
 flutter_icons:
