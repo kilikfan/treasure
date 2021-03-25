@@ -19,35 +19,36 @@ class MainMenuPage extends StatelessWidget {
         title: const Text('Treasure of the High Seas'),
       ),
       body: Center(
-          child: Container(
-        height: MediaQuery.of(context).size.height * 0.75,
-        width: MediaQuery.of(context).size.width * 0.75,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            MenuButton('Play', onPressed: () {
-              _startGame(context);
-            }),
-            MenuButton('Settings', onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SettingsPage()),
-              );
-            }),
-            MenuButton('Rules', onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RulesPage(ResourceLoader())),
-              );
-            }),
-            MenuButton('Credits', onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CreditsPage()));
-            })
-          ],
-        ),
-      )),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.75,
+          width: MediaQuery.of(context).size.width * 0.75,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              MenuButton('Play', onPressed: () {
+                _startGame(context);
+              }),
+              MenuButton('Settings', onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                );
+              }),
+              MenuButton('Rules', onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RulesPage(ResourceLoader())),
+                );
+              }),
+              MenuButton('Credits', onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const CreditsPage()));
+              })
+            ],
+          ),
+        )
+      ),
     );
   }
 
