@@ -8,12 +8,12 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Expanded(child: Padding(
       padding: const EdgeInsets.all(10.0),
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(buttonText, style: const TextStyle(fontSize: 30)),
       ),
-    );
+    ));
   }
 }

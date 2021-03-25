@@ -19,15 +19,11 @@ class MainMenuPage extends StatelessWidget {
         title: const Text('Treasure of the High Seas'),
       ),
       body: Center(
-        child: ElevatedButtonTheme(
-          data: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).accentColor,
-                  minimumSize:
-                      Size((MediaQuery.of(context).size.width) * 0.8, 100))),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.75,
+          width: MediaQuery.of(context).size.width * 0.75,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               MenuButton('Play', onPressed: () {
                 _startGame(context);
@@ -53,8 +49,7 @@ class MainMenuPage extends StatelessWidget {
               })
             ],
           ),
-        ),
-      ),
+        )),
     );
   }
 
