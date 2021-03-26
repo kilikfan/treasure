@@ -21,7 +21,8 @@ class CardViewer extends StatelessWidget {
       ];
       return Container(
           width: MediaQuery.of(context).size.width,
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children:
+          child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children:
             columnComponents
           ));
     }).toList();
@@ -37,7 +38,6 @@ class CardViewer extends StatelessWidget {
 
   Widget _buildCardWidget(BuildContext context, Model.Card card) {
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 5),
         height: MediaQuery.of(context).size.height * 0.65,
         child: CardDisplay(
           card,
@@ -49,7 +49,7 @@ class CardViewer extends StatelessWidget {
     final position = cardList.indexOf(currentCard) + 1;
     return Container(
         padding: const EdgeInsets.symmetric(vertical: 5),
-        height: MediaQuery.of(context).size.height * 0.03,
+        height: MediaQuery.of(context).size.height * 0.045,
         child: Text('$position / ${cardList.length}')
     );
   }
