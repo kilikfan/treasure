@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
@@ -18,15 +19,11 @@ class GameEndPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButtonTheme(
-          data: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).accentColor,
-                  minimumSize:
-                      Size((MediaQuery.of(context).size.width) * 0.8, 100))),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width * 0.75,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               _getText(context, result),
               MenuButton('New Game', onPressed: () {
@@ -51,7 +48,8 @@ class GameEndPage extends StatelessWidget {
   Widget _getText(BuildContext context, GameResult result) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Text(result.description, style: const TextStyle(fontSize: 30)),
+      child: Text(result.description,
+          style: const TextStyle(fontSize: 30), textAlign: TextAlign.center),
     );
   }
 }
