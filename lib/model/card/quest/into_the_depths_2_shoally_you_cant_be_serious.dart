@@ -20,7 +20,6 @@ class ShoallyYouCantBeSerious extends QuestCard {
       DiscardAction(
           cost: const SimpleCost([Resource.FOOD]),
           description: 'The fishy smell persists.'),
-      //TODO - optional C/L C/L cost
       ReplaceAction(const KrakenInMyBoots(), ReplaceType.FORWARDS,
           'You have an exi-stench-ial crisis.',
           cost: [Resource.CREW, Resource.CREW, Resource.FOOD]),

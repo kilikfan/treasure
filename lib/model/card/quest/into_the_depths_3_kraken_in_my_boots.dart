@@ -24,7 +24,7 @@ class KrakenInMyBoots extends QuestCard {
       ReplaceAction(
           const ShoallyYouCantBeSerious(), ReplaceType.BACKWARDS, 'AAAARRGGH!',
           soundEffect: SFX_KRAKEN),
-      //TODO - final crew can be C/L. Also need the flip a coin bit
+      //TODO - need the flip a coin bit?
       ReplaceAction(
           const Utopia(), ReplaceType.FORWARDS, 'What could she be guarding?',
           cost: [Resource.CREW, Resource.CREW, Resource.CREW])
