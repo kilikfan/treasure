@@ -28,7 +28,7 @@ extension ResourceExt on Resource {
     }
   }
 
-  Color getColour() {
+  Color? getColour() {
     switch (this) {
       case Resource.CREW:
         return Colors.green[200];

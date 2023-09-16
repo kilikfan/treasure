@@ -6,6 +6,6 @@ enum CardType {
   SPECIAL
 }
 
-final Color basicCardColour = Colors.yellow[100];
-final Color questCardColour = Colors.purple[100];
-final Color specialCardColour = Colors.red[100];
+final Color? basicCardColour = Colors.yellow[100];
+final Color? questCardColour = Colors.purple[100];
+final Color? specialCardColour = Colors.red[100];

@@ -14,7 +14,7 @@ import 'hand.dart';
 class GameState with ChangeNotifier {
   final Randomiser randomiser;
 
-  Card currentCard;
+  Card? currentCard;
   final List<Card> deck;
   final List<Card> discard = [];
   final List<Card> exile = [];
@@ -22,15 +22,16 @@ class GameState with ChangeNotifier {
 
   final Hand playerHand = Hand();
 
-  GameResult result;
+  GameResult result = GameResult.NO_RESULT;
 
-  GameState(this.randomiser, this.deck, [List<Resource> initialResources]) {
+  GameState(this.randomiser, this.deck, [List<Resource>? initialResources]) {
+    if (initialResources == null) return;
     playerHand.addResources(initialResources);
   }
 
   Card nextCard() {
     if (currentCard != null) {
-      discard.add(currentCard);
+      discard.add(currentCard!);
     }
 
     // Check special card conditions
@@ -44,7 +45,7 @@ class GameState with ChangeNotifier {
 
     currentCard = deck.removeAt(0);
     notifyListeners();
-    return currentCard;
+    return currentCard!;
   }
 
   void shuffleDeck() {
@@ -75,14 +76,14 @@ class GameState with ChangeNotifier {
   }
 
   void exileCurrentCard() {
-    exile.add(currentCard);
+    exile.add(currentCard!);
     currentCard = null;
 
     notifyListeners();
   }
 
   List<Card> getActiveQuestCards() {
-    final cardsToSearch = discard + deck + [currentCard];
+    final cardsToSearch = discard + deck + [currentCard!];
     return cardsToSearch.where((card) => card.type == CardType.QUEST).toList();
   }
 

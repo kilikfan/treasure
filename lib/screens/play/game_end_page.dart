@@ -31,11 +31,11 @@ class GameEndPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          PlayPage('Play Page', startNewGame())),
+                          PlayPage('Play Page', startNewGame(), key: Key('Play'))),
                 );
               }),
-              MenuButton('Exit', onPressed: () async {
-                await context.read<AudioModel>().loopMusic(MENU_MUSIC);
+              MenuButton('Exit', onPressed: ()  {
+                context.read<AudioModel>().loopMusic(MENU_MUSIC);
                 Navigator.of(context).pop();
               })
             ],

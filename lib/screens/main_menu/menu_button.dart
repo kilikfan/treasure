@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
-  final Function onPressed;
+  final VoidCallback onPressed;
   final String buttonText;
 
-  const MenuButton(this.buttonText, {this.onPressed});
+  const MenuButton(this.buttonText, {required Null Function() this.onPressed});
 
   @override
   Widget build(BuildContext context) {

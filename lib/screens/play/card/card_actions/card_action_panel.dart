@@ -14,7 +14,7 @@ import './card_action_text.dart';
 import 'card_action_line.dart';
 
 class CardActionPanel extends StatelessWidget {
-  final Model.CardAction action;
+  final Model.CardAction? action;
   final bool readOnly;
 
   const CardActionPanel(this.action, { this.readOnly = false });
@@ -41,17 +41,17 @@ class CardActionPanel extends StatelessWidget {
                 style: ElevatedButton.styleFrom(shape: shape, primary: _getButtonColor(actionDetails)),
                 onPressed: enabled
                     ? () {
-                        action.performAction(state);
+                        action!.performAction(state);
 
-                        if (action.soundEffect != null) {
-                          context.read<AudioModel>().playSound(action.soundEffect);
+                        if (action!.soundEffect != null) {
+                          context.read<AudioModel>().playSound(action!.soundEffect!);
                         }
                       }
                     : null,
                 child: _getActionComponents(actionDetails, state.playerHand)));
   }
 
-  Column _getActionComponents(CardActionDetails actionDetails, Hand hand) {
+  Column? _getActionComponents(CardActionDetails? actionDetails, Hand hand) {
     if (actionDetails == null) {
       return null;
     }
@@ -76,7 +76,7 @@ class CardActionPanel extends StatelessWidget {
 
     if (actionDetails.replacement != null) {
       final icon = _getReplacementIcon(actionDetails);
-      effects.add(CardActionLine('${actionDetails.replacement.name}',
+      effects.add(CardActionLine('${actionDetails.replacement!.name!}',
           icon, Colors.purpleAccent));
     }
 
@@ -109,7 +109,7 @@ class CardActionPanel extends StatelessWidget {
     }
   }
 
-  Color _getButtonColor(CardActionDetails actionDetails) {
+  Color? _getButtonColor(CardActionDetails? actionDetails) {
     final result = actionDetails?.result;
     switch (result) {
       case GameResult.WIN:

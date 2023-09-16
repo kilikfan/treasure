@@ -38,8 +38,8 @@ class MainMenuPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const RulesPage(ResourceLoader())),
-                );
+                      builder: (context) => RulesPage(ResourceLoader(), key: Key('Rules')),
+                ));
               }),
               MenuButton('Credits', onPressed: () {
                 Navigator.push(context,
@@ -59,7 +59,7 @@ class MainMenuPage extends StatelessWidget {
     await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => PlayPage('Play Page', startNewGame())),
+          builder: (context) => PlayPage('Play Page', startNewGame(), key: Key('Play'))),
     );
   }
 }

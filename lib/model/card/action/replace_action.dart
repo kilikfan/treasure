@@ -13,7 +13,7 @@ class ReplaceAction extends CardAction {
   ReplaceType replaceType;
 
   ReplaceAction(this.replacementCard, this.replaceType, String description,
-      {List<Resource> cost = const [], String soundEffect})
+      {List<Resource> cost = const [], String? soundEffect})
       : super(SimpleCost(cost), description, soundEffect: soundEffect);
 
   @override

@@ -1,4 +1,5 @@
 enum GameResult {
+  NO_RESULT,
   WIN,
   LOSE
 }

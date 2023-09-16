@@ -9,7 +9,7 @@ class DiscardAction extends CardAction {
   DiscardAction(
       {String description = 'Discard this card.',
       CardActionCost cost = const SimpleCost([]),
-      String soundEffect})
+      String? soundEffect})
       : super(cost, description, soundEffect: soundEffect);
 
   @override
