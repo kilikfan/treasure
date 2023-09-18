@@ -14,22 +14,22 @@ description: Arrrr
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
   meta: ^1.9.1
-  provider: ^5.0.0
+  provider: ^6.0.5
   flutter_swiper_null_safety: ^1.0.1
   shared_preferences: ^2.0.5
-  audioplayers: ^0.18.1
+  audioplayers: ^5.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.9.0
+  flutter_launcher_icons: ^0.13.1
   mockito: ^5.0.2
   matcher: ^0.12.16
 
