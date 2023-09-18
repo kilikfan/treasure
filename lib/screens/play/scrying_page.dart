@@ -28,7 +28,7 @@ class ScryingPage extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.7,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: scryOption.getColour(),
+            backgroundColor: scryOption.getColour(),
               shape: RoundedRectangleBorder(
             side: const BorderSide(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(10),

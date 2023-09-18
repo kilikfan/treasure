@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:matcher/matcher.dart';
 import 'package:treasure_of_the_high_seas/model/exceptions.dart';
 import 'package:treasure_of_the_high_seas/model/hand.dart';
 import 'package:treasure_of_the_high_seas/model/resource.dart';

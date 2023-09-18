@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +6,6 @@ import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 import 'package:treasure_of_the_high_seas/util/resource_loader.dart';
 import 'package:mockito/annotations.dart';
 
-//import '../mocks.dart';
 import '../test_utils.dart';
 
 @GenerateNiceMocks([MockSpec<ResourceLoader>()])
