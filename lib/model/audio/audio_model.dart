@@ -17,6 +17,7 @@ class AudioModel {
   Future<void> loopMusic(String track) async {
     _lastRequestedMusic = track;
     if (_settingsModel.isSettingEnabled(AppSetting.musicEnabled)) {
+      await _musicPlayer.setReleaseMode(ReleaseMode.loop);
       await _musicPlayer.play(AssetSource('music/$track'), volume: 0.5);
       _playingMusic = true;
     }

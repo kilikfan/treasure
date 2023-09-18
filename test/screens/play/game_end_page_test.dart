@@ -48,7 +48,6 @@ void main() {
   });
 
   testWidgets('exit button should exit to main menu, and play menu music', (WidgetTester tester) async {
-    SharedPreferences.setMockInitialValues({});
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
 

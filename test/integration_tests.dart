@@ -6,9 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 
-import 'mocks.dart';
 import 'model/audio/audio_model_test.dart';
 import 'test_utils.dart';
+
+import 'model/audio/audio_model_test.mocks.dart';
 
 void main() {
 

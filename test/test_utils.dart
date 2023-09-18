@@ -56,6 +56,7 @@ Future<void> launchGameFromMenu(WidgetTester tester, {AudioModel? audioModel, Se
 }
 
 Future<void> launchGameFromMenuMock(WidgetTester tester, {MockAudioModel? audioModel}) async {
+  SharedPreferences.setMockInitialValues({});
   await launchGameFromMenu(tester, audioModel: audioModel);
   reset(audioModel);
 }

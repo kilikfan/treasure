@@ -1,12 +1,14 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 
-import '../../mocks.dart';
+@GenerateNiceMocks([MockSpec<AudioPlayer>()])
+import 'audio_model_test.mocks.dart';
 
 Future<AudioModel> makeAudioModel(
     {SettingsModel? settingsModel,
