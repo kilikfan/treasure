@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/a_game_of_cards.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/a_rival_ship.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/an_island.dart';
@@ -19,6 +20,7 @@ void main() {
 
     testWidgets('show the first card in the list initially', (
         WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(
           child: CardViewer(cardList, getButtons), state: makeGameState());
 
@@ -27,6 +29,7 @@ void main() {
 
     testWidgets('show the second card in the list after tapping the right arrow', (
         WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(
           child: CardViewer(cardList, getButtons), state: makeGameState());
       final rightArrow = find.byIcon(Icons.arrow_forward_ios);
@@ -41,6 +44,7 @@ void main() {
 
     testWidgets('loop around to show the first card after tapping the right arrow from the final card', (
         WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(
           child: CardViewer(cardList, getButtons), state: makeGameState());
       final rightArrow = find.byIcon(Icons.arrow_forward_ios);
@@ -57,6 +61,7 @@ void main() {
 
     testWidgets('loop around to show the last card after tapping the left arrow from the first card', (
         WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(
           child: CardViewer(cardList, getButtons), state: makeGameState());
       final leftArrow = find.byIcon(Icons.arrow_back_ios);
@@ -72,6 +77,7 @@ void main() {
   group('displaying buttons should', () {
 
     testWidgets('show the provided buttons on the page', (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
 
       final button1Finder = find.text('${cardList.first.name} button 1');
@@ -81,6 +87,7 @@ void main() {
     });
 
     testWidgets('change the buttons depending on the card being viewed', (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
       final rightArrow = find.byIcon(Icons.arrow_forward_ios);
 
@@ -98,6 +105,7 @@ void main() {
   group('displaying the card numbering should', () {
 
     testWidgets('show the position of the card currently being viewed in the list of cards', (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
 
       final cardNumberFinder = find.text('1 / ${cardList.length}');
@@ -105,6 +113,7 @@ void main() {
     });
 
     testWidgets('change the card number after changing the card being viewed', (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       await tester.launchWidget(child: CardViewer(cardList, getButtons), state: makeGameState());
       final rightArrow = find.byIcon(Icons.arrow_forward_ios);
 

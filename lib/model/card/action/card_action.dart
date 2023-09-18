@@ -7,7 +7,7 @@ import 'card_action_details.dart';
 abstract class CardAction {
   final CardActionCost cost;
   final String description;
-  final String soundEffect;
+  final String? soundEffect;
 
   bool enabled = true;
 

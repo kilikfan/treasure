@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/screens/play/card/card_pile.dart';
@@ -17,6 +18,7 @@ import '../../test_utils.dart';
 void main() {
   testWidgets('should display the ScryPage if there are cards being scryed', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.scryCards(1);
 
     await tester.launchWidget(child: PlayPage('New Game', state));
@@ -27,6 +29,7 @@ void main() {
 
   testWidgets('should display the regular page if game is in progress with no cards being scryed', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.nextCard();
 
     await tester.launchWidget(child: PlayPage('New Game', state));
@@ -38,6 +41,7 @@ void main() {
 
   testWidgets('should display the game over page if the game result is a win', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.endGame(GameResult.WIN);
 
     await tester.launchWidget(child: PlayPage('Play Page', state));
@@ -48,6 +52,7 @@ void main() {
 
   testWidgets('should display the game over page if the game result is a loss', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.endGame(GameResult.LOSE);
 
     await tester.launchWidget(child: PlayPage('Play Page', state));
@@ -58,6 +63,7 @@ void main() {
 
   testWidgets('should display correct count in deck and discard piles', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.nextCard();
     state.nextCard();
 
@@ -72,6 +78,7 @@ void main() {
 
   testWidgets('should display the correct resource card count', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.nextCard();
 
     await tester.launchWidget(child: PlayPage('New Game', state));
@@ -93,6 +100,7 @@ void main() {
 
   testWidgets('should launch the quick rules page', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.nextCard();
     await tester.launchWidget(child: PlayPage('New Game', state));
 
@@ -112,6 +120,7 @@ void main() {
 
   testWidgets('should launch the settings page', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     state.nextCard();
     await tester.launchWidget(child: PlayPage('New Game', state));
 

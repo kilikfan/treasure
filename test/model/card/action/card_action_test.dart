@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/card_action_cost.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
@@ -56,17 +57,17 @@ void main() {
 }
 
 class _FakeAction extends CardAction {
-  final Function() fn;
+  final Function()? fn;
 
   _FakeAction(List<Resource> cost, [this.fn]) : super(SimpleCost(cost), 'Fake Action');
 
   @override
   void performActionImpl(GameState state) {
     if (fn != null) {
-      fn();
+      fn!();
     }
   }
 
   @override
-  CardActionDetails get actionDetails => null;
+  CardActionDetails get actionDetails => CardActionDetails([] as CardActionCost, '');
 }

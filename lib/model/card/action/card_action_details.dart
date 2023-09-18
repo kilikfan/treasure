@@ -12,14 +12,14 @@ class CardActionDetails {
   final CardActionCost cost;
   final List<Resource> reward;
   final int cardsToScry;
-  final GameResult result;
-  final Card replacement;
+  final GameResult? result;
+  final Card? replacement;
   final CardDestination destination;
   final ReplaceType replaceType;
 
   const CardActionDetails(this.cost, this.description,
       {this.reward = const [],
-      this.cardsToScry,
+      this.cardsToScry = 0,
       this.result,
       this.replacement,
       this.destination = CardDestination.DISCARD,

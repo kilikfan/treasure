@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -15,9 +16,9 @@ void main() {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
+    final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
 
     await launchGameFromMenu(tester, audioModel: audioModel, settingsModel: settingsModel);
 
@@ -29,7 +30,7 @@ void main() {
     await tester.tap(musicSwitchFinder);
     await tester.pumpAndSettle();
 
-    verify(musicCache.loop(GAME_MUSIC, volume: 0.5));
+    verify(musicPlayer.play(AssetSource('music/$GAME_MUSIC'), volume: 0.5));
   });
 
 }

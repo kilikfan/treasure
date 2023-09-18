@@ -20,9 +20,9 @@ import '../../../../mocks.dart';
 import '../../../../test_utils.dart';
 
 class DummyAction extends CardAction {
-  final Function(Object) fn;
+  final Function(Object)? fn;
 
-  DummyAction(List<Resource> cost, bool enabled, {this.fn, String soundEffect})
+  DummyAction(List<Resource> cost, bool enabled, {this.fn, String? soundEffect})
       : super(SimpleCost(cost), 'Some Action', soundEffect: soundEffect) {
     this.enabled = enabled;
   }
@@ -30,7 +30,7 @@ class DummyAction extends CardAction {
   @override
   void performAction(GameState state) {
     if (fn != null) {
-      fn(state);
+      fn!(state);
     }
   }
 

@@ -22,7 +22,7 @@ class TreasureState extends State<TreasureApp> with WidgetsBindingObserver {
       title: 'Treasure of the High Seas',
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
-        accentColor: Colors.lightGreen,
+        hintColor: Colors.lightGreen,
       ),
       home: MainMenuPage(),
     );

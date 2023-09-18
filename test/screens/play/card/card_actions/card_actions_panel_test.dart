@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 
 import 'package:treasure_of_the_high_seas/model/card/action/trade_action.dart';
@@ -35,6 +36,7 @@ class CardWithThreeActions extends Card {
 void main() {
   testWidgets('should be able to display 2 card actions', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(
         child: CardActionsPanel(CardWithTwoActions(), false), state: state);
 
@@ -47,6 +49,7 @@ void main() {
 
   testWidgets('should be able to display 3 card actions', (WidgetTester tester) async {
     final state = makeGameState();
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(
             child: CardActionsPanel(CardWithThreeActions(), false), state: state);
 

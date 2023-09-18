@@ -1,4 +1,3 @@
-import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -10,15 +9,13 @@ import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 import '../../mocks.dart';
 
 Future<AudioModel> makeAudioModel(
-    {SettingsModel settingsModel,
-    AudioPlayer musicPlayer,
-    AudioCache musicCache,
-    AudioCache soundCache}) async {
+    {SettingsModel? settingsModel,
+    AudioPlayer? musicPlayer,
+    AudioPlayer? soundPlayer}) async {
   return AudioModel(
       settingsModel ?? SettingsModel(await SharedPreferences.getInstance()),
       musicPlayer ?? MockAudioPlayer(),
-      musicCache ?? MockAudioCache(),
-      soundCache ?? MockAudioCache());
+      soundPlayer ?? MockAudioPlayer());
 }
 
 void main() {
@@ -26,23 +23,23 @@ void main() {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
-    final model = await makeAudioModel(musicCache: musicCache);
+    final musicPlayer = MockAudioPlayer();
+    final model = await makeAudioModel(musicPlayer: musicPlayer);
     await model.loopMusic(MENU_MUSIC);
 
-    verifyZeroInteractions(musicCache);
+    verifyZeroInteractions(musicPlayer);
   });
 
   test('should loop chosen music when setting enabled', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): true});
 
-    final musicCache = MockAudioCache();
+    final musicPlayer = MockAudioPlayer();
     final model =
-        await makeAudioModel(musicCache: musicCache);
+        await makeAudioModel(musicPlayer: musicPlayer);
     await model.loopMusic(MENU_MUSIC);
 
-    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
+    verify(musicPlayer.play(AssetSource('music/$MENU_MUSIC'), volume: 0.5));
   });
 
   test('should stop playing music when music setting toggled off', () async {
@@ -62,30 +59,27 @@ void main() {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
+    final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.musicEnabled, true);
-    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
+    verify(musicPlayer.play(AssetSource('music/$MENU_MUSIC'), volume: 0.5));
   });
 
   test('should do nothing if settings change and music already playing', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): true});
 
-    final musicCache = MockAudioCache();
     final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache, musicPlayer: musicPlayer);
+    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
     await audioModel.loopMusic(GAME_MUSIC);
 
-    reset(musicCache);
     reset(musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.sfxEnabled, true);
 
-    verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);
   });
 
@@ -93,14 +87,12 @@ void main() {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
     final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache, musicPlayer: musicPlayer);
+    await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.sfxEnabled, true);
 
-    verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);
   });
 
@@ -108,36 +100,36 @@ void main() {
     SharedPreferences.setMockInitialValues(
         {AppSetting.sfxEnabled.toString(): false});
 
-    final soundCache = MockAudioCache();
-    final audioModel = await makeAudioModel(soundCache: soundCache);
+    final soundPlayer = MockAudioPlayer();
+    final audioModel = await makeAudioModel(soundPlayer: soundPlayer);
 
     await audioModel.playSound('baa.mp3');
-    verifyZeroInteractions(soundCache);
+    verifyZeroInteractions(soundPlayer);
   });
 
   test('should play the specified sound if the setting is enabled', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.sfxEnabled.toString(): true});
 
-    final soundCache = MockAudioCache();
-    final audioModel = await makeAudioModel(soundCache: soundCache);
+    final soundPlayer = MockAudioPlayer();
+    final audioModel = await makeAudioModel(soundPlayer: soundPlayer);
 
     await audioModel.playSound('baa.mp3');
-    verify(soundCache.play('baa.mp3'));
+    verify(soundPlayer.play(AssetSource('sfx/baa.mp3')));
   });
 
   test('should start playing the last requested track when music setting toggled on', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
+    final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
     await audioModel.loopMusic(GAME_MUSIC);
-    verifyZeroInteractions(musicCache);
+    verifyZeroInteractions(musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.musicEnabled, true);
-    verify(musicCache.loop(GAME_MUSIC, volume: 0.5));
+    verify(musicPlayer.play(AssetSource('music/$GAME_MUSIC'), volume: 0.5));
   });
 
   test('should support pausing music', () async {

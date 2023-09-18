@@ -22,7 +22,7 @@ class Hand {
 
   bool canAfford(List<Resource> cost) => getRealCost(cost) != null;
 
-  List<Resource> getRealCost(List<Resource> rawCost) {
+  List<Resource>? getRealCost(List<Resource> rawCost) {
     try {
       final handCopy = List<Resource>.from(cards);
       return _deductResources(rawCost, handCopy);

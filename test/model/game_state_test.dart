@@ -49,7 +49,8 @@ void main() {
     state.nextCard();
     expect(state.deck, []);
 
-    verifyNever(randomiser.shuffle(any));
+    verifyNever(randomiser.shuffle(state.deck));
+    verifyNever(randomiser.shuffle(state.discard));
 
     state.nextCard();
     verify(randomiser.shuffle(state.deck));

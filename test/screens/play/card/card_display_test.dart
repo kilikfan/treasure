@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/card/basic/plunder_a_wreck.dart';
 import 'package:treasure_of_the_high_seas/model/card/card_types.dart';
 import 'package:treasure_of_the_high_seas/model/card/quest/hispaniola_1_rumours_of_an_island.dart';
@@ -13,6 +14,7 @@ import '../../../test_utils.dart';
 void main() {
   testWidgets('should change colour based on the card type displayed',
       (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final cardFinder = find.byType(Card);
 
     await tester.launchWidget(
@@ -34,6 +36,7 @@ void main() {
   group('Sub Heading Tests', () {
     testWidgets('should display no sub heading for a basic card',
         (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       final cardFinder = find.byType(CardHeader);
 
       await tester.launchWidget(
@@ -44,6 +47,7 @@ void main() {
 
     testWidgets('should display the correct sub heading for a quest card',
         (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       final cardFinder = find.byType(CardHeader);
       const rumoursOfAnIsland = RumoursOfAnIsland();
 
@@ -55,6 +59,7 @@ void main() {
 
     testWidgets('should display the correct heading for a special card',
         (WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
       final cardFinder = find.byType(CardHeader);
 
       await tester.launchWidget(

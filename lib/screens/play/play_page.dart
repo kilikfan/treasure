@@ -14,7 +14,7 @@ import 'card/deck_state_panel.dart';
 import 'view_active_quests_page.dart';
 
 class PlayPage extends StatelessWidget {
-  const PlayPage(this.title, this.state, {Key key}) : super(key: key);
+  const PlayPage(this.title, this.state, {Key key = const Key('Play')}) : super(key: key);
 
   final String title;
   final GameState state;
@@ -68,7 +68,7 @@ class PlayPage extends StatelessWidget {
                   if (state.scrying.isNotEmpty) {
                     return ScryingPage();
                   } else if (state.result != null) {
-                    return GameEndPage(state.result);
+                    return GameEndPage(state.result!);
                   } else {
                     return Container(
                         padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),

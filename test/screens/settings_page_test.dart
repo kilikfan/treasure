@@ -38,7 +38,7 @@ void main() {
     await tester.pumpAndSettle();
 
     final updatedToggle = tester.widget<SwitchListTile>(musicSwitchFinder);
-    expect(prefs.getBool(AppSetting.musicEnabled.toString()), true);
+    expect(prefs?.getBool(AppSetting.musicEnabled.toString()), true);
     expect(updatedToggle.value, true);
   });
 }

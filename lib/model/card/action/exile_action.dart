@@ -13,7 +13,7 @@ class ExileAction extends CardAction {
       {this.reward = const [],
       String description = 'Exile this card.',
       CardActionCost cost = const SimpleCost([]),
-      String soundEffect})
+      String? soundEffect})
       : super(cost, description, soundEffect: soundEffect);
 
   @override
