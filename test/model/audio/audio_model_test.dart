@@ -8,6 +8,7 @@ import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 
 @GenerateNiceMocks([MockSpec<AudioPlayer>()])
+@GenerateNiceMocks([MockSpec<AudioModel>()])
 import 'audio_model_test.mocks.dart';
 
 Future<AudioModel> makeAudioModel(
@@ -41,6 +42,7 @@ void main() {
         await makeAudioModel(musicPlayer: musicPlayer);
     await model.loopMusic(MENU_MUSIC);
 
+    verify(musicPlayer.setReleaseMode(ReleaseMode.loop));
     verify(musicPlayer.play(AssetSource('music/$MENU_MUSIC'), volume: 0.5));
   });
 

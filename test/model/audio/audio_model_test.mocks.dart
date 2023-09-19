@@ -8,6 +8,7 @@ import 'dart:typed_data' as _i4;
 
 import 'package:audioplayers/audioplayers.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -361,6 +362,48 @@ class MockAudioPlayer extends _i1.Mock implements _i2.AudioPlayer {
         Invocation.method(
           #dispose,
           [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+}
+
+/// A class which mocks [AudioModel].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAudioModel extends _i1.Mock implements _i5.AudioModel {
+  @override
+  _i3.Future<void> loopMusic(String? track) => (super.noSuchMethod(
+        Invocation.method(
+          #loopMusic,
+          [track],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> pauseMusic() => (super.noSuchMethod(
+        Invocation.method(
+          #pauseMusic,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> resumeMusic() => (super.noSuchMethod(
+        Invocation.method(
+          #resumeMusic,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> playSound(String? sound) => (super.noSuchMethod(
+        Invocation.method(
+          #playSound,
+          [sound],
         ),
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),

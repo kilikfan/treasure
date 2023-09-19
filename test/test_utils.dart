@@ -14,7 +14,7 @@ import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/main_menu_page.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
-import 'mocks.dart';
+import 'model/audio/audio_model_test.mocks.dart';
 
 GameState makeGameState(
     {List<ModelCard.Card>? deck,

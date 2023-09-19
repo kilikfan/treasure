@@ -19,7 +19,7 @@ class CreditsPage extends StatelessWidget {
                 heading('Development'),
                     const SizedBox(height: 10),
                 iconText(Icons.anchor, Colors.black, 'Mark Fisher'),
-                iconText(Icons.anchor, Colors.black, 'Alex Burlton'),
+                iconText(Icons.anchor, Colors.black, 'Alyssa Burlton'),
                 iconText(Icons.anchor, Colors.black, 'Jon Masson'),
                 iconText(Icons.anchor, Colors.black, 'Samuel Bradley'),
                     const SizedBox(height: 50),

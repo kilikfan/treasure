@@ -19,6 +19,7 @@ import 'package:treasure_of_the_high_seas/screens/play/card/card_actions/card_ac
 
 import '../../../../mocks.dart';
 import '../../../../test_utils.dart';
+import '../../../../model/audio/audio_model_test.mocks.dart';
 
 class DummyAction extends CardAction {
   final Function(Object)? fn;
@@ -48,7 +49,8 @@ void main() {
   testWidgets('should display a blank, disabled button if not passed an action',
       (WidgetTester tester) async {
         SharedPreferences.setMockInitialValues({});
-    await tester.launchWidget(child: const CardActionPanel(null), state: makeGameState());
+        var state = makeGameState();
+    await tester.launchWidget(child: const CardActionPanel(null), state: state);
 
     final textFinder = find.byElementType(CardActionText);
     final cardLineFinder = find.byElementType(CardActionLine);

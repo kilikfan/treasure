@@ -9,7 +9,7 @@ import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/player_hand.dart';
 
-import '../../mocks.dart';
+import '../../model/audio/audio_model_test.mocks.dart';
 import '../../test_utils.dart';
 
 void main() {

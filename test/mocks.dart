@@ -1,10 +1,8 @@
 import 'package:mockito/mockito.dart';
-import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/util/randomiser.dart';
 
 class MockRandomiser extends Mock implements Randomiser {}
 class MockFunction extends Mock implements EmptyFunctions {}
-class MockAudioModel extends Mock implements AudioModel {}
 
 class FakeRandomiser extends Fake implements Randomiser {
 

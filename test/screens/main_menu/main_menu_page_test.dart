@@ -10,7 +10,7 @@ import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 import 'package:treasure_of_the_high_seas/screens/settings_page.dart';
 
-import '../../mocks.dart';
+import '../../model/audio/audio_model_test.mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
