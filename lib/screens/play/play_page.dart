@@ -14,7 +14,8 @@ import 'card/deck_state_panel.dart';
 import 'view_active_quests_page.dart';
 
 class PlayPage extends StatelessWidget {
-  const PlayPage(this.title, this.state, {Key key = const Key('Play')}) : super(key: key);
+  const PlayPage(this.title, this.state, {Key key = const Key('Play')})
+      : super(key: key);
 
   final String title;
   final GameState state;

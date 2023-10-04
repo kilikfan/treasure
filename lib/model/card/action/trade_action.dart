@@ -8,7 +8,8 @@ import 'card_action_details.dart';
 class TradeAction extends CardAction {
   List<Resource> reward;
 
-  TradeAction(description, List<Resource> cost, this.reward, {String? soundEffect})
+  TradeAction(description, List<Resource> cost, this.reward,
+      {String? soundEffect})
       : super(SimpleCost(cost), description, soundEffect: soundEffect);
 
   @override

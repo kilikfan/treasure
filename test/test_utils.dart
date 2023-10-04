@@ -21,19 +21,25 @@ GameState makeGameState(
     Randomiser randomiser = const Randomiser(),
     List<Resource> playerHand = INITIAL_RESOURCES,
     ModelCard.Card? currentCard}) {
-  final deckToUse = deck != null ? deck : [const PlunderAWreck(), const ARivalShip()];
+  final deckToUse =
+      deck != null ? deck : [const PlunderAWreck(), const ARivalShip()];
   final state = GameState(randomiser, deckToUse, playerHand);
   state.currentCard = currentCard;
   return state;
 }
 
 extension WidgetTesterExtension on WidgetTester {
-  Future<void> launchWidget({Widget? child, GameState? state, AudioModel? audioModel, SettingsModel? settingsModel}) async {
+  Future<void> launchWidget(
+      {Widget? child,
+      GameState? state,
+      AudioModel? audioModel,
+      SettingsModel? settingsModel}) async {
     final prefs = await runAsync(() async => SharedPreferences.getInstance());
 
     final app = MultiProvider(providers: [
       ChangeNotifierProvider<GameState>.value(value: state ?? makeGameState()),
-      ChangeNotifierProvider<SettingsModel>.value(value: settingsModel ?? SettingsModel(prefs!)),
+      ChangeNotifierProvider<SettingsModel>.value(
+          value: settingsModel ?? SettingsModel(prefs!)),
       Provider<AudioModel>.value(value: audioModel ?? MockAudioModel())
     ], child: MaterialApp(home: child));
 
@@ -42,12 +48,16 @@ extension WidgetTesterExtension on WidgetTester {
   }
 }
 
-Future<void> launchGameFromMenu(WidgetTester tester, {AudioModel? audioModel, SettingsModel? settingsModel}) async {
+Future<void> launchGameFromMenu(WidgetTester tester,
+    {AudioModel? audioModel, SettingsModel? settingsModel}) async {
   if (settingsModel == null) {
     settingsModel = SettingsModel(await SharedPreferences.getInstance());
   }
 
-  await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel ?? MockAudioModel(), settingsModel: settingsModel);
+  await tester.launchWidget(
+      child: MainMenuPage(),
+      audioModel: audioModel ?? MockAudioModel(),
+      settingsModel: settingsModel);
 
   final button1Finder = find.text('Play');
   expect(button1Finder, findsOneWidget);
@@ -55,7 +65,8 @@ Future<void> launchGameFromMenu(WidgetTester tester, {AudioModel? audioModel, Se
   await tester.pumpAndSettle();
 }
 
-Future<void> launchGameFromMenuMock(WidgetTester tester, {MockAudioModel? audioModel}) async {
+Future<void> launchGameFromMenuMock(WidgetTester tester,
+    {MockAudioModel? audioModel}) async {
   SharedPreferences.setMockInitialValues({});
   await launchGameFromMenu(tester, audioModel: audioModel);
   reset(audioModel);

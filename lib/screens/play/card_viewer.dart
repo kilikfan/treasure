@@ -21,9 +21,9 @@ class CardViewer extends StatelessWidget {
       ];
       return Container(
           width: MediaQuery.of(context).size.width,
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children:
-            columnComponents
-          ));
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: columnComponents));
     }).toList();
 
     return Swiper(
@@ -45,13 +45,12 @@ class CardViewer extends StatelessWidget {
         ));
   }
 
-  Widget _buildCardNumberWidget(BuildContext context, List<Model.Card> cardList, Model.Card currentCard) {
+  Widget _buildCardNumberWidget(
+      BuildContext context, List<Model.Card> cardList, Model.Card currentCard) {
     final position = cardList.indexOf(currentCard) + 1;
     return Container(
         padding: const EdgeInsets.symmetric(vertical: 5),
         height: MediaQuery.of(context).size.height * 0.03,
-        child: Text('$position / ${cardList.length}')
-    );
+        child: Text('$position / ${cardList.length}'));
   }
-
 }

@@ -13,7 +13,8 @@ import '../../model/audio/audio_model_test.mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
-  testWidgets('should display correct text for win and loss', (WidgetTester tester) async {
+  testWidgets('should display correct text for win and loss',
+      (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: const GameEndPage(GameResult.WIN));
 
@@ -30,7 +31,8 @@ void main() {
     expect(gameLoseTextFinder, findsOneWidget);
   });
 
-  testWidgets('new game button should start a new game', (WidgetTester tester) async {
+  testWidgets('new game button should start a new game',
+      (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: const GameEndPage(GameResult.WIN));
 
@@ -47,7 +49,8 @@ void main() {
     expect(gameState.currentCard, isNotNull);
   });
 
-  testWidgets('exit button should exit to main menu, and play menu music', (WidgetTester tester) async {
+  testWidgets('exit button should exit to main menu, and play menu music',
+      (WidgetTester tester) async {
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
 

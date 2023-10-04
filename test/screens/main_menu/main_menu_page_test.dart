@@ -25,7 +25,8 @@ void main() {
     expect(find.byType(RulesPage), findsOneWidget);
   });
 
-  testWidgets('should navigate to the Settings page', (WidgetTester tester) async {
+  testWidgets('should navigate to the Settings page',
+      (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: MainMenuPage());
 
@@ -36,7 +37,8 @@ void main() {
     expect(find.byType(SettingsPage), findsOneWidget);
   });
 
-  testWidgets('should navigate to the Credits page', (WidgetTester tester) async {
+  testWidgets('should navigate to the Credits page',
+      (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: MainMenuPage());
 
@@ -63,7 +65,8 @@ void main() {
     expect(gameState.currentCard, isNotNull);
   });
 
-  testWidgets('should play game music when launching a new game', (WidgetTester tester) async {
+  testWidgets('should play game music when launching a new game',
+      (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
     final audioModel = MockAudioModel();
     await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);

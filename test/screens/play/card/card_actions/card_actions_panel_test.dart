@@ -11,15 +11,14 @@ import 'package:treasure_of_the_high_seas/screens/play/card/card_actions/card_ac
 
 import '../../../../test_utils.dart';
 
-
 class CardWithTwoActions extends Card {
   CardWithTwoActions() : super('Test');
 
   @override
   List<CardAction> getActions(GameState state) => [
-      TradeAction('Test action 1', [Resource.DOUBLOON], [Resource.MAP]),
-      DiscardAction(description: 'Test action 2'),
-    ];
+        TradeAction('Test action 1', [Resource.DOUBLOON], [Resource.MAP]),
+        DiscardAction(description: 'Test action 2'),
+      ];
 }
 
 class CardWithThreeActions extends Card {
@@ -27,14 +26,16 @@ class CardWithThreeActions extends Card {
 
   @override
   List<CardAction> getActions(GameState state) => [
-    TradeAction('Test action 1', [Resource.CREW, Resource.DOUBLOON], [Resource.MAP]),
-    TradeAction('Test action 2', [Resource.CREW], [Resource.FOOD]),
-    DiscardAction(description: 'Test action 3')
-  ];
+        TradeAction('Test action 1', [Resource.CREW, Resource.DOUBLOON],
+            [Resource.MAP]),
+        TradeAction('Test action 2', [Resource.CREW], [Resource.FOOD]),
+        DiscardAction(description: 'Test action 3')
+      ];
 }
 
 void main() {
-  testWidgets('should be able to display 2 card actions', (WidgetTester tester) async {
+  testWidgets('should be able to display 2 card actions',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(
@@ -47,11 +48,12 @@ void main() {
     expect(action2Finder, findsOneWidget);
   });
 
-  testWidgets('should be able to display 3 card actions', (WidgetTester tester) async {
+  testWidgets('should be able to display 3 card actions',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(
-            child: CardActionsPanel(CardWithThreeActions(), false), state: state);
+        child: CardActionsPanel(CardWithThreeActions(), false), state: state);
 
     final action1Finder = find.text('Test action 1');
     final action2Finder = find.text('Test action 2');

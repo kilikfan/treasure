@@ -11,11 +11,18 @@ void main() {
     expect(hand.cards, [Resource.CREW, Resource.CREW, Resource.DOUBLOON]);
 
     hand.addResources([Resource.CREW, Resource.MAP]);
-    expect(hand.cards, [Resource.MAP, Resource.CREW, Resource.CREW, Resource.CREW, Resource.DOUBLOON]);
+    expect(hand.cards, [
+      Resource.MAP,
+      Resource.CREW,
+      Resource.CREW,
+      Resource.CREW,
+      Resource.DOUBLOON
+    ]);
   });
 
   test('should correctly report whether a cost is affordable', () {
-    final hand = Hand([Resource.CREW, Resource.MAP, Resource.FOOD, Resource.FOOD]);
+    final hand =
+        Hand([Resource.CREW, Resource.MAP, Resource.FOOD, Resource.FOOD]);
 
     expect(hand.canAfford([Resource.FOOD, Resource.CREW]), true);
     expect(hand.canAfford([Resource.FOOD, Resource.FOOD, Resource.FOOD]), true);
@@ -23,11 +30,16 @@ void main() {
 
     expect(hand.canAfford([Resource.DOUBLOON, Resource.LANDLUBBER]), false);
     expect(hand.canAfford([Resource.DOUBLOON, Resource.MAP]), false);
-    expect(hand.canAfford([Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD]), false);
+    expect(
+        hand.canAfford(
+            [Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD]),
+        false);
   });
 
-  test('should deduct resources correctly, only deducting maps when needed', () {
-    final hand = Hand([Resource.CREW, Resource.MAP, Resource.FOOD, Resource.FOOD]);
+  test('should deduct resources correctly, only deducting maps when needed',
+      () {
+    final hand =
+        Hand([Resource.CREW, Resource.MAP, Resource.FOOD, Resource.FOOD]);
 
     hand.deductResources([Resource.CREW, Resource.FOOD]);
 
@@ -47,9 +59,11 @@ void main() {
   });
 
   test('should describe the real cost if maps are required', () {
-    final hand = Hand([Resource.CREW, Resource.MAP, Resource.FOOD, Resource.FOOD]);
+    final hand =
+        Hand([Resource.CREW, Resource.MAP, Resource.FOOD, Resource.FOOD]);
 
-    expect(hand.getRealCost([Resource.FOOD, Resource.FOOD]), [Resource.FOOD, Resource.FOOD]);
+    expect(hand.getRealCost([Resource.FOOD, Resource.FOOD]),
+        [Resource.FOOD, Resource.FOOD]);
     expect(hand.getRealCost([Resource.LANDLUBBER]), [Resource.MAP]);
   });
 
@@ -58,10 +72,12 @@ void main() {
     expect(hand.getRealCost([Resource.FOOD]), null);
   });
 
-  test('should throw an error if trying to deduct resources that cannot be afforded', () {
+  test(
+      'should throw an error if trying to deduct resources that cannot be afforded',
+      () {
     final hand = Hand([Resource.CREW, Resource.FOOD]);
 
-    expect(() => hand.deductResources([Resource.LANDLUBBER]), throwsA(const TypeMatcher<CannotAffordError>()));
+    expect(() => hand.deductResources([Resource.LANDLUBBER]),
+        throwsA(const TypeMatcher<CannotAffordError>()));
   });
-
 }

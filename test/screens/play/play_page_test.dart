@@ -16,7 +16,8 @@ import '../../model/audio/audio_model_test.mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
-  testWidgets('should display the ScryPage if there are cards being scryed', (WidgetTester tester) async {
+  testWidgets('should display the ScryPage if there are cards being scryed',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     state.scryCards(1);
@@ -27,7 +28,9 @@ void main() {
     expect(find.byType(PlayerHand), findsNothing);
   });
 
-  testWidgets('should display the regular page if game is in progress with no cards being scryed', (WidgetTester tester) async {
+  testWidgets(
+      'should display the regular page if game is in progress with no cards being scryed',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     state.nextCard();
@@ -39,7 +42,8 @@ void main() {
     expect(find.byType(PlayerHand), findsOneWidget);
   });
 
-  testWidgets('should display the game over page if the game result is a win', (WidgetTester tester) async {
+  testWidgets('should display the game over page if the game result is a win',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     state.endGame(GameResult.WIN);
@@ -50,7 +54,8 @@ void main() {
     expect(find.byType(PlayerHand), findsNothing);
   });
 
-  testWidgets('should display the game over page if the game result is a loss', (WidgetTester tester) async {
+  testWidgets('should display the game over page if the game result is a loss',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     state.endGame(GameResult.LOSE);
@@ -61,7 +66,8 @@ void main() {
     expect(find.byType(PlayerHand), findsNothing);
   });
 
-  testWidgets('should display correct count in deck and discard piles', (WidgetTester tester) async {
+  testWidgets('should display correct count in deck and discard piles',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     state.nextCard();
@@ -69,26 +75,31 @@ void main() {
 
     await tester.launchWidget(child: PlayPage('New Game', state));
 
-    final deckFinder = find.widgetWithText(CardPile, 'Deck: ${state.deck.length}');
-    final discardFinder = find.widgetWithText(CardPile, 'Discard: ${state.discard.length}');
+    final deckFinder =
+        find.widgetWithText(CardPile, 'Deck: ${state.deck.length}');
+    final discardFinder =
+        find.widgetWithText(CardPile, 'Discard: ${state.discard.length}');
 
     expect(deckFinder, findsOneWidget);
     expect(discardFinder, findsOneWidget);
   });
 
-  testWidgets('should display the correct resource card count', (WidgetTester tester) async {
+  testWidgets('should display the correct resource card count',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     state.nextCard();
 
     await tester.launchWidget(child: PlayPage('New Game', state));
 
-    final resourceCountFinder = find.widgetWithText(Align, 'Count: ${state.playerHand.cards.length}');
+    final resourceCountFinder =
+        find.widgetWithText(Align, 'Count: ${state.playerHand.cards.length}');
 
     expect(resourceCountFinder, findsOneWidget);
   });
 
-  testWidgets('should play menu music when returning to menu', (WidgetTester tester) async {
+  testWidgets('should play menu music when returning to menu',
+      (WidgetTester tester) async {
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
 
@@ -98,7 +109,8 @@ void main() {
     verify(audioModel.loopMusic(MENU_MUSIC));
   });
 
-  testWidgets('should launch the quick rules page', (WidgetTester tester) async {
+  testWidgets('should launch the quick rules page',
+      (WidgetTester tester) async {
     final state = makeGameState();
     SharedPreferences.setMockInitialValues({});
     state.nextCard();

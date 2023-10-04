@@ -13,7 +13,8 @@ abstract class CardAction {
 
   CardAction(this.cost, this.description, {this.soundEffect});
 
-  bool isEnabled(GameState state) => cost.isAffordable(state.playerHand) && enabled;
+  bool isEnabled(GameState state) =>
+      cost.isAffordable(state.playerHand) && enabled;
 
   CardActionDetails get actionDetails;
 

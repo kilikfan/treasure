@@ -28,18 +28,36 @@ void main() {
 
   test('should deduct its cost - with mock', () {
     final randomiser = MockRandomiser();
-    final playerHand = Hand([Resource.FOOD, Resource.FOOD, Resource.CREW, Resource.DOUBLOON, Resource.MAP]);
+    final playerHand = Hand([
+      Resource.FOOD,
+      Resource.FOOD,
+      Resource.CREW,
+      Resource.DOUBLOON,
+      Resource.MAP
+    ]);
 
     final cost = RandomCost(3, randomiser: randomiser);
     cost.deductCost(playerHand);
 
     expect(playerHand.cards, [Resource.DOUBLOON, Resource.MAP]);
-    verify(randomiser.shuffle([Resource.FOOD, Resource.FOOD, Resource.CREW, Resource.DOUBLOON, Resource.MAP]));
+    verify(randomiser.shuffle([
+      Resource.FOOD,
+      Resource.FOOD,
+      Resource.CREW,
+      Resource.DOUBLOON,
+      Resource.MAP
+    ]));
   });
 
   test('should deduct its cost - with fake', () {
     final randomiser = FakeRandomiser();
-    final playerHand = Hand([Resource.FOOD, Resource.FOOD, Resource.CREW, Resource.DOUBLOON, Resource.MAP]);
+    final playerHand = Hand([
+      Resource.FOOD,
+      Resource.FOOD,
+      Resource.CREW,
+      Resource.DOUBLOON,
+      Resource.MAP
+    ]);
 
     final cost = RandomCost(2, randomiser: randomiser);
     cost.deductCost(playerHand);

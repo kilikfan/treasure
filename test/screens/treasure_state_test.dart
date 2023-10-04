@@ -13,7 +13,8 @@ void main() {
     final state = TreasureState(audioModel);
     state.initState();
 
-    WidgetsBinding.instance.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    WidgetsBinding.instance
+        .handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     verify(audioModel.resumeMusic());
   });
 

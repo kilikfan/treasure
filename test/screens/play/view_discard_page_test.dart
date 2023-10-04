@@ -8,7 +8,8 @@ import '../../model/audio/audio_model_test.mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
-  testWidgets('close button should return to play page', (WidgetTester tester) async {
+  testWidgets('close button should return to play page',
+      (WidgetTester tester) async {
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
 

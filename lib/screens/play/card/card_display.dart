@@ -9,7 +9,7 @@ class CardDisplay extends StatelessWidget {
   final Model.Card? card;
   final bool readOnly;
 
-  const CardDisplay(this.card, { this.readOnly = false });
+  const CardDisplay(this.card, {this.readOnly = false});
 
   @override
   Widget build(BuildContext context) {

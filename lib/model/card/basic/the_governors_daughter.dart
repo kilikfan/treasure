@@ -14,10 +14,20 @@ class TheGovernorsDaughter extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       //TODO - action should allow crew/landlubber payments
-      TradeAction('Kidnap the debutante.', [Resource.CREW, Resource.CREW],
-          [Resource.CREW, Resource.CREW, Resource.LANDLUBBER, Resource.INFAMY, Resource.INFAMY], soundEffect: SFX_KIDNAP),
+      TradeAction(
+          'Kidnap the debutante.',
+          [Resource.CREW, Resource.CREW],
+          [
+            Resource.CREW,
+            Resource.CREW,
+            Resource.LANDLUBBER,
+            Resource.INFAMY,
+            Resource.INFAMY
+          ],
+          soundEffect: SFX_KIDNAP),
       //TODO - action should allow crew/landlubber payments
-      TradeAction('Return her for the ransom.', [Resource.CREW], [Resource.DOUBLOON, Resource.DOUBLOON]),
+      TradeAction('Return her for the ransom.', [Resource.CREW],
+          [Resource.DOUBLOON, Resource.DOUBLOON]),
       DiscardAction(description: 'Tell your crew to focus.')
     ];
   }

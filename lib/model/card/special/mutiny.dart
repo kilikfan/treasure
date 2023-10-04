@@ -10,8 +10,7 @@ import '../action/exile_action.dart';
 import '../special_card.dart';
 
 class Mutiny extends SpecialCard {
-  const Mutiny()
-      : super('Mutiny!', SpecialType.MUTINY);
+  const Mutiny() : super('Mutiny!', SpecialType.MUTINY);
 
   @override
   List<CardAction> getActions(GameState state) {

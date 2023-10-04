@@ -21,7 +21,8 @@ import '../mocks.dart';
 import '../test_utils.dart';
 
 void main() {
-  test('should draw cards in order, placing the current card into the discard', () {
+  test('should draw cards in order, placing the current card into the discard',
+      () {
     const plunderAWreck = PlunderAWreck();
     const aRivalShip = ARivalShip();
     final state = makeGameState(deck: [plunderAWreck, aRivalShip]);
@@ -37,14 +38,16 @@ void main() {
     expect(state.deck, []);
   });
 
-  test('should shuffle the discard pile and draw from it if the deck is empty', () {
+  test('should shuffle the discard pile and draw from it if the deck is empty',
+      () {
     const plunderAWreck = PlunderAWreck();
     const aRivalShip = ARivalShip();
 
     final randomiser = MockRandomiser();
     logInvocations([randomiser]);
 
-    final state = makeGameState(deck: [plunderAWreck, aRivalShip], randomiser: randomiser);
+    final state = makeGameState(
+        deck: [plunderAWreck, aRivalShip], randomiser: randomiser);
     state.nextCard();
     state.nextCard();
     expect(state.deck, []);
@@ -85,7 +88,8 @@ void main() {
       expect(state.deck, [portFees]);
     });
 
-    test('should handle trying to scry more cards than there are remaining', () {
+    test('should handle trying to scry more cards than there are remaining',
+        () {
       const plunderAWreck = PlunderAWreck();
       const aRivalShip = ARivalShip();
       const portFees = PortFees();
@@ -142,25 +146,45 @@ void main() {
     });
   });
 
-  group('Special cards', ()
-  {
+  group('Special cards', () {
     test('should put Mutiny in next if too many resources', () {
-      final state = makeGameState(
-          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-          Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-          Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-          Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
-      );
+      final state = makeGameState(playerHand: [
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON
+      ]);
 
       expect(state.nextCard(), const matcher.TypeMatcher<Mutiny>());
     });
 
     test('should not put Mutiny in next if resource count under 15', () {
-      final state = makeGameState(
-          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
-      );
+      final state = makeGameState(playerHand: [
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.FOOD
+      ]);
 
       expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
@@ -168,54 +192,95 @@ void main() {
     test('should put Navy Raid in next if too much infamy and coin true', () {
       final randomiser = FakeRandomiser(true);
 
-      final state = makeGameState(
-          playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.INFAMY,
-            Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON],
-          randomiser: randomiser
-      );
+      final state = makeGameState(playerHand: [
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON
+      ], randomiser: randomiser);
 
       expect(state.nextCard(), const matcher.TypeMatcher<NavyRaid>());
     });
 
-    test('should not put Navy Raid in next if too much infamy and coin false', () {
+    test('should not put Navy Raid in next if too much infamy and coin false',
+        () {
       final randomiser = FakeRandomiser(false);
 
-      final state = makeGameState(
-          playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.INFAMY,
-            Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD],
-        randomiser: randomiser
-      );
+      final state = makeGameState(playerHand: [
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.FOOD
+      ], randomiser: randomiser);
 
       expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
 
     test('should not put Navy Raid in next if infamy under 4', () {
-      final state = makeGameState(
-          playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
-      );
+      final state = makeGameState(playerHand: [
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.INFAMY,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.FOOD
+      ]);
 
       expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
 
     test('should put Ravenous Crew in next if no food', () {
-      final state = makeGameState(
-          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON]
-      );
+      final state = makeGameState(playerHand: [
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON
+      ]);
 
       expect(state.nextCard(), const matcher.TypeMatcher<RavenousCrew>());
     });
 
     test('should not put Ravenous Crew in next if we have some food', () {
-      final state = makeGameState(
-          playerHand: [Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON,
-            Resource.DOUBLOON, Resource.DOUBLOON, Resource.DOUBLOON, Resource.FOOD]
-      );
+      final state = makeGameState(playerHand: [
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.DOUBLOON,
+        Resource.FOOD
+      ]);
 
       expect(state.nextCard(), const matcher.TypeMatcher<PlunderAWreck>());
     });
@@ -234,14 +299,17 @@ void main() {
       final state = makeGameState();
       _verifyChangeNotifier(state, state.nextCard);
       _verifyChangeNotifier(state, () => state.scryCards(1));
-      _verifyChangeNotifier(state, () => state.replaceScryedCard(const PlunderAWreck(), ScryOption.TOP));
+      _verifyChangeNotifier(state,
+          () => state.replaceScryedCard(const PlunderAWreck(), ScryOption.TOP));
       _verifyChangeNotifier(state, state.exileCurrentCard);
       _verifyChangeNotifier(state, () => state.endGame(GameResult.WIN));
     });
   });
 
   group('Getting active quests', () {
-    test('should return only quest cards from the current card, deck and discard pile', () {
+    test(
+        'should return only quest cards from the current card, deck and discard pile',
+        () {
       // basic cards:
       const aGameOfCards = AGameOfCards();
       const aRivalShip = ARivalShip();
@@ -253,14 +321,24 @@ void main() {
       const shoallyYouCantBeSerious = ShoallyYouCantBeSerious();
       const utopia = Utopia();
 
-      final state = makeGameState(deck: [aGameOfCards, landAhoy, aSenseOfPorpoise]);
-      state.discard.addAll([aRivalShip, krakenInMyBoots, shoallyYouCantBeSerious]);
+      final state =
+          makeGameState(deck: [aGameOfCards, landAhoy, aSenseOfPorpoise]);
+      state.discard
+          .addAll([aRivalShip, krakenInMyBoots, shoallyYouCantBeSerious]);
       state.currentCard = rumoursOfAnIsland;
-      state.scrying.addAll([utopia, aGameOfCards]); // shouldn't include quests from scrying
+      state.scrying.addAll(
+          [utopia, aGameOfCards]); // shouldn't include quests from scrying
 
       final activeQuestCards = state.getActiveQuestCards();
-      activeQuestCards.sort((card1, card2) => card1.name.compareTo(card2.name)); // sort so test doesn't care about order
-      expect(activeQuestCards, [aSenseOfPorpoise, krakenInMyBoots, landAhoy, rumoursOfAnIsland, shoallyYouCantBeSerious]);
+      activeQuestCards.sort((card1, card2) => card1.name
+          .compareTo(card2.name)); // sort so test doesn't care about order
+      expect(activeQuestCards, [
+        aSenseOfPorpoise,
+        krakenInMyBoots,
+        landAhoy,
+        rumoursOfAnIsland,
+        shoallyYouCantBeSerious
+      ]);
     });
   });
 }

@@ -30,8 +30,11 @@ void main() {
     expect(freeAction.isEnabled(state), false);
   });
 
-  test('should deduct the cost, perform the action then move on to the next card', () {
-    final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
+  test(
+      'should deduct the cost, perform the action then move on to the next card',
+      () {
+    final state =
+        makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
     state.nextCard();
 
     final fn = MockFunction().fn;
@@ -44,8 +47,10 @@ void main() {
     expect(state.discard.length, 1);
   });
 
-  test('should not automatically move on to the next card for certain actions', () {
-    final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
+  test('should not automatically move on to the next card for certain actions',
+      () {
+    final state =
+        makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
     state.nextCard();
     final card = state.currentCard;
 
@@ -59,7 +64,8 @@ void main() {
 class _FakeAction extends CardAction {
   final Function()? fn;
 
-  _FakeAction(List<Resource> cost, [this.fn]) : super(SimpleCost(cost), 'Fake Action');
+  _FakeAction(List<Resource> cost, [this.fn])
+      : super(SimpleCost(cost), 'Fake Action');
 
   @override
   void performActionImpl(GameState state) {
@@ -69,5 +75,6 @@ class _FakeAction extends CardAction {
   }
 
   @override
-  CardActionDetails get actionDetails => CardActionDetails([] as CardActionCost, '');
+  CardActionDetails get actionDetails =>
+      CardActionDetails([] as CardActionCost, '');
 }

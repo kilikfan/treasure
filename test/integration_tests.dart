@@ -12,16 +12,19 @@ import 'test_utils.dart';
 import 'model/audio/audio_model_test.mocks.dart';
 
 void main() {
-
-  testWidgets('should start playing game music when music setting toggled on from in game', (WidgetTester tester) async {
+  testWidgets(
+      'should start playing game music when music setting toggled on from in game',
+      (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
     final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
+    final audioModel = await makeAudioModel(
+        settingsModel: settingsModel, musicPlayer: musicPlayer);
 
-    await launchGameFromMenu(tester, audioModel: audioModel, settingsModel: settingsModel);
+    await launchGameFromMenu(tester,
+        audioModel: audioModel, settingsModel: settingsModel);
 
     final settingsFinder = find.byIcon(Icons.settings);
     await tester.tap(settingsFinder);
@@ -33,5 +36,4 @@ void main() {
 
     verify(musicPlayer.play(AssetSource('music/$GAME_MUSIC'), volume: 0.5));
   });
-
 }

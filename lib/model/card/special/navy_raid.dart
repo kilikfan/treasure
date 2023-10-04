@@ -11,8 +11,7 @@ import '../special_card.dart';
 import '../special_card_types.dart';
 
 class NavyRaid extends SpecialCard {
-  const NavyRaid()
-      : super('Navy Raid!', SpecialType.NAVY_RAID);
+  const NavyRaid() : super('Navy Raid!', SpecialType.NAVY_RAID);
 
   @override
   List<CardAction> getActions(GameState state) {

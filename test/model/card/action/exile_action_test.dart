@@ -34,7 +34,10 @@ void main() {
     final state = makeGameState(playerHand: [Resource.CREW]);
     final currentCard = state.nextCard();
 
-    final action = ExileAction(description: 'Foo', cost: const SimpleCost([Resource.CREW]), reward: [Resource.DOUBLOON]);
+    final action = ExileAction(
+        description: 'Foo',
+        cost: const SimpleCost([Resource.CREW]),
+        reward: [Resource.DOUBLOON]);
     expect(action.description, 'Foo');
 
     action.performAction(state);

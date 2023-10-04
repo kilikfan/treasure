@@ -8,12 +8,14 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 import '../../../test_utils.dart';
 
 void main() {
-  test('should exile the current card and add replacement to the discard pile', () {
+  test('should exile the current card and add replacement to the discard pile',
+      () {
     const rumoursOfAnIsland = RumoursOfAnIsland();
     const landAhoy = LandAhoy();
     const plunderAWreck = PlunderAWreck();
 
-    final state = makeGameState(playerHand: [Resource.CREW], deck: [rumoursOfAnIsland, plunderAWreck]);
+    final state = makeGameState(
+        playerHand: [Resource.CREW], deck: [rumoursOfAnIsland, plunderAWreck]);
     final currentCard = state.nextCard();
 
     final action = ReplaceAction(landAhoy, ReplaceType.FORWARDS, '');
@@ -29,10 +31,12 @@ void main() {
     const landAhoy = LandAhoy();
     const plunderAWreck = PlunderAWreck();
 
-    final state = makeGameState(playerHand: [Resource.CREW], deck: [rumoursOfAnIsland, plunderAWreck]);
+    final state = makeGameState(
+        playerHand: [Resource.CREW], deck: [rumoursOfAnIsland, plunderAWreck]);
     final currentCard = state.nextCard();
 
-    final action = ReplaceAction(landAhoy, ReplaceType.BACKWARDS, '', cost: [Resource.CREW]);
+    final action = ReplaceAction(landAhoy, ReplaceType.BACKWARDS, '',
+        cost: [Resource.CREW]);
     action.performAction(state);
 
     expect(state.exile, [currentCard]);

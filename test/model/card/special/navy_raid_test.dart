@@ -9,19 +9,33 @@ import '../../../test_utils.dart';
 
 void main() {
   test('conscription action should have correct costs', () {
-    final oddState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY]);
-    final eventState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY]);
+    final oddState = makeGameState(
+        playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY]);
+    final eventState =
+        makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY]);
 
-    expect(const NavyRaid().getConscriptionAction(oddState).cost, const SimpleCost([Resource.INFAMY, Resource.INFAMY, Resource.CREW]));
-    expect(const NavyRaid().getConscriptionAction(eventState).cost, const SimpleCost([Resource.INFAMY]));
+    expect(const NavyRaid().getConscriptionAction(oddState).cost,
+        const SimpleCost([Resource.INFAMY, Resource.INFAMY, Resource.CREW]));
+    expect(const NavyRaid().getConscriptionAction(eventState).cost,
+        const SimpleCost([Resource.INFAMY]));
   });
 
   test('taxation action should have correct costs', () {
-    final oddState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY]);
-    final eventState = makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY]);
+    final oddState = makeGameState(
+        playerHand: [Resource.INFAMY, Resource.INFAMY, Resource.INFAMY]);
+    final eventState =
+        makeGameState(playerHand: [Resource.INFAMY, Resource.INFAMY]);
 
-    expect(const NavyRaid().getTaxationAction(oddState).cost, const SimpleCost([Resource.INFAMY, Resource.INFAMY, Resource.DOUBLOON, Resource.DOUBLOON]));
-    expect(const NavyRaid().getTaxationAction(eventState).cost, const SimpleCost([Resource.INFAMY, Resource.DOUBLOON]));
+    expect(
+        const NavyRaid().getTaxationAction(oddState).cost,
+        const SimpleCost([
+          Resource.INFAMY,
+          Resource.INFAMY,
+          Resource.DOUBLOON,
+          Resource.DOUBLOON
+        ]));
+    expect(const NavyRaid().getTaxationAction(eventState).cost,
+        const SimpleCost([Resource.INFAMY, Resource.DOUBLOON]));
   });
 }
 

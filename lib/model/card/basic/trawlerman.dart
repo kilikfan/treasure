@@ -12,7 +12,8 @@ class Trawlerman extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       TradeAction('Fresh fish.', [], [Resource.FOOD]),
-      TradeAction('Fresh fish and fresh trawlerman!', [], [Resource.CREW, Resource.FOOD, Resource.INFAMY]),
+      TradeAction('Fresh fish and fresh trawlerman!', [],
+          [Resource.CREW, Resource.FOOD, Resource.INFAMY]),
       DiscardAction(description: 'Saving yourself for a big dinner.')
     ];
   }
