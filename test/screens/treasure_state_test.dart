@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/screens/app.dart';
 
-import '../mocks.dart';
+import '../model/audio/audio_model_test.mocks.dart';
 
 void main() {
   test('should resume music on resume', () {
@@ -13,7 +13,8 @@ void main() {
     final state = TreasureState(audioModel);
     state.initState();
 
-    WidgetsBinding.instance.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    WidgetsBinding.instance
+        .handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     verify(audioModel.resumeMusic());
   });
 

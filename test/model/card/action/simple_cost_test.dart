@@ -16,17 +16,27 @@ void main() {
   test('should describe its cost as-is when it can be afforded', () {
     final hand = Hand([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD]);
     expect(const SimpleCost([Resource.FOOD]).getDescription(hand), '(F)');
-    expect(const SimpleCost([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD]).getDescription(hand), '(L, F, F)');
+    expect(
+        const SimpleCost([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD])
+            .getDescription(hand),
+        '(L, F, F)');
   });
 
   test('should describe its cost as-is when it cannot be afforded', () {
     expect(const SimpleCost([Resource.FOOD]).getDescription(Hand()), '(F)');
-    expect(const SimpleCost([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD]).getDescription(Hand()), '(L, F, F)');
+    expect(
+        const SimpleCost([Resource.LANDLUBBER, Resource.FOOD, Resource.FOOD])
+            .getDescription(Hand()),
+        '(L, F, F)');
   });
 
-  test('should describe its cost in real terms when a map will be required', () {
+  test('should describe its cost in real terms when a map will be required',
+      () {
     final hand = Hand([Resource.FOOD, Resource.FOOD, Resource.MAP]);
-    expect(const SimpleCost([Resource.FOOD, Resource.FOOD, Resource.FOOD]).getDescription(hand), '(M, F, F)');
+    expect(
+        const SimpleCost([Resource.FOOD, Resource.FOOD, Resource.FOOD])
+            .getDescription(hand),
+        '(M, F, F)');
   });
 
   test('should correctly report when it is empty', () {
@@ -37,7 +47,8 @@ void main() {
   test('should deduct its cost', () {
     final playerHand = Hand(INITIAL_RESOURCES);
 
-    const cost = SimpleCost([Resource.FOOD, Resource.CREW, Resource.CREW, Resource.DOUBLOON]);
+    const cost = SimpleCost(
+        [Resource.FOOD, Resource.CREW, Resource.CREW, Resource.DOUBLOON]);
 
     cost.deductCost(playerHand);
 

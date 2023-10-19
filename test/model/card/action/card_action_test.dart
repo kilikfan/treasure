@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
+import 'package:treasure_of_the_high_seas/model/card/action/card_action_cost.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/scry_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/simple_cost.dart';
@@ -29,8 +30,11 @@ void main() {
     expect(freeAction.isEnabled(state), false);
   });
 
-  test('should deduct the cost, perform the action then move on to the next card', () {
-    final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
+  test(
+      'should deduct the cost, perform the action then move on to the next card',
+      () {
+    final state =
+        makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
     state.nextCard();
 
     final fn = MockFunction().fn;
@@ -43,8 +47,10 @@ void main() {
     expect(state.discard.length, 1);
   });
 
-  test('should not automatically move on to the next card for certain actions', () {
-    final state = makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
+  test('should not automatically move on to the next card for certain actions',
+      () {
+    final state =
+        makeGameState(playerHand: [Resource.CREW, Resource.LANDLUBBER]);
     state.nextCard();
     final card = state.currentCard;
 
@@ -56,17 +62,19 @@ void main() {
 }
 
 class _FakeAction extends CardAction {
-  final Function() fn;
+  final Function()? fn;
 
-  _FakeAction(List<Resource> cost, [this.fn]) : super(SimpleCost(cost), 'Fake Action');
+  _FakeAction(List<Resource> cost, [this.fn])
+      : super(SimpleCost(cost), 'Fake Action');
 
   @override
   void performActionImpl(GameState state) {
     if (fn != null) {
-      fn();
+      fn!();
     }
   }
 
   @override
-  CardActionDetails get actionDetails => null;
+  CardActionDetails get actionDetails =>
+      CardActionDetails([] as CardActionCost, '');
 }

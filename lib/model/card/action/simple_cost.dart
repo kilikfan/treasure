@@ -31,9 +31,9 @@ class SimpleCost extends CardActionCost {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is SimpleCost &&
-              runtimeType == other.runtimeType &&
-              listEquals(cost, other.cost);
+      other is SimpleCost &&
+          runtimeType == other.runtimeType &&
+          listEquals(cost, other.cost);
 
   @override
   int get hashCode => cost.hashCode;

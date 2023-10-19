@@ -16,8 +16,8 @@ void main() {
   });
 
   test('should describe its cost', () {
-    expect(RandomCost(1).getDescription(null), '1 x ?');
-    expect(RandomCost(3).getDescription(null), '3 x ?');
+    expect(RandomCost(1).getDescription(Hand()), '1 x ?');
+    expect(RandomCost(3).getDescription(Hand()), '3 x ?');
   });
 
   test('should correctly report when it is empty', () {
@@ -28,18 +28,36 @@ void main() {
 
   test('should deduct its cost - with mock', () {
     final randomiser = MockRandomiser();
-    final playerHand = Hand([Resource.FOOD, Resource.FOOD, Resource.CREW, Resource.DOUBLOON, Resource.MAP]);
+    final playerHand = Hand([
+      Resource.FOOD,
+      Resource.FOOD,
+      Resource.CREW,
+      Resource.DOUBLOON,
+      Resource.MAP
+    ]);
 
     final cost = RandomCost(3, randomiser: randomiser);
     cost.deductCost(playerHand);
 
     expect(playerHand.cards, [Resource.DOUBLOON, Resource.MAP]);
-    verify(randomiser.shuffle([Resource.FOOD, Resource.FOOD, Resource.CREW, Resource.DOUBLOON, Resource.MAP]));
+    verify(randomiser.shuffle([
+      Resource.FOOD,
+      Resource.FOOD,
+      Resource.CREW,
+      Resource.DOUBLOON,
+      Resource.MAP
+    ]));
   });
 
   test('should deduct its cost - with fake', () {
     final randomiser = FakeRandomiser();
-    final playerHand = Hand([Resource.FOOD, Resource.FOOD, Resource.CREW, Resource.DOUBLOON, Resource.MAP]);
+    final playerHand = Hand([
+      Resource.FOOD,
+      Resource.FOOD,
+      Resource.CREW,
+      Resource.DOUBLOON,
+      Resource.MAP
+    ]);
 
     final cost = RandomCost(2, randomiser: randomiser);
     cost.deductCost(playerHand);

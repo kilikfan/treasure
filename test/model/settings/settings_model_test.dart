@@ -24,7 +24,8 @@ void main() {
     expect(model.isSettingEnabled(AppSetting.musicEnabled), false);
   });
 
-  test('should update itself and SharedPreferences when a setting is changed', () async {
+  test('should update itself and SharedPreferences when a setting is changed',
+      () async {
     SharedPreferences.setMockInitialValues({});
 
     final prefs = await SharedPreferences.getInstance();

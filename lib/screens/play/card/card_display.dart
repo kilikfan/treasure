@@ -6,10 +6,10 @@ import './card_header.dart';
 import '../../../model/card/card.dart' as Model;
 
 class CardDisplay extends StatelessWidget {
-  final Model.Card card;
+  final Model.Card? card;
   final bool readOnly;
 
-  const CardDisplay(this.card, { this.readOnly = false });
+  const CardDisplay(this.card, {this.readOnly = false});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class CardDisplay extends StatelessWidget {
             side: const BorderSide(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(10),
           ),
-          color: _getCardColor(card),
+          color: _getCardColor(card!),
           child: ListView(
             children: [
-              CardHeader(card.name, card.getSubHeaderText()),
+              CardHeader(card!.name, card!.getSubHeaderText()),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: CardActionsPanel(card, readOnly))
@@ -32,7 +32,7 @@ class CardDisplay extends StatelessWidget {
         ));
   }
 
-  Color _getCardColor(Model.Card card) {
+  Color? _getCardColor(Model.Card card) {
     switch (card.type) {
       case CardType.QUEST:
         return questCardColour;

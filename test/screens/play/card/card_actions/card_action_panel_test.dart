@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/card_action_details.dart';
 import 'package:treasure_of_the_high_seas/model/card/action/end_game_action.dart';
@@ -18,11 +19,12 @@ import 'package:treasure_of_the_high_seas/screens/play/card/card_actions/card_ac
 
 import '../../../../mocks.dart';
 import '../../../../test_utils.dart';
+import '../../../../model/audio/audio_model_test.mocks.dart';
 
 class DummyAction extends CardAction {
-  final Function(Object) fn;
+  final Function(Object)? fn;
 
-  DummyAction(List<Resource> cost, bool enabled, {this.fn, String soundEffect})
+  DummyAction(List<Resource> cost, bool enabled, {this.fn, String? soundEffect})
       : super(SimpleCost(cost), 'Some Action', soundEffect: soundEffect) {
     this.enabled = enabled;
   }
@@ -30,7 +32,7 @@ class DummyAction extends CardAction {
   @override
   void performAction(GameState state) {
     if (fn != null) {
-      fn(state);
+      fn!(state);
     }
   }
 
@@ -46,7 +48,9 @@ class DummyAction extends CardAction {
 void main() {
   testWidgets('should display a blank, disabled button if not passed an action',
       (WidgetTester tester) async {
-    await tester.launchWidget(child: const CardActionPanel(null), state: makeGameState());
+    SharedPreferences.setMockInitialValues({});
+    final state = makeGameState();
+    await tester.launchWidget(child: const CardActionPanel(null), state: state);
 
     final textFinder = find.byElementType(CardActionText);
     final cardLineFinder = find.byElementType(CardActionLine);
@@ -61,8 +65,10 @@ void main() {
   testWidgets(
       'should display a disabled button if the action should not be enabled',
       (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final action = DummyAction([Resource.DOUBLOON], false);
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
+    await tester.launchWidget(
+        child: CardActionPanel(action), state: makeGameState());
 
     final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
     expect(button.enabled, false);
@@ -75,6 +81,7 @@ void main() {
 
   testWidgets('should be enabled if appropriate, and call performAction on tap',
       (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final performAction = MockFunction().fnOne;
     final state = makeGameState();
     final action = DummyAction([Resource.DOUBLOON], true, fn: performAction);
@@ -95,9 +102,14 @@ void main() {
 
   testWidgets('should play sound effect on tap if the action has one',
       (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final audioModel = MockAudioModel();
-    final action = DummyAction([Resource.DOUBLOON], true, soundEffect: 'baa.mp3');
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState(), audioModel: audioModel);
+    final action =
+        DummyAction([Resource.DOUBLOON], true, soundEffect: 'baa.mp3');
+    await tester.launchWidget(
+        child: CardActionPanel(action),
+        state: makeGameState(),
+        audioModel: audioModel);
 
     final buttonFinder = find.byType(ElevatedButton);
     await tester.tap(buttonFinder);
@@ -107,9 +119,13 @@ void main() {
 
   testWidgets('should not attempt to play sound if none specified',
       (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final audioModel = MockAudioModel();
     final action = DummyAction([Resource.DOUBLOON], true, soundEffect: null);
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState(), audioModel: audioModel);
+    await tester.launchWidget(
+        child: CardActionPanel(action),
+        state: makeGameState(),
+        audioModel: audioModel);
 
     final buttonFinder = find.byType(ElevatedButton);
     await tester.tap(buttonFinder);
@@ -118,8 +134,10 @@ void main() {
   });
 
   testWidgets('should render a scry action', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final action = ScryAction('See the future.', [Resource.FOOD], 3);
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
+    await tester.launchWidget(
+        child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('See the future.'), findsOneWidget);
     expect(find.byIcon(Icons.remove_red_eye), findsOneWidget);
@@ -127,37 +145,47 @@ void main() {
   });
 
   testWidgets('should render a reward', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final action =
         TradeAction('Buy some food', [Resource.DOUBLOON], [Resource.FOOD]);
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
+    await tester.launchWidget(
+        child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Buy some food'), findsOneWidget);
     expect(find.byIcon(Icons.arrow_upward), findsOneWidget);
     expect(find.text('(F)'), findsOneWidget);
   });
 
-  testWidgets('should render a win action, and not display the Discard line', (WidgetTester tester) async {
-    final action =
-    EndGameAction(GameResult.WIN, [], 'You Win!');
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
+  testWidgets('should render a win action, and not display the Discard line',
+      (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final action = EndGameAction(GameResult.WIN, [], 'You Win!');
+    await tester.launchWidget(
+        child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Win!'), findsWidgets);
     expect(find.text('Discard'), findsNothing);
   });
 
-  testWidgets('should render a loss action, and not display the Discard line', (WidgetTester tester) async {
-    final action =
-    EndGameAction(GameResult.LOSE, [], 'You Lose!');
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
+  testWidgets('should render a loss action, and not display the Discard line',
+      (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final action = EndGameAction(GameResult.LOSE, [], 'You Lose!');
+    await tester.launchWidget(
+        child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('You Lose!'), findsWidgets);
     expect(find.text('Discard'), findsNothing);
   });
 
   testWidgets('should render a replace action', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     const replacementCard = LandAhoy();
-    final action = ReplaceAction(replacementCard, ReplaceType.FORWARDS, 'Sail for land', cost: [Resource.FOOD, Resource.FOOD]);
-    await tester.launchWidget(child: CardActionPanel(action), state: makeGameState());
+    final action = ReplaceAction(
+        replacementCard, ReplaceType.FORWARDS, 'Sail for land',
+        cost: [Resource.FOOD, Resource.FOOD]);
+    await tester.launchWidget(
+        child: CardActionPanel(action), state: makeGameState());
 
     expect(find.text('Sail for land'), findsWidgets);
     expect(find.text('(F, F)'), findsWidgets);
@@ -169,8 +197,10 @@ void main() {
   });
 
   testWidgets('should support readOnly mode', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final action = DummyAction([Resource.DOUBLOON], true);
-    await tester.launchWidget(child: CardActionPanel(action, readOnly: true), state: makeGameState());
+    await tester.launchWidget(
+        child: CardActionPanel(action, readOnly: true), state: makeGameState());
 
     expect(find.byType(Card), findsOneWidget);
     expect(find.byType(ElevatedButton), findsNothing);

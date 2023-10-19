@@ -15,7 +15,7 @@ class SettingsModel extends ChangeNotifier {
 
   SettingsModel(this._prefs) {
     for (final setting in AppSetting.values) {
-      _settings[setting] = _prefs.getBool(setting.toString());
+      _settings[setting] = _prefs.getBool(setting.toString()) ?? false;
     }
   }
 

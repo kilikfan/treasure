@@ -9,7 +9,8 @@ void main() {
   test('should support winning the game', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
 
-    final action = EndGameAction(GameResult.WIN, [Resource.CREW], 'The winner takes it all!');
+    final action = EndGameAction(
+        GameResult.WIN, [Resource.CREW], 'The winner takes it all!');
     expect(action.description, 'The winner takes it all!');
 
     final lastCard = state.currentCard;
@@ -17,13 +18,14 @@ void main() {
     expect(state.result, GameResult.WIN);
 
     //Check that we have not progressed to the next card
-    expect(state.currentCard,lastCard);
+    expect(state.currentCard, lastCard);
   });
 
   test('should support losing the game', () {
     final state = makeGameState(playerHand: [Resource.CREW]);
 
-    final action = EndGameAction(GameResult.LOSE, [], 'The loser standing small.');
+    final action =
+        EndGameAction(GameResult.LOSE, [], 'The loser standing small.');
     expect(action.description, 'The loser standing small.');
 
     final lastCard = state.currentCard;
@@ -31,6 +33,6 @@ void main() {
     expect(state.result, GameResult.LOSE);
 
     //Check that we have not progressed to the next card
-    expect(state.currentCard,lastCard);
+    expect(state.currentCard, lastCard);
   });
 }
