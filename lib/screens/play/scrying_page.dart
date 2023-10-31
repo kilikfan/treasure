@@ -24,8 +24,9 @@ class ScryingPage extends StatelessWidget {
   Widget _getScryButton(
       BuildContext context, Model.Card card, ScryOption scryOption) {
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
         width: MediaQuery.of(context).size.width * 0.7,
+        height: MediaQuery.of(context).size.height * 0.07,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: scryOption.getColour(),
