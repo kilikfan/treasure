@@ -15,7 +15,6 @@ class TheFrenchFence extends Card {
       TradeAction('Sell your ill-gotten gains.', [],
           [Resource.DOUBLOON, Resource.DOUBLOON],
           soundEffect: SFX_COINS),
-      // TODO - cost for 'Buy a map' should be a choice between CREW and LANDLUBBER
       TradeAction(
           'Buy a map.',
           [

@@ -17,7 +17,6 @@ class TavernBrawl extends Card {
       TradeAction('Hold your corner.', [Resource.CREW],
           [Resource.DOUBLOON, Resource.LANDLUBBER, Resource.LANDLUBBER],
           soundEffect: SFX_SWORD),
-      //TODO - one of the crew in the payment is a crew/landlubber
       TradeAction(
           'Show them who\'s the captain!',
           [Resource.CREW, Resource.CREW, Resource.FOOD],
