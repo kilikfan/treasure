@@ -17,15 +17,16 @@ class CreditsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                 heading('Development'),
-                    const SizedBox(height: 10),
+                const SizedBox(height: 10),
                 iconText(Icons.anchor, Colors.black, 'Mark Fisher'),
-                iconText(Icons.anchor, Colors.black, 'Alex Burlton'),
+                iconText(Icons.anchor, Colors.black, 'Alyssa Burlton'),
                 iconText(Icons.anchor, Colors.black, 'Jon Masson'),
                 iconText(Icons.anchor, Colors.black, 'Samuel Bradley'),
-                    const SizedBox(height: 50),
-                    heading('Music / SFX'),
-                    const SizedBox(height: 10),
-                    iconText(Icons.music_note, Colors.black, 'Shane Ivers - "The Buccaneer\'s Haul" \n(https://www.silvermansound.com)')
+                const SizedBox(height: 50),
+                heading('Music / SFX'),
+                const SizedBox(height: 10),
+                iconText(Icons.music_note, Colors.black,
+                    'Shane Ivers - "The Buccaneer\'s Haul" \n(https://www.silvermansound.com)')
               ])),
         ));
   }

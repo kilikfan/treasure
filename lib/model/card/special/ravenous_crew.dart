@@ -9,8 +9,7 @@ import '../special_card.dart';
 import '../special_card_types.dart';
 
 class RavenousCrew extends SpecialCard {
-  const RavenousCrew()
-      : super('Ravenous Crew', SpecialType.RAVENOUS_CREW);
+  const RavenousCrew() : super('Ravenous Crew', SpecialType.RAVENOUS_CREW);
 
   @override
   List<CardAction> getActions(GameState state) {

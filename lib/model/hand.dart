@@ -14,7 +14,8 @@ class Hand {
     cards.sort((r1, r2) => r1.index.compareTo(r2.index));
   }
 
-  Iterable<Resource> getAllOfResource(Resource resource) => cards.where((res) => res == resource);
+  Iterable<Resource> getAllOfResource(Resource resource) =>
+      cards.where((res) => res == resource);
 
   int countResource(Resource resource) => getAllOfResource(resource).length;
 
@@ -22,7 +23,7 @@ class Hand {
 
   bool canAfford(List<Resource> cost) => getRealCost(cost) != null;
 
-  List<Resource> getRealCost(List<Resource> rawCost) {
+  List<Resource>? getRealCost(List<Resource> rawCost) {
     try {
       final handCopy = List<Resource>.from(cards);
       return _deductResources(rawCost, handCopy);
@@ -31,8 +32,11 @@ class Hand {
     }
   }
 
-  void deductResources(List<Resource> resources) => _deductResources(resources, cards);
-  List<Resource> _deductResources(List<Resource> resources, List<Resource> playerHand) {
+  void deductResources(List<Resource> resources) =>
+      _deductResources(resources, cards);
+
+  List<Resource> _deductResources(
+      List<Resource> resources, List<Resource> playerHand) {
     final resourcesRemoved = <Resource>[];
     for (final resource in resources) {
       if (playerHand.contains(resource)) {

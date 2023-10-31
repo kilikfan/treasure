@@ -14,10 +14,10 @@ import './card_action_text.dart';
 import 'card_action_line.dart';
 
 class CardActionPanel extends StatelessWidget {
-  final Model.CardAction action;
+  final Model.CardAction? action;
   final bool readOnly;
 
-  const CardActionPanel(this.action, { this.readOnly = false });
+  const CardActionPanel(this.action, {this.readOnly = false});
 
   @override
   Widget build(BuildContext context) {
@@ -34,56 +34,59 @@ class CardActionPanel extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: readOnly
             ? Card(
-                shape: shape,
+            shape: shape,
                 color: _getButtonColor(actionDetails),
                 child: _getActionComponents(actionDetails, state.playerHand))
             : ElevatedButton(
-                style: ElevatedButton.styleFrom(shape: shape, primary: _getButtonColor(actionDetails)),
+                style: ElevatedButton.styleFrom(
+                    shape: shape,
+                    backgroundColor: _getButtonColor(actionDetails)),
                 onPressed: enabled
                     ? () {
-                        action.performAction(state);
+                        action!.performAction(state);
 
-                        if (action.soundEffect != null) {
-                          context.read<AudioModel>().playSound(action.soundEffect);
+                        if (action!.soundEffect != null) {
+                          context
+                              .read<AudioModel>()
+                              .playSound(action!.soundEffect!);
                         }
                       }
                     : null,
                 child: _getActionComponents(actionDetails, state.playerHand)));
   }
 
-  Column _getActionComponents(CardActionDetails actionDetails, Hand hand) {
-    if (actionDetails == null) {
-      return null;
-    }
-
+  Column? _getActionComponents(CardActionDetails? actionDetails, Hand hand) {
     final effects = <CardActionLine>[];
 
-    if (!actionDetails.cost.isEmpty()) {
-      effects
-          .add(CardActionLine(actionDetails.cost.getDescription(hand), Icons.arrow_downward, Colors.red));
-    }
+    if (actionDetails != null) {
+      if (!actionDetails.cost.isEmpty()) {
+        effects.add(CardActionLine(actionDetails.cost.getDescription(hand),
+            Icons.arrow_downward, Colors.red));
+      }
 
-    if (actionDetails.reward.isNotEmpty) {
-      final description = '${actionDetails.reward.map((res) => res.getText())}';
-      effects
-          .add(CardActionLine(description, Icons.arrow_upward, Colors.green));
-    }
+      if (actionDetails.reward.isNotEmpty) {
+        final description =
+            '${actionDetails.reward.map((res) => res.getText())}';
+        effects
+            .add(CardActionLine(description, Icons.arrow_upward, Colors.green));
+      }
 
-    if (actionDetails.cardsToScry != null) {
-      effects.add(CardActionLine('Scry ${actionDetails.cardsToScry}',
-          Icons.remove_red_eye, Colors.blue));
-    }
+      if (actionDetails.cardsToScry > 0) {
+        effects.add(CardActionLine('Scry ${actionDetails.cardsToScry}',
+            Icons.remove_red_eye, Colors.blue));
+      }
 
-    if (actionDetails.replacement != null) {
-      final icon = _getReplacementIcon(actionDetails);
-      effects.add(CardActionLine('${actionDetails.replacement.name}',
-          icon, Colors.purpleAccent));
+      if (actionDetails.replacement != null) {
+        final icon = _getReplacementIcon(actionDetails);
+        effects.add(CardActionLine(
+            '${actionDetails.replacement!.name}', icon, Colors.purpleAccent));
+      }
     }
 
     return Column(
       children: [
         const SizedBox(height: 5),
-        CardActionText(actionDetails.description),
+        CardActionText(actionDetails?.description ?? ''),
         const SizedBox(height: 10),
         Row(
           children: effects,
@@ -97,8 +100,10 @@ class CardActionPanel extends StatelessWidget {
     );
   }
 
-  Widget _getResultWidget(CardActionDetails actionDetails) {
-    if (actionDetails.result == GameResult.WIN) {
+  Widget _getResultWidget(CardActionDetails? actionDetails) {
+    if (actionDetails == null) {
+      return const CardActionLine('Exile', Icons.delete, Colors.black);
+    } else if (actionDetails.result == GameResult.WIN) {
       return const CardActionLine('You Win!', Icons.check, Colors.green);
     } else if (actionDetails.result == GameResult.LOSE) {
       return const CardActionLine('You Lose!', Icons.close, Colors.red);
@@ -109,8 +114,12 @@ class CardActionPanel extends StatelessWidget {
     }
   }
 
-  Color _getButtonColor(CardActionDetails actionDetails) {
-    final result = actionDetails?.result;
+  Color? _getButtonColor(CardActionDetails? actionDetails) {
+    if (actionDetails == null) {
+      return Colors.yellow[50];
+    }
+
+    final result = actionDetails.result;
     switch (result) {
       case GameResult.WIN:
         return Colors.green[50];
@@ -121,7 +130,11 @@ class CardActionPanel extends StatelessWidget {
     }
   }
 
-  IconData _getReplacementIcon(CardActionDetails actionDetails) {
+  IconData _getReplacementIcon(CardActionDetails? actionDetails) {
+    if (actionDetails == null) {
+      return Icons.description;
+    }
+
     switch (actionDetails.replaceType) {
       case ReplaceType.BACKWARDS:
         return Icons.arrow_back;

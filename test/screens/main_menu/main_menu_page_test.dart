@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/credits_page.dart';
@@ -9,11 +10,12 @@ import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/rules_page.dart';
 import 'package:treasure_of_the_high_seas/screens/settings_page.dart';
 
-import '../../mocks.dart';
+import '../../model/audio/audio_model_test.mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
   testWidgets('should navigate to the Rules page', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: MainMenuPage());
 
     final rulesButtonFinder = find.widgetWithText(MenuButton, 'Rules');
@@ -23,7 +25,9 @@ void main() {
     expect(find.byType(RulesPage), findsOneWidget);
   });
 
-  testWidgets('should navigate to the Settings page', (WidgetTester tester) async {
+  testWidgets('should navigate to the Settings page',
+      (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: MainMenuPage());
 
     final settingsButtonFinder = find.widgetWithText(MenuButton, 'Settings');
@@ -33,7 +37,9 @@ void main() {
     expect(find.byType(SettingsPage), findsOneWidget);
   });
 
-  testWidgets('should navigate to the Credits page', (WidgetTester tester) async {
+  testWidgets('should navigate to the Credits page',
+      (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: MainMenuPage());
 
     final creditsButtonFinder = find.widgetWithText(MenuButton, 'Credits');
@@ -44,6 +50,7 @@ void main() {
   });
 
   testWidgets('should start a new game', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: MainMenuPage());
 
     final newGameFinder = find.widgetWithText(MenuButton, 'Play');
@@ -58,7 +65,9 @@ void main() {
     expect(gameState.currentCard, isNotNull);
   });
 
-  testWidgets('should play game music when launching a new game', (WidgetTester tester) async {
+  testWidgets('should play game music when launching a new game',
+      (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     final audioModel = MockAudioModel();
     await tester.launchWidget(child: MainMenuPage(), audioModel: audioModel);
 

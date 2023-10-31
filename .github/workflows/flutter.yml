@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: subosito/flutter-action@v1.4.0
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@v2.10.0
       with:
         channel: 'stable'
     - run: flutter pub get
@@ -24,15 +24,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
-    - uses: subosito/flutter-action@v1.4.0
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@v2.10.0
       with:
         channel: 'stable'
     - run: flutter pub get
     - run: flutter build apk --split-per-abi
     - name: Create a Release APK
       if: github.ref == 'refs/heads/master'
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.13.0
       with:
         artifacts: "build/app/outputs/apk/release/*.apk"
         token: ${{ secrets.TREASURE_REPO_SECRET }}

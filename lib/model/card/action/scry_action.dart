@@ -8,7 +8,8 @@ import 'card_action_details.dart';
 class ScryAction extends CardAction {
   int numToScry;
 
-  ScryAction(String description, List<Resource> cost, this.numToScry) : super(SimpleCost(cost), description);
+  ScryAction(String description, List<Resource> cost, this.numToScry)
+      : super(SimpleCost(cost), description);
 
   @override
   void performActionImpl(GameState state) {
@@ -17,8 +18,7 @@ class ScryAction extends CardAction {
 
   @override
   CardActionDetails get actionDetails =>
-      CardActionDetails(cost, description,
-          cardsToScry: numToScry);
+      CardActionDetails(cost, description, cardsToScry: numToScry);
 
   @override
   bool autoProgress() => false;

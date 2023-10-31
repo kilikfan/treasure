@@ -1,7 +1,4 @@
-enum GameResult {
-  WIN,
-  LOSE
-}
+enum GameResult { WIN, LOSE }
 
 extension GameResultExt on GameResult {
   String get description {

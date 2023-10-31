@@ -10,7 +10,7 @@ class EndGameAction extends CardAction {
   final GameResult result;
 
   EndGameAction(this.result, List<Resource> cost, description,
-      {String soundEffect})
+      {String? soundEffect})
       : super(SimpleCost(cost), description, soundEffect: soundEffect);
 
   @override

@@ -1,24 +1,32 @@
-import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_model.dart';
 import 'package:treasure_of_the_high_seas/model/settings/settings_model.dart';
 
-import '../../mocks.dart';
+@GenerateNiceMocks([MockSpec<AudioPlayer>()])
+@GenerateNiceMocks([MockSpec<AudioModel>()])
+import 'audio_model_test.mocks.dart';
 
 Future<AudioModel> makeAudioModel(
-    {SettingsModel settingsModel,
-    AudioPlayer musicPlayer,
-    AudioCache musicCache,
-    AudioCache soundCache}) async {
+    {SettingsModel? settingsModel,
+    AudioPlayer? musicPlayer,
+    AudioPlayer? soundPlayer}) async {
   return AudioModel(
       settingsModel ?? SettingsModel(await SharedPreferences.getInstance()),
       musicPlayer ?? MockAudioPlayer(),
-      musicCache ?? MockAudioCache(),
-      soundCache ?? MockAudioCache());
+      soundPlayer ?? MockAudioPlayer());
+}
+
+void _verifyAudioPlayed(MockAudioPlayer audioPlayer, String assetName,
+    {double? volume = 0.5}) {
+  final source = verify(audioPlayer
+          .play(captureThat(isInstanceOf<AssetSource>()), volume: volume))
+      .captured;
+  expect((source.single as AssetSource).path, assetName);
 }
 
 void main() {
@@ -26,23 +34,23 @@ void main() {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
-    final model = await makeAudioModel(musicCache: musicCache);
-    await model.loopMusic(MENU_MUSIC);
+    final musicPlayer = MockAudioPlayer();
+    final model = await makeAudioModel(musicPlayer: musicPlayer);
+    await model.loopMusic('music/$MENU_MUSIC');
 
-    verifyZeroInteractions(musicCache);
+    verifyZeroInteractions(musicPlayer);
   });
 
   test('should loop chosen music when setting enabled', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): true});
 
-    final musicCache = MockAudioCache();
-    final model =
-        await makeAudioModel(musicCache: musicCache);
+    final musicPlayer = MockAudioPlayer();
+    final model = await makeAudioModel(musicPlayer: musicPlayer);
     await model.loopMusic(MENU_MUSIC);
 
-    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
+    verify(musicPlayer.setReleaseMode(ReleaseMode.loop));
+    _verifyAudioPlayed(musicPlayer, 'music/$MENU_MUSIC');
   });
 
   test('should stop playing music when music setting toggled off', () async {
@@ -51,56 +59,59 @@ void main() {
 
     final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicPlayer: musicPlayer);
-    await audioModel.loopMusic(MENU_MUSIC);
+    final audioModel = await makeAudioModel(
+        settingsModel: settingsModel, musicPlayer: musicPlayer);
+    await audioModel.loopMusic('music/$MENU_MUSIC');
 
     await settingsModel.updateSetting(AppSetting.musicEnabled, false);
     verify(musicPlayer.stop());
   });
 
-  test('should start playing menu music when music setting toggled on by default', () async {
+  test(
+      'should start playing menu music when music setting toggled on by default',
+      () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
+    final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    await makeAudioModel(
+        settingsModel: settingsModel, musicPlayer: musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.musicEnabled, true);
-    verify(musicCache.loop(MENU_MUSIC, volume: 0.5));
+    _verifyAudioPlayed(musicPlayer, 'music/$MENU_MUSIC');
   });
 
-  test('should do nothing if settings change and music already playing', () async {
+  test('should do nothing if settings change and music already playing',
+      () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): true});
 
-    final musicCache = MockAudioCache();
     final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache, musicPlayer: musicPlayer);
-    await audioModel.loopMusic(GAME_MUSIC);
+    final audioModel = await makeAudioModel(
+        settingsModel: settingsModel, musicPlayer: musicPlayer);
+    await audioModel.loopMusic('music/$GAME_MUSIC');
 
-    reset(musicCache);
     reset(musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.sfxEnabled, true);
 
-    verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);
   });
 
-  test('should do nothing if settings change and music already stopped', () async {
+  test('should do nothing if settings change and music already stopped',
+      () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
     final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache, musicPlayer: musicPlayer);
+    await makeAudioModel(
+        settingsModel: settingsModel, musicPlayer: musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.sfxEnabled, true);
 
-    verifyZeroInteractions(musicCache);
     verifyZeroInteractions(musicPlayer);
   });
 
@@ -108,36 +119,39 @@ void main() {
     SharedPreferences.setMockInitialValues(
         {AppSetting.sfxEnabled.toString(): false});
 
-    final soundCache = MockAudioCache();
-    final audioModel = await makeAudioModel(soundCache: soundCache);
+    final soundPlayer = MockAudioPlayer();
+    final audioModel = await makeAudioModel(soundPlayer: soundPlayer);
 
     await audioModel.playSound('baa.mp3');
-    verifyZeroInteractions(soundCache);
+    verifyZeroInteractions(soundPlayer);
   });
 
   test('should play the specified sound if the setting is enabled', () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.sfxEnabled.toString(): true});
 
-    final soundCache = MockAudioCache();
-    final audioModel = await makeAudioModel(soundCache: soundCache);
+    final soundPlayer = MockAudioPlayer();
+    final audioModel = await makeAudioModel(soundPlayer: soundPlayer);
 
     await audioModel.playSound('baa.mp3');
-    verify(soundCache.play('baa.mp3'));
+    _verifyAudioPlayed(soundPlayer, 'sfx/baa.mp3', volume: null);
   });
 
-  test('should start playing the last requested track when music setting toggled on', () async {
+  test(
+      'should start playing the last requested track when music setting toggled on',
+      () async {
     SharedPreferences.setMockInitialValues(
         {AppSetting.musicEnabled.toString(): false});
 
-    final musicCache = MockAudioCache();
+    final musicPlayer = MockAudioPlayer();
     final settingsModel = SettingsModel(await SharedPreferences.getInstance());
-    final audioModel = await makeAudioModel(settingsModel: settingsModel, musicCache: musicCache);
+    final audioModel = await makeAudioModel(
+        settingsModel: settingsModel, musicPlayer: musicPlayer);
     await audioModel.loopMusic(GAME_MUSIC);
-    verifyZeroInteractions(musicCache);
+    verifyZeroInteractions(musicPlayer);
 
     await settingsModel.updateSetting(AppSetting.musicEnabled, true);
-    verify(musicCache.loop(GAME_MUSIC, volume: 0.5));
+    _verifyAudioPlayed(musicPlayer, 'music/$GAME_MUSIC');
   });
 
   test('should support pausing music', () async {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
 import '../../model/card/card.dart' as Model;
 import 'card/card_display.dart';
@@ -45,7 +45,8 @@ class CardViewer extends StatelessWidget {
         ));
   }
 
-  Widget _buildCardNumberWidget(BuildContext context, List<Model.Card> cardList, Model.Card currentCard) {
+  Widget _buildCardNumberWidget(
+      BuildContext context, List<Model.Card> cardList, Model.Card currentCard) {
     final position = cardList.indexOf(currentCard) + 1;
     return Container(
         padding: const EdgeInsets.symmetric(vertical: 5),
@@ -53,5 +54,4 @@ class CardViewer extends StatelessWidget {
         child: Text('$position / ${cardList.length}')
     );
   }
-
 }

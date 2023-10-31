@@ -29,17 +29,17 @@ class ScryingPage extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.07,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: scryOption.getColour(),
+              backgroundColor: scryOption.getColour(),
               shape: RoundedRectangleBorder(
-            side: const BorderSide(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(10),
-          )),
+                side: const BorderSide(color: Colors.black, width: 1),
+                borderRadius: BorderRadius.circular(10),
+              )),
           onPressed: () {
             Provider.of<GameState>(context, listen: false)
                 .replaceScryedCard(card, scryOption);
           },
-          child:
-              Text(scryOption.getDescription(), style: const TextStyle(fontSize: 30)),
+          child: Text(scryOption.getDescription(),
+              style: const TextStyle(fontSize: 30)),
         ));
   }
 }

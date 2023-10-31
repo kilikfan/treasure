@@ -6,8 +6,7 @@ abstract class Card {
   final String name;
   final CardType type;
 
-  const Card(this.name,
-      {this.type = CardType.BASIC});
+  const Card(this.name, {this.type = CardType.BASIC});
 
   List<CardAction> getActions(GameState state);
 

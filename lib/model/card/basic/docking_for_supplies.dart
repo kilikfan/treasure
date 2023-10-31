@@ -14,8 +14,11 @@ class DockingForSupplies extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       TradeAction('Fresh food.', [Resource.DOUBLOON, Resource.DOUBLOON],
-          [Resource.FOOD], soundEffect: SFX_APPLE),
-      TradeAction('Honest trading.', [Resource.FOOD, Resource.FOOD], [Resource.DOUBLOON], soundEffect: SFX_COINS),
+          [Resource.FOOD],
+          soundEffect: SFX_APPLE),
+      TradeAction('Honest trading.', [Resource.FOOD, Resource.FOOD],
+          [Resource.DOUBLOON],
+          soundEffect: SFX_COINS),
       DiscardAction(description: 'Nothing to declare.')
     ];
   }

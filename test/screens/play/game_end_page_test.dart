@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
 import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
@@ -8,11 +9,13 @@ import 'package:treasure_of_the_high_seas/screens/play/game_end_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
 import 'package:treasure_of_the_high_seas/screens/play/player_hand.dart';
 
-import '../../mocks.dart';
+import '../../model/audio/audio_model_test.mocks.dart';
 import '../../test_utils.dart';
 
 void main() {
-  testWidgets('should display correct text for win and loss', (WidgetTester tester) async {
+  testWidgets('should display correct text for win and loss',
+      (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: const GameEndPage(GameResult.WIN));
 
     var gameWinTextFinder = find.text(GameResult.WIN.description);
@@ -28,7 +31,9 @@ void main() {
     expect(gameLoseTextFinder, findsOneWidget);
   });
 
-  testWidgets('new game button should start a new game', (WidgetTester tester) async {
+  testWidgets('new game button should start a new game',
+      (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.launchWidget(child: const GameEndPage(GameResult.WIN));
 
     final button1Finder = find.text('New Game');
@@ -44,7 +49,8 @@ void main() {
     expect(gameState.currentCard, isNotNull);
   });
 
-  testWidgets('exit button should exit to main menu, and play menu music', (WidgetTester tester) async {
+  testWidgets('exit button should exit to main menu, and play menu music',
+      (WidgetTester tester) async {
     final audioModel = MockAudioModel();
     await launchGameFromMenuMock(tester, audioModel: audioModel);
 

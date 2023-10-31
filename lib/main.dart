@@ -1,4 +1,3 @@
-import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +18,8 @@ Future<Widget> _buildApp() async {
   final prefs = await SharedPreferences.getInstance();
   final settingsModel = SettingsModel(prefs);
   final musicPlayer = AudioPlayer();
-  final musicCache = AudioCache(prefix: 'assets/music/', fixedPlayer: musicPlayer);
-  final soundCache = AudioCache(prefix: 'assets/sfx/', fixedPlayer: AudioPlayer());
-  final audioModel = AudioModel(settingsModel, musicPlayer, musicCache, soundCache);
+  final soundPlayer = AudioPlayer();
+  final audioModel = AudioModel(settingsModel, musicPlayer, soundPlayer);
 
   await audioModel.loopMusic(MENU_MUSIC);
 
