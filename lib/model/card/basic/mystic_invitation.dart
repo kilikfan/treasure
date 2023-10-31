@@ -12,7 +12,9 @@ class MysticInvitation extends Card {
   List<CardAction> getActions(GameState state) {
     return [
       TradeAction('Have your palm read.', [Resource.DOUBLOON], [Resource.CREW]),
-      TradeAction('Participate in a seance.', [Resource.DOUBLOON, Resource.LANDLUBBER],
+      TradeAction(
+          'Participate in a seance.',
+          [Resource.DOUBLOON, Resource.LANDLUBBER],
           [Resource.CREW, Resource.CREW, Resource.CREW]),
       DiscardAction(description: 'Sidestep fate this time.')
     ];

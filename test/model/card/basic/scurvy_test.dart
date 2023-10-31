@@ -8,7 +8,8 @@ import 'package:treasure_of_the_high_seas/model/resource.dart';
 import '../../../test_utils.dart';
 
 void main() {
-  test('should not enable the doctor action if hand contains at least one crew', () {
+  test('should not enable the doctor action if hand contains at least one crew',
+      () {
     final state = makeGameState(playerHand: [Resource.CREW]);
     expect(const Scurvy().getDoctorAction(state).enabled, false);
   });
@@ -20,12 +21,17 @@ void main() {
 
   test('weevils action should cost half the players crew', () {
     final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW]);
-    expect(const Scurvy().getWeevilsAction(state).cost, const SimpleCost([Resource.CREW]));
+    expect(const Scurvy().getWeevilsAction(state).cost,
+        const SimpleCost([Resource.CREW]));
   });
 
-  test('weevils action should round up the cost if player has an odd crew number', () {
-    final state = makeGameState(playerHand: [Resource.CREW, Resource.CREW, Resource.CREW]);
-    expect(const Scurvy().getWeevilsAction(state).cost, const SimpleCost([Resource.CREW, Resource.CREW]));
+  test(
+      'weevils action should round up the cost if player has an odd crew number',
+      () {
+    final state = makeGameState(
+        playerHand: [Resource.CREW, Resource.CREW, Resource.CREW]);
+    expect(const Scurvy().getWeevilsAction(state).cost,
+        const SimpleCost([Resource.CREW, Resource.CREW]));
   });
 }
 

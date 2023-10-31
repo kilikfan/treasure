@@ -42,8 +42,10 @@ class MainMenuPage extends StatelessWidget {
                 );
               }),
               MenuButton('Credits', onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const CreditsPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreditsPage()));
               })
             ],
           ),

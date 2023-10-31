@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:treasure_of_the_high_seas/model/audio/audio_constants.dart';
@@ -7,8 +6,6 @@ import 'package:treasure_of_the_high_seas/model/game_result.dart';
 import 'package:treasure_of_the_high_seas/model/game_state_factory.dart';
 import 'package:treasure_of_the_high_seas/screens/main_menu/menu_button.dart';
 import 'package:treasure_of_the_high_seas/screens/play/play_page.dart';
-
-import '../main_menu/menu_button.dart';
 
 class GameEndPage extends StatelessWidget {
   final GameResult result;

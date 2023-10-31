@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum ScryOption {
-  TOP,
-  BOTTOM
-}
+enum ScryOption { TOP, BOTTOM }
 
 extension ScryOptionExt on ScryOption {
   Color getColour() {

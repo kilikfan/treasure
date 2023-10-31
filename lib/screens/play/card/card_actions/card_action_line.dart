@@ -9,15 +9,17 @@ class CardActionLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.symmetric(horizontal: 5), child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(icon, color: iconColor),
-        Text(
-          text,
-          textAlign: TextAlign.center,
-        )
-      ],
-    ));
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(icon, color: iconColor),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+            )
+          ],
+        ));
   }
 }
